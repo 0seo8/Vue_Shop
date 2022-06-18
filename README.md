@@ -10,7 +10,7 @@
 
 모든 API 요청(Request) `headers`에 다음 정보가 꼭 포함되어야 합니다.<br>
 `username`은 다른 사람과 겹치지 않도록 주의하세요!<br>
-본명으로 만들면 나중에 문제가 발생했을 때 찾기가 쉬워요.(E.g. `ParkYoungWoong`)
+본명으로 만들면 나중에 문제가 발생했을 때 찾기가 쉬워요.(E.g. `KDT2_ParkYoungWoong`)
 
 ```json
 {
