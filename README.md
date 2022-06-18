@@ -38,17 +38,16 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup
   \ -X 'POST'
 ```
 
-```plaintext
-@param {String} email - 사용자 아이디 (필수!)
-@param {String} password - 사용자 비밀번호, 8자 이상 (필수!)
-@param {String} displayName - 사용자 이름, 20자 이하 (필수!)
-@param {String} profileImgBase64 - 사용자 프로필 이미지(base64)
-@return {Object} object
-@return {Object} object.user - 회원가입한 사용자 정보
-@return {String} object.accessToken - 사용자 접근 토큰
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  email: string // 사용자 아이디 (필수!)
+  password: string // 사용자 비밀번호, 8자 이상 (필수!)
+  displayName: string // 사용자 이름, 20자 이하 (필수!)
+  profileImgBase64?: string // 사용자 프로필 이미지(base64) - jpg, jpeg, webp, png, gif, svg
+}
+```
 
 ```json
 {
@@ -59,7 +58,18 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
+
+```ts
+interface ResponseValue {
+  user: { // 회원가입한 사용자 정보
+    email: string // 사용자 아이디
+    displayName: string // 사용자 표시 이름
+    profileImg: string | null // 사용자 프로필 이미지(URL)
+  }
+  accessToken: string // 사용자 접근 토큰
+}
+```
 
 ```json
 {
@@ -81,15 +91,14 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
   \ -X 'POST'
 ```
 
-```plaintext
-@param {String} email - 사용자 아이디 (필수!)
-@param {String} password - 사용자 비밀번호 (필수!) 
-@return {Object} userInfo
-@return {Object} userInfo.user - 로그인한 사용자 정보
-@return {String} userInfo.accessToken - 사용자 접근 토큰
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  email: string // 사용자 아이디 (필수!)
+  password: string // 사용자 비밀번호 (필수!)
+}
+```
 
 ```json
 {
@@ -98,7 +107,18 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
+
+```ts
+interface ResponseValue {
+  user: { // 회원가입한 사용자 정보
+    email: string // 사용자 아이디
+    displayName: string // 사용자 표시 이름
+    profileImg: string | null // 사용자 프로필 이미지(URL)
+  }
+  accessToken: string // 사용자 접근 토큰
+}
+```
 
 ```json
 {
@@ -114,22 +134,24 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
 ### 인증 확인
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext 
-@return {Object} - 로그인한 사용자 정보
+요청 데이터 타입 및 예시:
+
+-
+
+응답 데이터 타입 및 예시:
+
+```ts
+interface ResponseValue {
+  email: string // 사용자 아이디
+    displayName: string // 사용자 표시 이름
+    profileImg: string | null // 사용자 프로필 이미지(URL)
+}
 ```
-
-요청 데이터 예시:
-
-```js
-undefined
-```
-
-응답 데이터 예시:
 
 ```json
 {
@@ -142,44 +164,39 @@ undefined
 ### 로그아웃
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext 
-@return {Boolean} - 로그아웃 여부
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+-
 
-```js
-undefined
-```
+응답 데이터 타입 및 예시:
 
-응답 데이터 예시:
-
-```json
-true
+```ts
+type ResponseValue = true // 로그아웃 처리 상태
 ```
 
 ### 사용자 정보 수정
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user
   \ -X 'PUT'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext
-@param {String} displayName - 새로운 사용자 이름
-@param {String} profileImgBase64 - 새로운 사용자 프로필 이미지(base64)
-@param {String} oldPassword - 기존 사용자 비밀번호
-@param {String} newPassword - 새로운 사용자 비밀번호
-@return {Object} - 수정된 사용자 정보
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  displayName?: string // 새로운 표시 이름
+  profileImgBase64?: string // 사용자 프로필 이미지(base64) - jpg, jpeg, webp, png, gif, svg
+  oldPassword?: string // 기존 비밀번호
+  newPassword?: string // 새로운 비밀번호
+}
+```
 
 ```json
 {
@@ -188,7 +205,15 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
+
+```ts
+interface ResponseValue {
+  email: string // 사용자 아이디
+  displayName: string // 사용자 표시 이름
+  profileImg: string | null // 사용자 프로필 이미지(URL)
+}
+```
 
 ```json
 {
@@ -209,6 +234,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user
 - 은행 당 하나의 계좌만 허용됩니다.
 - 사용자가 계좌를 추가하면, 해당 은행 정보 `disabled` 속성이 `true`로 변경됩니다.
 - 은행 정보 `digits` 속성의 숫자를 모두 더하면 각 은행의 유효한 계좌번호 길이가 됩니다.
+- `[3, 2, 4, 3]` => 123-12-1234-123
 
 ```curl
 curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks
@@ -217,16 +243,25 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks
 ```
 
 ```plaintext
-@return {Object[]} - 선택 가능한 은행 목록
+@return {object[]} - 선택 가능한 은행 목록
 ```
 
-요청 데이터 예시:
+요청 데이터 타입 및 예시:
 
-```js
-undefined
+-
+
+응답 데이터 타입 및 예시:
+
+```ts
+type ResponseValue = Bank[] // 선택 가능한 은행 정보 목록
+
+interface Bank { // 선택 가능한 은행 정보
+  name: string // 은행 이름
+  code: string // 은행 코드
+  digits: number[] // 은행 계좌 자릿수
+  disabled: boolean // 사용자가 추가한 계좌 여부
+}
 ```
-
-응답 데이터 예시:
 
 ```json
 [
@@ -277,28 +312,35 @@ undefined
 
 ### 계좌 목록 및 잔액 조회
 
-- 계좌번호는 일부만 노출됩니다. E.g. `"356-XXXX-XXXX-XX"`
+- 계좌번호는 일부만 노출됩니다. E.g. `"123-XXXX-XXXX-XX"`
 - 잔액의 단위는 '원화(￦)'입니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account
   \ -X 'GET'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext
-@return {Object} object
-@return {Object} object.totalBalance - 계좌 잔액 총합
-@return {Object[]} object.accounts - 계좌 정보 배열
+요청 데이터 타입 및 예시:
+
+-
+
+응답 데이터 타입 및 예시:
+
+```ts
+interface ResponseValue {
+  totalBalance: number // 사용자 계좌 잔액 총합
+  accounts: Bank[] // 사용자 계좌 정보 목록
+}
+
+interface Bank { // 사용자 계좌 정보
+  id: string // 계좌 ID
+  bankName: string // 은행 이름
+  bankCode: string // 은행 코드
+  accountNumber: string // 계좌 번호
+  balance: number // 계좌 잔액
+}
 ```
-
-요청 데이터 예시:
-
-```js
-undefined
-```
-
-응답 데이터 예시:
 
 ```json
 {
@@ -325,8 +367,7 @@ undefined
 ### 계좌 연결
 
 - 연결된 계좌 잔액에는 자동으로 기본 '3백만원'이 추가됩니다.
-- 요청하는 계좌번호에는 `-` 구분이 없어야 합니다.
-- 요청하는 전화번호에는 `-` 구분이 없어야 합니다.
+- 요청하는 계좌번호와 전화번호에는 `-` 구분이 없어야 합니다.
 
 ```curl
 curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account 
@@ -334,15 +375,16 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext
-@param {String} bankCode - 은행 코드 (필수!)
-@param {String} accountNumber - 계좌번호 (필수!)
-@param {String} phoneNumber - 전화번호 (필수!)
-@param {Boolean} signature - 서명 (필수!)
-@return {Object} - 연결한 계좌 정보
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  bankCode: string // 연결할 은행 코드 (필수!)
+  accountNumber: string // 연결할 계좌번호 (필수!)
+  phoneNumber: string // 사용자 전화번호 (필수!)
+  signature: boolean // 사용자 서명 (필수!)
+}
+```
 
 ```json
 {
@@ -353,7 +395,17 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
+
+```ts
+interface ResponseValue { // 연결된 계좌 정보
+  id: string // 계좌 ID
+  bankName: string // 은행 이름
+  bankCode: string // 은행 코드
+  accountNumber: string // 계좌 번호
+  balance: number // 계좌 잔액
+}
+```
 
 ```json
 {
@@ -375,13 +427,14 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext
-@param {String} accountId - 계좌 ID (필수!)
-@param {Boolean} signature - 서명 (필수!)
-@return {Boolean} - 계좌 해지 여부
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  accountId: string // 계좌 ID (필수!)
+  signature: boolean // 사용자 서명 (필수!)
+}
+```
 
 ```json
 {
@@ -390,10 +443,10 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
 
-```js
-true
+```ts
+type ResponseValue = true  // 계좌 해지 처리 상태
 ```
 
 <hr />
@@ -415,17 +468,25 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products
   \ -H 'masterKey: true'
 ```
 
-```plaintext
-@return {Object[]} - 관리하는 모든 제품의 배열
+요청 데이터 타입 및 예시:
+
+-
+
+응답 데이터 타입 및 예시:
+
+```ts
+type ResponseValue = Product[] // 관리하는 모든 제품의 목록
+
+interface Product { // 제품 정보
+  id: string // 제품 ID
+  title: string // 제품 이름
+  price: number // 제품 가격
+  description: string // 제품 설명(최대 100자)
+  tags: string[] // 제품 태그
+  thumbnail: string | null // 제품 썸네일 이미지(URL)
+  isSoldOut: boolean // 제품 매진 여부
+}
 ```
-
-요청 데이터 예시:
-
-```js
-undefined
-```
-
-응답 데이터 예시:
 
 ```json
 [
@@ -458,7 +519,7 @@ undefined
 ]
 ```
 
-### 전체 판매 내역
+### 전체 거래(판매) 내역
 
 - 관리자 전용 API입니다.
 
@@ -468,17 +529,48 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
   \ -H 'masterKey: true'
 ```
 
-```plaintext
-@return {Object[]} - 판매한 모든 정보 내역
+요청 데이터 타입 및 예시:
+
+-
+
+응답 데이터 타입 및 예시:
+
+```ts
+type RequestValue = TransactionDetail[] // 모든 거래 내역의 목록
+
+interface TransactionDetail { // 거래 내역 정보
+  detailId: string // 거래 내역 ID
+  user: { // 거래한 사용자 정보
+    email: string
+    displayName: string
+    profileImg: string | null
+  }
+  account: { // 거래한 사용자의 계좌 정보
+    bankName: string
+    bankCode: string
+    accountNumber: string
+  }
+  product: { // 거래한 제품 정보
+    productId: string
+    title: string
+    price: number
+    description: string
+    tags: string[]
+    thumbnail: string | null
+  }
+  reservation: Reservation | null // 거래한 제품의 예약 정보
+  timePaid: string // 제품을 거래한 시간
+  isCanceled: boolean // 거래 취소 여부
+  done: boolean // 거래 완료 여부
+}
+
+interface Reservation {
+  start: string // 예약 시작 시간
+  end: string // 예약 종료 시간
+  isCanceled: boolean // 예약 취소 여부
+  isExpired: boolean // 예약 만료 여부
+}
 ```
-
-요청 데이터 예시:
-
-```js
-undefined
-```
-
-응답 데이터 예시:
 
 ```json
 [
@@ -488,6 +580,11 @@ undefined
       "email": "thesecon@gmail.com",
       "displayName": "ParkYoungWoong",
       "profileImg": "https://storage.googleapis.com/heropy-api/vsLRqTlPO5v200111.png"
+    },
+    "account": {
+      "bankName": "KB국민은행",
+      "bankCode": "004",
+      "accountNumber": "123-XX-XXXX-XXX"
     },
     "product": {
       "productId": "cFmeC7aY5KjZbBAdJE9y",
@@ -501,11 +598,6 @@ undefined
       ],
       "thumbnail": "https://storage.googleapis.com/heropy-api/vBAK4MQdH5v195712.png"
     },
-    "account": {
-      "bankName": "KB국민은행",
-      "bankCode": "004",
-      "accountNumber": "123-XX-XXXX-XXX"
-    },
     "reservation": null,
     "timePaid": "2021-11-07T20:01:49.100Z",
     "isCanceled": false,
@@ -514,7 +606,7 @@ undefined
 ]
 ```
 
-응답 데이터에 `reservation` 값이 `null`이 아닌 경우 예시:
+예약 정보(`reservation`)가 있는 경우:
 
 ```json
 [
@@ -529,11 +621,11 @@ undefined
 ]
 ```
 
-### 판매 내역 관리
+### 거래(판매) 내역 완료/취소 및 해제
 
 - 관리자 전용 API입니다.
-- 판매 내역을 취소하면, 예약도 같이 취소됩니다.
-- 판매 내역을 취소 해제하면, 예약도 같이 취소 해제됩니다.
+- 거래 내역을 취소하면, 예약도 같이 취소됩니다.
+- 거래 내역을 취소 해제하면, 예약도 같이 취소가 해제됩니다.
 
 ```curl
 curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/:detailId 
@@ -541,13 +633,14 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
   \ -H 'masterKey: true'
 ```
 
-```plaintext
-@param {Boolean} isCanceled - 판매 취소 여부 (사용자의 '제품 구매 취소' 상태와 같습니다)
-@param {Boolean} done - 판매 완료 여부 (사용자의 '제품 구매 확정' 상태와 같습니다)
-@return {Boolean} - 처리 여부
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  isCanceled?: boolean // 거래 취소 여부 (사용자의 '제품 거래(구매) 취소' 상태와 같습니다)
+  done?: boolean // 거래 완료 여부 (사용자의 '제품 거래(구매) 확정' 상태와 같습니다)
+}
+```
 
 ```json
 {
@@ -555,10 +648,11 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
 
-```js
-true
+
+```ts
+type ResponseValue = true // 거래 내역 완료/취소 및 해제 처리 상태
 ```
 
 ### 제품 추가
@@ -574,17 +668,18 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products
   \ -H 'masterKey: true'
 ```
 
-```plaintext
-@param {String} title - 제품 이름 (필수!)
-@param {Number} price - 제품 가격 (필수!)
-@param {String} description - 제품 상세 설명 (필수!)
-@param {String[]} tags - 제품 태그
-@param {String} thumbnailBase64 - 제품 썸네일 사진 Base64
-@param {String} photoBase64 - 제품 상세 사진 Base64
-@return {Object} object - 추가한 제품의 상세 내용
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  title: string // 제품 이름 (필수!)
+  price: number // 제품 가격 (필수!)
+  description: string // 제품 상세 설명 (필수!)
+  tags?: string[] // 제품 태그
+  thumbnailBase64?: string // 제품 썸네일(대표) 사진(base64) - jpg, jpeg, webp, png, gif, svg
+  photoBase64?: string // 제품 상세 사진(base64) - jpg, jpeg, webp, png, gif, svg
+}
+```
 
 ```json
 {
@@ -600,7 +695,20 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
+
+```ts
+interface ResponseValue { // 추가한 제품의 상세 내용
+  id: string // 제품 ID
+  title: string // 제품 이름
+  price: number // 제품 가격
+  description: string // 제품 상세 설명
+  tags: string[] // 제품 태그
+  thumbnail: string | null // 제품 썸네일 이미지(URL)
+  photo: string | null // 제품 상세 이미지(URL)
+  isSoldOut: boolean // 제품 매진 여부
+}
+```
 
 ```json
 {
@@ -631,18 +739,19 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/:product
   \ -H 'masterKey: true'
 ```
 
-```plaintext
-@param {String} title - 제품 이름
-@param {Number} price - 제품 가격
-@param {String} description - 제품 상세 설명
-@param {String[]} tags - 제품 태그
-@param {String} thumbnailBase64 - 제품 썸네일 사진 
-@param {String} photoBase64 - 제품 상세 사진
-@param {Boolean} isSoldOut - 제품 매진 여부
-@return {Object} - 수정한 제품의 상세 내용
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  title?: string // 제품 이름
+  price?: number // 제품 가격
+  description?: string // 제품 상세 설명
+  tags?: string[] // 제품 태그
+  thumbnailBase64?: string // 제품 썸네일(대표) 사진(base64) - jpg, jpeg, webp, png, gif, svg
+  photoBase64?: string // 제품 상세 사진(base64) - jpg, jpeg, webp, png, gif, svg
+  isSoldOut?: number // 제품 매진 여부
+}
+```
 
 ```json
 {
@@ -650,7 +759,20 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/:product
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
+
+```ts
+interface ResponseValue { // 수정한 제품의 상세 내용
+  id: string // 제품 ID
+  title: string // 제품 이름
+  price: number // 제품 가격
+  description: string // 제품 상세 설명
+  tags: string[] // 제품 태그
+  thumbnail: string | null // 제품 썸네일 이미지(URL)
+  photo: string | null // 제품 상세 이미지(URL)
+  isSoldOut: boolean // 제품 매진 여부 
+}
+```
 
 ```json
 {
@@ -678,17 +800,32 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/:product
   \ -X 'GET'
 ```
 
-```plaintext
-@return {Object} - 제품의 상세 내용
+요청 데이터 타입 및 예시:
+
+-
+
+응답 데이터 타입 및 예시:
+
+```ts
+interface ResponseValue { // 제품의 상세 내용
+  id: string // 제품 ID
+  title: string // 제품 이름
+  price: number // 제품 가격
+  description: string // 제품 상세 설명
+  tags: string[] // 제품 태그
+  thumbnail: string | null // 제품 썸네일 이미지(URL)
+  photo: string | null // 제품 상세 이미지(URL)
+  isSoldOut: boolean // 제품 매진 여부 
+  reservations: Reservation[] // 제품의 모든 예약 정보 목록
+}
+
+interface Reservation {
+  start: string // 예약 시작 시간
+  end: string // 예약 종료 시간
+  isCanceled: boolean // 예약 취소 여부
+  isExpired: boolean // 예약 만료 여부
+}
 ```
-
-요청 데이터 예시:
-
-```js
-undefined
-```
-
-응답 데이터 예시:
 
 ```json
 {
@@ -701,14 +838,14 @@ undefined
     "노트북",
     "컴퓨터"
   ],
-  "isSoldOut": false,
   "thumbnail": "https://storage.googleapis.com/heropy-api/vIKMk_jy4Yv195256.png",
   "photo": "https://storage.googleapis.com/heropy-api/voihKb3NLGcv195257.png",
+  "isSoldOut": false,
   "reservations": []
 }
 ```
 
-응답 데이터에 `reservations` 값이 `[]`(빈 배열)이 아닌 경우 예시:
+예약 정보(`reservation`)가 있는 경우:
 
 ```json
 {
@@ -728,7 +865,8 @@ undefined
 ### 제품 검색
 
 - 사용자 전용 API입니다.
-- 제품 이름과 태그를 동시에 검색할 수 있고, 'And' 조건으로 결과를 반환합니다.
+- 제품 이름과 태그를 동시에 검색할 수 있고, 'And'(검색한 이름과 태그 모두 포함된 제품) 조건으로 결과를 반환합니다.
+- 제품 이름과 태그 모두 포함하지 않으면, 모든 제품의 결과를 반환합니다.
 - 제품의 기본 정보만 반환합니다.
 - 매진된 제품은 검색되지 않습니다.
 
@@ -737,13 +875,14 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/search
   \ -X 'POST'
 ```
 
-```plaintext
-@param {String} searchText - 제품 이름으로 검색
-@param {Array} searchTags - 제품 태그로 검색
-@return {Object[]} - 검색한 제품 배열
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  searchText?: string // 검색할 제품 이름
+  searchTags?: string[] // 검색할 제품 태그
+}
+```
 
 ```json
 {
@@ -752,7 +891,20 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/search
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
+
+```ts
+type ResponseValue = Product[] // 관리하는 모든 제품의 목록
+
+interface Product { // 제품 정보
+  id: string // 제품 ID
+  title: string // 제품 이름
+  price: number // 제품 가격
+  description: string // 제품 설명(최대 100자)
+  tags: string[] // 제품 태그
+  thumbnail: string | null // 제품 썸네일 이미지(URL)
+}
+```
 
 ```json
 [
@@ -771,12 +923,12 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/search
 ]
 ```
 
-### 제품 구매 신청
+### 제품 거래(구매) 신청
 
 - 사용자 전용 API입니다.
-- 구매 신청시 연결된 계좌에서 결제됩니다.
+- 거래(구매) 신청시 연결된 계좌에서 결제됩니다.
 - 결제할 계좌(ID)를 꼭 선택해야 합니다.(`계좌 목록 및 잔액 조회` API를 사용하세요)
-- 선택한 계좌의 잔액보다 결제 금액이 크면 결제 처리되지 않습니다.(에러 반환)
+- 선택한 계좌의 잔액보다 결제 금액이 크면 결제가 처리되지 않습니다.(에러 반환)
 
 ```curl
 curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy 
@@ -784,16 +936,22 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext
-@param {String} productId - 구매할 제품 ID (필수!)
-@param {String} accountId - 결제할 계좌 ID (필수!)
-@param {Object} reservation - 예약 정보
-@param {String} reservation.start - 예약 시작 시간 (ISO)
-@param {String} reservation.end - 예약 종료 시간 (ISO)
-@return {Boolean} - 결제 여부
+요청 데이터 타입 및 예시:
+
+```ts
+interface RequestBody {
+  productId: string // 거래할 제품 ID (필수!)
+  accountId: string // 결제할 사용자 계좌 ID (필수!)
+  reservation?: { // 예약 정보(예약 시스템을 사용하는 경우만 필요)
+    start: string // 예약 시작 시간(ISO)
+    end: string // 예약 종료 시간(ISO)
+  }
+}
 ```
 
-요청 데이터 예시:
+```js
+const isoString = new Date().toISOString()
+```
 
 ```json
 {
@@ -806,16 +964,16 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
 
-```json
-true
+```ts
+type ResponseValue = true // 거래 신청 처리 여부
 ```
 
-### 제품 구매 취소
+### 제품 거래(구매) 취소
 
 - 사용자 전용 API입니다.
-- 구매 취소시 결제한 계좌로 환불됩니다.
+- '거래 취소'시 결제한 사용자 계좌로 금액이 환불됩니다.
 
 ```curl
 curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel 
@@ -823,12 +981,13 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext
-@param {String} detailId - 구매를 취소할 구매 내역 ID (필수!)
-@return {Boolean} - 취소 여부
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  detailId: string // 취소할 제품의 거래 내역 ID
+}
+```
 
 ```json
 {
@@ -836,16 +995,16 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
 
-```json
-true
+```ts
+type ResponseValue = true // 거래 취소 처리 여부
 ```
 
-### 제품 구매 확정
+### 제품 거래(구매) 확정
 
 - 사용자 전용 API입니다.
-- 구매 확정 후에는 취소할 수 없습니다.
+- '거래(구매) 확정' 후에는 '거래 취소'를 할 수 없습니다.
 
 ```curl
 curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok 
@@ -853,12 +1012,13 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext
-@param {String} detailId - 구매를 확정할 구매 내역 ID (필수!)
-@return {Boolean} - 구매 확정 여부
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  detailId: string // 거래(구매) 확정할 제품의 거래 내역 ID
+}
+```
 
 ```json
 {
@@ -866,16 +1026,16 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
 
-```json
-true
+```ts
+type ResponseValue = true // 거래(구매) 확정 처리 여부
 ```
 
-### 제품 전체 구매 내역
+### 제품 전체 거래(구매) 내역
 
 - 사용자 전용 API입니다.
-- 내역의 기본 정보만 포함됩니다.
+- 거래 내역의 기본 정보만 포함됩니다.
 
 ```curl
 curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details 
@@ -883,17 +1043,38 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext
-@return {Object[]} - 구매 정보 배열
+요청 데이터 타입 및 예시:
+
+-
+
+응답 데이터 타입 및 예시:
+
+```ts
+type RequestValue = TransactionDetail[] // 모든 거래 내역의 목록
+
+interface TransactionDetail { // 거래 내역 정보
+  detailId: string // 거래 내역 ID
+  product: { // 거래한 제품 정보
+    productId: string
+    title: string
+    price: number
+    description: string
+    tags: string[]
+    thumbnail: string | null
+  }
+  reservation: Reservation | null // 거래한 제품의 예약 정보
+  timePaid: string // 제품을 거래한 시간
+  isCanceled: boolean // 거래 취소 여부
+  done: boolean // 거래 완료 여부
+}
+
+interface Reservation {
+  start: string // 예약 시작 시간
+  end: string // 예약 종료 시간
+  isCanceled: boolean // 예약 취소 여부
+  isExpired: boolean // 예약 만료 여부
+}
 ```
-
-요청 데이터 예시:
-
-```js
-undefined
-```
-
-응답 데이터 예시:
 
 ```json
 [
@@ -943,7 +1124,7 @@ undefined
 ]
 ```
 
-### 단일 제품 상세 구매 내역
+### 단일 제품 상세 거래(구매) 내역
 
 - 사용자 전용 API입니다.
 
@@ -953,12 +1134,13 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
   \ -H 'Authorization: Bearer <accessToken>'
 ```
 
-```plaintext
-@param {String} detailId - 상세 내용을 확인할 구매 내역 ID (필수!)
-@return {Object} - 해당 제품의 상세 구매 정보
-```
+요청 데이터 타입 및 예시:
 
-요청 데이터 예시:
+```ts
+interface RequestBody {
+  detailId: string // 상세 내용을 확인할 거래(구매) 내역 ID
+}
+```
 
 ```json
 {
@@ -966,11 +1148,47 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
 }
 ```
 
-응답 데이터 예시:
+응답 데이터 타입 및 예시:
+
+```ts
+interface TransactionDetail { // 상세 거래 정보
+  detailId: string // 거래 내역 ID
+  account: { // 거래한 사용자의 계좌 정보
+    bankName: string
+    bankCode: string
+    accountNumber: string
+  }
+  product: { // 거래한 제품 정보
+    productId: string
+    title: string
+    price: number
+    description: string
+    tags: string[]
+    thumbnail: string | null
+    photo: string | null
+  }
+  reservation: Reservation | null // 거래한 제품의 예약 정보
+  timePaid: string // 제품을 거래한 시간
+  isCanceled: boolean // 거래 취소 여부
+  done: boolean // 거래 완료 여부
+}
+
+interface Reservation {
+  start: string // 예약 시작 시간
+  end: string // 예약 종료 시간
+  isCanceled: boolean // 예약 취소 여부
+  isExpired: boolean // 예약 만료 여부
+}
+```
 
 ```json
 {
   "detailId": "dMhfxyrAupQP18OYmywy",
+  "account": {
+    "bankName": "KB국민은행",
+    "bankCode": "004",
+    "accountNumber": "123-XX-XXXX-XXX"
+  },
   "product": {
     "productId": "cFmeC7aY5KjZbBAdJE9y",
     "title": "삼성전자 스마트모니터 M7 S43AM700",
@@ -983,11 +1201,6 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
     ],
     "thumbnail": "https://storage.googleapis.com/heropy-api/vBAK4MQdH5v195712.png",
     "photo": "https://storage.googleapis.com/heropy-api/vVLP-ox_zSDv195712.jpg"
-  },
-  "account": {
-    "bankName": "KB국민은행",
-    "bankCode": "004",
-    "accountNumber": "123-XX-XXXX-XXX"
   },
   "reservation": null,
   "timePaid": "2021-11-07T20:01:49.100Z",
