@@ -148,8 +148,8 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me
 ```ts
 interface ResponseValue {
   email: string // 사용자 아이디
-    displayName: string // 사용자 표시 이름
-    profileImg: string | null // 사용자 프로필 이미지(URL)
+  displayName: string // 사용자 표시 이름
+  profileImg: string | null // 사용자 프로필 이미지(URL)
 }
 ```
 
