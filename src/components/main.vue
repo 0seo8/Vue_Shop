@@ -1,7 +1,6 @@
 <template lang="">
   <div>
-    <RouterView />
-    <h1>app</h1>
+    <h1>main</h1>
   </div>
 </template>
 <script>
