@@ -13,3 +13,8 @@ skljdsalkdjsakld
 askdjlsajdlskajdaslk
 
 sakldsalkdjsakldjsalk
+<<<<<<< HEAD
+=======
+
+오늘은 ㅁㄴㅇㄹㅁㄴㅇㄹ
+>>>>>>> shin
