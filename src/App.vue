@@ -9,6 +9,8 @@ export default {
   
 }
 </script>
-<style lang="">
-  
+
+<style lang="scss"> 
+@import "./scss/main.scss"; 
 </style>
+
