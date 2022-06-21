@@ -1,10 +1,11 @@
 import axios from 'axios'
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 const API_ENDPOINT = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api'
 const headers = {
   'content-type': 'application/json',
-  apikey: 'FcKdtJs202204',
-  username: '<YOUR_NAME>'
+  apikey: VITE_API_KEY,
+  username: VITE_USERNAME
 }
 
 export default {
