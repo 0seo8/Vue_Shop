@@ -1,9 +1,8 @@
 import { createStore } from 'vuex'
+import admin from './admin'
 
 export default createStore({
-  state() {
-    return {}
-  },
-  mutations: {},
-  actions: {}
+  modules: {
+    admin
+  }
 })

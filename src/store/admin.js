@@ -1,3 +1,6 @@
+import axios from 'axios'
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
+
 export default {
   namespaced: true,
   state: {
@@ -10,24 +13,22 @@ export default {
   },
   actions: {
     async readProducts({ commit }) {
-      const res = await this.$fetch('/products', {
-        headers: {
-          masterKey: true
-        },
-        method: 'GET'
-      })
+      const res = await requestRead()
       commit('setProductList', res)
     }
   }
 }
 
-const _URL = '/products'
-
-const res = this.$fetch(`${_URL}`, {
-  method: 'GET',
-  headers: {
-    masterKey: true
-  }
-})
-
-console.log(res)
+async function requestRead() {
+  const { data } = await axios({
+    url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      apikey: VITE_API_KEY,
+      username: VITE_USERNAME,
+      masterKey: true
+    }
+  })
+  return data
+}
