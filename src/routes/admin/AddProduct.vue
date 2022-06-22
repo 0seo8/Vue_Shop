@@ -31,12 +31,12 @@
               name="description" />
           </div>
           <div class="form-item">
-            <label for="tag">태그</label>
+            <label for="tags">태그</label>
             <input
-              id="tag"
-              v-model="tag"
+              id="tags"
+              v-model="tags"
               type="text"
-              name="tag" />
+              name="tags" />
           </div>
           <div class="form-item">
             <label for="image">이미지</label>
@@ -51,6 +51,9 @@
               type="submit">
               제품 추가
             </button>
+            <RouterLink to="/admin">
+              <button>제품 목록</button>
+            </RouterLink>
           </div>
         </form>
       </div>
@@ -58,28 +61,35 @@
   </div>
 </template>
 <script>
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
+import axios from 'axios'
+
 export default {
   data() {
     return {
       title: '',
       price: '',
       description: '',
-      tag: '',
+      tags: '',
       image: ''
     }
   },
   methods: {
     async AddProduct () {
-      const res = await this.$fetch('/products', {
+      const res = await axios({
+        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
         headers: {
-          masterKey:true
+        'content-type': 'application/json',
+        apikey: VITE_API_KEY,
+        username: VITE_USERNAME,
+        masterKey: true
         },
         method: 'POST',
         data: {
           title: this.title,
           price: this.price,
           description: this.description,
-          tag: this.tag,
+          tags: this.tags,
           image: this.image
         }
       })
