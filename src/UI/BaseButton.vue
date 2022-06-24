@@ -1,22 +1,43 @@
 <template>
-  <button>
+  <button
+    :class="mode">
     <slot></slot>
   </button>
 </template>
 
-<style scoped>
-button {
-  font: inherit;
-  border: 1px solid #360032;
-  background-color: #360032;
-  color: white;
-  padding: 0.5rem 2rem;
-  cursor: pointer;
+<script>
+export default {
+  props:{
+    mode: {
+      type: String,
+      default:''
+    }
+  },
 }
+</script>
 
-button:hover,
-button:active {
-  background-color: #5c0556;
-  border-color: #5c0556;
-}
+<style scoped lang="scss">
+  button {
+    padding: .75rem 1.5rem;
+    font-family: inherit;
+    background-color: #3a0061;
+    border: 1px solid 3a0061;
+    color: white;
+    cursor: pointer;
+    &:hover,
+    &:active {
+      background-color: #270041;
+      border-color: #270041;
+    }
+    &.flat {
+      background-color: transparent;
+      color: #3a0061;
+      border: none;
+      &:hover,
+      &:active {
+        background-color: #edd2ff;
+      }
+    }
+  }
+
 </style>
