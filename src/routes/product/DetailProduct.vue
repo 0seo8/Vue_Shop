@@ -50,8 +50,12 @@ export default {
   },
   methods: {
     ... mapActions('product', ['readProductDetail']),
-    Purchase() {
+    PurchaseThis() {
+      //1. 로그인 검증
+       //로그인이 되지 않은 경우 => alret창(로그인이 필요한 서비스입니다. 로그인 하시겠습니까?) => 로그인 페이지
 
+      //로그인이 된 경우payment페이지
+      this.$router.push('/purchase')
     }
   },
 }

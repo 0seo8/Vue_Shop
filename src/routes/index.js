@@ -5,6 +5,7 @@ import Login from '~/routes/Login.vue'
 import Admin from '~/routes/admin/Admin.vue'
 import AddProduct from '~/routes/admin/AddProduct.vue'
 import DetailProduct from '~/routes/product/DetailProduct.vue'
+import CheckPayment from '~/routes/product/CheckPayment.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -28,7 +29,11 @@ export default createRouter({
     {
       path: '/:id',
       component: DetailProduct,
-      name: 'product'
+      name: 'product',
+    },
+    {
+      path: '/purchase',
+      component: CheckPayment,
     }
   ]
 })
