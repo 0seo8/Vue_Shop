@@ -25,6 +25,16 @@ export default {
     },
   },
   actions: {
-
+    async readAllProducts({commit}) {
+      const {data} = await axios({
+        url: END_POINT,
+        method: 'GET',
+        headers: {
+          ...headers,
+          'masterKey': 'true'
+        }
+      })
+        commit('setState', {products: data})
+    },
   }
 }
