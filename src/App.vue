@@ -1,13 +1,16 @@
-<template lang="">
+<template>
+  <TheHeader />
   <RouterView />
 </template>
 <script>
+import TheHeader from '~/components/layouts/TheHeader.vue'
 export default {
-  
+    components: { TheHeader }
 }
 </script>
 
 <style lang="scss"> 
-@import "./scss/main.scss"; 
+
+
 </style>
 
