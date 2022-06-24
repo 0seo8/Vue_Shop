@@ -13,7 +13,8 @@ export default {
   namespaced: true,
   state() {
     return {
-      products: []
+      products: [],
+      seletedProduct: [],
     }
   },
   mutations: {
@@ -35,6 +36,14 @@ export default {
         }
       })
         commit('setState', {products: data})
+    },
+    async readProductDetail({commit}, id) {
+      const {data} = await axios({
+        url: `${END_POINT}/${id}`,
+        method: 'GET',
+        headers
+      })
+        commit('setState', {seletedProduct: data})
     },
   }
 }
