@@ -4,6 +4,7 @@ import Home from './Home.vue'
 import Login from '~/routes/Login.vue'
 import Admin from '~/routes/admin/Admin.vue'
 import AddProduct from '~/routes/admin/AddProduct.vue'
+import DetailProduct from '~/routes/product/DetailProduct.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -23,6 +24,11 @@ export default createRouter({
     {
       path: '/admin/add-product',
       component: AddProduct
+    },
+    {
+      path: '/:id',
+      component: DetailProduct,
+      name: 'product'
     }
   ]
 })
