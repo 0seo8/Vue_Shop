@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './Home.vue'
-import Admin from './Admin.vue'
-import AddProduct from './AddProduct.vue'
+import Admin from '~/routes/admin/Admin.vue'
+import AddProduct from '~/routes/admin/AddProduct.vue'
 
 export default createRouter({
   history: createWebHistory(),
