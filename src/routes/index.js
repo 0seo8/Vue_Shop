@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './Home.vue'
-import Admin from './admin/Admin.vue'
+import ProductList from './admin/ProductList.vue'
 import AddProduct from './admin/AddProduct.vue'
 import Dashboard from './admin/Dashboard.vue'
 
@@ -14,7 +14,7 @@ export default createRouter({
     },
     {
       path: '/admin',
-      component: Admin
+      component: ProductList
     },
     {
       path: '/admin/add-product',
