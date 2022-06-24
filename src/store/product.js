@@ -11,5 +11,20 @@ const headers = {
 
 export default {
   namespaced: true,
+  state() {
+    return {
+      products: []
+    }
+  },
+  mutations: {
+    setState(state, payload) {
+      for(const key in payload) {
+        state[key] = payload[key]
+      }
+      console.log('state', state)
+    },
+  },
+  actions: {
 
+  }
 }
