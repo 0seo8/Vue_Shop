@@ -1,17 +1,9 @@
-// Default variable overrides
 $primary: #F2555A;
-// $container-max-widths: (
-//   sm: 540px,
-//   md: 704px,
-//   lg: 924px,
-//   xl: 1140px,
-//   xxl: 1364px
-// );
+
 
 // Required
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
-// @import "../../node_modules/bootstrap/scss/maps";
 @import "../../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/root";
-@import '../../node_modules/bootstrap/scss/bootstrap.scss'
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

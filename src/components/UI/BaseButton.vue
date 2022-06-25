@@ -18,16 +18,16 @@ export default {
 
 <style scoped lang="scss">
   button {
-    padding: .75rem 1.5rem;
+    padding: 0.5rem 1rem;
     font-family: inherit;
-    background-color: #3a0061;
-    border: 1px solid 3a0061;
+    background-color: $primary;
+    border: none;
+    border-radius: 30px;
     color: white;
-    cursor: pointer;
     &:hover,
     &:active {
-      background-color: #270041;
-      border-color: #270041;
+      cursor: pointer;
+      background-color: #e03b41;
     }
     &.flat {
       background-color: transparent;
