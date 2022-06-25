@@ -45,5 +45,18 @@ export default {
       })
         commit('setState', {seletedProduct: data})
     },
+    async requestPurchase({commit}, info) {
+      const token = localStorage.getItem('token')
+      await axios({
+        url: `${END_POINT}/buy`,
+        method: 'POST',
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`
+        },
+        data: info
+      })
+      commit('setState', {cart: info})
+    },
   }
 }
