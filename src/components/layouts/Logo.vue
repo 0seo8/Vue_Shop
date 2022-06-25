@@ -4,7 +4,7 @@
       to="/"
       class="logo">
       <img
-        src="~/assets/logo.png"
+        src="/assests/logo.png"
         alt="로고" />
       <span>Eletronic</span>Market
     </RouterLink>
