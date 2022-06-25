@@ -6,6 +6,7 @@ import Admin from '~/routes/admin/Admin.vue'
 import AddProduct from '~/routes/admin/AddProduct.vue'
 import DetailProduct from '~/routes/product/DetailProduct.vue'
 import CheckPayment from '~/routes/product/CheckPayment.vue'
+import MyCart from '~/routes/product/MyCart.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -34,6 +35,11 @@ export default createRouter({
     {
       path: '/purchase',
       component: CheckPayment,
-    }
+    },
+    {
+      path: '/cart',
+      component: MyCart,
+    },
+
   ]
 })

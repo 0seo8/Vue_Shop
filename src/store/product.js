@@ -15,6 +15,7 @@ export default {
     return {
       products: [],
       seletedProduct: [],
+      PurchaseHistories: []
     }
   },
   mutations: {
@@ -57,6 +58,34 @@ export default {
         data: info
       })
       commit('setState', {cart: info})
+    },
+    async readPurchaseAllHistory({commit}) {
+      const token = localStorage.getItem('token')
+      const {data} = await axios({
+        url: `${END_POINT}/transactions/details`,
+        method: 'GET',
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`
+        },
+      })
+        console.log(data)
+        commit('setState', {PurchaseHistories: data})
+    },
+    async confirmPurchase({commit}, id) {
+      const token = localStorage.getItem('token')
+      const {data} = await axios({
+        url: `${END_POINT}/ok`,
+        method: 'POST',
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`
+        },
+        data: {
+          detailId: id
+        }
+      })
+      console.log(data) 
     },
   }
 }
