@@ -1,6 +1,6 @@
 <template>
   <TheHeader />
-  <RouterView />
+  <RouterView class="container" />
 </template>
 <script>
 import TheHeader from '~/components/layouts/TheHeader.vue'
@@ -10,7 +10,6 @@ export default {
 </script>
 
 <style lang="scss"> 
-@import "~/scss/main";  
 
 </style>
 
