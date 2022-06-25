@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "bootstrap-vue": "^2.22.0",
+    "chart.js": "^3.8.0",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16",
     "vuex": "^4.0.2"
