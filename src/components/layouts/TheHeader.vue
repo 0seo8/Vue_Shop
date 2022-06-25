@@ -1,11 +1,6 @@
 <template>
   <header>
-    <div class="logo">
-      <img
-        class="logo__img"
-        src="/assets/logo.png"
-        alt="logo" />
-    </div>
+    <Logo />
     <ul class="nav nav-pills">
       <li
         v-for="nav in navigations"
@@ -23,7 +18,11 @@
 </template>
 
 <script>
+import Logo from './Logo.vue'
 export default {
+  components: {
+    Logo
+  }, 
   data() {
     return {
       navigations: [
