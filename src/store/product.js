@@ -48,6 +48,7 @@ export default {
     },
     async requestPurchase({commit}, info) {
       const token = localStorage.getItem('token')
+      console.log(token)
       await axios({
         url: `${END_POINT}/buy`,
         method: 'POST',

@@ -60,7 +60,8 @@
             <label for="selectAccount">결제를 진행할 계좌를 선택해주세요</label>
             <select
               id="selectAccount"
-              v-model="selectAccount">
+              v-model="selectAccount"
+              name="selectAccount">
               <option
                 v-for="account in accounts"
                 :key="account.id"
@@ -111,10 +112,16 @@ export default {
     ...mapState('user', ['accounts']),
     ...mapState('product', ['seletedProduct'])
     },
+    watch: {
+      selectAccount(value) {
+        console.log(value)
+      }
+    },
     methods: {
       ...mapActions('product', ['requestPurchase']),
       PayNow(productId, accountId) {
         const data = {productId, accountId}
+        console.log(data)
         this.requestPurchase(data)
         this.openDialog = true
       },

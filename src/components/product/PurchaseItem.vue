@@ -57,7 +57,7 @@ export default {
   computed: {
   },
   methods: {
-    ...mapActions('products', ['confirmPurchase', 'cancelOrder']),
+    ...mapActions('product', ['confirmPurchase', 'cancelOrder']),
   }
 }
 </script>
