@@ -20,7 +20,7 @@ export default {
   color: $black;
   text-decoration: none;
   img {
-    width: 110px;
+    width: 100px;
     height: 100px;
   }
   &:hover {
