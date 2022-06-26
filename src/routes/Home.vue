@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="swiper">
       상품 스와이퍼 영역
     </div>
@@ -21,4 +21,6 @@ export default {
     height: 700px;
     border: 1px solid black;
   }
+
+
 </style>
