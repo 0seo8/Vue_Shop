@@ -1,8 +1,5 @@
 <template lang="">
-  <div>
-    <RouterView />
-    <h1>app</h1>
-  </div>
+  <RouterView />
 </template>
 <script>
 export default {
