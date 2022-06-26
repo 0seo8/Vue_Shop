@@ -1,16 +1,12 @@
 <template lang="">
   <section class="product-section">
     <div class="container-product">
-      <RouterLink to="/admin/add-product">
-        <button>
-          제품 추가하기
-        </button>
-      </RouterLink>
+      <div class="content-header">
+        <h2>제품 목록</h2>
+        <AdminButton />
+      </div>
       <div class="card mb-4">
         <div class="card-body">
-          <h5 class="card-title">
-            Product List
-          </h5>
           <div class="table-responisve">
             <table class="table table-hover">
               <thead>
@@ -47,7 +43,11 @@
   </section>
 </template>
 <script>
+import AdminButton from '../../components/AdminButton.vue'
 export default {
+  components: {
+    AdminButton
+  },
   computed: {
     products() {
       console.log(this.$store.state.admin.productList)
@@ -72,6 +72,11 @@ export default {
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
     table tbody {
       font-size: 0.7rem;
     }

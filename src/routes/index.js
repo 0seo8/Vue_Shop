@@ -14,15 +14,15 @@ export default createRouter({
     },
     {
       path: '/admin',
-      component: ProductList
+      component: Dashboard
     },
     {
       path: '/admin/add-product',
       component: AddProduct
     },
     {
-      path: '/admin/dashboard',
-      component: Dashboard
+      path: '/admin/product-list',
+      component: ProductList
     }
   ]
 })

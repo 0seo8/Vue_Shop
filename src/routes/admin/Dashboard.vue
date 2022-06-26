@@ -1,121 +1,122 @@
 <template lang="">
   <section class="content-main">
-    <div class="contnet-header">
-      <h2>Dash Board</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card card-body mb-4">
-            <article class="incontenxt">
-              <span class="bg-primary rounded-circle">
-                <i class="material-symbols-outlined icon">
-                  paid
-                </i>
-              </span>
-              <div class="text">
-                <h6>전체 매출</h6>
-                <div class="span">
-                  1,452,456원
-                </div>
+    <div class="content-header">
+      <h2>대시보드</h2>
+      <AdminButton />
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card card-body mb-4">
+          <article class="incontenxt">
+            <span class="bg-primary rounded-circle">
+              <i class="material-symbols-outlined icon">
+                paid
+              </i>
+            </span>
+            <div class="text">
+              <h6>전체 매출</h6>
+              <div class="span">
+                1,452,456원
               </div>
-            </article>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-body mb-4">
-            <article class="incontenxt">
-              <span class="bg-info rounded-circle">
-                <i class="material-symbols-outlined">
-                  local_shipping
-                </i>
-              </span>
-              <div class="text">
-                <h6>전체 주문</h6>
-                <div class="span">
-                  3,584개
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-body mb-4">
-            <article class="incontenxt">
-              <span class="bg-success rounded-circle">
-                <i class="material-symbols-outlined">
-                  shopping_basket
-                </i>
-              </span>
-              <div class="text">
-                <h6>전체 제품</h6>
-                <div class="span">
-                  53개
-                </div>
-              </div>
-            </article>
-          </div>
+            </div>
+          </article>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-8 col-md-12">
-          <div class="card mb-4">
-            <article class="card-body">
-              <div class="chartjs">
-                <h5>제품별 판매량(막대 그래프)</h5>
-                <canvas id="myChart"></canvas>
+      <div class="col-md-4">
+        <div class="card card-body mb-4">
+          <article class="incontenxt">
+            <span class="bg-info rounded-circle">
+              <i class="material-symbols-outlined">
+                local_shipping
+              </i>
+            </span>
+            <div class="text">
+              <h6>전체 주문</h6>
+              <div class="span">
+                3,584개
               </div>
-            </article>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-12">
-          <div class="card mb-4">
-            <article class="card-body">
-              <div class="chartjs">
-                <h5>매출액 대비 제품 비중</h5>
-                <canvas id="donutChart"></canvas>
-              </div>
-            </article>
-          </div>
+            </div>
+          </article>
         </div>
       </div>
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5>최근 거래내역</h5>
-          <div class="table-responsive">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>2323</td>
-                  <td><b>Devon Lane</b></td>
-                  <td>devon@example.com</td>
-                  <td>$778.35</td>
-                  <td><span class="badge rounded-pill alert-success">Delivered</span></td>
-                  <td>07.05.2020</td>
-                  <td class="text-end">
+      <div class="col-md-4">
+        <div class="card card-body mb-4">
+          <article class="incontenxt">
+            <span class="bg-success rounded-circle">
+              <i class="material-symbols-outlined">
+                shopping_basket
+              </i>
+            </span>
+            <div class="text">
+              <h6>전체 제품</h6>
+              <div class="span">
+                53개
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-12">
+        <div class="card mb-4">
+          <article class="card-body">
+            <div class="chartjs">
+              <h5>제품별 판매량(막대 그래프)</h5>
+              <canvas id="myChart"></canvas>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12">
+        <div class="card mb-4">
+          <article class="card-body">
+            <div class="chartjs">
+              <h5>매출액 대비 제품 비중</h5>
+              <canvas id="donutChart"></canvas>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5>최근 거래내역</h5>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>2323</td>
+                <td><b>Devon Lane</b></td>
+                <td>devon@example.com</td>
+                <td>$778.35</td>
+                <td><span class="badge rounded-pill alert-success">Delivered</span></td>
+                <td>07.05.2020</td>
+                <td class="text-end">
+                  <a
+                    href="#"
+                    class="btn btn-light">Detail</a>
+                  <div class="dropdown">
                     <a
                       href="#"
-                      class="btn btn-light">Detail</a>
-                    <div class="dropdown">
+                      data-bs-toggle="dropdown"
+                      class="btn btn-light"> <i class="material-icons md-more_horiz"></i> </a> 
+                    <div class="dropdown-menu">
                       <a
-                        href="#"
-                        data-bs-toggle="dropdown"
-                        class="btn btn-light"> <i class="material-icons md-more_horiz"></i> </a> 
-                      <div class="dropdown-menu">
-                        <a
-                          class="dropdown-item"
-                          href="#">View detail</a>
-                        <a
-                          class="dropdown-item"
-                          href="#">Edit info</a>
-                        <a
-                          class="dropdown-item text-danger"
-                          href="#">Delete</a>
-                      </div>
-                    </div> <!-- dropdown //end -->
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                        class="dropdown-item"
+                        href="#">View detail</a>
+                      <a
+                        class="dropdown-item"
+                        href="#">Edit info</a>
+                      <a
+                        class="dropdown-item text-danger"
+                        href="#">Delete</a>
+                    </div>
+                  </div> <!-- dropdown //end -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -123,10 +124,16 @@
 </template>
 <script>
 import Chart from 'chart.js/auto'
+import AdminButton from '../../components/AdminButton.vue'
 export default {
+  components: {
+    AdminButton
+  },
+  created() {
+  this.$store.dispatch('admin/readTotalTransactions')
+  console.log(this.$store.state.admin.totalTransaction)
+  },
   mounted() {
-    console.log('Component mounted')
-
     const productSales = document.querySelector('#myChart')
     const saleOfProudcts = document.querySelector('#donutChart')
     
@@ -201,6 +208,9 @@ const doughnutChart = new Chart(saleOfProudcts, {
 
 myChart
 doughnutChart
+  },
+  methods: {
+    
   }
 }
 </script>
@@ -210,6 +220,11 @@ doughnutChart
   padding: 30px 5%;
   margin-left: auto;
   margin-right: auto;
+  .content-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
   .card {
     box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
     display: flex;
