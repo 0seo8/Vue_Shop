@@ -19,6 +19,7 @@
   font-size: 20px;
   color: $black;
   display: flex;
+  flex-shrink: 0;
   &__img {
     width: 100%;
   }

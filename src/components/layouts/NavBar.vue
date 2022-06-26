@@ -48,6 +48,10 @@ export default {
 <style lang="scss" scoped>
   .nav {
     flex-grow: 1;
+    flex-wrap: nowrap;
+    &-item {
+      flex-shrink: 0;
+    }
   }
   .nav--right {
     display: flex;

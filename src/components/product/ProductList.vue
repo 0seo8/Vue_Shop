@@ -42,8 +42,9 @@ export default {
     h2 {
       font-size: 22px;
       line-height: 25px;
-     text-align: center;
-  }
+      text-align: center;
+      font-weight: 700;
+   }
   .product{
   &__list {
     width: 100%;
