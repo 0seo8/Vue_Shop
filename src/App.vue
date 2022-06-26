@@ -1,6 +1,6 @@
 <template>
   <TheHeader />
-  <RouterView class="container" />
+  <RouterView />
 </template>
 <script>
 import TheHeader from '~/components/layouts/TheHeader.vue'

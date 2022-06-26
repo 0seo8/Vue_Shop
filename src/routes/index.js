@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './Home.vue'
-import HomeAppliances from '~/routes/product/HomeAppliances.vue'
-import SeasonAppliances from '~/routes/product/SeasonAppliances.vue'
 import Login from '~/routes/Login.vue'
 import Admin from '~/routes/admin/Admin.vue'
 import AddProduct from '~/routes/admin/AddProduct.vue'
@@ -28,14 +26,6 @@ export default createRouter({
     {
       path: '/admin/add-product',
       component: AddProduct
-    },
-    {
-      path: '/HomeAP',
-      component: HomeAppliances
-    },
-    {
-      path: '/SeasonAP',
-      component: SeasonAppliances
     },
     {
       path: '/:id',

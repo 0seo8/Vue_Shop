@@ -15,7 +15,13 @@ export default {
     return {
       products: [],
       seletedProduct: [],
-      PurchaseHistories: []
+      cart: [],
+      PurchaseHistories: [],
+    }
+  },
+  getters: {
+    getPurchasedProductId(state) {
+      return state.PurchaseHistories.map(purchased => purchased.detailId)
     }
   },
   mutations: {
@@ -88,5 +94,8 @@ export default {
       })
       console.log(data) 
     },
+    // CategoryByProduct(state, payload) {
+    //   return state.
+    // }
   }
 }

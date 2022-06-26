@@ -2,7 +2,7 @@
   <header>
     <div class="header">
       <Logo />
-      <NavBar class="nav" />
+      <NavBar />
     </div>
   </header>
 </template>

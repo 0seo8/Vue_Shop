@@ -1,20 +1,24 @@
 <template>
-  <div class="container">
-    <div>
-      <h1>This is Home</h1>
+  <div>
+    <div class="swiper">
+      상품 스와이퍼 영역
     </div>
-    <ProductList />
+    <MainProductList />
   </div>
 </template>
 <script>
-import ProductList from '~/components/layouts/ProductList.vue'
+import MainProductList from '~/components/layouts/MainProductList.vue'
 export default {
   components: {
-    ProductList
+    MainProductList
   }
 }
 </script>
 
 <style lang="scss">
-
+  .swiper{
+    width: 100%;
+    height: 700px;
+    border: 1px solid black;
+  }
 </style>
