@@ -8,3 +8,15 @@ export default {
     components: { TheHeader }
 }
 </script>
+
+
+<style>
+body {
+  line-height: 1.4;
+  font-family: 'Roboto', sans-serif;  
+}
+</style>
+
+<style lang="scss">
+@import "~/scss/main";
+</style>

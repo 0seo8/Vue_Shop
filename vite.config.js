@@ -9,11 +9,11 @@ export default defineConfig({
       {find :'~', replacement: `${__dirname}/src`},
     ]
   },
-  css: {
-   preprocessorOptions: {
-     scss: {
-      additionalData: '@import "~/scss/main";'
-    }
-  }
-}
+//   css: {
+//    preprocessorOptions: {
+//      scss: {
+//       additionalData: '@import "~/scss/main";'
+//     }
+//   }
+//  }
 })

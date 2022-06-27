@@ -1,14 +1,48 @@
 <template>
-  <div class="swiper">
-    상품 스와이퍼 영역
+  <div class="box">
+    <Carousel
+      :autoplay="2000"
+      :wrap-around="true">
+      <Slide
+        v-for="slide in 3"
+        :key="slide">
+        <div class="carousel__item">
+          {{ slide }}
+        </div>
+      </Slide>
+
+      <template #addons>
+        <Pagination />
+      </template>
+    </Carousel>
   </div>
 </template>
 
+<script>
+import { defineComponent } from 'vue'
+import { Carousel, Pagination, Slide } from 'vue3-carousel'
 
-<style lang="scss"> 
-  .swiper{
-    width: 100%;
-    height: 700px;
-    border: 1px solid black;
+import 'vue3-carousel/dist/carousel.css'
+
+export default defineComponent({
+  name: 'Autoplay',
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+  },
+  data(){
+    return {
+      settings: {
+        itemsToshow: 1,
+        snapAlign: 'center',        
+      }
+    }
   }
+})
+</script>
+
+<style scoped lang="scss">
+
+
 </style>

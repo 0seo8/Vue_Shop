@@ -8,7 +8,7 @@
         src="/public/assests/logo.png"
         alt="로고" />
     </div>
-    <span>Eletronic</span>Market
+    <h1><span>Eletronic</span>Market</h1>
   </RouterLink>
 </template>
 
@@ -17,14 +17,14 @@
   align-items: center;
   font-family: "Oswald", sans-serif;
   font-size: 20px;
-  color: $black;
+  // color: $black;
   display: flex;
   flex-shrink: 0;
   &__img {
     width: 100%;
   }
   span {
-    color: $primary;
+    // color: $primary;
   }
 }
 </style>

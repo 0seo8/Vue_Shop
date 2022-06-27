@@ -20,7 +20,7 @@ export default {
   button {
     padding: 0.5rem 1rem;
     font-family: inherit;
-    background-color: $primary;
+    // background-color: $primary;
     border: none;
     border-radius: 30px;
     color: white;

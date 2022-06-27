@@ -61,7 +61,7 @@ export default {
       margin: 0 10px;
     }
     .material-symbols-outlined {
-      color: $primary;
+      // color: $primary;
       display: block;
       &:hover {
         cursor: pointer;
