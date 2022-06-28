@@ -5,14 +5,14 @@ export default {
   namespaced: true,
   state: {
     productList: [],
-    totalTransaction: []
+    transactionDetail: []
   },
   mutations: {
     setProductList(state, payload) {
       state.productList = payload
     },
-    setTotalTransaction(state, payload) {
-      state.totalProduct = payload
+    setTransactionDetail(state, payload) {
+      state.transactionDetail = payload
     }
   },
   actions: {
@@ -20,9 +20,9 @@ export default {
       const res = await request('', 'GET')
       commit('setProductList', res)
     },
-    async readTotalTransactions({ commit }) {
+    async readTransactionDetail({ commit }) {
       const res = await request('/transactions/all', 'GET')
-      commit('setTotalTransaction', res)
+      commit('setTransactionDetail', res)
     }
   }
 }
@@ -30,7 +30,7 @@ export default {
 async function request(url = '', method) {
   const { data } = await axios({
     url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products${url}`,
-    method: method,
+    method,
     headers: {
       'content-type': 'application/json',
       apikey: VITE_API_KEY,

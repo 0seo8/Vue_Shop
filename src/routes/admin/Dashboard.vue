@@ -82,6 +82,7 @@
     <div class="card mb-4">
       <div class="card-body">
         <h5>최근 거래내역</h5>
+        <!-- <div>{{ details }}</div> -->
         <div class="table-responsive">
           <table class="table">
             <tbody>
@@ -96,23 +97,6 @@
                   <a
                     href="#"
                     class="btn btn-light">Detail</a>
-                  <div class="dropdown">
-                    <a
-                      href="#"
-                      data-bs-toggle="dropdown"
-                      class="btn btn-light"> <i class="material-icons md-more_horiz"></i> </a> 
-                    <div class="dropdown-menu">
-                      <a
-                        class="dropdown-item"
-                        href="#">View detail</a>
-                      <a
-                        class="dropdown-item"
-                        href="#">Edit info</a>
-                      <a
-                        class="dropdown-item text-danger"
-                        href="#">Delete</a>
-                    </div>
-                  </div> <!-- dropdown //end -->
                 </td>
               </tr>
             </tbody>
@@ -125,22 +109,30 @@
 <script>
 import Chart from 'chart.js/auto'
 import AdminButton from '../../components/AdminButton.vue'
+import axios from 'axios'
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 export default {
   components: {
     AdminButton
   },
+  computed: {
+    details() {
+      console.log(this.$store.state.admin.transactionDetail)
+      return this.$store.state.admin.transactionDetail
+    },
+  }, 
   created() {
-  this.$store.dispatch('admin/readTotalTransactions')
-  console.log(this.$store.state.admin.totalTransaction)
+    this.$store.dispatch('admin/readTransactionDetail')
   },
   mounted() {
+    
     const productSales = document.querySelector('#myChart')
     const saleOfProudcts = document.querySelector('#donutChart')
     
     const myChart = new Chart(productSales, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['테블릿', '노트북', '마우스', '가전제품', '에어컨', '프린터'],
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
@@ -210,8 +202,21 @@ myChart
 doughnutChart
   },
   methods: {
-    
-  }
+  async request() {
+    const { data } = await axios({
+      url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all',
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        apikey: VITE_API_KEY,
+        username: VITE_USERNAME,
+        masterKey: true
+      }
+    })
+    console.log(data)
+    return data
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>

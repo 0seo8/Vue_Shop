@@ -102,10 +102,11 @@ export default {
           price: this.price,
           description: this.description,
           tags: this.tags,
-          image: this.thumbnailBase64
+          thumbnailBase64: this.thumbnailBase64,
+          photoBase64: ''
         }
       })
-      // console.log(this.title, this.price, this.description, this.tags, this.image)
+      console.log(this.title, this.price, this.description, this.tags, this.image)
       console.log(res)
     },
     selectThumbnail(e) {

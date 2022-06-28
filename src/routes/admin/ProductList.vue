@@ -7,36 +7,26 @@
       </div>
       <div class="card mb-4">
         <div class="card-body">
-          <div class="table-responisve">
-            <table class="table table-hover">
-              <thead>
-                <tr class="head-proudct text-left">
-                  <th :style="`min-width: 30px;`">
-                    index
-                  </th>
-                  <th
-                    v-for="info in productInfo"
-                    :key="info">
-                    {{ info }}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(product, index) in products"
-                  :key="product.id">
-                  <td>
-                    {{ index }}
-                  </td>
-                  <td
-                    v-for="info in productInfo"
-                    :key="product[info]">
-                    {{ product[info] }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <article class="itemlist">
+            <div class="row align-items-center">
+              <div class="col-lg-4 col-sm-4 col-8 flex-grow-1 col-name">
+                <a href="#">
+                  <div class="left">
+                    <img
+                      src=""
+                      alt="" />
+                  </div>
+                  <div class="info">
+                    <h6>{{ products }}</h6>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-2 col-sm-2 col-4 col-price"></div>
+              <div class="col-lg-2 col-sm-2 col-4 col-status"></div>
+              <div class="col-lg-2 col-sm-2 col-4 col-date"></div>
+              <div class="col-lg-1 col-sm-2 col-4 col-action"></div>
+            </div>
+          </article>
         </div>
       </div>
     </div>
@@ -44,9 +34,22 @@
 </template>
 <script>
 import AdminButton from '../../components/AdminButton.vue'
+
 export default {
   components: {
     AdminButton
+  },
+  data() {
+    // return {
+    //   columns: [
+    //     {field: 'thumbnail', name: '이미지'},
+    //     {field: 'title', name: '제목', },
+    //     {field: 'description', name: '상세설명'},
+    //     {field: 'price', name: '가격'},
+    //     {field: 'tags', name: '태그'}
+    //     {field: 'isSoldOut', name: '매진여부'}
+    //   ]
+    // }
   },
   computed: {
     products() {
@@ -61,9 +64,9 @@ export default {
     }
   },
   created() {
-  this.$store.dispatch('admin/readProducts')
-  console.log(this.$store.state.admin.productList)
-  },
+    this.$store.dispatch('admin/readProducts')
+    console.log(this.$store.state.admin.productList)
+  }
 }
 </script>
 <style lang="scss" scoped>
