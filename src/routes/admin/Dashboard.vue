@@ -58,7 +58,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-8 col-md-12">
+      <div class="col-md-8 col-sm-12">
         <div class="card mb-4">
           <article class="card-body">
             <div class="chartjs">
@@ -68,7 +68,7 @@
           </article>
         </div>
       </div>
-      <div class="col-lg-4 col-md-12">
+      <div class="col-md-4 col-sm-12">
         <div class="card mb-4">
           <article class="card-body">
             <div class="chartjs">
