@@ -34,8 +34,7 @@
                     class="badge rounded-pill alert-success">주문가능</span>
                 </template>
                 <template
-                  v-else
-                  style="{font-weight: bold}">
+                  v-else>
                   {{ product[column.field] }}
                 </template>
               </div>
