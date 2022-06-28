@@ -33,7 +33,9 @@
                     v-else
                     class="badge rounded-pill alert-success">주문가능</span>
                 </template>
-                <template v-else>
+                <template
+                  v-else
+                  style="{font-weight: bold}">
                   {{ product[column.field] }}
                 </template>
               </div>
@@ -55,12 +57,11 @@ export default {
     return {
       columns: [
         {field: 'index', name: '', col: 'column flex-grow-0'},
-        {field: 'thumbnail', name: '이미지', col: 'column col-lg-2 col-sm-auto col-4 col-name'},
-        {field: 'title', name: '제목', col: 'column col-lg-2 col-sm-2 col-4 col-name' },
-        {field: 'description', name: '상세설명', col: 'column col-lg-2 col-sm-3 col-4 col-name'},
-        {field: 'price', name: '가격', col: 'column col-lg-2 col-sm-2 col-4 col-name'},
-        {field: 'tags', name: '태그', col: 'column col-lg-2 col-sm-2 col-4 col-name'},
-        {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-1 col-sm-auto col-4 col-name'}
+        {field: 'thumbnail', name: '이미지', col: 'column col-lg-auto col-sm-auto col-auto col-thumbnail'},
+        {field: 'title', name: '제목', col: 'column col-lg-3 col-sm-3 col-8 col-title'},
+        {field: 'price', name: '가격', col: 'column col-lg-3 col-sm-3 col-4 col-price'},
+        {field: 'tags', name: '태그', col: 'column col-lg-3 col-sm-2 col-4 col-tags'},
+        {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-auto col-sm-auto col-4 col-isSoldOut'}
       ]
     }
   },
@@ -96,7 +97,10 @@ export default {
     .row {
       padding: 0.5rem;
       align-items: center;
-      border-bottom: 1px solid;
+      border-bottom: 1px solid rgba(108, 117, 125, 0.25);
+      &:hover {
+        background-color: rgba(49, 103, 235, 0.075);
+      }
       .badge {
         padding: 0.4rem 0.8rem;
       }
@@ -108,9 +112,19 @@ export default {
       text-overflow: ellipsis;
       white-space: nowrap;
       font-size: 12px;
+      &.col-title {
+        font-weight: bold;
+      }
       .thumbnail {
       width: 60px;
       height: 60px;
+      padding: 0.25rem;
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 0.25rem;
+      box-shadow: 0 .1rem .25remrgba(0,0,0,.075);
+      max-width: 100%;
+      height: auto;
       }
     }
   }
