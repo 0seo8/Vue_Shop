@@ -106,7 +106,10 @@ export default {
         {field: 'tags', name: '태그', col: 'column col-lg-3 col-sm-2 col-4 col-tags'},
         {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-auto col-sm-auto col-4 col-isSoldOut'},
         {field: 'dropdown', name: 'dropdown', col: 'column col-lg-auto col-sm-1 col-2 col-menu'}
-      ]
+      ],
+      tagString() {
+        return this.products.map(item => item.tags.join(', '))
+      }
     }
   },
   computed: {
@@ -121,13 +124,11 @@ export default {
     return Object.keys(this.products[0])
     }
   },
-  method() {
-
-  },
   created() {
+    console.log(this.tagString)
     this.$store.dispatch('admin/readProducts')
     console.log(this.$store.state.admin.productList)
-  }
+  },
 }
 </script>
 <style lang="scss" scoped>

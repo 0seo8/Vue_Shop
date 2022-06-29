@@ -62,6 +62,7 @@
                     class="form-label">태그</label>
                   <input
                     v-model="tags"
+                    placeholder="쉼표로 구분됩니다."
                     type="text"
                     class="form-control" />
                 </div>
@@ -177,9 +178,13 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border: 1px solid rgba(222,226,230,.7);
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        
         .image-preview {
           margin: 0 auto;
-          width: 100px
+          width: 100px;
         }
       }
       .row.gx-2 {

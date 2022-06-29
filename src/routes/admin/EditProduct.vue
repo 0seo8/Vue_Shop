@@ -8,14 +8,14 @@
       <div>
         <RouterLink
           to="/admin"
-          class="btn btn-outline-danger">
+          class="btn btn-primary">
           취소하기
         </RouterLink>
       </div>
     </div>
     <div class="card mb-4">
       <div class="card-body">
-        <form @submit.prevent="AddProduct()">
+        <form @submit.prevent="EditProduct()">
           <div class="mb-4">
             <label
               for="product_name"
@@ -42,16 +42,20 @@
               type="file"
               @change="selectThumbnail" />
           </div>
-          <div class="mb-4">
-            <div class="row gx-2">
-              <div class="col-6">
+          <div class="mb-4 image-price-tag">
+            <img
+              class="image-preview"
+              :src="thumbnail"
+              alt="" />
+            <div class="row gx-2 col-6">
+              <div>
                 <label class="form-label">가격</label>
                 <input
                   v-model="price"
                   type="text"
                   class="form-control" />
               </div>
-              <div class="col-6">
+              <div>
                 <div class="mb-4">
                   <label
                     for="product_name"
@@ -64,8 +68,10 @@
               </div>
             </div> <!-- row.// -->
           </div>
-          <button class="btn btn-primary">
-            제품 추가하기
+          <button
+            class="btn btn-primary"
+            @click="onSumbmit">
+            제품 수정하기
           </button>
         </form>
       </div>
@@ -73,8 +79,81 @@
   </section>
 </template>
 <script>
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
+import noImage from '../../assets/noImage'
+import axios from 'axios'
+
 export default {
-  
+  props: {
+    oldTitle: {
+      type: String,
+      default: ''
+    },
+    oldPrice: {
+      type: String,
+      default: ''
+    },
+    oldDescription: {
+      type: String,
+      default: ''
+    },
+    oldTags: {
+      type: Array,
+      default: () => []
+    },
+    oldThumbnail: {
+      type: String,
+      default: ''
+    },
+  },
+  data() {
+    return {
+      productId: this.$route.params.id,
+      title: this.oldTitle,
+      price: this.oldPrice,
+      description: this.oldDescription,
+      tags: this.oldTags,
+      thumbnail: this.oldThumbnail
+    }
+  },
+  computed: {
+    noImage() {
+      return this.noImage
+    }
+  },
+  methods: {
+    async EditProduct() {
+      const res = await axios({
+        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${this.productId}`,
+        headers: {
+        'content-type': 'application/json',
+        apikey: VITE_API_KEY,
+        username: VITE_USERNAME,
+        masterKey: true
+        },
+        method: 'PUT',
+        data: {
+          title: this.title,
+          price: this.price,
+          description: this.description,
+          tags: this.tags ? this.tags.split(',').trim() : [],
+          thumbnailBase64: this.thumbnail || noImage,
+        }
+      })
+      console.log(this.title, this.price, this.description, this.tags, this.image)
+      console.log(res)
+    },
+    selectThumbnail(e) {
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(e.target.files[0])
+      fileReader.addEventListener('load', () => {
+        this.thumbnail = fileReader.result
+      })
+    },
+    onSumbmit() {
+      return this.$router.push('/admin/product-list')
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -124,6 +203,22 @@ export default {
       border-radius: 0.25rem;
       box-shadow: 0;
       transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      }
+      .image-price-tag {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid rgba(222,226,230,.7);
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        
+        .image-preview {
+          margin: 0 auto;
+          width: 100px;
+        }
+      }
+      .row.gx-2 {
+        display: block;
       }
     }
   }
