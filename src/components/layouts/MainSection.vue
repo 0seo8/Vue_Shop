@@ -1,9 +1,7 @@
 <template>
   <Swiper />
-  <div class="container">
-    <ProductList category="생활가전" />
-    <ProductList category="계절가전" />
-  </div>
+  <ProductList category="생활가전" />
+  <ProductList category="계절가전" />
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <section class="box">
+  <section class="swiper">
     <Carousel
       :autoplay="2000"
       :wrap-around="true">
@@ -46,7 +46,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 
-.box {
+.swiper {
   padding-top: 80px;
 }
 .temp {
@@ -60,6 +60,7 @@ export default defineComponent({
 
 ul,ol,li {
   margin: 0;
+  padding: 0;
 }
 
 </style>

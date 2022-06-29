@@ -1,5 +1,5 @@
 <template>
-  <div class="section">
+  <section class="container">
     <h2>{{ category }}</h2>
     <div class="product__list">
       <div
@@ -8,7 +8,7 @@
         <ProductItem :product="product" />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -36,9 +36,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .section {
-    margin-top: 40px;
-    padding: 48px 8px 32px;
+  section {
+    margin: 40px auto 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 24px;
+    padding-bottom: 16px;
     h2 {
       font-size: 22px;
       line-height: 25px;
@@ -54,5 +57,12 @@ export default {
     grid-gap: 20px;
   }
  }
+}
+
+@media (min-width: 1025px) {
+  .section {
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
 }
 </style>
