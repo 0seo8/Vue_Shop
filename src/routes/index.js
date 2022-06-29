@@ -4,6 +4,7 @@ import Home from './Home.vue'
 import ProductList from './admin/ProductList.vue'
 import AddProduct from './admin/AddProduct.vue'
 import Dashboard from './admin/Dashboard.vue'
+import EditProduct from './admin/EditProduct.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -23,6 +24,12 @@ export default createRouter({
     {
       path: '/admin/product-list',
       component: ProductList
+    },
+    {
+      name: 'EditProduct',
+      path: '/admin/edit-product/:id',
+      component: EditProduct,
+      props: true
     }
   ]
 })

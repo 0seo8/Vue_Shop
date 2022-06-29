@@ -3,7 +3,7 @@
     class="content-main">
     <div class="content-header">
       <h2 class="content title">
-        제품 추가
+        제품 수정
       </h2>
       <div>
         <RouterLink
@@ -42,20 +42,16 @@
               type="file"
               @change="selectThumbnail" />
           </div>
-          <div class="mb-4 image-price-tag">
-            <img
-              class="image-preview"
-              :src="thumbnailBase64"
-              alt="" />
-            <div class="row gx-2 col-6">
-              <div>
+          <div class="mb-4">
+            <div class="row gx-2">
+              <div class="col-6">
                 <label class="form-label">가격</label>
                 <input
                   v-model="price"
                   type="text"
                   class="form-control" />
               </div>
-              <div>
+              <div class="col-6">
                 <div class="mb-4">
                   <label
                     for="product_name"
@@ -77,51 +73,8 @@
   </section>
 </template>
 <script>
-const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
-import axios from 'axios'
-import noImage from '../../assets/noImage'
-
 export default {
-  data() {
-    return {
-      title: '',
-      price: '',
-      description: '',
-      tags: '',
-      thumbnailBase64: ''
-    }
-  },
-  methods: {
-    async AddProduct () {
-      const res = await axios({
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
-        headers: {
-        'content-type': 'application/json',
-        apikey: VITE_API_KEY,
-        username: VITE_USERNAME,
-        masterKey: true
-        },
-        method: 'POST',
-        data: {
-          title: this.title,
-          price: this.price,
-          description: this.description,
-          tags: this.tags ? this.tags.split(',') : [],
-          thumbnailBase64: this.thumbnailBase64 || noImage,
-          photoBase64: ''
-        }
-      })
-      console.log(this.title, this.price, this.description, this.tags, this.image)
-      console.log(res)
-    },
-    selectThumbnail(e) {
-      const fileReader = new FileReader()
-      fileReader.readAsDataURL(e.target.files[0])
-      fileReader.addEventListener('load', () => {
-        this.thumbnailBase64 = fileReader.result
-      })
-    }
-  }
+  
 }
 </script>
 <style lang="scss" scoped>
@@ -150,8 +103,7 @@ export default {
       background-color: #fff;
       background-clip: border-box;
       border: 0 solid rgba(222,226,230,.7);
-      border-radius: 0.25rem;
-      }
+      border-radius: 0.25rem;;}
       .form-control[type=file] {
       overflow: hidden;
       }
@@ -172,18 +124,6 @@ export default {
       border-radius: 0.25rem;
       box-shadow: 0;
       transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-      }
-      .image-price-tag {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .image-preview {
-          margin: 0 auto;
-          width: 100px
-        }
-      }
-      .row.gx-2 {
-        display: block;
       }
     }
   }

@@ -166,7 +166,7 @@ export default {
 const doughnutChart = new Chart(saleOfProudcts, {
     type: 'doughnut',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['테블릿', '노트북', '마우스', '가전제품', '에어컨', '프린터'],
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
