@@ -50,4 +50,8 @@ export default defineComponent({
   height: 650px;
 }
 
+ul {
+  margin: 0;
+}
+
 </style>

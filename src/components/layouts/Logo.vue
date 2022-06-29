@@ -1,19 +1,30 @@
-<template>
+<template lang="">
   <RouterLink
     to="/"
     class="logo">
-    <h1><span>Eletronic</span>Market</h1>
+    <img
+      src="../assets/Logo.png"
+      alt="Electron Mart" />
   </RouterLink>
 </template>
-
+<script>
+export default {
+  
+}
+</script>
 <style lang="scss" scoped>
+@import "~/scss/main.scss";
 .logo {
-  align-items: center;
-  font-family: "Oswald", sans-serif;
-  display: flex;
-  flex-shrink: 0;
-  h1 {
-    font-size: 20px;
+  font-family: "Kdam Thmor Pro", sans-serif;
+  font-size: 30px;
+  color: $black;
+  text-decoration: none;
+  img {
+    width: 100px;
+    height: 100px;
+  }
+  &:hover {
+    color: $black;
   }
 }
 </style>
