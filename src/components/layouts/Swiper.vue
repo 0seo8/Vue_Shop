@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <section class="box">
     <Carousel
       :autoplay="2000"
       :wrap-around="true">
@@ -17,7 +17,7 @@
         <Pagination />
       </template>
     </Carousel>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -58,7 +58,7 @@ export default defineComponent({
   border: 1px solid red;
 }
 
-ul {
+ul,ol,li {
   margin: 0;
 }
 
