@@ -45,9 +45,17 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+
+.box {
+  padding-top: 80px;
+}
 .temp {
   width: 100vw;
   height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
 }
 
 ul {
