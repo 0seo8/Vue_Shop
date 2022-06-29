@@ -69,8 +69,7 @@
             </div> <!-- row.// -->
           </div>
           <button
-            class="btn btn-primary"
-            @click="onSumbmit">
+            class="btn btn-primary">
             제품 수정하기
           </button>
         </form>
@@ -136,12 +135,12 @@ export default {
           title: this.title,
           price: this.price,
           description: this.description,
-          tags: this.tags ? this.tags.split(',').trim() : [],
+          tags: this.tags ? this.tags.split(',') : [],
           thumbnailBase64: this.thumbnail || noImage,
         }
       })
-      console.log(this.title, this.price, this.description, this.tags, this.image)
       console.log(res)
+      this.$router.push('/admin/product-list')
     },
     selectThumbnail(e) {
       const fileReader = new FileReader()

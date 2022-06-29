@@ -163,6 +163,7 @@ export default {
         }
     }
 })
+
 const doughnutChart = new Chart(saleOfProudcts, {
     type: 'doughnut',
     data: {
@@ -198,8 +199,9 @@ const doughnutChart = new Chart(saleOfProudcts, {
     }
 })
 
-myChart
+
 doughnutChart
+myChart
   },
   methods: {
   async request() {
