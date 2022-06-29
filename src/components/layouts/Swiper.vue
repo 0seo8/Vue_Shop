@@ -7,7 +7,9 @@
         v-for="slide in 3"
         :key="slide">
         <div class="carousel__item">
-          {{ slide }}
+          <div class="temp">
+            {{ slide }}
+          </div>
         </div>
       </Slide>
 
@@ -43,6 +45,9 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-
+.temp {
+  width: 100vw;
+  height: 650px;
+}
 
 </style>
