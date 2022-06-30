@@ -1,15 +1,16 @@
 <template>
   <div class="header">
-    <RouterLink
-      to="/"
-      class="logo">
-      <h1><span>Eletronic</span>Market</h1>
-    </RouterLink>
-    <ul class="nav nav-pills">
+    <h1>
+      <RouterLink
+        to="/">
+        Eletronic Market
+      </RouterLink>
+    </h1>
+    <ul class="nav nav-pills category__list">
       <li
         v-for="nav in navigations"
         :key="nav.name"
-        class="nav-item">
+        class="cotegory__item">
         <RouterLink     
           :to="nav.path"
           active-class="active"
@@ -18,7 +19,7 @@
         </RouterLink>
       </li>
     </ul>
-    <div class="nav--right">
+    <div class="button__list">
       <span class="material-symbols-outlined">
         light_mode
       </span>
@@ -63,36 +64,54 @@ export default {
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 8px $nav-padding;
   min-height: 48px;
   background-color: #fff;
   box-shadow:  0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);
-  .logo {
-    align-items: center;
-    font-family: "Oswald", sans-serif;
+  h1 {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    h1 {
+    margin: 0;
+    padding: 0;
+    a {
+      font-weight: 700;
       font-size: 20px;
+      white-space: nowrap;
+      text-decoration: none;      
+    }
+   }
   }
- }
-}
-  .nav {
-    flex-grow: 1;
-    flex-wrap: nowrap;
-    &-item {
+
+  .category {
+    &__list {
+      flex-grow: 1;
+      flex-wrap: nowrap;
+      margin-left: 8px;
+    }
+    &__item {
+      height: 32px;
+      padding: 0 12px;
+      display: inline-flex;
       flex-shrink: 0;
+      cursor: pointer;
+      flex-wrap: wrap;
     }
   }
-  .nav--right {
-    display: flex;
+
+  .button__list {
     flex-shrink: 0;
+    display: flex;
     align-items: center;
+    padding: 0 8px;
     input {
-      margin: 0 10px;
+      margin: auto 16px;
     }
     .material-symbols-outlined {
-      // color: $primary;
+      color: $primary;
+      font-size: 40px;
       display: block;
       &:hover {
         cursor: pointer;

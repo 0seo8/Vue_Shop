@@ -2,22 +2,20 @@
   <RouterLink
     :to="`/${product.id}`"
     :prodcut="product">
-    <BaseCard>
-      <figure>
-        <img
-          :src="product.thumbnail"
-          alt="thumbnail" />
-      </figure>
-      <div
-        class="card-body">
-        <p>
-          {{ product.title }}
-        </p>
-        <p>
-          ₩ {{ product.price }}
-        </p>
-      </div>
-    </BaseCard>
+    <figure>
+      <img
+        :src="product.thumbnail"
+        alt="thumbnail" />
+    </figure>
+    <div
+      class="card-body">
+      <p>
+        {{ product.title }}
+      </p>
+      <p>
+        ₩ {{ product.price.toLocaleString() }}
+      </p>
+    </div>
   </RouterLink>
 </template>
 
@@ -34,22 +32,28 @@ export default {
 
 <style lang="scss" scoped>
   figure {
+    padding: 1rem 0;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     height: 200px;
+    background-color: #fff;
     img {
       height: auto;
-      max-width: 50%;
-      max-height: 50%;
+      max-width: 100%;
+      max-height: 100%;
       transition-duration: .3s;
       transition-property: transform;
       transition-timing-function: cubic-bezier(.4,0,.2,1);
     }
   }
   .card-body {
-    padding: 10px;
+    padding: 2rem;
     line-height: 1.5;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 </style>

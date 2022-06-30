@@ -25,5 +25,10 @@ body {
   font-family: 'Roboto', sans-serif;  
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
   
 </style>

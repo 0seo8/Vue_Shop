@@ -4,7 +4,8 @@
     <div class="product__list">
       <div
         v-for="product in products.filter(product => product.tags === category)"
-        :key="product.id">
+        :key="product.id"
+        class="card">
         <ProductItem :product="product" />
       </div>
     </div>
@@ -38,10 +39,6 @@ export default {
 <style lang="scss" scoped>
   section {
     margin: 40px auto 0;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 24px;
-    padding-bottom: 16px;
     h2 {
       font-size: 22px;
       line-height: 25px;
@@ -55,14 +52,15 @@ export default {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin-top: 50px;
     grid-gap: 20px;
+    .card {
+      transition: 0.3s ease box-shadow;
+      background-color: rgba(#FFB1C1, .5);
+      &:hover {
+        box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 26%);
+      }
+    }
   }
  }
 }
 
-@media (min-width: 1025px) {
-  .section {
-    padding-top: 48px;
-    padding-bottom: 32px;
-  }
-}
 </style>

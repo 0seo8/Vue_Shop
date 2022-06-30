@@ -5,7 +5,7 @@
         <img
           v-if="seletedProduct.thumbnail"
           :src="seletedProduct.thumbnail"
-          alt="`${seletedProduct.title}`이미지" />  
+          :alt="`${seletedProduct.title} 이미지`" />  
         <img
           v-else
           src="/assets/no-Img"
