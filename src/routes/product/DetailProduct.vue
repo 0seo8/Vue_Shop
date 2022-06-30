@@ -14,10 +14,12 @@
 
       <div class="product__info">
         <h2>{{ seletedProduct.title }}</h2>
-        <p>{{ seletedProduct.description }}</p>
-        <div>
-        </div>
-        <p>₩ {{ seletedProduct.price }}</p>
+        <p class="desc">
+          {{ seletedProduct.description }}
+        </p>
+        <p class="price">
+          ₩ {{ seletedProduct.price.toLocaleString() }}
+        </p>
 
         <div class="coupon">
           <p>10만원 이상 주문 시 무료 배송!</p>
@@ -92,29 +94,53 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px auto;
+    padding-top: 80px;
     height: 100%; 
   }
   .product{
     &__box {
+      padding-top: 4rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid red;
       figure {
         flex-shrink: 0;
+        width: 600px;
         min-width: 300px;
         border-radius: 10px;
         overflow: hidden;
         background-color: #fff;
         padding: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
     &__info {
-      padding: auto 30px;
+      padding: 30px;
       display: flex;
       flex: 1 1 auto;
       flex-direction: column;
+      max-width: 700px;
+      h2 {
+        margin-bottom: 1rem;
+      }
+      p.desc {
+        line-height: 1.7;
+      }
+      p.price {
+        font-size: 22px;
+        font-weight: bold;
+      }
+      strong {
+        font-weight: 600;
+      }
+      .btn {
+        width: 30%;
+        padding: .5rem;
+        color: #fff;
+      }
     }
   }
 </style>
