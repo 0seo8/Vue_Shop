@@ -7,7 +7,7 @@
       </h2>
       <div>
         <RouterLink
-          to="/admin"
+          to="/admin/add-product"
           class="btn btn-outline-danger">
           취소하기
         </RouterLink>

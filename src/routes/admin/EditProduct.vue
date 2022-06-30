@@ -16,16 +16,58 @@
     <div class="card mb-4">
       <div class="card-body">
         <form @submit.prevent="EditProduct()">
-          <div class="mb-4">
-            <label
-              for="product_name"
-              class="form-label">제품명*</label>
-            <input
-              id="product_name"
-              v-model="title"
-              type="text"
-              placeholder="제품명을 입력하세요!"
-              class="form-control" />
+          <div class="mb-4 title-soldout">
+            <div class="input-title">
+              <label
+                for="product_name"
+                class="form-label">제품명*</label>
+              <input
+                id="product_name"
+                v-model="title"
+                type="text"
+                placeholder="제품명을 입력하세요!"
+                class="form-control" />
+            </div>
+            <div
+              class="input-radio"
+              @change="printSoldout">
+              <div class="form-check">
+                <input
+                  id="false"
+                  v-model="isSoldOut"
+                  value="In Sale"
+                  class="form-check-input"
+                  type="radio"
+                  name="isSoldOut" />
+                <label
+                  class="form-check-label"
+                  for="false">
+                  판매가능
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  id="true"
+                  v-model="isSoldOut"
+                  value="Sold Out"
+                  class="form-check-input"
+                  type="radio"
+                  name="isSoldOut" />
+                <label
+                  class="form-check-label"
+                  for="true">
+                  상품매진
+                </label>
+              </div>
+              <div class="check-soldout">
+                <div v-if="isSoldOut === 'Sold Out' ">
+                  <span class="badge rounded-pill alert-danger">{{ isSoldOut }}</span>
+                </div>
+                <div v-else>
+                  <span class="badge rounded-pill alert-success">{{ isSoldOut }}</span> 
+                </div>
+              </div>
+            </div>
           </div>
           <div class="mb-4">
             <label class="form-label">제품 설명*</label>
@@ -79,7 +121,6 @@
 </template>
 <script>
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
-import noImage from '../../assets/noImage'
 import axios from 'axios'
 
 export default {
@@ -104,6 +145,10 @@ export default {
       type: String,
       default: ''
     },
+    oldIsSoldOut: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -112,17 +157,25 @@ export default {
       price: this.oldPrice,
       description: this.oldDescription,
       tags: this.oldTags,
-      thumbnail: this.oldThumbnail
+      thumbnail: this.oldThumbnail,
+      isSoldOut: this.oldIsSoldOut === 'false' ? 'In Sale' : 'Sold Out',
     }
   },
   computed: {
     noImage() {
       return this.noImage
+    },
+    chanageSoldOut() {
+      return this.isSoldOut === 'In Sale' ? false : true 
     }
   },
   methods: {
+    printSoldout() {
+      console.log(this.chanageSoldOut)
+    },
     async EditProduct() {
-      const res = await axios({
+      try {
+        const res = await axios({
         url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${this.productId}`,
         headers: {
         'content-type': 'application/json',
@@ -136,11 +189,15 @@ export default {
           price: this.price,
           description: this.description,
           tags: this.tags ? this.tags.split(',') : [],
-          thumbnailBase64: this.thumbnail || noImage,
+          thumbnailBase64: this.thumbnail,
+          isSoldOut: this.chanageSoldOut
         }
       })
       console.log(res)
       this.$router.push('/admin/product-list')
+      } catch(error) {
+        console.log(error)
+      }
     },
     selectThumbnail(e) {
       const fileReader = new FileReader()
@@ -171,6 +228,22 @@ export default {
     form {
     display: block;
     margin-top: 0em;
+    .title-soldout {
+      display: flex;
+      align-items: flex-end;
+      .input-title {
+        flex-grow: 1;
+      }
+      .input-radio {
+        flex-grow: 1;
+        margin-left: 2rem;
+        display: flex;
+        justify-content: space-around;
+        border: 1px solid #cfdbe6;
+        border-radius: 0.25rem;
+        padding: 0.4rem 0.25rem;
+      }
+    }
     .card {
       position: relative;
       box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
@@ -180,8 +253,10 @@ export default {
       word-wrap: break-word;
       background-color: #fff;
       background-clip: border-box;
-      border: 0 solid rgba(222,226,230,.7);
-      border-radius: 0.25rem;;}
+      border: 1px solid #cfdbe6;
+      border-radius: 0.25rem;
+      
+      }
       .form-control[type=file] {
       overflow: hidden;
       }
@@ -202,6 +277,15 @@ export default {
       border-radius: 0.25rem;
       box-shadow: 0;
       transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      }
+      .title-soldout {
+        .form-check {
+          margin-top: 2px;
+        }
+        span {
+          width: 70px;
+          padding: 0.5rem 0.4rem;
+        }
       }
       .image-price-tag {
         display: flex;

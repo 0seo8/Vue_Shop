@@ -79,41 +79,20 @@
         </div>
       </div>
     </div>
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5>최근 거래내역</h5>
-        <!-- <div>{{ details }}</div> -->
-        <div class="table-responsive">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>2323</td>
-                <td><b>Devon Lane</b></td>
-                <td>devon@example.com</td>
-                <td>$778.35</td>
-                <td><span class="badge rounded-pill alert-success">Delivered</span></td>
-                <td>07.05.2020</td>
-                <td class="text-end">
-                  <a
-                    href="#"
-                    class="btn btn-light">Detail</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <Transactions />
   </section>
 </template>
 <script>
 import Chart from 'chart.js/auto'
 import AdminButton from '../../components/AdminButton.vue'
 import axios from 'axios'
+import Transactions from '../../components/Transactions.vue'
+
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 export default {
   components: {
-    AdminButton
+    AdminButton,
+    Transactions
   },
   computed: {
     details() {
@@ -134,7 +113,7 @@ export default {
     data: {
         labels: ['테블릿', '노트북', '마우스', '가전제품', '에어컨', '프린터'],
         datasets: [{
-            label: '# of Votes',
+            label: 'Electron Market Sale Data',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

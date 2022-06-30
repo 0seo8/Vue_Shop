@@ -45,7 +45,8 @@
                         oldPrice: product.price,
                         oldDescription: product.description,
                         oldTags: product.tags.toString(),
-                        oldThumbnail: product.thumbnail
+                        oldThumbnail: product.thumbnail,
+                        oldIsSoldOut: product.isSoldOut
                       }
                     }">
                     <div class="dropdown">
@@ -78,6 +79,14 @@
                   </RouterLink>
                 </template>
                 <template
+                  v-else-if="column.field ==='tags'">
+                  {{ product.tags.toString() }}
+                </template>
+                <template
+                  v-else-if="column.field ==='price'">
+                  {{ product.price.toLocaleString() + '원' }}
+                </template>
+                <template
                   v-else>
                   {{ product[column.field] }}
                 </template>
@@ -99,17 +108,14 @@ export default {
   data() {
     return {
       columns: [
-        {field: 'index', name: '', col: 'column flex-grow-0'},
+        {field: 'index', name: '', col: 'column flex-grow-0 col-index'},
         {field: 'thumbnail', name: '이미지', col: 'column col-lg-auto col-sm-auto col-auto col-thumbnail'},
         {field: 'title', name: '제목', col: 'column col-lg-3 col-sm-3 col-8 col-title'},
         {field: 'price', name: '가격', col: 'column col-lg-3 col-sm-2 col-4 col-price'},
         {field: 'tags', name: '태그', col: 'column col-lg-3 col-sm-3 col-4 col-tags'},
-        {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-auto col-sm-auto col-4 col-isSoldOut'},
+        {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-auto col-sm-1 col-4 col-isSoldOut'},
         {field: 'dropdown', name: 'dropdown', col: 'column col-lg-auto col-sm-1 col-2 col-menu'}
       ],
-      tagString() {
-        return this.products.map(item => item.tags.join(', '))
-      }
     }
   },
   computed: {
@@ -124,9 +130,9 @@ export default {
     }
   },
   created() {
-    console.log(this.tagString)
     this.$store.dispatch('admin/readProducts')
     console.log(this.$store.state.admin.productList)
+    console.log(this.products[0])
   },
 }
 </script>
@@ -143,7 +149,7 @@ export default {
     }
     .row {
       text-decoration: none m !important;
-      padding: 0.5rem;
+      padding: 0.7rem;
       align-items: center;
       border-bottom: 1px solid rgba(108, 117, 125, 0.25);
       &:hover {
@@ -151,6 +157,18 @@ export default {
       }
       .badge {
         padding: 0.4rem 0.8rem;
+      }
+      .col-isSoldOut {
+        text-align: center;
+      }
+      .col-price {
+        text-align: start;
+      }
+      .col-index {
+        width: 30px;
+      }
+      .col-menu {
+        text-align: right;
       }
     }
       
@@ -173,7 +191,6 @@ export default {
       box-shadow: 0 .1rem .25remrgba(0,0,0,.075);
       max-width: 100%;
       height: auto;
-      cursor: pointer;
       }
     }
   }
