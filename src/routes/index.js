@@ -30,6 +30,9 @@ export default createRouter({
       path: '/admin/edit-product/:id',
       component: EditProduct,
       props: true
+    },
+    {
+      path: '/amdmin/transaction-detail'
     }
   ]
 })

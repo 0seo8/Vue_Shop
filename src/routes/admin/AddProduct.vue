@@ -7,8 +7,8 @@
       </h2>
       <div>
         <RouterLink
-          to="/admin/add-product"
-          class="btn btn-outline-danger">
+          to="/admin/product-list"
+          class="btn btn-outline-danger btn-sm">
           취소하기
         </RouterLink>
       </div>
@@ -69,7 +69,7 @@
               </div>
             </div> <!-- row.// -->
           </div>
-          <button class="btn btn-primary">
+          <button class="btn btn-outline-primary btn-sm">
             제품 추가하기
           </button>
         </form>

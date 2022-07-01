@@ -56,7 +56,8 @@
                         data-bs-toggle="dropdown">
                         more_horiz
                       </span>
-                      <ul
+                      <!-- 드랍다운이 동작 안함.. -->
+                      <!-- <ul
                         class="dropdown-menu"
                         aria-labelledby="dropdownMenuButton1">
                         <li>
@@ -74,7 +75,7 @@
                             class="dropdown-item"
                             href="#">Something else here</a>
                         </li>
-                      </ul>
+                      </ul> -->
                     </div>
                   </RouterLink>
                 </template>
@@ -110,34 +111,28 @@ export default {
       columns: [
         {field: 'index', name: '', col: 'column flex-grow-0 col-index'},
         {field: 'thumbnail', name: '이미지', col: 'column col-lg-auto col-sm-auto col-auto col-thumbnail'},
-        {field: 'title', name: '제목', col: 'column col-lg-3 col-sm-3 col-8 col-title'},
-        {field: 'price', name: '가격', col: 'column col-lg-3 col-sm-2 col-4 col-price'},
-        {field: 'tags', name: '태그', col: 'column col-lg-3 col-sm-3 col-4 col-tags'},
-        {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-auto col-sm-1 col-4 col-isSoldOut'},
-        {field: 'dropdown', name: 'dropdown', col: 'column col-lg-auto col-sm-1 col-2 col-menu'}
+        {field: 'title', name: '제목', col: 'column col-lg-3 col-sm-3 col-5 col-title'},
+        {field: 'price', name: '가격', col: 'column col-lg-2 col-sm-2 col-3 col-price'},
+        {field: 'tags', name: '태그', col: 'column col-lg-3 col-sm-1 col-4 col-tags'},
+        {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-1 col-sm-2 col-4 col-isSoldOut'},
+        {field: 'dropdown', name: 'dropdown', col: 'column col-lg-1 col-sm-1 col-2 col-menu'}
       ],
     }
   },
   computed: {
     products() {
       return this.$store.state.admin.productList
-    },
-    productInfo() {
-      if(this.products.length === 0) {
-        return []
-      }
-    return Object.keys(this.products[0])
     }
   },
   created() {
     this.$store.dispatch('admin/readProducts')
     console.log(this.$store.state.admin.productList)
-    console.log(this.products[0])
   },
 }
 </script>
 <style lang="scss" scoped>
   section {
+    min-width: 460px;
     padding: 30px 3%;
     margin-left: auto;
     margin-right: auto;
@@ -148,7 +143,8 @@ export default {
       margin-bottom: 1rem;
     }
     .row {
-      text-decoration: none m !important;
+      justify-content: center;
+      text-decoration: none !important;
       padding: 0.7rem;
       align-items: center;
       border-bottom: 1px solid rgba(108, 117, 125, 0.25);
@@ -168,7 +164,7 @@ export default {
         width: 30px;
       }
       .col-menu {
-        text-align: right;
+        text-align: cneter;
       }
     }
       
