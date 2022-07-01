@@ -64,7 +64,6 @@ export default {
   },  
   created() {
     this.$store.dispatch('admin/readTransactionDetail')
-    console.log(this.$store.state.admin.transactionDetail)
   },
 }
 </script>

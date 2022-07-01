@@ -16,7 +16,7 @@
             <div class="text">
               <h6>전체 매출</h6>
               <div class="span">
-                1,452,456원
+                {{ totalSale }}원
               </div>
             </div>
           </article>
@@ -33,7 +33,7 @@
             <div class="text">
               <h6>전체 주문</h6>
               <div class="span">
-                3,584개
+                {{ details.length }}개
               </div>
             </div>
           </article>
@@ -50,7 +50,7 @@
             <div class="text">
               <h6>전체 제품</h6>
               <div class="span">
-                53개
+                {{ productCount }}개
               </div>
             </div>
           </article>
@@ -96,14 +96,29 @@ export default {
   },
   computed: {
     details() {
-      console.log(this.$store.state.admin.transactionDetail)
+      // console.log(this.$store.state.admin.transactionDetail)
       return this.$store.state.admin.transactionDetail
     },
+    saleData() {
+      return this.details.map(detail => detail.product.price)
+    },
+    totalSale() {
+      let sumPrice = 0
+      this.saleData.forEach(price => sumPrice += price)
+      return sumPrice.toLocaleString()
+    },
+    productCount() {
+      return this.$store.state.admin.productList.length
+    }
   }, 
   created() {
     this.$store.dispatch('admin/readTransactionDetail')
+    this.$store.dispatch('admin/readProducts')
+    
   },
   mounted() {
+    console.log(this.totalSale)
+    console.log(this.productCount)
     
     const productSales = document.querySelector('#myChart')
     const saleOfProudcts = document.querySelector('#donutChart')
@@ -171,9 +186,9 @@ const doughnutChart = new Chart(saleOfProudcts, {
     },
     options: {
         scales: {
-            y: {
-                beginAtZero: true
-            }
+            // y: {
+            //   beginAtZero: true
+            // }
         }
     }
 })
