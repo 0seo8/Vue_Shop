@@ -212,8 +212,11 @@ export default {
       },
     checkAll: {
       get() {
-        console.log(this.check1 + ',' + this.check2)
-        return this.check1 + ',' + this.check2
+        if(this.check.check1 && this.check.check2) {
+          return true
+        } else {
+          return false
+        }
       },
       set(e) {
         if(e === true) {
