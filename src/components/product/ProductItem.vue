@@ -13,7 +13,7 @@
         {{ product.title }}
       </p>
       <p>
-        ₩ {{ product.price.toLocaleString() }}
+        ₩ {{ product.price }}
       </p>
     </div>
   </RouterLink>

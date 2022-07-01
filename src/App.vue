@@ -30,5 +30,13 @@ a {
   text-decoration: none;
 }
 
+ol, ul, li {
+  margin:0;
+  padding: 0;
+}
+
+button {
+  border: 0;
+}
   
 </style>

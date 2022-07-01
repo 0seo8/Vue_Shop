@@ -30,6 +30,7 @@ export default {
         state[key] = payload[key]
       }
       console.log('state', state)
+      console.log('here', state.seletedProduct)
     },
   },
   actions: {
@@ -79,7 +80,7 @@ export default {
         console.log(data)
         commit('setState', {PurchaseHistories: data})
     },
-    async confirmPurchase({commit}, id) {
+    async confirmPurchase(_, id) {
       const token = localStorage.getItem('token')
       const {data} = await axios({
         url: `${END_POINT}/ok`,
@@ -94,8 +95,5 @@ export default {
       })
       console.log(data) 
     },
-    // CategoryByProduct(state, payload) {
-    //   return state.
-    // }
   }
 }

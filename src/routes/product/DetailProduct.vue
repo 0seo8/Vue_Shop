@@ -18,12 +18,12 @@
           {{ seletedProduct.description }}
         </p>
         <p class="price">
-          ₩ {{ seletedProduct.price.toLocaleString() }}
+          ₩ {{ seletedProduct.price }}
         </p>
 
         <div class="coupon">
-          <p>10만원 이상 주문 시 무료 배송!</p>
-          <p>30만원 이상 주문 시 10% 할인 쿠폰 증정!</p>            
+          <p>5만원 이상 주문 시 무료 배송!</p>
+          <p>10만원 이상 주문 시 10% 할인 쿠폰 증정!</p>            
         </div>
 
         <div class="shipping">

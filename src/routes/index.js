@@ -7,7 +7,7 @@ import AddProduct from './admin/AddProduct.vue'
 import Dashboard from './admin/Dashboard.vue'
 import ProductList from './admin/ProductList.vue'
 import DetailProduct from '~/routes/product/DetailProduct.vue'
-import CheckPayment from '~/routes/product/CheckPayment.vue'
+import OrderForm from '~/routes/product/OrderForm.vue'
 import MyCart from '~/routes/product/MyCart.vue'
 
 export default createRouter({
@@ -40,7 +40,7 @@ export default createRouter({
     },
     {
       path: '/purchase',
-      component: CheckPayment,
+      component: OrderForm,
     },
     {
       path: '/cart',
