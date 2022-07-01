@@ -111,9 +111,9 @@ export default {
       columns: [
         {field: 'index', name: '', col: 'column flex-grow-0 col-index'},
         {field: 'thumbnail', name: '이미지', col: 'column col-lg-auto col-sm-auto col-auto col-thumbnail'},
-        {field: 'title', name: '제목', col: 'column col-lg-3 col-sm-3 col-5 col-title'},
+        {field: 'title', name: '제목', col: 'column col-lg-3 col-sm-2 col-5 col-title'},
         {field: 'price', name: '가격', col: 'column col-lg-2 col-sm-2 col-3 col-price'},
-        {field: 'tags', name: '태그', col: 'column col-lg-3 col-sm-1 col-4 col-tags'},
+        {field: 'tags', name: '태그', col: 'column col-lg-3 col-sm-2 col-4 col-tags'},
         {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-1 col-sm-2 col-4 col-isSoldOut'},
         {field: 'dropdown', name: 'dropdown', col: 'column col-lg-1 col-sm-1 col-2 col-menu'}
       ],

@@ -92,11 +92,10 @@ const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 export default {
   components: {
     AdminButton,
-    Transactions
+    Transactions,
   },
   computed: {
     details() {
-      // console.log(this.$store.state.admin.transactionDetail)
       return this.$store.state.admin.transactionDetail
     },
     saleData() {
@@ -117,8 +116,6 @@ export default {
     
   },
   mounted() {
-    console.log(this.totalSale)
-    console.log(this.productCount)
     
     const productSales = document.querySelector('#myChart')
     const saleOfProudcts = document.querySelector('#donutChart')
