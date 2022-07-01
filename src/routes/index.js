@@ -8,7 +8,7 @@ import Dashboard from './admin/Dashboard.vue'
 import ProductList from './admin/ProductList.vue'
 import DetailProduct from '~/routes/product/DetailProduct.vue'
 import OrderForm from '~/routes/product/OrderForm.vue'
-import MyCart from '~/routes/product/MyCart.vue'
+import OrderList from '~/routes/product/OrderList.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -43,8 +43,8 @@ export default createRouter({
       component: OrderForm,
     },
     {
-      path: '/cart',
-      component: MyCart,
+      path: '/orderlist',
+      component: OrderList,
     },
   ]
 })
