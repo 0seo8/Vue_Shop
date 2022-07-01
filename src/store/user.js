@@ -11,7 +11,7 @@ export default {
           'bankName': '우리은행',
           'bankCode': '020',
           'accountNumber': '1234-XXX-XXXXXX',
-          'balance': 3000000
+          'balance': 0
         },
         {
           'id': 'au14PwT6zuNM7vDxurzg',

@@ -59,11 +59,11 @@
       </div>
       <div class="checkbox-wrap">
         <div class="form-control">
-          <label for="selectAccount">결제를 진행할 계좌를 선택해주세요</label>
+          <label for="selectAccountId">결제를 진행할 계좌를 선택해주세요</label>
           <select
-            id="selectAccount"
-            v-model="selectAccount"
-            name="selectAccount">
+            id="selectAccountId"
+            v-model="selectAccountId"
+            name="selectAccountId">
             <option
               v-for="account in accounts"
               :key="account.id"
@@ -78,10 +78,12 @@
               <li class="list__item allagree">
                 <div class="box__custom-form">
                   <input
+                    id="checkAll"
+                    v-model="checkAll"
                     type="checkbox"
-                    name="agreeInfoAll" />
+                    name="checkAll" />
                   <label
-                    for="agreeInfoAllTop">
+                    for="checkAll">
                     <em>전체동의</em>
                     <span class="text">만 14세 이상만 구매가능합니다.</span>
                   </label>
@@ -92,9 +94,11 @@
               <li class="list__item">
                 <div class="box__custom-form">
                   <input
-                    type="checkbox"
-                    name="agreeInfo" />
-                  <label for="agreeInfo"><em>필수</em> 개인정보 수집 및 이용동의</label>
+                    id="check1"
+                    v-model="check.check1"
+                    type="checkbox" 
+                    name="check1" />
+                  <label for="check1"><em>필수</em> 개인정보 수집 및 이용동의</label>
                 </div>
                 <button
                   class="button__detail"
@@ -122,17 +126,19 @@
               <li class="list__item">
                 <div class="box__custom-form">
                   <input
+                    id="check2"
+                    v-model="check.check2"
                     type="checkbox"
-                    name="agreeInfo" />
-                  <label for="agreeInfo"><em>필수</em> 개인정보 제3자 제공동의</label>
+                    name="check2" />
+                  <label for="check2"><em>필수</em> 개인정보 제3자 제공동의</label>
                 </div>
                 <button
                   class="button__detail"
-                  @clcik="ReadMore2 = !ReadMore2">
+                  @click="ReadMoreText = !ReadMoreText">
                   자세히
                 </button>
                 <div
-                  v-if="ReadMore2"
+                  v-if="ReadMoreText"
                   class="box__detail-term">
                   <p>
                     제공받는자: <strong>Electronic Market</strong>
@@ -175,66 +181,76 @@
         <button
           type="button"
           class="btn btn-primary"
-          @click="PayNow(seletedProduct.id, selectAccount)">
+          @click="PayNow(seletedProduct.id, selectAccountId)">
           결제하기
         </button>
       </div>
-
-      <BaseDialog
-        v-if="openDialog"
-        title="결제완료">
-        <template #default>
-          <p>결제가 정상적으로 처리 되었습니다.</p> 
-          <p>거래내역을 확인 하시겠습니까?</p>
-        </template>
-        <template #actions>
-          <BaseButton @click="goToCart">
-            Okay
-          </BaseButton>
-          <BaseButton @click="openDialog=false">
-            Close
-          </BaseButton>
-        </template>
-      </BaseDialog>
     </div>
   </section>
 </template>
 
 <script>
 import {mapState, mapActions} from 'vuex'
-import BaseDialog from '~/components/UI/BaseDialog.vue'
 export default {
-  components: {
-    BaseDialog
-  },
   data() {
     return {
-      selectAccount: '',
-      openDialog: false,
+      selectAccountId: '',
+      accountBalance: '',
       ReadMore: false,
-      ReadMore2: false
+      ReadMoreText: false,
+      check: {
+        check1: false,
+        check2: false,
+      }
     }
   },
   computed: {
     ...mapState('user', ['accounts']),
-    ...mapState('product', ['seletedProduct'])
+    ...mapState('product', ['seletedProduct']),
+    selectAccount() {
+      return this.accounts.find(account => account.id === this.selectAccountId)
+      },
+    checkAll: {
+      get() {
+        console.log(this.check1 + ',' + this.check2)
+        return this.check1 + ',' + this.check2
+      },
+      set(e) {
+        if(e === true) {
+          this.check.check1 = true
+          this.check.check2 = true
+        } else {
+          this.check.check1 = false
+          this.check.check2 = false          
+        }
+      }
+    }  
     },
     watch: {
       selectAccount(value) {
-        console.log(value)
-      }
+        this.accountBalance = value.balance
+      },
     },
     methods: {
       ...mapActions('product', ['requestPurchase']),
       PayNow(productId, accountId) {
-        const data = {productId, accountId}
-        console.log(data)
-        this.requestPurchase(data)
-        this.openDialog = true
+        if(this.selectAccountId === '') {
+          confirm('결제 계좌가 선택되지 않았습니다')
+          console.log('결제 계좌가 선택되지 않았습니다')
+        } else if (Number(this.accountBalance) < Number(this.seletedProduct.price)){
+          confirm('계좌 잔액이 부족합니다')
+        } else if(!(this.check.check1 && this.check.check2)){
+          confirm('체크박스를 확인해주세요')
+        } else {
+          const data = {productId, accountId}
+          this.requestPurchase(data)
+          if(confirm('결제가 정상적으로 진행되었습니다. 거래내역을 확인 하시겠습니까?')){
+            this.$router.push('/cart')
+          }else{
+            this.$router.go(-1)
+          }
+        }
       },
-      goToCart() {
-        this.$router.push('/cart')
-      } 
     },
 }
 </script>

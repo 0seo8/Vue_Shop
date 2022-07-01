@@ -29,8 +29,6 @@ export default {
       for(const key in payload) {
         state[key] = payload[key]
       }
-      console.log('state', state)
-      console.log('here', state.seletedProduct)
     },
   },
   actions: {
@@ -56,7 +54,7 @@ export default {
     async requestPurchase({commit}, info) {
       const token = localStorage.getItem('token')
       console.log(token)
-      await axios({
+      const data=await axios({
         url: `${END_POINT}/buy`,
         method: 'POST',
         headers: {
@@ -65,6 +63,7 @@ export default {
         },
         data: info
       })
+      console.log('Here', data)
       commit('setState', {cart: info})
     },
     async readPurchaseAllHistory({commit}) {
