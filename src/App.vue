@@ -14,6 +14,9 @@ export default {
 </script>
 
 <style lang="scss"> 
-@import "./scss/main.scss"; 
+@import "~/scss/_variables.scss";
+body {
+  font-family: 'GmarketSansMedium';
+}
 </style>
 

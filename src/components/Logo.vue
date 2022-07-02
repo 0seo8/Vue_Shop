@@ -13,18 +13,18 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "../scss/main";
+@import '~/scss/_variables.scss';
 .logo {
-  font-family: "Kdam Thmor Pro", sans-serif;
+  font-family: 'GmarketSansMedium';
   font-size: 30px;
-  color: $black;
+  color: #000;
   text-decoration: none;
   img {
     width: 100px;
     height: 100px;
   }
   &:hover {
-    color: $black;
+    color: #000;
   }
 }
 </style>

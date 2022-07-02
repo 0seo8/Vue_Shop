@@ -5,15 +5,6 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   resolve: {
-    alias: [
-      {find :'~', replacement: `${__dirname}/src`},
-    ]
-  },
-  css: {
-   preprocessorOptions: {
-     scss: {
-      additionalData: '@import "~/scss/main";'
-    }
+    alias: [{ find: '~', replacement: `${__dirname}/src` }]
   }
-}
 })
