@@ -97,6 +97,7 @@ export default {
     },
     async confirmPurchase(_, id) {
       const token = localStorage.getItem('token')
+      console.log(id, token)
       const {data} = await axios({
         url: `${END_POINT}/ok`,
         method: 'POST',

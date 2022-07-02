@@ -1,9 +1,17 @@
 <template>
-  <div>
+  <div
+    class="column"
+    :class="purchase.isCanceled ? 'show' : ''">
     <div>
-      {{ gedivate }}
+      {{ getdate }}
     </div>
-    <div>
+    <div class="title">
+      <span
+        v-if="purchase.done"
+        class="badge badge-done">확정</span>
+      <span
+        v-else-if="purchase.isCanceled"
+        class="badge badge-cancle">취소</span> 
       {{ purchase.product.title }}
     </div>
     <div>
@@ -28,13 +36,15 @@
     </div>
     <div>
       <button
+        :disabled="purchase.done || purchase.isCanceled"
         class="btn btn-outline-primary"
-        @click="confirmPurchase(purchase.product.productId)">
+        @click="confirmPurchase(purchase.detailId)">
         구매확인
       </button>
     </div>
     <div>
       <button
+        :disabled="purchase.done || purchase.isCanceled"
         class="btn btn-outline-success"
         @click="cancelOrder(purchase.detailId)">
         구매취소
@@ -63,12 +73,60 @@ export default {
     }
   },
   computed: {
-    gedivate() {
-      return dayjs(this.purchase.timePaid).format('MM월 YY일 HH:mm')
-    },
+    getdate() {
+      return dayjs(this.purchase.timePaid).format('MM월 YY일')
+    }
   },
   methods: {
     ...mapActions('product', ['confirmPurchase', 'cancelOrder']),
-  }
+  },
 }
 </script>
+
+<style lang="scss" scoped>
+
+.btn:disabled {
+  color: #ccc;
+  border-color: #ccc;
+}
+
+.show {
+  color: #ccc;
+  text-decoration: line-through; 
+}
+
+.column {
+  padding: .5rem;
+  border-bottom: 1px solid #e0e2e7;
+  display: block;
+  align-items: center;
+  justify-content: center;
+
+  .title {
+    text-align: start;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    .badge {
+      display: inline-block;
+      padding: 0 5px;
+      border-radius: 5px;
+      font-size: 11px;
+      line-height: 18px;
+      font-weight: 700;
+      color: #fff;
+      &-done {
+        background-color: #ff61a7;
+      }
+      &-cancle {
+        background-color: #ccc;
+      }
+    }
+  }
+}
+
+
+
+
+
+</style>

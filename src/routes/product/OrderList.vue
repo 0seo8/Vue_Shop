@@ -16,7 +16,7 @@
       </div>  
       <PurchaseItem
         v-for="purchase in PurchaseHistories"
-        :key="purchase.id"
+        :key="purchase.detailId"
         :purchase="purchase" 
         class="row" />
     </div>
@@ -60,6 +60,8 @@ export default {
   .card{
     box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
     overflow: hidden;
+    overflow-y: auto;
+    max-height: 55vh;
   .row {
     display: grid;
     grid-template-columns: repeat(2, 1.5fr) repeat(4, 1fr);
