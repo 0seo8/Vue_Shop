@@ -15,6 +15,7 @@ export default {
     return {
       products: [],
       seletedProduct: [],
+      seletedProductPrice:'',
       cart: [],
       PurchaseHistories: [],
     }
@@ -50,7 +51,7 @@ export default {
         method: 'GET',
         headers
       })
-        commit('setState', {seletedProduct: data})
+        commit('setState', {seletedProduct: data, seletedProductPrice:data.price.toLocaleString('ko-KR')})
     },
     async requestPurchase(_, info) {
       const token = localStorage.getItem('token')
