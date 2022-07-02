@@ -14,7 +14,7 @@
               </i>
             </span>
             <div class="text">
-              <h6>전체 매출</h6>
+              <h7>전체 매출</h7>
               <div class="span">
                 {{ totalSale }}원
               </div>
@@ -31,7 +31,7 @@
               </i>
             </span>
             <div class="text">
-              <h6>전체 주문</h6>
+              <h7>전체 주문</h7>
               <div class="span">
                 {{ details.length }}개
               </div>
@@ -48,7 +48,7 @@
               </i>
             </span>
             <div class="text">
-              <h6>전체 제품</h6>
+              <h7>전체 제품</h7>
               <div class="span">
                 {{ productCount }}개
               </div>
@@ -62,7 +62,7 @@
         <div class="card mb-4">
           <article class="card-body">
             <div class="chartjs">
-              <h5>제품별 판매량(막대 그래프)</h5>
+              <h7>제품별 판매량(막대 그래프)</h7>
               <canvas id="myChart"></canvas>
             </div>
           </article>
@@ -72,7 +72,7 @@
         <div class="card mb-4">
           <article class="card-body">
             <div class="chartjs">
-              <h5>매출액 대비 제품 비중</h5>
+              <h7>매출액 대비 제품 비중</h7>
               <canvas id="donutChart"></canvas>
             </div>
           </article>
@@ -224,15 +224,21 @@ myChart
     justify-content: space-between;
     margin-bottom: 1rem;
   }
+  .row {
+    font-size: 12px;
+  }
   .card {
     box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
     display: flex;
+    font-weight: bold;
     .incontenxt {
       display: flex;
       flex: auto;
       opacity: 0.9;
       align-items: center;
-      h6 {
+      h7 {
+        font-size: 14px;
+        font-weight: bold;
         margin-bottom: 0 !important;
       }
       span {
