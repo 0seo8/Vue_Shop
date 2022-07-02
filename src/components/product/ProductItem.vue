@@ -49,7 +49,6 @@ export default {
     }
   }
   .card-body {
-    padding: 2rem;
     line-height: 1.5;
     display: flex;
     flex: 1 1 auto;

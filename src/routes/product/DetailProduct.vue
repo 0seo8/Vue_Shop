@@ -105,9 +105,10 @@ export default {
         overflow: hidden;
         background-color: #fff;
         padding: 10px;
+        text-align: center;
         img {
-          width: 100%;
-          height: 100%;
+          width: 60%;
+          height: 60%;
         }
       }
     }
