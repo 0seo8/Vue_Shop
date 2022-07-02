@@ -18,7 +18,9 @@
         v-for="purchase in PurchaseHistories"
         :key="purchase.detailId"
         :purchase="purchase" 
-        class="row" />
+        class="row"
+        @cancel="cancel"
+        @confirm="confirm" />
     </div>
   </section>
 </template>
@@ -44,7 +46,13 @@ export default {
     this.readPurchaseAllHistory()
   },
   methods: {
-    ... mapActions('product', ['readPurchaseAllHistory'])
+    ... mapActions('product', ['readPurchaseAllHistory', 'confirmPurchase', 'cancelOrder']),
+    cancel(e) {
+      this.cancelOrder(e)
+    },
+    confirm(e) {
+      this.confirmPurchase(e)
+    }
   },
 }
 </script>

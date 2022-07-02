@@ -80,7 +80,8 @@ export default {
         console.log(data)
         commit('setState', {PurchaseHistories: data})
     },
-    async cancelOrder(_, id) {
+    async cancelOrder({dispatch}, id) {
+      console.log('id', id)
       const token = localStorage.getItem('token')
       const {data} = await axios({
         url: `${END_POINT}/cancel`,
@@ -94,8 +95,9 @@ export default {
         }
       })
       console.log(data) 
+      dispatch('readPurchaseAllHistory')
     },
-    async confirmPurchase(_, id) {
+    async confirmPurchase({dispatch}, id) {
       const token = localStorage.getItem('token')
       console.log(id, token)
       const {data} = await axios({
@@ -110,6 +112,7 @@ export default {
         }
       })
       console.log(data) 
+      dispatch('readPurchaseAllHistory')
     },
   }
 }

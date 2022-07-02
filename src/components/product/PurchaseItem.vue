@@ -38,7 +38,7 @@
       <button
         :disabled="purchase.done || purchase.isCanceled"
         class="btn btn-outline-primary"
-        @click="confirmPurchase(purchase.detailId)">
+        @click="$emit('confirm',purchase.detailId)">
         구매확인
       </button>
     </div>
@@ -46,7 +46,7 @@
       <button
         :disabled="purchase.done || purchase.isCanceled"
         class="btn btn-outline-success"
-        @click="cancelOrder(purchase.detailId)">
+        @click="$emit('cancel', purchase.detailId)">
         구매취소
       </button>
     </div>
@@ -67,6 +67,7 @@ export default {
       required: true
     }
   },
+  emits: ['cancel', 'confirm'],
   data() {
     return {
       isOpen: false,
