@@ -52,10 +52,10 @@ export default {
       })
         commit('setState', {seletedProduct: data})
     },
-    async requestPurchase({commit}, info) {
+    async requestPurchase(_, info) {
       const token = localStorage.getItem('token')
       console.log(token)
-      const data=await axios({
+      await axios({
         url: `${END_POINT}/buy`,
         method: 'POST',
         headers: {
@@ -64,8 +64,6 @@ export default {
         },
         data: info
       })
-      console.log('Here', data)
-      commit('setState', {cart: info})
     },
     async readPurchaseAllHistory({commit}) {
       const token = localStorage.getItem('token')
