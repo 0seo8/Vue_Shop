@@ -18,7 +18,7 @@
           {{ seletedProduct.description }}
         </p>
         <p class="price">
-          ₩ {{ seletedProduct.price }}
+          ₩ {{ seletedProductPrice }}
         </p>
 
         <div class="coupon">
@@ -62,7 +62,7 @@ import {mapState, mapActions} from 'vuex'
 
 export default {
   computed: {
-    ...mapState('product',['seletedProduct']),
+    ...mapState('product',['seletedProduct', 'seletedProductPrice']),
     productId() {
       return this.$route.params.id
     },
