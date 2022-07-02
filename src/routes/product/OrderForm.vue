@@ -248,7 +248,7 @@ export default {
           const data = {productId, accountId}
           this.requestPurchase(data)
           if(confirm('결제가 정상적으로 진행되었습니다. 거래내역을 확인 하시겠습니까?')){
-            this.$router.push('/cart')
+            this.$router.push('/orderlist')
           }else{
             this.$router.go(-1)
           }

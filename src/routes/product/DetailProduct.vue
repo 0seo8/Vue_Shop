@@ -61,12 +61,6 @@
 import {mapState, mapActions} from 'vuex'
 
 export default {
-  data() {
-    return {
-      IsProductCard: false,
-      addCart: false,
-    }
-  },
   computed: {
     ...mapState('product',['seletedProduct']),
     productId() {
