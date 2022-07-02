@@ -1,52 +1,26 @@
 <template>
-  <div
-    class="my-tab">
-    <div
-      class="my-info">
-      <div>
-        <img
-          src=""
-          alt="고객이미지사진" />
-      </div>
-      <span><strong>고객이름</strong>님</span>
-    </div>
-    <div>
-      <p>계좌 잔액</p>
-      <span><strong>금액</strong>원</span>
-      <div>계좌보기</div>
-    </div>
-    <nav>
-      <div>구매내역</div>
-      <div>내 정보 수정</div>
-    </nav>
-  </div>
-  <div>
-    <h1>거래 내역</h1>
+  <section class="container">
+    <h2>거래 내역</h2>
     <div v-if="!PurchaseHistories.length">
       구매 신청 내역이 없습니다.
     </div>
-    <div v-else>
-      <table>
-        <thead>
-          <tr>
-            <th>주문일</th>
-            <th>상품명</th>
-            <th>상품가격</th>
-            <th>상세보기</th>
-            <th>구매확정</th>
-            <th>구매취소</th>
-          </tr>
-        </thead>
-        <tbody>
-          <PurchaseItem
-            v-for="purchase in PurchaseHistories"
-            :key="purchase.id"
-            :purchase="purchase"
-            @click="log" />
-        </tbody>
-      </table>
+    <div
+      v-else
+      class="card">
+      <div class="row head">
+        <div
+          v-for="(head, index) in headers"
+          :key="index">
+          {{ head }}
+        </div>
+      </div>  
+      <PurchaseItem
+        v-for="purchase in PurchaseHistories"
+        :key="purchase.id"
+        :purchase="purchase" 
+        class="row" />
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -58,7 +32,7 @@ export default {
   },
   data() {
     return {
-      
+      headers: ['주문일자', '상품명', '상품가격', '상세보기',  '구매확정', '구매취소']
     }
   },
   computed: {
@@ -70,10 +44,37 @@ export default {
     this.readPurchaseAllHistory()
   },
   methods: {
-    ... mapActions('product', ['readPurchaseAllHistory']),
-    log(e){
-      console.log(e)
-    }
+    ... mapActions('product', ['readPurchaseAllHistory'])
   },
 }
 </script>
+
+<style lang="scss" scoped>
+  section {
+    padding-top: calc(80px + 2rem);
+    h2 {
+      padding: 1rem;     
+    }
+  }
+
+  .card{
+    box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
+    overflow: hidden;
+  .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1.5fr) repeat(4, 1fr);
+    text-align: center;
+    justify-content: center;
+    &.head {
+      font-weight: bold;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ccc;
+      box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
+    }
+    &:nth-child(2) {
+      margin-top: 1rem;
+    }
+  }
+}
+
+</style>

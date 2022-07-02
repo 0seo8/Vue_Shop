@@ -22,16 +22,23 @@
           </BaseButton>
         </template>
       </BaseDialog>
+      <button class="btn btn-outline-info">
+        상세보기
+      </button>
     </td>
     <td>
-      <BaseButton @click="confirmPurchase(purchase.product.productId)">
+      <button
+        class="btn btn-outline-primary"
+        @click="confirmPurchase(purchase.product.productId)">
         구매확인
-      </BaseButton>
+      </button>
     </td>
     <td>
-      <BaseButton @click="cancelOrder(purchase.detailId)">
+      <button
+        class="btn btn-outline-success"
+        @click="cancelOrder(purchase.detailId)">
         구매취소
-      </BaseButton>
+      </button>
     </td>
   </tr>
 </template>
