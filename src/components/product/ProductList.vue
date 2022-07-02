@@ -3,7 +3,7 @@
     <h2>{{ category }}</h2>
     <div class="product__list">
       <div
-        v-for="product in products.filter(product => product.tags === category)"
+        v-for="product in products.filter(product => product.tags.includes(category))"
         :key="product.id"
         class="card">
         <ProductItem :product="product" />
