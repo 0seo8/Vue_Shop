@@ -1,15 +1,15 @@
 <template>
-  <tr>
-    <td>
-      날짜
-    </td>
-    <td>
+  <div>
+    <div>
+      {{ gedivate }}
+    </div>
+    <div>
       {{ purchase.product.title }}
-    </td>
-    <td>
-      {{ purchase.product.price }} 
-    </td>
-    <td>
+    </div>
+    <div>
+      {{ purchase.product.price.toLocaleString("ko-KR") }} 원
+    </div>
+    <div>
       <BaseDialog
         v-if="isOpen"
         title="상세 보기">
@@ -25,25 +25,26 @@
       <button class="btn btn-outline-info">
         상세보기
       </button>
-    </td>
-    <td>
+    </div>
+    <div>
       <button
         class="btn btn-outline-primary"
         @click="confirmPurchase(purchase.product.productId)">
         구매확인
       </button>
-    </td>
-    <td>
+    </div>
+    <div>
       <button
         class="btn btn-outline-success"
         @click="cancelOrder(purchase.detailId)">
         구매취소
       </button>
-    </td>
-  </tr>
+    </div>
+  </div>
 </template>
 
 <script>
+import dayjs from 'dayjs'
 import {mapActions} from 'vuex'
 import BaseDialog from '~/components/UI/BaseDialog.vue'
 export default {
@@ -62,6 +63,9 @@ export default {
     }
   },
   computed: {
+    gedivate() {
+      return dayjs(this.purchase.timePaid).format('MM월 YY일 HH:mm')
+    },
   },
   methods: {
     ...mapActions('product', ['confirmPurchase', 'cancelOrder']),

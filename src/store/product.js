@@ -80,6 +80,21 @@ export default {
         console.log(data)
         commit('setState', {PurchaseHistories: data})
     },
+    async cancelOrder(_, id) {
+      const token = localStorage.getItem('token')
+      const {data} = await axios({
+        url: `${END_POINT}/cancel`,
+        method: 'POST',
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`
+        },
+        data: {
+          detailId: id
+        }
+      })
+      console.log(data) 
+    },
     async confirmPurchase(_, id) {
       const token = localStorage.getItem('token')
       const {data} = await axios({
