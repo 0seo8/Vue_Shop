@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     getdate() {
-      return dayjs(this.purchase.timePaid).format('MM월 YY일')
+      return dayjs(this.purchase.timePaid).format('YYYY년 MM월 DD일 HH시 mm분')
     }
   },
   methods: {
