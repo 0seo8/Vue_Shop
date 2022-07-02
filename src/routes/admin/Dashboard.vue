@@ -214,6 +214,7 @@ myChart
 </script>
 <style lang="scss" scoped>
 .content-main {
+  font-family: 'GmarketSansMedium';
   background-color: #f8f9fa;
   padding: 30px 5%;
   margin-left: auto;

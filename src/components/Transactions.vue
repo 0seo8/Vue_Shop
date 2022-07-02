@@ -26,16 +26,6 @@
                   class="badge rounded-pill alert-success">거래완료</span>
               </td>
               <td>{{ new Date(detail.timePaid).toLocaleString() }}</td>
-              <!-- {{ detail.timePaid }} -->
-              
-              <td class="text-end">
-                <span
-                  id="dropdownMenuButton1"
-                  class="material-symbols-outlined btn"
-                  data-bs-toggle="dropdown">
-                  more_horiz
-                </span>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -69,7 +59,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 tr {
-  font-size: 12px;
+  font-size: 10px;
   td {
     &:nth-child(5) {
       width: 62px;
