@@ -92,6 +92,7 @@ export default {
       flex-grow: 1;
       flex-wrap: nowrap;
       margin-left: 8px;
+      white-space: nowrap;
     }
     &__item {
       height: 32px;
