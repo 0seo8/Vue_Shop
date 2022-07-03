@@ -6,6 +6,7 @@ import Login from '~/routes/Login.vue'
 import AddProduct from './admin/AddProduct.vue'
 import Dashboard from './admin/Dashboard.vue'
 import ProductList from './admin/ProductList.vue'
+import TheProducts from '~/routes/product/TheProducts.vue'
 import DetailProduct from '~/routes/product/DetailProduct.vue'
 import OrderForm from '~/routes/product/OrderForm.vue'
 import OrderList from '~/routes/product/OrderList.vue'
@@ -34,9 +35,15 @@ export default createRouter({
       component: ProductList
     },
     {
+      path: '/product/:category',
+      name: 'product',
+      component: TheProducts,
+    },
+    {
       path: '/:id',
       component: DetailProduct,
-      name: 'product',
+      name: 'detailpage',
+      props: true,
     },
     {
       path: '/purchase',

@@ -12,8 +12,10 @@
         :key="nav.name"
         class="cotegory__item">
         <RouterLink     
-          :to="nav.path"
-          active-class="active"
+          :to="{
+            name: 'product',
+            params: {category: nav.name}
+          }"
           class="nav-link">
           <span>{{ nav.name }}</span>
         </RouterLink>
@@ -40,8 +42,8 @@ export default {
     data() {
     return {
       navigations: [
-        {path: '/HomeAP', name:'생활가전'},
-        {path: '/SeasonAP', name:'계절가전 '},
+        { name:'생활가전'},
+        { name:'계절가전'},
       ]
     }
   },

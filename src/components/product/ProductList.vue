@@ -38,7 +38,6 @@ export default {
 
 <style lang="scss" scoped>
   section {
-    margin: 40px auto 0;
     h2 {
       font-size: 22px;
       line-height: 25px;

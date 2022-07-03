@@ -1,7 +1,11 @@
 <template>
   <Swiper />
-  <ProductList category="생활가전" />
-  <ProductList category="계절가전" />
+  <section class="category__box">
+    <ProductList category="생활가전" />
+  </section>
+  <section class="category__box">
+    <ProductList category="계절가전" />
+  </section>
 </template>
 
 <script>
@@ -17,6 +21,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .category__box {
+    margin-top: 40px;
+  }
 </style>
 
