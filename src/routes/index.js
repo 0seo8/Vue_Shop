@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './Home.vue'
-import Login from '~/routes/Login.vue'
-// import Admin from '~/routes/admin/Admin.vue'
+import Login from './Login.vue'
+// import Admin from './admin/Admin.vue'
 import AddProduct from './admin/AddProduct.vue'
 import Dashboard from './admin/Dashboard.vue'
 import ProductList from './admin/ProductList.vue'
-import TheProducts from '~/routes/product/TheProducts.vue'
-import DetailProduct from '~/routes/product/DetailProduct.vue'
-import OrderForm from '~/routes/product/OrderForm.vue'
-import OrderList from '~/routes/product/OrderList.vue'
-import SearchProduct from '~/components/product/SearchProduct.vue'
+import TheProducts from './product/TheProducts.vue'
+import DetailProduct from './product/DetailProduct.vue'
+import OrderForm from './product/OrderForm.vue'
+import OrderList from './product/OrderList.vue'
+import SearchProduct from './product/SearchProduct.vue'
 
 export default createRouter({
   history: createWebHistory(),
