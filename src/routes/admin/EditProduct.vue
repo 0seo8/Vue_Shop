@@ -159,19 +159,20 @@ export default {
       tags: this.oldTags,
       thumbnail: this.oldThumbnail,
       isSoldOut: this.oldIsSoldOut === 'false' ? 'In Sale' : 'Sold Out',
+      defaultThumbnail: ''
     }
   },
   computed: {
     chanageSoldOut() {
       return this.isSoldOut === 'In Sale' ? false : true 
     },
-    defaultThumbnail() {
+    originalThumbnail() {
       const reader = new FileReader()
       reader.readAsDataURL(this.oldThumbnail)
       reader.addEventListener('load', () => {
-        this.thumbnail = reader.result
+        this.defaultThumbnail = reader.result
       })
-      return this.thumbnail
+      return this.defaultThumbnail
     }
   },
   mounted() {

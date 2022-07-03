@@ -140,6 +140,7 @@ export default {
       })
       console.log(res)
       this.$store.dispatch('admin/readProducts')
+      // this.$swal({title: '제품이 삭제되었습니다!', icon: 'error'})
       } catch(error) {
         console.log(error)
       }
@@ -214,7 +215,7 @@ export default {
       background-color: #f8f9fa;
       border: 1px solid #dee2e6;
       border-radius: 0.25rem;
-      box-shadow: 0 .1rem .25remrgba(0,0,0,.075);
+      box-shadow: 0 .1rem .25rem rgba(0,0,0,.075);
       max-width: 100%;
       height: auto;
       }
