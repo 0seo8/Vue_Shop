@@ -11,8 +11,7 @@
         <div class="info box">
           <img
             :src="seletedProduct.thumbnail"
-            alt="상품사진"
-            width="200" />
+            alt="상품사진" />
           <p>{{ seletedProduct.title }}</p>  
         </div>
       </div>
@@ -21,7 +20,7 @@
           배송정보
         </div>
         <div class="info box">
-          {{ Number(seletedProduct.price) > 50000 ? "무료배송" : "2,500" }}
+          {{ seletedProduct.price > 50000 ? "무료배송" : "2,500" }}
         </div>
       </div>
       <div>
@@ -29,7 +28,7 @@
           상품금액
         </div>
         <div class="info box">
-          {{ seletedProduct.price }} 원
+          {{ seletedProductPrice }} 원
         </div>
       </div>
     </div>
@@ -166,16 +165,20 @@
           최종결제금액
         </h3>
         <div class="expected-payment">
-          <div><span>상품가격</span><span>{{ seletedProduct.price }}원</span></div>
-          <div><span>배송비</span><span v-if="Number(seletedProduct.price) < 50000">2,500 원</span></div>
+          <div><span>상품가격</span><span>{{ seletedProductPrice }}원</span></div>
+          <div>
+            <span>배송비</span>
+            <span v-if="seletedProduct.price < 50000">2,500 원</span>
+            <span v-else>무료배송</span>
+          </div>
         </div>
         <div class="expected-payment-all">
           <p>총결제금액</p>
-          <div v-if="Number(seletedProduct.price) < 50000">
-            {{ Number(seletedProduct.price) + 2500 }} 원
+          <div v-if="seletedProduct.price < 50000">
+            {{ (seletedProduct.price + 2500).toLocaleString('ko-KR') }} 원
           </div>
           <div v-else>
-            {{ seletedProduct.price }} 원
+            {{ seletedProductPrice }} 원
           </div>
         </div>        
         <button
@@ -206,7 +209,7 @@ export default {
   },
   computed: {
     ...mapState('user', ['accounts']),
-    ...mapState('product', ['seletedProduct']),
+    ...mapState('product', ['seletedProduct', 'seletedProductPrice']),
     selectAccount() {
       return this.accounts.find(account => account.id === this.selectAccountId)
       },
@@ -283,8 +286,13 @@ export default {
   .info.box {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 200px;
     border-bottom: 1px solid #ccc;
+    img {
+      width:30%;
+      max-height: 200px; 
+    }
   }
 }
 
