@@ -9,7 +9,7 @@
     </figure>
     <div
       class="card-body">
-      <p>
+      <p class="title">
         {{ product.title }}
       </p>
       <p>
@@ -49,10 +49,16 @@ export default {
     }
   }
   .card-body {
-    line-height: 1.5;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
     gap: 0.5rem;
+    .title {
+      font-size: 15px;
+      display: inline-block;
+      width: 100%;
+      color: #111;
+      font-weight: 600;
+    }
   }
 </style>

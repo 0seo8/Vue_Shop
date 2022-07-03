@@ -32,8 +32,8 @@
         @keydown.enter="searchProduct" />
       <span
         class="material-symbols-outlined"
-        @click="GoToCart">
-        shopping_bag
+        @click="$router.push('/userpage')">
+        person_outline
       </span>
     </div>
   </div>
@@ -51,9 +51,6 @@ export default {
     }
   },
   methods: {
-    GoToCart () {
-      this.$router.push('/cart')
-    },
     searchProduct() {
       this.$router.push({name:'search', params: {searchText: this.searchText}})
       this.searchText=''
