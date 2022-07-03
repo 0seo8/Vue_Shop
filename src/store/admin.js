@@ -5,7 +5,8 @@ export default {
   namespaced: true,
   state: {
     productList: [],
-    transactionDetail: []
+    transactionDetail: [],
+    loading: false
   },
   mutations: {
     setProductList(state, payload) {

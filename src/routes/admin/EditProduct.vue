@@ -8,7 +8,7 @@
       <div>
         <RouterLink
           to="/admin/product-list"
-          class="btn btn-primary">
+          class="btn btn-outline-primary">
           취소하기
         </RouterLink>
       </div>
@@ -82,6 +82,7 @@
             <input
               class="form-control"
               type="file"
+              
               @change="selectThumbnail" />
           </div>
           <div class="mb-4 image-price-tag">
@@ -98,7 +99,7 @@
                   class="form-control" />
               </div>
               <div>
-                <div class="mb-4">
+                <div class="mt-4">
                   <label
                     for="product_name"
                     class="form-label">태그</label>
@@ -111,7 +112,7 @@
             </div> <!-- row.// -->
           </div>
           <button
-            class="btn btn-primary">
+            class="btn btn-outline-primary">
             제품 수정하기
           </button>
         </form>
@@ -162,12 +163,22 @@ export default {
     }
   },
   computed: {
-    noImage() {
-      return this.noImage
-    },
     chanageSoldOut() {
       return this.isSoldOut === 'In Sale' ? false : true 
+    },
+    defaultThumbnail() {
+      const reader = new FileReader()
+      reader.readAsDataURL(this.oldThumbnail)
+      reader.addEventListener('load', () => {
+        this.thumbnail = reader.result
+      })
+      return this.thumbnail
     }
+  },
+  mounted() {
+    console.log(this.oldThumbnail)
+    console.log(this.thumbnail)
+    this.defaultThumbnail()
   },
   methods: {
     printSoldout() {
@@ -214,6 +225,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .content-main {
+    font-size: 12px;
     max-width: 720px;
     padding: 30px 3%;
     margin-left: auto;
@@ -263,7 +275,7 @@ export default {
       .form-control {
       display: block;
       width: 100%;
-      padding: 0.5rem 0.75rem;
+      padding: 0.2rem;
       font-size: 1rem;
       font-weight: 400;
       line-height: 1.5;
@@ -281,6 +293,7 @@ export default {
       .title-soldout {
         .form-check {
           margin-top: 2px;
+          line-height: 1.5rem;
         }
         span {
           width: 70px;
