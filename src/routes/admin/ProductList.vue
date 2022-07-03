@@ -36,28 +36,6 @@
                     class="badge rounded-pill alert-success">주문가능</span>
                 </template>
                 <template v-else-if="column.field === 'dropdown'">
-                  <RouterLink
-                    :to="{
-                      name: 'EditProduct',
-                      params: {
-                        id: product.id,
-                        oldTitle: product.title,
-                        oldPrice: product.price,
-                        oldDescription: product.description,
-                        oldTags: product.tags.toString(),
-                        oldThumbnail: product.thumbnail,
-                        oldIsSoldOut: product.isSoldOut
-                      }
-                    }">
-                    <div class="dropdown">
-                      <span
-                        id="dropdownMenuButton1"
-                        class="material-symbols-outlined btn"
-                        data-bs-toggle="dropdown">
-                        more_horiz
-                      </span>
-                    </div>
-                  </RouterLink>
                 </template>
                 <template
                   v-else-if="column.field ==='tags'">
@@ -72,6 +50,44 @@
                   {{ product[column.field] }}
                 </template>
               </div>
+              <div class="dropdown float-end">
+                <button
+                  id="dropdownMenuButton1"
+                  class="dropdown-toggle btn"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanede="false">
+                  <span class="material-symbols-outlined">more_horiz</span>
+                </button>
+                <div
+                  class="dropdown-menu">
+                  <button
+                    href="#"
+                    class="dropdown-item">
+                    <RouterLink
+                      :to="{
+                        name: 'EditProduct',
+                        params: {
+                          id: product.id,
+                          oldTitle: product.title,
+                          oldPrice: product.price,
+                          oldDescription: product.description,
+                          oldTags: product.tags.toString(),
+                          oldThumbnail: product.thumbnail,
+                          oldIsSoldOut: product.isSoldOut
+                        }
+                      }">
+                      Edit Product
+                    </RouterLink>
+                  </button>
+                  <button
+                    href="#"
+                    class="dropdown-item"
+                    @click="deleteProduct(product.id)">
+                    Delete Product
+                  </button>
+                </div>
+              </div>
             </div>
           </table>
         </div>
@@ -81,6 +97,8 @@
 </template>
 <script>
 import AdminButton from '../../components/AdminButton.vue'
+import axios from 'axios'
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 export default {
   components: {
@@ -95,7 +113,6 @@ export default {
         {field: 'price', name: '가격', col: 'column col-lg-2 col-sm-2 col-3 col-price'},
         {field: 'tags', name: '태그', col: 'column col-lg-3 col-sm-2 col-4 col-tags'},
         {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-1 col-sm-2 col-4 col-isSoldOut'},
-        {field: 'dropdown', name: 'dropdown', col: 'column col-lg-1 col-sm-1 col-2 col-menu'}
       ],
     }
   },
@@ -108,6 +125,26 @@ export default {
     this.$store.dispatch('admin/readProducts')
     console.log(this.$store.state.admin.productList)
   },
+  methods: {
+    async deleteProduct(productId) {
+      try {
+        const res = await axios({
+        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${productId}`,
+        headers: {
+        'content-type': 'application/json',
+        apikey: VITE_API_KEY,
+        username: VITE_USERNAME,
+        masterKey: true
+        },
+        method: 'DELETE'
+      })
+      console.log(res)
+      this.$store.dispatch('admin/readProducts')
+      } catch(error) {
+        console.log(error)
+      }
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -145,6 +182,19 @@ export default {
       }
       .col-menu {
         text-align: cneter;
+      }
+      .dropdown-menu {
+        font-size: 8px;
+        .dropdown-item {
+          a {
+            text-decoration: none;
+            color: black;
+          }
+          color: #F2555A;
+        }
+      }
+      .dropdown-toggle::after {
+        display: none;
       }
     }
       

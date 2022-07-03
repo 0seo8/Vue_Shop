@@ -82,7 +82,6 @@
             <input
               class="form-control"
               type="file"
-              
               @change="selectThumbnail" />
           </div>
           <div class="mb-4 image-price-tag">
@@ -178,7 +177,6 @@ export default {
   mounted() {
     console.log(this.oldThumbnail)
     console.log(this.thumbnail)
-    this.defaultThumbnail()
   },
   methods: {
     printSoldout() {
