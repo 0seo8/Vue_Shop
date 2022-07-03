@@ -16,7 +16,7 @@ export default {
       products: [],
       seletedProduct: [],
       seletedProductPrice:'',
-      cart: [],
+      searchProductList: [],
       PurchaseHistories: [],
     }
   },
@@ -80,7 +80,7 @@ export default {
     },
     async cancelOrder({dispatch}, id) {
       const token = localStorage.getItem('token')
-      const {data} = await axios({
+      await axios({
         url: `${END_POINT}/cancel`,
         method: 'POST',
         headers: {
@@ -107,6 +107,17 @@ export default {
         }
       })
       dispatch('readPurchaseAllHistory')
+    },
+    async searchProducts({commit}, search) {
+      console.log('search',search)
+      const {data} = await axios({
+        url: `${END_POINT}/search`,
+        method: 'POST',
+        headers,
+        data: search
+      })
+      console.log(data)
+      commit('setState', {searchProductList: data})      
     },
   }
 }

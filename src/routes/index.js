@@ -10,6 +10,7 @@ import TheProducts from '~/routes/product/TheProducts.vue'
 import DetailProduct from '~/routes/product/DetailProduct.vue'
 import OrderForm from '~/routes/product/OrderForm.vue'
 import OrderList from '~/routes/product/OrderList.vue'
+import SearchProduct from '~/components/product/SearchProduct.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -52,5 +53,10 @@ export default createRouter({
       path: '/orderlist',
       component: OrderList,
     },
+    {
+      path: '/search',
+      name: 'search',
+      component: SearchProduct,      
+    }
   ]
 })

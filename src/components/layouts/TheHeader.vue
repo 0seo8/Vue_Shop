@@ -26,8 +26,10 @@
         light_mode
       </span>
       <input
+        v-model="searchText"
         class="form-control"
-        placeholder="검색" />
+        placeholder="검색"
+        @keydown.enter="searchProduct" />
       <span
         class="material-symbols-outlined"
         @click="GoToCart">
@@ -44,12 +46,17 @@ export default {
       navigations: [
         { name:'생활가전'},
         { name:'계절가전'},
-      ]
+      ],
+      searchText: '',
     }
   },
   methods: {
     GoToCart () {
       this.$router.push('/cart')
+    },
+    searchProduct() {
+      this.$router.push({name:'search', params: {searchText: this.searchText}})
+      this.searchText=''
     }
   }
 }
