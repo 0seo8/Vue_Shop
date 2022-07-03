@@ -35,15 +35,14 @@ export default createRouter({
       component: ProductList
     },
     {
-      path: '/product/:category',
+      path: '/:category',
       name: 'product',
       component: TheProducts,
     },
     {
-      path: '/:id',
+      path: '/product/:id',
       component: DetailProduct,
       name: 'detailpage',
-      props: true,
     },
     {
       path: '/purchase',

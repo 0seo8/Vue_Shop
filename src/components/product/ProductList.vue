@@ -1,12 +1,15 @@
 <template>
   <section class="container">
-    <h2>{{ category }}</h2>
+    <h2>
+      {{ category }}
+    </h2>
     <div class="product__list">
       <div
         v-for="product in products.filter(product => product.tags.includes(category))"
         :key="product.id"
         class="card">
-        <ProductItem :product="product" />
+        <ProductItem
+          :product="product" />
       </div>
     </div>
   </section>
@@ -25,7 +28,7 @@ export default {
       }
   },
   computed: {
-      ...mapState('product', ['products'])
+      ...mapState('product', ['products']),
   },
   mounted() {
       this.readAllProducts()

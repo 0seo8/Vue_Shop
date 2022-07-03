@@ -1,6 +1,6 @@
 <template>
   <RouterLink
-    :to="`/${product.id}`"
+    :to="`/product/${product.id}`"
     :prodcut="product">
     <figure>
       <img
