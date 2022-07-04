@@ -37,7 +37,7 @@ export default {
 
 <style lang="scss" scoped>
   section {
-    padding-top: calc(80px + 3rem);
+    padding-top: 80px;
     h2 {
       font-size: 22px;
       line-height: 25px;
