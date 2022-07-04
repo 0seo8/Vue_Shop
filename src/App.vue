@@ -1,7 +1,9 @@
 <template>
   <TheHeader />
-  <RouterView />
-  <TheFooter />
+  <div class="main__wrap">
+    <RouterView />
+    <TheFooter />
+  </div>
 </template>
 
 <script>
@@ -19,6 +21,10 @@ export default {
 
 <style lang="scss">
 @import "~/scss/variables.scss";
+
+.main__wrap {
+  padding-top:80px;
+}
 
 body {
   font-family: 'GmarketSansMedium';

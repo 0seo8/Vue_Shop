@@ -59,7 +59,7 @@ export default {
 
 <style lang="scss" scoped>
   section {
-    padding-top: calc(80px + 2rem);
+    padding-top: 2rem;
     h2 {
       padding: 1rem;     
     }
