@@ -263,7 +263,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding-top: calc(4rem + 80px);
+  padding-top: 3rem;
   .title {
     text-align: center;
     margin: 1rem;
