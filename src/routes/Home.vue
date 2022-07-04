@@ -1,11 +1,12 @@
-<template lang="">
-  <div>
-    <h1>This is Home</h1>
-  </div>
+<template>
+  <MainSection />
 </template>
 <script>
+import MainSection from '~/components/layouts/MainSection.vue'
 export default {
-  
+  components: {
+    MainSection
+  }
 }
 </script>
 

@@ -1,0 +1,66 @@
+<template>
+  <section class="swiper">
+    <Carousel
+      :autoplay="2000"
+      :wrap-around="true">
+      <Slide
+        v-for="slide in 3"
+        :key="slide">
+        <div class="carousel__item">
+          <div class="temp">
+            {{ slide }}
+          </div>
+        </div>
+      </Slide>
+
+      <template #addons>
+        <Pagination />
+      </template>
+    </Carousel>
+  </section>
+</template>
+
+<script>
+import { defineComponent } from 'vue'
+import { Carousel, Pagination, Slide } from 'vue3-carousel'
+
+import 'vue3-carousel/dist/carousel.css'
+
+export default defineComponent({
+  name: 'Autoplay',
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+  },
+  data(){
+    return {
+      settings: {
+        itemsToshow: 1,
+        snapAlign: 'center',        
+      }
+    }
+  }
+})
+</script>
+
+<style scoped lang="scss">
+
+.swiper {
+  padding-top: 80px;
+}
+.temp {
+  width: 100vw;
+  height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+}
+
+ul,ol,li {
+  margin: 0;
+  padding: 0;
+}
+
+</style>
