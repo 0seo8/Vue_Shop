@@ -25,9 +25,11 @@
           제품에 대한 상세 내역정리
         </template>
         <template #actions>
-          <BaseButton @click="isOpen = false">
+          <button
+            class="btn"
+            @click="isOpen = false">
             Okay
-          </BaseButton>
+          </button>
         </template>
       </BaseDialog>
       <button class="btn btn-outline-info">

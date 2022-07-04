@@ -18,7 +18,7 @@ export default {
 
 
 <style lang="scss">
-@import "~/scss/_variables.scss";
+@import "~/scss/variables.scss";
 
 body {
   font-family: 'GmarketSansMedium';
