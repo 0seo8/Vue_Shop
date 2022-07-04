@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
+@import "~/scss/variables.scss";
 
 .header {
   position: fixed;
