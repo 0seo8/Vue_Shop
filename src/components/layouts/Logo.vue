@@ -3,7 +3,7 @@
     to="/"
     class="logo">
     <img
-      src="../assets/Logo.png"
+      src="../../assets/Logo.png"
       alt="Electron Mart" />
   </RouterLink>
 </template>
@@ -13,7 +13,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '~/scss/_variables.scss';
+@import '~/scss/variables.scss';
 .logo {
   font-family: 'GmarketSansMedium';
   font-size: 30px;
