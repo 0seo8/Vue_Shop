@@ -11,6 +11,7 @@ import DetailProduct from './product/DetailProduct.vue'
 import OrderForm from './product/OrderForm.vue'
 import OrderList from './product/OrderList.vue'
 import SearchProduct from './product/SearchProduct.vue'
+import EditProduct from './admin/EditProduct.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -57,6 +58,15 @@ export default createRouter({
       path: '/search',
       name: 'search',
       component: SearchProduct,      
+      name: 'EditProduct',
+    },
+    {
+      path: '/admin/edit-product/:id',
+      component: EditProduct,
+      props: true
+    },
+    {
+      path: '/amdmin/transaction-detail'
     }
   ]
 })

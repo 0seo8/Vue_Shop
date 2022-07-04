@@ -33,6 +33,7 @@ footer {
   a {
     color: #000;
     font-size: 14px;
+    text-decoration: none;
   }
 }
 

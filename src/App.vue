@@ -18,11 +18,10 @@ export default {
 
 
 <style lang="scss">
-@import "~/scss/main";
+@import "~/scss/_variables.scss";
 
 body {
-  line-height: 1.4;
-  font-family: 'Roboto', sans-serif;  
+  font-family: 'GmarketSansMedium';
 }
 
 a {
