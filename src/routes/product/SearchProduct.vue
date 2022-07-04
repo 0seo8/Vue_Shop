@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <h2>
-      "{{ $route.params.searchText }}"에 대한 검색 결과입니다.
+      찾으시는 상품의 목록은 아래와 같습니다😊
     </h2>
     <div class="product__list">
       <div
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState} from 'vuex'
 import ProductItem from '~/components/product/ProductItem.vue'
 export default {
   components: {
@@ -25,13 +25,6 @@ export default {
   computed: {
     ...mapState('product', ['searchProductList']),
   },
-  created() {
-    console.log(this.$route.params)
-    this.searchProducts(this.$route.params)
-  },
-  methods : {
-    ...mapActions('product', ['searchProducts'])
-  }
 }
 </script>
 
