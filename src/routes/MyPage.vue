@@ -130,6 +130,7 @@ export default {
   display: flex;
   /* height: 50%; */
   border: 1px solid black;
+  padding-top: 80px;
 }
 .profile {
   width: 60%;

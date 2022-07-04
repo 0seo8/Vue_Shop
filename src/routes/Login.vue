@@ -34,4 +34,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+form {
+  padding-top: 80px;
+}
+</style>

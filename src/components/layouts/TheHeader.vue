@@ -55,12 +55,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
-@import "~scss/_variables.scss";
-=======
 @import "~/scss/variables.scss";
 
->>>>>>> develop
 .header {
   position: fixed;
   z-index: 10;
