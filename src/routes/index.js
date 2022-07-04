@@ -63,6 +63,7 @@ export default createRouter({
       component: SearchProduct
     },
     {
+      name: 'EditProduct',
       path: '/admin/edit-product/:id',
       component: EditProduct,
       props: true

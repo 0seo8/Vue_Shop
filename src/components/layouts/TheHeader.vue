@@ -44,6 +44,7 @@ export default {
       searchText: '',
     }
   },
+  
   methods: {
     searchProduct() {
       this.$router.push({
@@ -58,7 +59,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "~/scss/variables.scss";
-
 .header {
   position: fixed;
   z-index: 10;
