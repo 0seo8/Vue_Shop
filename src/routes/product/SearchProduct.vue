@@ -26,6 +26,7 @@ export default {
     ...mapState('product', ['searchProductList']),
   },
   created() {
+    console.log(this.$route.params)
     this.searchProducts(this.$route.params)
   },
   methods : {

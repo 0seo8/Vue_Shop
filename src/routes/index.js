@@ -1,87 +1,87 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from "./Home.vue";
-import Login from "./Login.vue";
+import Home from './Home.vue'
+import Login from './Login.vue'
 // import Admin from './admin/Admin.vue'
-import AddProduct from "./admin/AddProduct.vue";
-import Dashboard from "./admin/Dashboard.vue";
-import ProductList from "./admin/ProductList.vue";
-import TheProducts from "./product/TheProducts.vue";
-import DetailProduct from "./product/DetailProduct.vue";
-import OrderForm from "./product/OrderForm.vue";
-import OrderList from "./product/OrderList.vue";
-import SearchProduct from "./product/SearchProduct.vue";
-import EditProduct from "./admin/EditProduct.vue";
-import MyPage from "./MyPage.vue";
-import Signup from "./Signup.vue";
-import ProfileChange from "./ProfileChange.vue";
+import AddProduct from './admin/AddProduct.vue'
+import Dashboard from './admin/Dashboard.vue'
+import ProductList from './admin/ProductList.vue'
+import TheProducts from './product/TheProducts.vue'
+import DetailProduct from './product/DetailProduct.vue'
+import OrderForm from './product/OrderForm.vue'
+import OrderList from './product/OrderList.vue'
+import SearchProduct from './product/SearchProduct.vue'
+import EditProduct from './admin/EditProduct.vue'
+import MyPage from './MyPage.vue'
+import Signup from './Signup.vue'
+import ProfileChange from './ProfileChange.vue'
 
 export default createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: "/",
+      path: '/',
       component: Home,
     },
     {
-      path: "/login",
+      path: '/login',
       component: Login,
     },
     {
-      path: "/admin",
+      path: '/admin',
       component: Dashboard,
     },
     {
-      path: "/admin/add-product",
+      path: '/admin/add-product',
       component: AddProduct,
     },
     {
-      path: "/admin/product-list",
+      path: '/admin/product-list',
       component: ProductList,
     },
     {
-      path: "/:category",
-      name: "product",
+      path: '/:category',
+      name: 'product',
       component: TheProducts,
     },
     {
-      path: "/product/:id",
+      path: '/product/:id',
       component: DetailProduct,
-      name: "detailpage",
+      name: 'detailpage',
     },
     {
-      path: "/purchase",
+      path: '/purchase',
       component: OrderForm,
     },
     {
-      path: "/orderlist",
+      path: '/orderlist',
       component: OrderList,
     },
     {
-      path: "/search",
-      name: "search",
+      path: '/search',
+      name: 'search',
       component: SearchProduct,
-      name: "EditProduct",
     },
     {
-      path: "/admin/edit-product/:id",
+      path: '/admin/edit-product/:id',
       component: EditProduct,
+      name: 'EditProduct',
       props: true,
     },
     {
-      path: "/amdmin/transaction-detail",
+      path: '/amdmin/transaction-detail',
     },
     {
-      path: "/mypage",
+      path: '/mypage',
       component: MyPage,
     },
     {
-      path: "/signup",
+      path: '/signup',
       component: Signup,
     },
     {
-      path: "/profilechange",
+      path: '/profilechange',
       component: ProfileChange,
     },
   ],
-});
+})
