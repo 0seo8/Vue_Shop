@@ -255,7 +255,7 @@ export default {
       }
     }
     .card {
-      /* position: relative; */
+      position: relative;
       /* box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%); */
       /* display: flex;
       flex-direction: column;
