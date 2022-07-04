@@ -88,7 +88,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 80px;
     height: 100%; 
   }
   .product{

@@ -46,9 +46,6 @@ export default defineComponent({
 
 <style scoped lang="scss">
 
-.swiper {
-  padding-top: 80px;
-}
 .temp {
   width: 100vw;
   height: 650px;
