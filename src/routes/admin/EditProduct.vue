@@ -177,7 +177,6 @@ export default {
   },
   mounted() {
     console.log(this.oldThumbnail)
-    console.log(this.thumbnail)
   },
   methods: {
     printSoldout() {
@@ -256,16 +255,16 @@ export default {
       }
     }
     .card {
-      position: relative;
-      box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
-      display: flex;
+      /* position: relative; */
+      /* box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%); */
+      /* display: flex;
       flex-direction: column;
       min-width: 0;
       word-wrap: break-word;
       background-color: #fff;
       background-clip: border-box;
       border: 1px solid #cfdbe6;
-      border-radius: 0.25rem;
+      border-radius: 0.25rem; */
       
       }
       .form-control[type=file] {
