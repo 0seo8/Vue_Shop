@@ -1,22 +1,41 @@
-<template lang="">
+<template>
+  <TheHeader />
   <RouterView />
-  <Footer />
+  <TheFooter />
 </template>
-<script>
 
-import Footer from './components/Footer.vue'
+<script>
+import TheHeader from '~/components/layouts/TheHeader.vue'
+import TheFooter from '~/components/layouts/TheFooter.vue'
 export default {
   components: {
-    // eslint-disable-next-line vue/no-reserved-component-names
-    Footer
+    TheHeader,
+    TheFooter
   }
+
 }
 </script>
 
-<style lang="scss"> 
-@import "~/scss/_variables.scss";
+
+<style lang="scss">
+@import "~/scss/variables.scss";
+
 body {
   font-family: 'GmarketSansMedium';
 }
-</style>
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ol, ul, li {
+  margin:0;
+  padding: 0;
+}
+
+button {
+  border: 0;
+}
+  
+</style>
