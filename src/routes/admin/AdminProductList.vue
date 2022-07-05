@@ -149,6 +149,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
   section {
     min-width: 460px;
     padding: 30px 3%;
@@ -193,10 +194,19 @@ export default {
         width: auto;
         .dropdown-menu {
         font-size: 8px;
+          .dropdown-item {
+            a {
+              text-decoration: none;
+              color: #212529;
+            }
+            &:last-child {
+              color: #f2555a;;
+            }
+          }
         }
-      .dropdown-toggle::after {
+        .dropdown-toggle::after {
         display: none;
-      }
+        }
 
       }
       

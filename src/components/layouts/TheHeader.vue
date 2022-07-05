@@ -114,7 +114,7 @@ export default {
     margin: auto 16px;
   }
   .material-symbols-outlined {
-    color: $primary;
+    color: $color-primary;
     font-size: 40px;
     display: block;
     &:hover {
