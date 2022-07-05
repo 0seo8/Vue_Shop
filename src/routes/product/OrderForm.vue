@@ -38,13 +38,13 @@
         <dl class="orderUserInfo__list">
           <dt>주문자정보</dt>
           <dd id="cName">
-            노영서
-          </dd>
-          <dd id="cPhone">
-            01047095291
+            {{ user.displayName }}
           </dd>
           <dd class="email">
-            <span id="buyerEmail">0seo8@naver.com</span><button
+            <span id="buyerEmail">{{ user.email }}</span>
+          </dd>
+          <dd>
+            <button
               type="button"
               class="buttonBasic buttonDefault02 sizeSS"
               onclick="orderShowLayer('userInfoModify');">
@@ -209,6 +209,7 @@ export default {
   computed: {
     ...mapState('account', ['currentAccounts']),
     ...mapState('product', ['seletedProduct', 'seletedProductPrice']),
+        ...mapState('auth',['user']),
     selectAccount() {
       return this.currentAccounts.accounts.filter(account => account.id === this.selectAccountId)
     },
@@ -233,10 +234,12 @@ export default {
     },
     created() {
       this.getCurrentAccounts()
+      this.authenticationCheck()
     },
     methods: {
       ...mapActions('account', ['getCurrentAccounts']),
       ...mapActions('product', ['requestPurchase']),
+      ... mapActions('auth', ['authenticationCheck']),
       PayNow(productId, accountId) {
         if(this.selectAccountId === '') {
           confirm('결제 계좌가 선택되지 않았습니다')
