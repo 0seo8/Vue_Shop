@@ -23,6 +23,8 @@
 }
 
 $primary: #f2555a;
-$nav-padding: 80px;
+$color-primary: #f2555a;
+
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/variables.scss";
