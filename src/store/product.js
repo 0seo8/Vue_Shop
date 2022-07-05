@@ -54,38 +54,38 @@ export default {
         commit('setState', {seletedProduct: data, seletedProductPrice:data.price.toLocaleString('ko-KR')})
     },
     async requestPurchase(_, info) {
-      const token = localStorage.getItem('token')
+      const accessToken = localStorage.getItem('accessToken')
       await axios({
         url: `${END_POINT}/buy`,
         method: 'POST',
         headers: {
           ...headers,
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${accessToken}`
         },
         data: info
       })
     },
     async readPurchaseAllHistory({commit}) {
-      const token = localStorage.getItem('token')
+      const accessToken = localStorage.getItem('accessToken')
       const {data} = await axios({
         url: `${END_POINT}/transactions/details`,
         method: 'GET',
         headers: {
           ...headers,
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${accessToken}`
         },
       })
         console.log(data)
         commit('setState', {PurchaseHistories: data})
     },
     async cancelOrder({dispatch}, id) {
-      const token = localStorage.getItem('token')
+      const accessToken = localStorage.getItem('accessToken')
       await axios({
         url: `${END_POINT}/cancel`,
         method: 'POST',
         headers: {
           ...headers,
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${accessToken}`
         },
         data: {
           detailId: id
@@ -94,13 +94,13 @@ export default {
       dispatch('readPurchaseAllHistory')
     },
     async confirmPurchase({dispatch}, id) {
-      const token = localStorage.getItem('token')
+      const accessToken = localStorage.getItem('accessToken')
       await axios({
         url: `${END_POINT}/ok`,
         method: 'POST',
         headers: {
           ...headers,
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${accessToken}`
         },
         data: {
           detailId: id

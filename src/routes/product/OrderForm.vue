@@ -64,7 +64,7 @@
             v-model="selectAccountId"
             name="selectAccountId">
             <option
-              v-for="account in accounts"
+              v-for="account in currentAccounts"
               :key="account.id"
               :value="account.id">
               {{ account.bankName }}
@@ -208,10 +208,11 @@ export default {
     }
   },
   computed: {
-    ...mapState('user', ['accounts']),
+    ...mapState('account', ['currentAccounts']),
+    ...mapState('account', ['getCurrentAccounts']),
     ...mapState('product', ['seletedProduct', 'seletedProductPrice']),
     selectAccount() {
-      return this.accounts.find(account => account.id === this.selectAccountId)
+      return this.currentAccounts.find(account => account.id === this.selectAccountId)
       },
     checkAll: {
       get() {
