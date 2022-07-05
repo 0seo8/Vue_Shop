@@ -212,7 +212,7 @@ export default {
     ...mapState('product', ['seletedProduct', 'seletedProductPrice']),
     selectAccount() {
       return this.currentAccounts.accounts.filter(account => account.id === this.selectAccountId)
-      },
+    },
     checkAll: {
       get() {
         if(this.check.check1 && this.check.check2) {
@@ -232,15 +232,8 @@ export default {
       }
      }  
     },
-    watch: {
-      selectAccount(value) {
-        this.accountBalance = value.balance
-        console.log(this.selectAccount, value.balance)
-      },
-    },
     created() {
       this.getCurrentAccounts()
-
     },
     methods: {
       ...mapActions('account', ['getCurrentAccounts']),
@@ -248,7 +241,7 @@ export default {
       PayNow(productId, accountId) {
         if(this.selectAccountId === '') {
           confirm('결제 계좌가 선택되지 않았습니다')
-        } else if (this.accountBalance < this.seletedProduct.price){
+        } else if (this.selectAccount.balance < this.seletedProduct.price){
           confirm('계좌 잔액이 부족합니다')
         } else if(!(this.check.check1 && this.check.check2)){
           confirm('체크박스를 확인해주세요')
