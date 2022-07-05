@@ -3,6 +3,11 @@
     :to="`/product/${product.id}`"
     :prodcut="product">
     <figure>
+      <div
+        v-if="product.isSoldOut"
+        class="soldout">
+        <span>상품매진</span>
+      </div>
       <img
         :src="product.thumbnail"
         alt="thumbnail" />
@@ -23,8 +28,8 @@
 export default {
   props: {
     product: {
-        type: Object,
-        required: true
+      type: Object,
+      required: true
     }
   }
 }
@@ -39,6 +44,23 @@ export default {
     overflow: hidden;
     height: 200px;
     background-color: #fff;
+    position: relative;
+    .soldout {
+      span {
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        position: absolute;
+        color: red;
+        border: 1px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &+ img {
+      filter: grayscale(80%);
+    }
+      }
     img {
       height: auto;
       max-width: 100%;

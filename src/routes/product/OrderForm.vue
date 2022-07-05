@@ -198,7 +198,6 @@ export default {
   data() {
     return {
       selectAccountId: '',
-      accountBalance: '',
       ReadMore: false,
       ReadMoreText: false,
       check: {

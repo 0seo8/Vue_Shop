@@ -39,11 +39,12 @@ export default {
   },
   computed: {
     ...mapState('product',['PurchaseHistories']),
-    ...mapState('user',['user']),
+    ...mapState('auth',['user']),
     ...mapGetters('product',['getPurchasedProductId']),
   },
   created() {
     this.readPurchaseAllHistory()
+    console.log(this.user)
   },
   methods: {
     ... mapActions('product', ['readPurchaseAllHistory', 'confirmPurchase', 'cancelOrder']),
