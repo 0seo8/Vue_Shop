@@ -7,7 +7,7 @@
       </div>
       <div class="card mb-4">
         <div class="card-body">
-          <table class="table">
+          <table>
             <div
               v-for="(product, index) in products"
               :key="product.id"
@@ -160,6 +160,10 @@ export default {
       justify-content: space-between;
       margin-bottom: 1rem;
     }
+    table {
+      width: auto;
+      margin: 0 auto;
+    }
     .row {
       justify-content: center;
       text-decoration: none !important;
@@ -189,17 +193,7 @@ export default {
         width: auto;
         .dropdown-menu {
         font-size: 8px;
-        &.show {
-          background: #fff;
         }
-        .dropdown-item {
-          a {
-            text-decoration: none;
-            color: black;
-          }
-          color: #F2555A;
-        }
-      }
       .dropdown-toggle::after {
         display: none;
       }
