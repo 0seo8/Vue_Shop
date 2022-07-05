@@ -166,6 +166,7 @@ export default {
       padding: 0.7rem;
       align-items: center;
       border-bottom: 1px solid rgba(108, 117, 125, 0.25);
+      border-top: 0;
       &:hover {
         background-color: rgba(49, 103, 235, 0.075);
       }
@@ -184,8 +185,13 @@ export default {
       .col-menu {
         text-align: cneter;
       }
-      .dropdown-menu {
+      .dropdown {
+        width: auto;
+        .dropdown-menu {
         font-size: 8px;
+        &.show {
+          background: #fff;
+        }
         .dropdown-item {
           a {
             text-decoration: none;
@@ -197,6 +203,9 @@ export default {
       .dropdown-toggle::after {
         display: none;
       }
+
+      }
+      
     }
       
     .column {

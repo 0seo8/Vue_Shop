@@ -46,7 +46,7 @@ export default {
       line-height: 25px;
       text-align: center;
       font-weight: 700;
-   }
+    }
   .product{
   &__list {
     width: 100%;
@@ -59,10 +59,10 @@ export default {
       background-color: rgba(#FFB1C1, .5);
       &:hover {
         box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 26%);
+        }
       }
     }
   }
- }
 }
 
 </style>

@@ -5,7 +5,7 @@ import Login from './Login.vue'
 // import Admin from './admin/Admin.vue'
 import AddProduct from './admin/AddProduct.vue'
 import Dashboard from './admin/Dashboard.vue'
-import ProductList from './admin/ProductList.vue'
+import AdminProductList from './admin/AdminProductList.vue'
 import TheProducts from './product/TheProducts.vue'
 import DetailProduct from './product/DetailProduct.vue'
 import OrderForm from './product/OrderForm.vue'
@@ -37,7 +37,7 @@ export default createRouter({
     },
     {
       path: '/admin/product-list',
-      component: ProductList
+      component: AdminProductList
     },
     {
       path: '/:category',
