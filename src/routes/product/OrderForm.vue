@@ -64,7 +64,7 @@
             v-model="selectAccountId"
             name="selectAccountId">
             <option
-              v-for="account in currentAccounts"
+              v-for="account in currentAccounts.accounts"
               :key="account.id"
               :value="account.id">
               {{ account.bankName }}
@@ -209,10 +209,9 @@ export default {
   },
   computed: {
     ...mapState('account', ['currentAccounts']),
-    ...mapState('account', ['getCurrentAccounts']),
     ...mapState('product', ['seletedProduct', 'seletedProductPrice']),
     selectAccount() {
-      return this.currentAccounts.find(account => account.id === this.selectAccountId)
+      return this.currentAccounts.accounts.filter(account => account.id === this.selectAccountId)
       },
     checkAll: {
       get() {
@@ -231,20 +230,25 @@ export default {
           this.check.check2 = false          
         }
       }
-    }  
+     }  
     },
     watch: {
       selectAccount(value) {
         this.accountBalance = value.balance
+        console.log(this.selectAccount, value.balance)
       },
     },
+    created() {
+      this.getCurrentAccounts()
+
+    },
     methods: {
+      ...mapActions('account', ['getCurrentAccounts']),
       ...mapActions('product', ['requestPurchase']),
       PayNow(productId, accountId) {
         if(this.selectAccountId === '') {
           confirm('결제 계좌가 선택되지 않았습니다')
-          console.log('결제 계좌가 선택되지 않았습니다')
-        } else if (Number(this.accountBalance) < Number(this.seletedProduct.price)){
+        } else if (this.accountBalance < this.seletedProduct.price){
           confirm('계좌 잔액이 부족합니다')
         } else if(!(this.check.check1 && this.check.check2)){
           confirm('체크박스를 확인해주세요')

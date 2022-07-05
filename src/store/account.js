@@ -28,7 +28,6 @@ export default {
   actions: {
     async getCurrentAccounts({ commit }) {
       const accessToken = window.localStorage.getItem('token')
-      console.log(accessToken)
       const {data} = await axios({
         url: END_POINT,
         method: 'GET',
@@ -37,7 +36,6 @@ export default {
           Authorization: `Bearer ${accessToken}`
         },
       })
-      console.log('data', data)
       commit('setState', {currentAccounts : data})
     },
     async getAllAccount({ commit }) {
