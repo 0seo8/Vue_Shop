@@ -1,15 +1,27 @@
+import axios from 'axios'
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
+
+const END_POINT = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth'
+
+const headers = {
+  'content-type': 'application/json',
+  'apikey': VITE_API_KEY,
+  'username': VITE_USERNAME
+}
+
 export default {
   namespaced: true,
   state() {
     return {
       user: {},
-      token: null,
+      token: null
     }
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload.user
       state.token = payload.token
+      console.log(state)
     },
   },
   getters: {
@@ -114,4 +126,16 @@ export default {
       window.localStorage.setItem('user', JSON.stringify(dataForm))
     },
   },
+  async authenticationCheck({commit}) {
+    const accessToken = window.localStorage.getItem('token')
+    const {data} = await axios({
+      url: END_POINT,
+      method: 'GET',
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${accessToken}`
+      },
+    })
+    commit('setUser', {user:data})
+  }
 }

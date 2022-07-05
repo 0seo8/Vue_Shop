@@ -44,7 +44,6 @@ export default {
   },
   created() {
     this.readPurchaseAllHistory()
-    console.log(this.user)
   },
   methods: {
     ... mapActions('product', ['readPurchaseAllHistory', 'confirmPurchase', 'cancelOrder']),
