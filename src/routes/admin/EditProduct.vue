@@ -177,6 +177,7 @@ export default {
   },
   mounted() {
     console.log(this.oldThumbnail)
+    console.log(this.thumbnail)
   },
   methods: {
     printSoldout() {
@@ -198,7 +199,7 @@ export default {
           price: this.price,
           description: this.description,
           tags: this.tags ? this.tags.split(',') : [],
-          thumbnailBase64: this.thumbnail,
+          thumbnailBase64: /(\.gif|\.jpg|\.jpeg|\.webp)$/i.test(this.thumbnail) ? '' : this.thumbnail,
           isSoldOut: this.chanageSoldOut
         }
       })
