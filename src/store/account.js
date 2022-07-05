@@ -1,6 +1,14 @@
 import axios from 'axios'
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
+const END_POINT = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account'
+
+const headers = {
+  'content-type': 'application/json',
+  'apikey': VITE_API_KEY,
+  'username': VITE_USERNAME
+}
+
 export default {
   namespaced: true,
   state() {
@@ -10,82 +18,72 @@ export default {
     }
   },
   mutations: {
-    setCurrentAccounts(state, payload) {
-      state.currentAccounts = payload
-    },
-    setAllAccount(state, payload) {
-      state.allAccount = payload
+    setState(state, payload) {
+      for(const key in payload) {
+        state[key] = payload[key]
+      }
+      console.log(state)
     },
   },
   actions: {
     async getCurrentAccounts({ commit }) {
       const accessToken = window.localStorage.getItem('token')
-      const res = await axios({
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
+      console.log(accessToken)
+      const {data} = await axios({
+        url: END_POINT,
         method: 'GET',
         headers: {
-          'content-type': 'application/json',
-          apikey: 'FcKdtJs202204',
-          username: 'KDT2_TEAM5',
-          Authorization: `Bearer ${accessToken}`,
+          ...headers,
+          Authorization: `Bearer ${accessToken}`
         },
       })
-      commit('setCurrentAccounts', res.data)
+      console.log('data', data)
+      commit('setState', {currentAccounts : data})
     },
     async getAllAccount({ commit }) {
       const accessToken = window.localStorage.getItem('token')
-      const res = await axios({
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks',
+      const {data} = await axios({
+        url: `${END_POINT}/banks`,
         method: 'GET',
         headers: {
-          'content-type': 'application/json',
-          apikey: 'FcKdtJs202204',
-          username: 'KDT2_TEAM5',
+          ...headers,
           Authorization: `Bearer ${accessToken}`,
         },
       })
-      commit('setAllAccount', res.data)
+      commit('setState', {allAccount : data})
     },
-    async connectAccount(context, payload) {
+    async connectAccount(_, payload) {
       const { bankCode, accountNumber } = payload
       const accessToken = window.localStorage.getItem('token')
-      await fetch(
-        'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
-        {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            apikey: 'FcKdtJs202204',
-            username: 'KDT2_TEAM5',
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            bankCode,
-            accountNumber: randomNumber(accountNumber),
-            phoneNumber: '01012345678',
-            signature: true,
-          }),
+      await axios({
+        url: END_POINT,
+        method: 'POST',
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${accessToken}`
+        },
+        data : {
+          bankCode,
+          accountNumber: randomNumber(accountNumber),
+          phoneNumber: '01012345678',
+          signature: true,          
         }
-      )
+      })
     },
-    async disConnectAccount(context, accountId) {
+    async disConnectAccount(_, accountId) {
       const accessToken = window.localStorage.getItem('token')
-      await fetch(
-        'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
-        {
-          method: 'DELETE',
-          headers: {
-            'content-type': 'application/json',
-            apikey: 'FcKdtJs202204',
-            username: 'KDT2_TEAM5',
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            accountId,
-            signature: true,
-          }),
+      await axios({
+        url: END_POINT,
+        method: 'DELETE',
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${accessToken}`
+        },
+        data: {
+          accountId,
+          signature: true,          
         }
-      )
+      })
     },
   },
 }
