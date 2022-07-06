@@ -20,7 +20,7 @@ export default {
 
 
 <style lang="scss">
-@import "~/scss/variables.scss";
+@import '~/scss/variables';
 
 .main__wrap {
   padding-top:49px;

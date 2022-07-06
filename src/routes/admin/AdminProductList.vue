@@ -81,9 +81,9 @@
                     </RouterLink>
                   </button>
                   <button
-                    href="#"
+                    
                     class="dropdown-item"
-                    @click="deleteProduct(product.id)">
+                    @click="deleteProduct(product)">
                     Delete Product
                   </button>
                 </div>
@@ -98,6 +98,7 @@
 <script>
 import AdminButton from '../../components/AdminButton.vue'
 import axios from 'axios'
+import noImage from '../../assets/noImage'
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 export default {
@@ -123,13 +124,13 @@ export default {
   },
   created() {
     this.$store.dispatch('admin/readProducts')
-    console.log(this.$store.state.admin.productList)
   },
   methods: {
-    async deleteProduct(productId) {
+    async deleteProduct(product) {
+      const {id, thumbnail} = product
       try {
         const res = await axios({
-        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${productId}`,
+        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${id}`,
         headers: {
         'content-type': 'application/json',
         apikey: VITE_API_KEY,
@@ -140,7 +141,7 @@ export default {
       })
       console.log(res)
       this.$store.dispatch('admin/readProducts')
-      // this.$swal({title: '제품이 삭제되었습니다!', icon: 'error'})
+      this.$swal({title: '제품이 삭제되었습니다!', icon: 'success', imageUrl: thumbnail, imageWidth: 100, imageHeight: 100, imageAlt: noImage, width: 400, confirmButtonColor: '#f2555a'})
       } catch(error) {
         console.log(error)
       }

@@ -32,6 +32,9 @@ export default {
         'email': 'thesecon@gmail.com',
         'displayName': 'ParkYoungWoong',
         'profileImg': 'https://storage.googleapis.com/heropy-api/vAKjlJ-Gx5v163442.png'
+      },
+      master: {
+        'email': 'Admin@admin.com'
       }
     }
   },

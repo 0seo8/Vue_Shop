@@ -123,7 +123,7 @@ export default {
     const myChart = new Chart(productSales, {
     type: 'bar',
     data: {
-        labels: ['테블릿', '노트북', '마우스', '가전제품', '에어컨', '프린터'],
+        labels: ['태블릿', '노트북', '마우스', '가전제품', '에어컨', '키보드'],
         datasets: [{
             label: 'Electron Market Sale Data',
             data: [12, 19, 3, 5, 2, 3],
@@ -158,7 +158,7 @@ export default {
 const doughnutChart = new Chart(saleOfProudcts, {
     type: 'doughnut',
     data: {
-        labels: ['테블릿', '노트북', '마우스', '가전제품', '에어컨', '프린터'],
+        labels: ['태블릿', '노트북', '마우스', '가전제품', '에어컨', '키보드'],
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
