@@ -73,10 +73,17 @@
       </div>
     </div>
   </div>
+
+  <OrderList />
 </template>
 
 <script>
+import OrderList from "./product/OrderList.vue";
+
 export default {
+  components: {
+    OrderList,
+  },
   data() {
     return {
       handleAccount: true,
@@ -128,9 +135,7 @@ export default {
 <style>
 .my-page-top {
   display: flex;
-  /* height: 50%; */
   border: 1px solid black;
-  padding-top: 80px;
 }
 .profile {
   width: 60%;

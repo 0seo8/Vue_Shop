@@ -57,7 +57,6 @@ export default {
 
 <style scoped>
 form {
-  padding-top: 80px;
   margin: 1rem;
   padding: 1rem;
 }

@@ -1,21 +1,17 @@
 <template>
   <div class="header">
     <h1>
-      <RouterLink to="/">
-        Eletronic Market
-      </RouterLink>
+      <RouterLink to="/"> Eletronic Market </RouterLink>
     </h1>
     <ul class="nav nav-pills category__list">
-      <li
-        v-for="nav in navigations"
-        :key="nav.name"
-        class="cotegory__item">
+      <li v-for="nav in navigations" :key="nav.name" class="cotegory__item">
         <RouterLink
           :to="{
             name: 'product',
             params: { category: nav.name },
           }"
-          class="nav-link">
+          class="nav-link"
+        >
           <span>{{ nav.name }}</span>
         </RouterLink>
       </li>
@@ -26,12 +22,16 @@
         v-model="searchText"
         class="form-control"
         placeholder="검색"
-        @keydown.enter="searchProduct" />
+        @keydown.enter="searchProduct"
+      />
       <span
+        v-if="login"
         class="material-symbols-outlined"
-        @click="$router.push('/userpage')">
+        @click="$router.push('/mypage')"
+      >
         person_outline
       </span>
+      <button v-else class="btn btn-primary">로그인</button>
     </div>
   </div>
 </template>
@@ -40,20 +40,28 @@
 export default {
   data() {
     return {
-      navigations: [{ name: '생활가전' }, { name: '계절가전' }],
-      searchText: '',
-    }
+      navigations: [{ name: "생활가전" }, { name: "계절가전" }],
+      searchText: "",
+      login: null,
+    };
   },
   methods: {
     searchProduct() {
       this.$router.push({
-        name: 'search',
+        name: "search",
         params: { searchText: this.searchText },
-      })
-      this.searchText = ''
+      });
+      this.searchText = "";
+    },
+    loginTrue() {
+      if (JSON.parse(window.localStorage.getItem("user").legnth > 0)) {
+        this.login = true;
+      } else {
+        this.login = false;
+      }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
