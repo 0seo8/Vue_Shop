@@ -24,14 +24,12 @@
         placeholder="검색"
         @keydown.enter="searchProduct"
       />
-      <span
-        v-if="login"
-        class="material-symbols-outlined"
-        @click="$router.push('/mypage')"
-      >
+      <span class="material-symbols-outlined" @click="$router.push('/mypage')">
         person_outline
       </span>
-      <button v-else class="btn btn-primary">로그인</button>
+      <button class="btn btn-primary" @click="$router.push('/login')">
+        로그인
+      </button>
     </div>
   </div>
 </template>
@@ -42,7 +40,6 @@ export default {
     return {
       navigations: [{ name: "생활가전" }, { name: "계절가전" }],
       searchText: "",
-      login: null,
     };
   },
 
@@ -53,13 +50,6 @@ export default {
         params: { searchText: this.searchText },
       });
       this.searchText = "";
-    },
-    loginTrue() {
-      if (JSON.parse(window.localStorage.getItem("user").legnth > 0)) {
-        this.login = true;
-      } else {
-        this.login = false;
-      }
     },
   },
 };
