@@ -38,6 +38,7 @@
           <div class="mb-4">
             <label class="form-label">제품 썸네일</label>
             <input
+              id="formFile"
               class="form-control"
               type="file"
               @change="selectThumbnail" />
@@ -52,11 +53,12 @@
                 <label class="form-label">가격</label>
                 <input
                   v-model="price"
+                  placeholder="가격을 입력하세요."
                   type="text"
                   class="form-control" />
               </div>
               <div>
-                <div class="mb-4">
+                <div class="mt-4">
                   <label
                     for="product_name"
                     class="form-label">태그</label>
@@ -159,8 +161,8 @@ export default {
       .form-control {
       display: block;
       width: 100%;
-      padding: 0.5rem 0.75rem;
-      font-size: 1rem;
+      padding: 0.2rem;
+      font-size: 0.7rem;
       font-weight: 400;
       line-height: 1.5;
       color: #141432;

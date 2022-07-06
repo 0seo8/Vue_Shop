@@ -5,7 +5,7 @@ export default {
   namespaced: true,
   state: {
     productList: [],
-    transactionDetail: [],
+    transactionDetail: []
   },
   mutations: {
     setProductList(state, payload) {
@@ -13,7 +13,7 @@ export default {
     },
     setTransactionDetail(state, payload) {
       state.transactionDetail = payload
-    },
+    }
   },
   actions: {
     async readProducts({ commit }) {
@@ -23,8 +23,8 @@ export default {
     async readTransactionDetail({ commit }) {
       const res = await request('/transactions/all', 'GET')
       commit('setTransactionDetail', res)
-    },
-  },
+    }
+  }
 }
 
 async function request(url = '', method) {
@@ -35,8 +35,8 @@ async function request(url = '', method) {
       'content-type': 'application/json',
       apikey: VITE_API_KEY,
       username: VITE_USERNAME,
-      masterKey: true,
-    },
+      masterKey: true
+    }
   })
   return data
 }

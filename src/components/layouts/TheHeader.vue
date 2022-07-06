@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <h1>
-      <RouterLink to="/"> Eletronic Market </RouterLink>
+      <RouterLink to="/"> Eletron Market </RouterLink>
     </h1>
     <ul class="nav nav-pills category__list">
       <li v-for="nav in navigations" :key="nav.name" class="cotegory__item">
@@ -45,6 +45,7 @@ export default {
       login: null,
     };
   },
+
   methods: {
     searchProduct() {
       this.$router.push({
@@ -66,17 +67,15 @@ export default {
 
 <style lang="scss" scoped>
 @import "~/scss/variables.scss";
-
 .header {
   position: fixed;
   z-index: 10;
   width: 100%;
-  height: 80px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 6px 12px;
   min-height: 48px;
   background-color: #fff;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -87,6 +86,7 @@ export default {
     flex-shrink: 0;
     margin: 0;
     padding: 0;
+
     a {
       font-weight: 700;
       font-size: 20px;
@@ -102,6 +102,13 @@ export default {
     flex-wrap: nowrap;
     margin-left: 8px;
     white-space: nowrap;
+    font-size: 14px;
+    .nav-link {
+      color: $color-black;
+      &:hover {
+        color: $color-primary;
+      }
+    }
   }
   &__item {
     height: 32px;
@@ -120,10 +127,10 @@ export default {
   padding: 0 8px;
   input {
     margin: auto 16px;
+    height: 28px;
   }
   .material-symbols-outlined {
-    color: $primary;
-    font-size: 40px;
+    color: $color-primary;
     display: block;
     &:hover {
       cursor: pointer;

@@ -7,7 +7,7 @@
       </div>
       <div class="card mb-4">
         <div class="card-body">
-          <table class="table">
+          <table>
             <div
               v-for="(product, index) in products"
               :key="product.id"
@@ -36,48 +36,6 @@
                     class="badge rounded-pill alert-success">주문가능</span>
                 </template>
                 <template v-else-if="column.field === 'dropdown'">
-                  <RouterLink
-                    :to="{
-                      name: 'EditProduct',
-                      params: {
-                        id: product.id,
-                        oldTitle: product.title,
-                        oldPrice: product.price,
-                        oldDescription: product.description,
-                        oldTags: product.tags.toString(),
-                        oldThumbnail: product.thumbnail,
-                        oldIsSoldOut: product.isSoldOut
-                      }
-                    }">
-                    <div class="dropdown">
-                      <span
-                        id="dropdownMenuButton1"
-                        class="material-symbols-outlined btn"
-                        data-bs-toggle="dropdown">
-                        more_horiz
-                      </span>
-                      <!-- 드랍다운이 동작 안함.. -->
-                      <!-- <ul
-                        class="dropdown-menu"
-                        aria-labelledby="dropdownMenuButton1">
-                        <li>
-                          <a
-                            class="dropdown-item"
-                            href="#">Action</a>
-                        </li>
-                        <li>
-                          <a
-                            class="dropdown-item"
-                            href="#">Another action</a>
-                        </li>
-                        <li>
-                          <a
-                            class="dropdown-item"
-                            href="#">Something else here</a>
-                        </li>
-                      </ul> -->
-                    </div>
-                  </RouterLink>
                 </template>
                 <template
                   v-else-if="column.field ==='tags'">
@@ -92,6 +50,44 @@
                   {{ product[column.field] }}
                 </template>
               </div>
+              <div class="dropdown float-end">
+                <button
+                  id="dropdownMenuButton1"
+                  class="dropdown-toggle btn"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanede="false">
+                  <span class="material-symbols-outlined">more_horiz</span>
+                </button>
+                <div
+                  class="dropdown-menu">
+                  <button
+                    href="#"
+                    class="dropdown-item">
+                    <RouterLink
+                      :to="{
+                        name: 'EditProduct',
+                        params: {
+                          id: product.id,
+                          oldTitle: product.title,
+                          oldPrice: product.price,
+                          oldDescription: product.description,
+                          oldTags: product.tags.toString(),
+                          oldThumbnail: product.thumbnail,
+                          oldIsSoldOut: product.isSoldOut
+                        }
+                      }">
+                      Edit Product
+                    </RouterLink>
+                  </button>
+                  <button
+                    href="#"
+                    class="dropdown-item"
+                    @click="deleteProduct(product.id)">
+                    Delete Product
+                  </button>
+                </div>
+              </div>
             </div>
           </table>
         </div>
@@ -101,6 +97,8 @@
 </template>
 <script>
 import AdminButton from '../../components/AdminButton.vue'
+import axios from 'axios'
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 export default {
   components: {
@@ -113,9 +111,8 @@ export default {
         {field: 'thumbnail', name: '이미지', col: 'column col-lg-auto col-sm-auto col-auto col-thumbnail'},
         {field: 'title', name: '제목', col: 'column col-lg-3 col-sm-2 col-5 col-title'},
         {field: 'price', name: '가격', col: 'column col-lg-2 col-sm-2 col-3 col-price'},
-        {field: 'tags', name: '태그', col: 'column col-lg-3 col-sm-2 col-4 col-tags'},
-        {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-1 col-sm-2 col-4 col-isSoldOut'},
-        {field: 'dropdown', name: 'dropdown', col: 'column col-lg-1 col-sm-1 col-2 col-menu'}
+        {field: 'tags', name: '태그', col: 'column col-lg-2 col-sm-2 col-4 col-tags'},
+        {field: 'isSoldOut', name: '매진여부', col: 'column col-lg-2 col-sm-2 col-4 col-isSoldOut'},
       ],
     }
   },
@@ -128,9 +125,31 @@ export default {
     this.$store.dispatch('admin/readProducts')
     console.log(this.$store.state.admin.productList)
   },
+  methods: {
+    async deleteProduct(productId) {
+      try {
+        const res = await axios({
+        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${productId}`,
+        headers: {
+        'content-type': 'application/json',
+        apikey: VITE_API_KEY,
+        username: VITE_USERNAME,
+        masterKey: true
+        },
+        method: 'DELETE'
+      })
+      console.log(res)
+      this.$store.dispatch('admin/readProducts')
+      // this.$swal({title: '제품이 삭제되었습니다!', icon: 'error'})
+      } catch(error) {
+        console.log(error)
+      }
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
+
   section {
     min-width: 460px;
     padding: 30px 3%;
@@ -142,12 +161,16 @@ export default {
       justify-content: space-between;
       margin-bottom: 1rem;
     }
+    table {
+      width: 100%;
+    }
     .row {
       justify-content: center;
       text-decoration: none !important;
       padding: 0.7rem;
       align-items: center;
       border-bottom: 1px solid rgba(108, 117, 125, 0.25);
+      border-top: 0;
       &:hover {
         background-color: rgba(49, 103, 235, 0.075);
       }
@@ -166,6 +189,26 @@ export default {
       .col-menu {
         text-align: cneter;
       }
+      .dropdown {
+        width: auto;
+        .dropdown-menu {
+        font-size: 8px;
+          .dropdown-item {
+            a {
+              text-decoration: none;
+              color: #212529;
+            }
+            &:last-child {
+              color: #f2555a;;
+            }
+          }
+        }
+        .dropdown-toggle::after {
+        display: none;
+        }
+
+      }
+      
     }
       
     .column {
@@ -184,7 +227,7 @@ export default {
       background-color: #f8f9fa;
       border: 1px solid #dee2e6;
       border-radius: 0.25rem;
-      box-shadow: 0 .1rem .25remrgba(0,0,0,.075);
+      box-shadow: 0 .1rem .25rem rgba(0,0,0,.075);
       max-width: 100%;
       height: auto;
       }

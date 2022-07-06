@@ -9,20 +9,19 @@
 </template>
 
 <script>
-import Swiper from '~/components/layouts/Swiper.vue'
-import ProductList from '~/components/product/ProductList.vue'
+import Swiper from "~/components/layouts/Swiper.vue";
+import ProductList from "~/components/product/ProductList.vue";
 
 export default {
   components: {
     Swiper,
-    ProductList
+    ProductList,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  .category__box {
-    margin-top: 40px;
-  }
+.category__box {
+  margin-top: 40px;
+}
 </style>
-

@@ -8,7 +8,7 @@
       <div>
         <RouterLink
           to="/admin/product-list"
-          class="btn btn-primary">
+          class="btn btn-outline-primary">
           취소하기
         </RouterLink>
       </div>
@@ -98,7 +98,7 @@
                   class="form-control" />
               </div>
               <div>
-                <div class="mb-4">
+                <div class="mt-4">
                   <label
                     for="product_name"
                     class="form-label">태그</label>
@@ -111,7 +111,7 @@
             </div> <!-- row.// -->
           </div>
           <button
-            class="btn btn-primary">
+            class="btn btn-outline-primary">
             제품 수정하기
           </button>
         </form>
@@ -159,15 +159,25 @@ export default {
       tags: this.oldTags,
       thumbnail: this.oldThumbnail,
       isSoldOut: this.oldIsSoldOut === 'false' ? 'In Sale' : 'Sold Out',
+      defaultThumbnail: ''
     }
   },
   computed: {
-    noImage() {
-      return this.noImage
-    },
     chanageSoldOut() {
       return this.isSoldOut === 'In Sale' ? false : true 
+    },
+    originalThumbnail() {
+      const reader = new FileReader()
+      reader.readAsDataURL(this.oldThumbnail)
+      reader.addEventListener('load', () => {
+        this.defaultThumbnail = reader.result
+      })
+      return this.defaultThumbnail
     }
+  },
+  mounted() {
+    console.log(this.oldThumbnail)
+    console.log(this.thumbnail)
   },
   methods: {
     printSoldout() {
@@ -189,7 +199,7 @@ export default {
           price: this.price,
           description: this.description,
           tags: this.tags ? this.tags.split(',') : [],
-          thumbnailBase64: this.thumbnail,
+          thumbnailBase64: /(\.gif|\.jpg|\.jpeg|\.webp)$/i.test(this.thumbnail) ? '' : this.thumbnail,
           isSoldOut: this.chanageSoldOut
         }
       })
@@ -214,6 +224,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .content-main {
+    font-size: 12px;
     max-width: 720px;
     padding: 30px 3%;
     margin-left: auto;
@@ -246,63 +257,54 @@ export default {
     }
     .card {
       position: relative;
-      box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      word-wrap: break-word;
-      background-color: #fff;
-      background-clip: border-box;
-      border: 1px solid #cfdbe6;
-      border-radius: 0.25rem;
-      
+    }
+    .form-control[type=file] {
+    overflow: hidden;
+    }
+    .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #141432;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #cfdbe6;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    box-shadow: 0;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    .title-soldout {
+      .form-check {
+        margin-top: 2px;
+        line-height: 1.5rem;
       }
-      .form-control[type=file] {
-      overflow: hidden;
-      }
-      .form-control {
-      display: block;
-      width: 100%;
-      padding: 0.5rem 0.75rem;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.5;
-      color: #141432;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid #cfdbe6;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      border-radius: 0.25rem;
-      box-shadow: 0;
-      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-      }
-      .title-soldout {
-        .form-check {
-          margin-top: 2px;
-        }
-        span {
-          width: 70px;
-          padding: 0.5rem 0.4rem;
-        }
-      }
-      .image-price-tag {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px solid rgba(222,226,230,.7);
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        
-        .image-preview {
-          margin: 0 auto;
-          width: 100px;
-        }
-      }
-      .row.gx-2 {
-        display: block;
+      span {
+        width: 70px;
+        padding: 0.5rem 0.4rem;
       }
     }
+    .image-price-tag {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(222,226,230,.7);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      
+      .image-preview {
+        margin: 0 auto;
+        width: 100px;
+      }
+    }
+    .row.gx-2 {
+      display: block;
+    }
   }
+}
 </style>

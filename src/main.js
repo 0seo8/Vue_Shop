@@ -10,11 +10,4 @@ const options = {
   cancelButtonColor: '#ff7674'
 }
 
-
-
-createApp(App)
-  .use(router)
-  .use(store)
-  .use(VueSweetalert2, options)
-  .component('BaseCard', BaseCard)
-  .mount('#app')
+createApp(App).use(router).use(store).use(VueSweetalert2, options).component('BaseCard', BaseCard).mount('#app')

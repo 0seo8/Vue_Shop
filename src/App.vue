@@ -23,7 +23,7 @@ export default {
 @import "~/scss/variables.scss";
 
 .main__wrap {
-  padding-top:80px;
+  padding-top:49px;
 }
 
 body {
