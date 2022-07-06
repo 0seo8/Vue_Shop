@@ -29,8 +29,7 @@
                 class="form-control" />
             </div>
             <div
-              class="input-radio"
-              @change="printSoldout">
+              class="input-radio">
               <div class="form-check">
                 <input
                   id="false"
@@ -87,7 +86,7 @@
           <div class="mb-4 image-price-tag">
             <img
               class="image-preview"
-              :src="thumbnail"
+              :src="thumbnailBase64"
               alt="" />
             <div class="row gx-2 col-6">
               <div>
@@ -108,7 +107,7 @@
                     class="form-control" />
                 </div>
               </div>
-            </div> <!-- row.// -->
+            </div>
           </div>
           <button
             class="btn btn-outline-primary">
@@ -157,7 +156,7 @@ export default {
       price: this.oldPrice,
       description: this.oldDescription,
       tags: this.oldTags,
-      thumbnail: this.oldThumbnail,
+      thumbnailBase64: this.oldThumbnail,
       isSoldOut: this.oldIsSoldOut === 'false' ? 'In Sale' : 'Sold Out',
       defaultThumbnail: ''
     }
@@ -165,24 +164,9 @@ export default {
   computed: {
     chanageSoldOut() {
       return this.isSoldOut === 'In Sale' ? false : true 
-    },
-    originalThumbnail() {
-      const reader = new FileReader()
-      reader.readAsDataURL(this.oldThumbnail)
-      reader.addEventListener('load', () => {
-        this.defaultThumbnail = reader.result
-      })
-      return this.defaultThumbnail
     }
   },
-  mounted() {
-    console.log(this.oldThumbnail)
-    console.log(this.thumbnail)
-  },
   methods: {
-    printSoldout() {
-      console.log(this.chanageSoldOut)
-    },
     async EditProduct() {
       try {
         const res = await axios({
@@ -199,7 +183,7 @@ export default {
           price: this.price,
           description: this.description,
           tags: this.tags ? this.tags.split(',') : [],
-          thumbnailBase64: /(\.gif|\.jpg|\.jpeg|\.webp)$/i.test(this.thumbnail) ? '' : this.thumbnail,
+          thumbnailBase64: (/(\.gif|\.jpg|\.jpeg|\.webp)$/i.test(this.thumbnailBase64)) && '',
           isSoldOut: this.chanageSoldOut
         }
       })
@@ -213,7 +197,7 @@ export default {
       const fileReader = new FileReader()
       fileReader.readAsDataURL(e.target.files[0])
       fileReader.addEventListener('load', () => {
-        this.thumbnail = fileReader.result
+        this.thumbnailBase64 = fileReader.result
       })
     },
     onSumbmit() {
@@ -223,6 +207,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~/scss/variables';
   .content-main {
     font-size: 12px;
     max-width: 720px;
@@ -265,25 +250,20 @@ export default {
     display: block;
     width: 100%;
     padding: 0.2rem;
-    font-size: 1rem;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
-    color: #141432;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #cfdbe6;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0.25rem;
-    box-shadow: 0;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: $font-navy;
     }
     .title-soldout {
-      .form-check {
-        margin-top: 2px;
-        line-height: 1.5rem;
+      .input-radio {
+        .form-check {
+          margin-top: 2px;
+          line-height: 1.2rem;
+          padding-top: 3px;
+        }
       }
+
       span {
         width: 70px;
         padding: 0.5rem 0.4rem;

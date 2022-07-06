@@ -15,6 +15,7 @@ import EditProduct from './admin/EditProduct.vue'
 import MyPage from './MyPage.vue'
 import Signup from './Signup.vue'
 import ProfileChange from './ProfileChange.vue'
+// import store from '~/store/user'
 
 export default createRouter({
   history: createWebHistory(),
@@ -28,16 +29,16 @@ export default createRouter({
       component: Login
     },
     {
-      path: '/admin',
-      component: Dashboard
+      path: '/mypage',
+      component: MyPage
     },
     {
-      path: '/admin/add-product',
-      component: AddProduct
+      path: '/signup',
+      component: Signup
     },
     {
-      path: '/admin/product-list',
-      component: AdminProductList
+      path: '/profilechange',
+      component: ProfileChange
     },
     {
       path: '/:category',
@@ -62,6 +63,26 @@ export default createRouter({
       name: 'search',
       component: SearchProduct
     },
+    // admin 페이지
+    {
+      path: '/admin',
+      component: Dashboard
+      // beforeEnter: (to, from, next) => {
+      //   if (store.state.user.currentUser.email !== store.state.user.masterUserEmail) {
+      //     alert('유효한 접근이 아닙니다')
+      //     return next('/')
+      //   }
+      //   next()
+      // }
+    },
+    {
+      path: '/admin/add-product',
+      component: AddProduct
+    },
+    {
+      path: '/admin/product-list',
+      component: AdminProductList
+    },
     {
       name: 'EditProduct',
       path: '/admin/edit-product/:id',
@@ -70,18 +91,6 @@ export default createRouter({
     },
     {
       path: '/amdmin/transaction-detail'
-    },
-    {
-      path: '/mypage',
-      component: MyPage
-    },
-    {
-      path: '/signup',
-      component: Signup
-    },
-    {
-      path: '/profilechange',
-      component: ProfileChange
     }
   ]
 })
