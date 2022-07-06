@@ -188,7 +188,20 @@ export default {
         }
       })
       console.log(res)
-      this.$router.push('/admin/product-list')
+      this.$swal({
+        title:`${this.title} 제품이 수정 되었습니다!`, 
+        text: this.description, 
+        icon: 'success', imageUrl: this.thumbnailBase64, 
+        imageWidth: 100, 
+        imageHeight: 100, 
+        width: 500, 
+        confirmButtonColor: '#f2555a',
+        willClose: () => {
+          this.$router.push({
+            name: 'AdminProductList'
+          })
+        }
+      })
       } catch(error) {
         console.log(error)
       }
@@ -199,9 +212,6 @@ export default {
       fileReader.addEventListener('load', () => {
         this.thumbnailBase64 = fileReader.result
       })
-    },
-    onSumbmit() {
-      return this.$router.push('/admin/product-list')
     }
   }
 }

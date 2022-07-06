@@ -115,7 +115,20 @@ export default {
         }
       })
       console.log(res)
-      this.$swal({title:`${this.title} 제품이 등록되었습니다!`, text: this.description ,icon: 'success', imageUrl: this.thumbnailBase64, imageWidth: 100, imageHeight: 100})
+      this.$swal({
+        title:`${this.title} 제품이 등록되었습니다!`, 
+        text: this.description, 
+        icon: 'success', imageUrl: this.thumbnailBase64, 
+        imageWidth: 100, 
+        imageHeight: 100, 
+        width: 500, 
+        confirmButtonColor: '#f2555a',
+        willClose: () => {
+          this.$router.push({
+            name: 'AdminProductList'
+          })
+        }
+      })
       this.resetInput()
       } catch(error) {
         console.log(error.message)
@@ -142,12 +155,6 @@ export default {
 @import '~/scss/variables';
 
 body{
-  /* .swal2-popup {
-    font-size: 12px;
-    .swal2-styled.swal2-confirm {
-      background-color: $primary;
-    }
-  } */
   .content-main {
     max-width: 720px;
     padding: 30px 3%;

@@ -141,7 +141,7 @@ export default {
       })
       console.log(res)
       this.$store.dispatch('admin/readProducts')
-      this.$swal({title: '제품이 삭제되었습니다!', icon: 'success', imageUrl: thumbnail, imageWidth: 100, imageHeight: 100, imageAlt: noImage})
+      this.$swal({title: '제품이 삭제되었습니다!', icon: 'success', imageUrl: thumbnail, imageWidth: 100, imageHeight: 100, imageAlt: noImage, width: 400, confirmButtonColor: '#f2555a'})
       } catch(error) {
         console.log(error)
       }

@@ -80,6 +80,7 @@ export default createRouter({
       component: AddProduct
     },
     {
+      name: 'AdminProductList',
       path: '/admin/product-list',
       component: AdminProductList
     },
