@@ -28,6 +28,15 @@ export default {
 
 body {
   font-family: 'GmarketSansMedium';
+  .swal2-title {
+    font-size: 1.5rem !important;
+    span {
+      color: $color-primary;
+    }
+  }
+  .swal2-html-container {
+    font-size: 1rem;
+  }
 }
 
 a {

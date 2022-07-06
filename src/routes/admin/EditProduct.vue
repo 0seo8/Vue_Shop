@@ -189,11 +189,10 @@ export default {
       })
       console.log(res)
       this.$swal({
-        title:`${this.title} 제품이 수정 되었습니다!`, 
+        title:`<span>${this.title}</span>
+        제품이 수정 되었습니다!`, 
         text: this.description, 
         icon: 'success', imageUrl: this.thumbnailBase64, 
-        imageWidth: 100, 
-        imageHeight: 100, 
         width: 500, 
         confirmButtonColor: '#f2555a',
         willClose: () => {
@@ -218,6 +217,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~/scss/variables';
+
   .content-main {
     font-size: 12px;
     max-width: 720px;
