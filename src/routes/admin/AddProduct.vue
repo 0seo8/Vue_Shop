@@ -81,8 +81,8 @@
 </template>
 <script>
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
-import axios from 'axios'
 import noImage from '../../assets/noImage'
+import axios from 'axios'
 
 export default {
   data() {
@@ -91,18 +91,19 @@ export default {
       price: '',
       description: '',
       tags: '',
-      thumbnailBase64: ''
+      thumbnailBase64: noImage
     }
   },
   methods: {
     async AddProduct () {
-      const res = await axios({
+      try {
+        const res = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
         headers: {
         'content-type': 'application/json',
-        apikey: VITE_API_KEY,
-        username: VITE_USERNAME,
-        masterKey: true
+        'apikey': VITE_API_KEY,
+        'username': VITE_USERNAME,
+        'masterKey': true
         },
         method: 'POST',
         data: {
@@ -110,12 +111,28 @@ export default {
           price: this.price,
           description: this.description,
           tags: this.tags ? this.tags.split(',') : [],
-          thumbnailBase64: this.thumbnailBase64 || noImage,
-          photoBase64: ''
+          thumbnailBase64: this.thumbnailBase64
         }
       })
-      console.log(this.title, this.price, this.description, this.tags, this.image)
       console.log(res)
+      this.$swal({
+        title:`${this.title} 제품이 등록되었습니다!`, 
+        text: this.description, 
+        icon: 'success', imageUrl: this.thumbnailBase64, 
+        imageWidth: 100, 
+        imageHeight: 100, 
+        width: 500, 
+        confirmButtonColor: '#f2555a',
+        willClose: () => {
+          this.$router.push({
+            name: 'AdminProductList'
+          })
+        }
+      })
+      this.resetInput()
+      } catch(error) {
+        console.log(error.message)
+      }
     },
     selectThumbnail(e) {
       const fileReader = new FileReader()
@@ -123,11 +140,21 @@ export default {
       fileReader.addEventListener('load', () => {
         this.thumbnailBase64 = fileReader.result
       })
+    },
+    resetInput() {
+      this.title = '',
+      this.price = '',
+      this.description = '',
+      this.tags = '',
+      this.thumbnailBase64 = ''
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+@import '~/scss/variables';
+
+body{
   .content-main {
     max-width: 720px;
     padding: 30px 3%;
@@ -143,18 +170,6 @@ export default {
     form {
     display: block;
     margin-top: 0em;
-    .card {
-      position: relative;
-      box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      word-wrap: break-word;
-      background-color: #fff;
-      background-clip: border-box;
-      border: 0 solid rgba(222,226,230,.7);
-      border-radius: 0.25rem;
-      }
       .form-control[type=file] {
       overflow: hidden;
       }
@@ -165,16 +180,7 @@ export default {
       font-size: 0.7rem;
       font-weight: 400;
       line-height: 1.5;
-      color: #141432;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid #cfdbe6;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      border-radius: 0.25rem;
-      box-shadow: 0;
-      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      color: $font-navy;
       }
       .image-price-tag {
         display: flex;
@@ -194,4 +200,5 @@ export default {
       }
     }
   }
+}
 </style>

@@ -12,14 +12,11 @@
         :src="product.thumbnail"
         alt="thumbnail" />
     </figure>
-    <div
-      class="card-body">
+    <div class="card-body">
       <p class="title">
         {{ product.title }}
       </p>
-      <p>
-        ₩ {{ product.price.toLocaleString('ko-KR') }}
-      </p>
+      <p>₩ {{ product.price.toLocaleString("ko-KR") }}</p>
     </div>
   </RouterLink>
 </template>
@@ -70,17 +67,18 @@ export default {
       transition-timing-function: cubic-bezier(.4,0,.2,1);
     }
   }
-  .card-body {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    gap: 0.5rem;
-    .title {
-      font-size: 15px;
-      display: inline-block;
-      width: 100%;
-      color: #111;
-      font-weight: 600;
-    }
+
+.card-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.5rem;
+  .title {
+    font-size: 15px;
+    display: inline-block;
+    width: 100%;
+    color: #111;
+    font-weight: 600;
   }
+}
 </style>

@@ -7,27 +7,25 @@
 </template>
 
 <script>
-import TheHeader from '~/components/layouts/TheHeader.vue'
-import TheFooter from '~/components/layouts/TheFooter.vue'
+import TheHeader from "~/components/layouts/TheHeader.vue";
+import TheFooter from "~/components/layouts/TheFooter.vue";
 export default {
   components: {
     TheHeader,
-    TheFooter
-  }
-
-}
+    TheFooter,
+  },
+};
 </script>
 
-
 <style lang="scss">
-@import "~/scss/variables.scss";
+@import '~/scss/variables';
 
 .main__wrap {
-  padding-top:49px;
+  padding-top: 49px;
 }
 
 body {
-  font-family: 'GmarketSansMedium';
+  font-family: "GmarketSansMedium";
 }
 
 a {
@@ -35,8 +33,10 @@ a {
   text-decoration: none;
 }
 
-ol, ul, li {
-  margin:0;
+ol,
+ul,
+li {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -44,5 +44,4 @@ ol, ul, li {
 button {
   border: 0;
 }
-  
 </style>

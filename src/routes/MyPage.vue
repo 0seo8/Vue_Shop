@@ -83,10 +83,17 @@
       </div>
     </div>
   </div>
+
+  <OrderList />
 </template>
 
 <script>
+import OrderList from './product/OrderList.vue'
+
 export default {
+  components: {
+    OrderList,
+  },
   data() {
     return {
       handleAccount: true,
@@ -129,6 +136,7 @@ export default {
     },
     async logOut() {
       await this.$store.dispatch('auth/logOut')
+      await this.$store.dispatch('auth/findLocalStorageUser')
       this.$router.push('/login')
     },
   },
@@ -138,7 +146,6 @@ export default {
 <style>
 .my-page-top {
   display: flex;
-  /* height: 50%; */
   border: 1px solid black;
 }
 .profile {

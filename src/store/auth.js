@@ -14,14 +14,15 @@ export default {
   state() {
     return {
       user: {},
-      token: null
+      token: null,
+      logined: null,
     }
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload.user
       state.token = payload.token
-      console.log(state)
+      state.logined = payload.logined
     },
   },
   getters: {
@@ -124,6 +125,18 @@ export default {
       )
       const dataForm = await res.json()
       window.localStorage.setItem('user', JSON.stringify(dataForm))
+    },
+    findLocalStorageUser(context) {
+      const accessToken = window.localStorage.getItem('token')
+      if (accessToken == null) {
+        context.commit('setUser', {
+          logined: false,
+        })
+      } else {
+        context.commit('setUser', {
+          logined: true,
+        })
+      }
     },
   },
   async authenticationCheck({commit}) {
