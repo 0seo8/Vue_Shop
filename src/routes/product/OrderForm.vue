@@ -38,13 +38,13 @@
         <dl class="orderUserInfo__list">
           <dt>주문자정보</dt>
           <dd id="cName">
-            노영서
-          </dd>
-          <dd id="cPhone">
-            01047095291
+            {{ user.displayName }}
           </dd>
           <dd class="email">
-            <span id="buyerEmail">0seo8@naver.com</span><button
+            <span id="buyerEmail">{{ user.email }}</span>
+          </dd>
+          <dd>
+            <button
               type="button"
               class="buttonBasic buttonDefault02 sizeSS"
               onclick="orderShowLayer('userInfoModify');">
@@ -64,7 +64,7 @@
             v-model="selectAccountId"
             name="selectAccountId">
             <option
-              v-for="account in accounts"
+              v-for="account in currentAccounts.accounts"
               :key="account.id"
               :value="account.id">
               {{ account.bankName }}
@@ -198,7 +198,6 @@ export default {
   data() {
     return {
       selectAccountId: '',
-      accountBalance: '',
       ReadMore: false,
       ReadMoreText: false,
       check: {
@@ -208,11 +207,12 @@ export default {
     }
   },
   computed: {
-    ...mapState('user', ['accounts']),
+    ...mapState('account', ['currentAccounts']),
     ...mapState('product', ['seletedProduct', 'seletedProductPrice']),
+        ...mapState('auth',['user']),
     selectAccount() {
-      return this.accounts.find(account => account.id === this.selectAccountId)
-      },
+      return this.currentAccounts.accounts.filter(account => account.id === this.selectAccountId)
+    },
     checkAll: {
       get() {
         if(this.check.check1 && this.check.check2) {
@@ -230,20 +230,20 @@ export default {
           this.check.check2 = false          
         }
       }
-    }  
+     }  
     },
-    watch: {
-      selectAccount(value) {
-        this.accountBalance = value.balance
-      },
+    created() {
+      this.getCurrentAccounts()
+      this.authenticationCheck()
     },
     methods: {
+      ...mapActions('account', ['getCurrentAccounts']),
       ...mapActions('product', ['requestPurchase']),
+      ... mapActions('auth', ['authenticationCheck']),
       PayNow(productId, accountId) {
         if(this.selectAccountId === '') {
           confirm('결제 계좌가 선택되지 않았습니다')
-          console.log('결제 계좌가 선택되지 않았습니다')
-        } else if (Number(this.accountBalance) < Number(this.seletedProduct.price)){
+        } else if (this.selectAccount.balance < this.seletedProduct.price){
           confirm('계좌 잔액이 부족합니다')
         } else if(!(this.check.check1 && this.check.check2)){
           confirm('체크박스를 확인해주세요')

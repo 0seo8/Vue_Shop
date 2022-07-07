@@ -26,7 +26,7 @@
         v-model="searchText"
         class="form-control"
         placeholder="검색"
-        @keydown.enter="searchProduct" />
+        @focus="$router.push({name: 'search'})" />
       <span
         class="material-symbols-outlined"
         @click="$router.push('/userpage')">
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data() {
     return {
@@ -44,15 +46,17 @@ export default {
       searchText: '',
     }
   },
+<<<<<<< HEAD
   
+=======
+  watch: {
+    searchText(value) {
+     this.searchProducts({'searchText': value.trim()})
+    }
+  },
+>>>>>>> rohyoungseo
   methods: {
-    searchProduct() {
-      this.$router.push({
-        name: 'search',
-        params: { searchText: this.searchText },
-      })
-      this.searchText = ''
-    },
+    ...mapActions('product', ['searchProducts'])
   },
 }
 </script>

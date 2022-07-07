@@ -39,7 +39,6 @@ export default {
   },
   computed: {
     ...mapState('product',['PurchaseHistories']),
-    ...mapState('user',['user']),
     ...mapGetters('product',['getPurchasedProductId']),
   },
   created() {

@@ -33,6 +33,7 @@ export default {
   mounted() {
       this.readAllProducts()
   },
+
   methods: {
       ...mapActions('product', ['readAllProducts'])
   },
