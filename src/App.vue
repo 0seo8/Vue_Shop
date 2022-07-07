@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~/scss/variables';
+@import '~/scss/main';
 
 .main__wrap {
   padding-top: 49px;
