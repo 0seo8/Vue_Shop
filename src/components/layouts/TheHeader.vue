@@ -1,21 +1,17 @@
 <template>
   <div class="header">
     <h1>
-      <RouterLink to="/">
-        Eletron Market
-      </RouterLink>
+      <RouterLink to="/"> Eletron Market </RouterLink>
     </h1>
     <ul class="nav nav-pills category__list">
-      <li
-        v-for="nav in navigations"
-        :key="nav.name"
-        class="cotegory__item">
+      <li v-for="nav in navigations" :key="nav.name" class="cotegory__item">
         <RouterLink
           :to="{
             name: 'product',
             params: { category: nav.name },
           }"
-          class="nav-link">
+          class="nav-link"
+        >
           <span>{{ nav.name }}</span>
         </RouterLink>
       </li>
@@ -26,12 +22,22 @@
         v-model="searchText"
         class="form-control"
         placeholder="검색"
-        @keydown.enter="searchProduct" />
+        @keydown.enter="searchProduct"
+      />
       <span
+        v-if="logined"
         class="material-symbols-outlined"
-        @click="$router.push('/userpage')">
+        @click="$router.push('/mypage')"
+      >
         person_outline
       </span>
+      <button
+        v-else
+        class="btn btn-primary login"
+        @click="$router.push('/login')"
+      >
+        로그인
+      </button>
     </div>
   </div>
 </template>
@@ -40,21 +46,29 @@
 export default {
   data() {
     return {
-      navigations: [{ name: '생활가전' }, { name: '계절가전' }],
-      searchText: '',
-    }
+      navigations: [{ name: "생활가전" }, { name: "계절가전" }],
+      searchText: "",
+    };
   },
-  
+  computed: {
+    logined: function () {
+      return this.$store.state.auth.logined;
+    },
+  },
+  created() {
+    this.$store.dispatch("auth/findLocalStorageUser");
+  },
+
   methods: {
     searchProduct() {
       this.$router.push({
-        name: 'search',
+        name: "search",
         params: { searchText: this.searchText },
-      })
-      this.searchText = ''
+      });
+      this.searchText = "";
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -78,7 +92,7 @@ export default {
     flex-shrink: 0;
     margin: 0;
     padding: 0;
-    
+
     a {
       font-weight: 700;
       font-size: 20px;
@@ -127,6 +141,11 @@ export default {
     &:hover {
       cursor: pointer;
     }
+  }
+  .login {
+    height: 30px;
+    width: 80px;
+    font-size: 12px;
   }
 }
 </style>
