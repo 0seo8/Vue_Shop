@@ -24,10 +24,18 @@
         placeholder="검색"
         @keydown.enter="searchProduct"
       />
-      <span class="material-symbols-outlined" @click="$router.push('/mypage')">
+      <span
+        v-if="logined"
+        class="material-symbols-outlined"
+        @click="$router.push('/mypage')"
+      >
         person_outline
       </span>
-      <button class="btn btn-primary" @click="$router.push('/login')">
+      <button
+        v-else
+        class="btn btn-primary login"
+        @click="$router.push('/login')"
+      >
         로그인
       </button>
     </div>
@@ -41,6 +49,14 @@ export default {
       navigations: [{ name: "생활가전" }, { name: "계절가전" }],
       searchText: "",
     };
+  },
+  computed: {
+    logined: function () {
+      return this.$store.state.auth.logined;
+    },
+  },
+  created() {
+    this.$store.dispatch("auth/findLocalStorageUser");
   },
 
   methods: {
@@ -125,6 +141,11 @@ export default {
     &:hover {
       cursor: pointer;
     }
+  }
+  .login {
+    height: 30px;
+    width: 80px;
+    font-size: 12px;
   }
 }
 </style>

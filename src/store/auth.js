@@ -11,7 +11,7 @@ export default {
     setUser(state, payload) {
       state.user = payload.user;
       state.token = payload.token;
-      state.token = payload.logined;
+      state.logined = payload.logined;
     },
   },
   getters: {
@@ -115,14 +115,17 @@ export default {
       const dataForm = await res.json();
       window.localStorage.setItem("user", JSON.stringify(dataForm));
     },
-    // async findLocalStorage(context, payload) {
-    //   await
-    //     if (JSON.parse(window.localStorage.getItem("user").legnth > 0)) {
-    //       this.login = true;
-    //     } else {
-    //       this.login = false;
-    //     }
-
-    // }
+    findLocalStorageUser(context) {
+      const accessToken = window.localStorage.getItem("token");
+      if (accessToken == null) {
+        context.commit("setUser", {
+          logined: false,
+        });
+      } else {
+        context.commit("setUser", {
+          logined: true,
+        });
+      }
+    },
   },
 };
