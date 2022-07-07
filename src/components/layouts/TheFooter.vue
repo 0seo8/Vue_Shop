@@ -1,7 +1,6 @@
 <template lang="">
   <footer>
     <Logo />
-<<<<<<< HEAD
     <div class="flex">
       <p>Copyright © {{ dateYear }} Team5</p>
       <a
@@ -21,15 +20,10 @@
         </svg>
       </a>
     </div>
-=======
-    <a href="https://github.com/cham9994/team5" target="_blank">
-      (c){{ dateYear }} Team5
-    </a>
->>>>>>> 7c11922e4f3105487e1100cbd0489b4f51625cac
   </footer>
 </template>
 <script>
-import Logo from "./Logo.vue";
+import Logo from './Logo.vue'
 export default {
   components: {
     Logo,
@@ -37,9 +31,9 @@ export default {
   data() {
     return {
       dateYear: new Date().getFullYear(),
-    };
+    }
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 footer {
