@@ -35,7 +35,9 @@
 
     <div class="purchaseInfo">
       <div class="orderUserInfo">
-        <dl class="orderUserInfo__list">
+        <dl
+          v-if="user"
+          class="orderUserInfo__list">
           <dt>주문자정보</dt>
           <dd id="cName">
             {{ user.displayName }}

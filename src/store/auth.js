@@ -138,17 +138,18 @@ export default {
         })
       }
     },
+    async authenticationCheck({commit}) {
+      const accessToken = window.localStorage.getItem('token')
+      const {data} = await axios({
+        url: `${END_POINT}/me`,
+        method: 'POST',
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${accessToken}`
+        },
+      })
+      console.log({user: data})
+      commit('setUser', {user:data})
+    }
   },
-  async authenticationCheck({commit}) {
-    const accessToken = window.localStorage.getItem('token')
-    const {data} = await axios({
-      url: END_POINT,
-      method: 'GET',
-      headers: {
-        ...headers,
-        Authorization: `Bearer ${accessToken}`
-      },
-    })
-    commit('setUser', {user:data})
-  }
 }
