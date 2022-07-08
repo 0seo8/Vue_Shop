@@ -22,12 +22,8 @@
         v-model="searchText"
         class="form-control"
         placeholder="검색"
-<<<<<<< HEAD
-        @focus="$router.push({name: 'search'})" />
-=======
         @keydown.enter="searchProduct"
       />
->>>>>>> 7c11922e4f3105487e1100cbd0489b4f51625cac
       <span
         v-if="logined"
         class="material-symbols-outlined"
@@ -47,7 +43,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -56,19 +52,15 @@ export default {
       searchText: "",
     };
   },
-<<<<<<< HEAD
-<<<<<<< HEAD
-  
-=======
   watch: {
     searchText(value) {
-     this.searchProducts({'searchText': value.trim()})
-    }
+      this.searchProducts({ searchText: value.trim() });
+    },
   },
->>>>>>> rohyoungseo
+
   methods: {
-    ...mapActions('product', ['searchProducts'])
-=======
+    ...mapActions("product", ["searchProducts"]),
+  },
   computed: {
     logined: function () {
       return this.$store.state.auth.logined;
@@ -86,7 +78,6 @@ export default {
       });
       this.searchText = "";
     },
->>>>>>> 7c11922e4f3105487e1100cbd0489b4f51625cac
   },
 };
 </script>
