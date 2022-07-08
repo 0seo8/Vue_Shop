@@ -9,8 +9,7 @@
           product.tags.includes(category)
         )"
         :key="product.id"
-        class="card"
-      >
+        class="card">
         <ProductItem :product="product" />
       </div>
     </div>
@@ -18,8 +17,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import ProductItem from "./ProductItem.vue";
+import { mapState, mapActions } from 'vuex'
+import ProductItem from './ProductItem.vue'
 
 export default {
   components: { ProductItem },
@@ -30,16 +29,16 @@ export default {
     },
   },
   computed: {
-    ...mapState("product", ["products"]),
+    ...mapState('product', ['products']),
   },
   mounted() {
-    this.readAllProducts();
+    this.readAllProducts()
   },
 
   methods: {
-    ...mapActions("product", ["readAllProducts"]),
+    ...mapActions('product', ['readAllProducts']),
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
