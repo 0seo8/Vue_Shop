@@ -8,10 +8,15 @@
         <button class="btn btn-primary logout-btn" @click="logOut()">
           로그아웃!
         </button>
-        <button class="btn btn-primary modify-btn" @click="pushProfileChange()">
+        <button
+          class="btn btn-primary modify-btn"
+          @click="$router.push('/profilechange')"
+        >
           회원 정보 수정
         </button>
-        <button class="btn btn-primary">거래내역</button>
+        <button class="btn btn-primary" @click="$router.push('/orderlist')">
+          거래내역
+        </button>
       </div>
     </div>
 
@@ -150,7 +155,7 @@ export default {
 .profile-info {
   width: 50%;
   text-align: center;
-  padding-top: 25%;
+  padding-top: 50px;
 }
 
 .logout-btn {
@@ -162,7 +167,7 @@ export default {
 .modify-btn {
   display: block;
   margin: auto;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .account {
   width: 40%;
