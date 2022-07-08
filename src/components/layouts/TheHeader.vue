@@ -83,7 +83,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/variables.scss";
+@import "~/scss/main.scss";
 .header {
   position: fixed;
   z-index: 10;
