@@ -85,7 +85,7 @@ export default {
     flex-shrink: 0;
     margin: 0;
     padding: 0;
-
+    color: $primary;
     a {
       font-weight: 700;
       font-size: 20px;

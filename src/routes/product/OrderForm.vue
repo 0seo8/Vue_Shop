@@ -239,7 +239,7 @@ export default {
     methods: {
       ...mapActions('account', ['getCurrentAccounts']),
       ...mapActions('product', ['requestPurchase']),
-      ... mapActions('auth', ['authenticationCheck']),
+      ...mapActions('auth', ['authenticationCheck']),
       PayNow(productId, accountId) {
         if(this.selectAccountId === '') {
           confirm('결제 계좌가 선택되지 않았습니다')
