@@ -217,7 +217,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '~/scss/variables';
+@import '~/scss/main';
   .content-main {
     font-size: 12px;
     max-width: 720px;

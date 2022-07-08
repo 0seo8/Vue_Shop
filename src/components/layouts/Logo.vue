@@ -7,7 +7,7 @@
 export default {};
 </script>
 <style lang="scss" scoped>
-@import "~/scss/variables.scss";
+@import "~/scss/main.scss";
 .logo {
   font-family: "GmarketSansMedium";
   font-size: 30px;

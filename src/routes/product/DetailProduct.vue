@@ -111,7 +111,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/scss/variables.scss';
+@import '~/scss/main.scss';
   section {
     display: flex;
     align-items: center;
