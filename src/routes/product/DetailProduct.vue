@@ -3,9 +3,9 @@
     <div class="product__box">
       <figure>
         <img
-          v-if="seletedProduct.thumbnail"
-          :src="seletedProduct.thumbnail"
-          :alt="`${seletedProduct.title} 이미지`" />  
+          v-if="selectedProduct.thumbnail"
+          :src="selectedProduct.thumbnail"
+          :alt="`${selectedProduct.title} 이미지`" />  
         <img
           v-else
           src="../../assets/no-Img"
@@ -15,16 +15,19 @@
       <div class="product__info">
         <div class="title">
           <img
-            v-if="seletedProduct.isSoldOut"
+            v-if="selectedProduct.isSoldOut"
             class="soldout"
             src="../../assets/solidout.svg" />
-          <h3>{{ seletedProduct.title }}</h3>
+          <h3>{{ selectedProduct.title }}</h3>
         </div>
         <p class="desc">
-          {{ seletedProduct.description }}
+          {{ selectedProduct.description }}
+        </p>
+        <p class="desc">
+          {{ selectedProduct.tags }}
         </p>
         <p class="price">
-          ₩ {{ seletedProductPrice }}
+          ₩ {{ selectedPrice }}
         </p>
 
         <div class="coupon">
@@ -45,7 +48,7 @@
 
         <button
           :id="productId"
-          :disabled="seletedProduct.isSoldOut"
+          :disabled="selectedProduct.isSoldOut"
           type="button"
           class="btn btn-primary"
           @click="PurchaseThis">
@@ -61,10 +64,13 @@ import {mapState, mapActions} from 'vuex'
 
 export default {
   computed: {
-    ...mapState('product',['seletedProduct', 'seletedProductPrice']),
+    ...mapState('product',['selectedProduct', 'selectedPrice']),
     productId() {
       return this.$route.params.id
     },
+    // discountedAmount() {
+    //   return this.seleted.price > 100000 ? (this.seleted.price * 110%)
+    // }
   },
   mounted() {
     this.readProductDetail(this.productId)
