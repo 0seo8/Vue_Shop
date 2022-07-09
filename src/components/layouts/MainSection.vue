@@ -6,6 +6,9 @@
   <section class="category__box">
     <ProductList category="계절가전" />
   </section>
+  <section class="category__box">
+    <ProductList category="디지털" />
+  </section>
 </template>
 
 <script>

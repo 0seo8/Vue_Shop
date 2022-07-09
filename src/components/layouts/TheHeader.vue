@@ -63,7 +63,7 @@ export default {
   emits: ['theme'],
   data() {
     return {
-      navigations: [{ name: '생활가전' }, { name: '계절가전' }],
+      navigations: [{ name: '생활가전' }, { name: '계절가전' }, {name: '디지털'}],
       searchText: '',
       nightmode: false
     }
