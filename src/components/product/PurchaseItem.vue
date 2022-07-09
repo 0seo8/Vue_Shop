@@ -1,66 +1,87 @@
 <template>
-  <div
-    class="column"
-    :class="purchase.isCanceled ? 'show' : ''">
-    <div>
-      {{ getdate }}
-    </div>
-    <div class="title">
-      <span
-        v-if="purchase.done"
-        class="badge badge-done">확정</span>
-      <span
-        v-else-if="purchase.isCanceled"
-        class="badge badge-cancle">취소</span>
-      {{ purchase.product.title }}
-    </div>
-    <div>{{ purchase.product.price.toLocaleString("ko-KR") }} 원</div>
-    <div>
-      <BaseDialog
-        v-if="isOpen"
-        title="상세 보기">
-        <template #default>
-          제품에 대한 상세 내역정리
-        </template>
-        <template #actions>
-          <button
-            class="btn"
-            @click="isOpen = false">
-            Okay
-          </button>
-        </template>
-      </BaseDialog>
-      <button class="btn btn-outline-info">
-        상세보기
-      </button>
-    </div>
-    <div>
-      <button
-        :disabled="purchase.done || purchase.isCanceled"
-        class="btn btn-outline-primary"
-        @click="$emit('confirm', purchase.detailId)">
-        구매확인
-      </button>
-    </div>
-    <div>
-      <button
-        :disabled="purchase.done || purchase.isCanceled"
-        class="btn btn-outline-success"
-        @click="$emit('cancel', purchase.detailId)">
-        구매취소
-      </button>
-    </div>
-  </div>
+  <div class="wrap">
+    <table>
+      <colgroup>
+        <col width="800" />
+        <col width="" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td class="td1">
+            <div class="title">
+              <span
+                v-if="purchase.done"
+                class="isdone">구매확정</span>
+              <span
+                v-else
+                class="isdone">확정대기</span>
+              <span
+                class="SWzAJ">
+                <span
+                  size="4"
+                  class="sc-13xhsmd-1 kMeFyN"></span>
+              </span>
+              <span
+                class="date">
+                {{ getdate }} 주문
+              </span>
+            </div>
+            <div class="content">
+              <div class="img__box">
+                <a>
+                  <img
+                    width="64"
+                    height="64"
+                    :src="purchase.product.thumbnail"
+                    :alt="purchase.product.title" />
+                </a>
+              </div>
+              <div class="info">
+                <div class="info__box">
+                  <a>
+                    <span class="title">{{ purchase.product.title }}</span>
+                  </a>
+                  <div class="info__desc">
+                    <div>
+                      <span class="price">{{ purchase.product.price.toLocaleString("ko-KR") }} 원</span>
+                    </div> 
+                    <div>
+                      <button
+                        class="btn btn-outline-info"
+                        @click="$router.push(`/product/${purchase.product.productId}`)">
+                        재구매하기
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="td2">
+            <div class="button__box">
+              <button
+                :disabled="purchase.done || purchase.isCanceled"
+                class="btn btn-outline-primary"
+                @click="$emit('confirm', purchase.detailId)">
+                구매확정
+              </button>
+              <button
+                :disabled="purchase.done || purchase.isCanceled"
+                class="btn btn-outline-success"
+                @click="$emit('cancel', purchase.detailId)">
+                구매취소
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
 </template>
 
 <script>
 import dayjs from 'dayjs'
-import { mapActions } from 'vuex'
-import BaseDialog from '~/components/UI/BaseDialog.vue'
 export default {
-  components: {
-    BaseDialog,
-  },
   props: {
     purchase: {
       type: Object,
@@ -68,60 +89,117 @@ export default {
     },
   },
   emits: ['cancel', 'confirm'],
-  data() {
-    return {
-      isOpen: false,
-    }
-  },
   computed: {
     getdate() {
-      return dayjs(this.purchase.timePaid).format('YYYY년 MM월 DD일 HH시 mm분')
+      return dayjs(this.purchase.timePaid).format('YY년 MM월 DD일')
     },
-  },
-  methods: {
-    ...mapActions('product', ['confirmPurchase', 'cancelOrder']),
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.btn:disabled {
-  color: #ccc;
-  border-color: #ccc;
-}
+  .wrap {
+    border-radius: 8px;
+    border: 1px solid rgb(238, 238, 238);
+    background-color: rgb(255, 255, 255);
+    margin-top: 16px;  
+  }
 
-.show {
-  color: #ccc;
-  text-decoration: line-through;
-}
-
-.column {
-  padding: 0.5rem;
-  border-bottom: 1px solid #e0e2e7;
-  display: block;
-  align-items: center;
-  justify-content: center;
-
+.td1 {
+  height: 100%;
+  padding: 20px;
+  vertical-align: top;
   .title {
-    text-align: start;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    .badge {
-      display: inline-block;
-      padding: 0 5px;
-      border-radius: 5px;
-      font-size: 11px;
-      line-height: 18px;
-      font-weight: 700;
-      color: #fff;
-      &-done {
-        background-color: #ff61a7;
-      }
-      &-cancle {
-        background-color: #ccc;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    line-height: 1.5;
+    .isdone {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #111;
+        margin-left: 1rem;
+    }
+    .SWzAJ {
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 4px;
+      height: 1em;
+      vertical-align: middle;
+      margin-left: 6px;
+      margin-right: 6px;
+      .kMeFyN {
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background-color: rgb(17, 17, 17);
+          opacity: 0.2;
       }
     }
+    .date {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgb(0, 137, 26);
+    }
+  }
+  .content {
+     overflow: hidden;
+     display: flex;
+     flex-direction: row;
+    .img__box {
+          display: flex;
+    width: 64px;
+    position: relative;
+    margin-right: 16px;
+    }
+    .info {
+       user-select: none;
+       overflow: hidden;
+       flex: 1 1 0%;
+       display: flex;
+      &__box {
+         display: flex;
+         flex: 1 1 0%;
+         user-select: none;
+         min-width: 0px;
+         flex-direction: column;
+         justify-content: center;
+        .title {
+          margin-bottom: 4px;
+        }
+       }
+      &__desc {
+         display: flex;
+         align-items: center;     
+         justify-content: space-between;
+        line-height: 1.5;
+        .price {
+          font-size: 1rem;
+          font-weight: normal;
+          color: #555;
+        }
+      }
+    }
+  }
+}
+
+.td2 {
+  width: 200px;
+  height: 100%;
+  text-align: center;
+  border-left: 1px solid rgb(238, 238, 238);
+  .button__box {
+    display: flex;
+    flex-flow: column wrap;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
   }
 }
 </style>
