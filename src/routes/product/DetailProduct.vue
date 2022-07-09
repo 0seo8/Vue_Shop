@@ -13,6 +13,14 @@
       </figure>
 
       <div class="product__info">
+        <div class="tags">
+          <span
+            v-for="(tag, index) in tags"
+            :key="index"
+            class="tags__item">
+            # {{ tag }}
+          </span>
+        </div>
         <div class="title">
           <img
             v-if="selectedProduct.isSoldOut"
@@ -22,9 +30,6 @@
         </div>
         <p class="desc">
           {{ selectedProduct.description }}
-        </p>
-        <p class="desc">
-          {{ selectedProduct.tags }}
         </p>
         <p class="price">
           ₩ {{ selectedPrice }}
@@ -68,6 +73,9 @@ export default {
     productId() {
       return this.$route.params.id
     },
+    tags() {
+      return this.selectedProduct.tags
+    }
     // discountedAmount() {
     //   return this.seleted.price > 100000 ? (this.seleted.price * 110%)
     // }
@@ -96,6 +104,7 @@ section {
   align-items: center;
   justify-content: center;
   height: 100%; 
+  margin-top: 4rem;
 }
 .product{
   &__box {
@@ -103,6 +112,8 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 1200px;
+    flex-flow: wrap;
     figure {
       position: relative;
       flex-shrink: 0;
@@ -113,6 +124,7 @@ section {
       background-color: #fff;
       padding: 10px;
       text-align: center;
+      flex-grow: 1;
       img {
         width: 70%;
         height: 70%;
@@ -124,14 +136,29 @@ section {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    max-width: 700px;
+    max-width: 600px;
+    flex-grow: 1;
+
+    .tags {
+      display: flex;
+      margin-bottom: 8px;
+      &__item {
+          display: inline-block;
+          padding: 4px 5px;
+          border: 1px solid rgba(0,0,0,.7);
+          font-size: 12px;
+          line-height: 1.2;
+          margin-right: 8px;
+      }
+    }
+
     .title {
       position: relative;
       .soldout {
         position:absolute;
         z-index:1;
-        left: -2rem;
-        top: -2rem;
+        left: -3.5rem;
+        top: -3rem;
         max-width: 60px;
        
       }
@@ -140,7 +167,7 @@ section {
       }
     }
     p {
-      margin-bottom: 1rem;
+      margin-bottom: 8px;
       &.desc {
         line-height: 1.7;
       }
