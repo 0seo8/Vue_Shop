@@ -25,6 +25,6 @@ export default {
 
 <style lang="scss" scoped>
 .category__box {
-  margin-top: 40px;
+  margin-top: 80px;
 }
 </style>

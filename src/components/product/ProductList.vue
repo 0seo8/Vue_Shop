@@ -54,7 +54,7 @@ section {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      margin-top: 50px;
+      margin-top: 30px;
       grid-gap: 20px;
       .card {
         transition: 0.3s ease box-shadow;
