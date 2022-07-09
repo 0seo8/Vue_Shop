@@ -20,7 +20,7 @@
           배송정보
         </div>
         <div class="info box">
-          {{ selectedProduct.price > 50000 ? "무료배송" : "2,500" }}
+          {{ selectedProduct.price > 100000 ? "무료배송" : "2,500" }}
         </div>
       </div>
       <div>
@@ -170,13 +170,13 @@
           <div><span>상품가격</span><span>{{ selectedPrice }}원</span></div>
           <div>
             <span>배송비</span>
-            <span v-if="selectedProduct.price < 50000">2,500 원</span>
+            <span v-if="selectedProduct.price < 100000">2,500 원</span>
             <span v-else>무료배송</span>
           </div>
         </div>
         <div class="expected-payment-all">
           <p>총결제금액</p>
-          <div v-if="selectedProduct.price < 50000">
+          <div v-if="selectedProduct.price < 100000">
             {{ (selectedProduct.price + 2500).toLocaleString('ko-KR') }} 원
           </div>
           <div v-else>
