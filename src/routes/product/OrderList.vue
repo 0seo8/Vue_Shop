@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      headers: ['주문일자', '상품명', '상품가격', '상세보기',  '구매확정', '구매취소']
+      headers: ['주문일자', '상품명', '상품가격', '구매확정', '구매취소']
     }
   },
   computed: {
@@ -58,7 +58,7 @@ export default {
 
 <style lang="scss" scoped>
   section {
-    padding-top: 2rem;
+    padding-top: 3rem;
     h2 {
       padding: 1rem;     
     }

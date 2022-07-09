@@ -21,6 +21,7 @@
             # {{ tag }}
           </span>
         </div>
+
         <div class="title">
           <img
             v-if="selectedProduct.isSoldOut"
@@ -28,11 +29,14 @@
             src="../../assets/solidout.svg" />
           <h3>{{ selectedProduct.title }}</h3>
         </div>
-        <p class="desc">
-          {{ selectedProduct.description }}
-        </p>
+
+
         <p class="price">
           ₩ {{ selectedPrice }}
+        </p>
+
+        <p class="desc">
+          {{ selectedProduct.description }}
         </p>
 
         <div class="coupon">
@@ -114,6 +118,7 @@ section {
     justify-content: center;
     max-width: 1200px;
     flex-flow: wrap;
+    gap: 3rem;
     figure {
       position: relative;
       flex-shrink: 0;
@@ -126,8 +131,7 @@ section {
       text-align: center;
       flex-grow: 1;
       img {
-        width: 70%;
-        height: 70%;
+        width: 300px;
       }
     }
   }
@@ -141,7 +145,7 @@ section {
 
     .tags {
       display: flex;
-      margin-bottom: 8px;
+      margin-bottom: 1rem;
       &__item {
           display: inline-block;
           padding: 4px 5px;
@@ -154,27 +158,34 @@ section {
 
     .title {
       position: relative;
+
+      //soldout 뱃지
       .soldout {
         position:absolute;
         z-index:1;
         left: -3.5rem;
         top: -3rem;
-        max-width: 60px;
-       
+        max-width: 60px;     
       }
       h3 {
         margin-bottom: 1rem;
       }
     }
+
     p {
       margin-bottom: 8px;
       &.desc {
         line-height: 1.7;
+        margin-bottom: 1rem;
       }
      &.price {
       font-size: 22px;
       font-weight: bold;
+      margin-bottom: 1rem;
      }
+    }
+    .coupon {
+      margin-bottom: 1rem;
     }
     .shipping {
       display: flex;

@@ -292,7 +292,7 @@ export default {
     height: 200px;
     border-bottom: 1px solid #ccc;
     img {
-      width:30%;
+      width:20%;
       max-height: 200px; 
     }
   }
