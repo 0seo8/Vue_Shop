@@ -1,5 +1,5 @@
 <template>
-  <TheHeader />
+  <TheHeader @theme="theme" />
   <div class="main__wrap">
     <RouterView />
     <TheFooter />
@@ -14,11 +14,27 @@ export default {
     TheHeader,
     TheFooter,
   },
+  methods: {
+   theme() {
+      let body = document.querySelector('body')
+      body.classList.toggle('nightmode')
+    }  
+  }
 }
 </script>
 
 <style lang="scss">
 @import '~/scss/main';
+
+body {
+  background-color: #fff;
+  color: #000;
+  transition: background-color 2s;
+  &.nightmode {
+  background-color: #000;
+  color: #fff;    
+  }
+}
 
 .main__wrap {
   padding-top: 49px;
