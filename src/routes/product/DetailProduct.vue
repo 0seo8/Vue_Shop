@@ -80,9 +80,6 @@ export default {
     tags() {
       return this.selectedProduct.tags
     }
-    // discountedAmount() {
-    //   return this.seleted.price > 100000 ? (this.seleted.price * 110%)
-    // }
   },
   mounted() {
     this.readProductDetail(this.productId)
