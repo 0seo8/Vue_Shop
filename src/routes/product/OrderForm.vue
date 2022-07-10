@@ -10,9 +10,9 @@
         </div>
         <div class="info box">
           <img
-            :src="seletedProduct.thumbnail"
+            :src="selectedProduct.thumbnail"
             alt="상품사진" />
-          <p>{{ seletedProduct.title }}</p>  
+          <p>{{ selectedProduct.title }}</p>  
         </div>
       </div>
       <div>
@@ -20,7 +20,7 @@
           배송정보
         </div>
         <div class="info box">
-          {{ seletedProduct.price > 50000 ? "무료배송" : "2,500" }}
+          {{ selectedProduct.price > 100000 ? "무료배송" : "2,500" }}
         </div>
       </div>
       <div>
@@ -28,14 +28,16 @@
           상품금액
         </div>
         <div class="info box">
-          {{ seletedProductPrice }} 원
+          {{ selectedPrice }} 원
         </div>
       </div>
     </div>
 
     <div class="purchaseInfo">
       <div class="orderUserInfo">
-        <dl class="orderUserInfo__list">
+        <dl
+          v-if="user"
+          class="orderUserInfo__list">
           <dt>주문자정보</dt>
           <dd id="cName">
             {{ user.displayName }}
@@ -165,26 +167,26 @@
           최종결제금액
         </h3>
         <div class="expected-payment">
-          <div><span>상품가격</span><span>{{ seletedProductPrice }}원</span></div>
+          <div><span>상품가격</span><span>{{ selectedPrice }}원</span></div>
           <div>
             <span>배송비</span>
-            <span v-if="seletedProduct.price < 50000">2,500 원</span>
+            <span v-if="selectedProduct.price < 100000">2,500 원</span>
             <span v-else>무료배송</span>
           </div>
         </div>
         <div class="expected-payment-all">
           <p>총결제금액</p>
-          <div v-if="seletedProduct.price < 50000">
-            {{ (seletedProduct.price + 2500).toLocaleString('ko-KR') }} 원
+          <div v-if="selectedProduct.price < 100000">
+            {{ (selectedProduct.price + 2500).toLocaleString('ko-KR') }} 원
           </div>
           <div v-else>
-            {{ seletedProductPrice }} 원
+            {{ selectedPrice }} 원
           </div>
         </div>        
         <button
           type="button"
           class="btn btn-primary"
-          @click="PayNow(seletedProduct.id, selectAccountId)">
+          @click="PayNow(selectedProduct.id, selectAccountId)">
           결제하기
         </button>
       </div>
@@ -203,16 +205,17 @@ export default {
       check: {
         check1: false,
         check2: false,
-      }
+      },
+      selectAccount: ''
     }
   },
   computed: {
     ...mapState('account', ['currentAccounts']),
-    ...mapState('product', ['seletedProduct', 'seletedProductPrice']),
+    ...mapState('product', ['selectedProduct', 'selectedPrice']),
         ...mapState('auth',['user']),
-    selectAccount() {
-      return this.currentAccounts.accounts.filter(account => account.id === this.selectAccountId)
-    },
+    // selectAccount() {
+    //   return this.currentAccounts.accounts.filter(account => account.id === this.selectAccountId)
+    // },
     checkAll: {
       get() {
         if(this.check.check1 && this.check.check2) {
@@ -232,6 +235,11 @@ export default {
       }
      }  
     },
+    watch: {
+    selectAccountId(value){
+      this.selectAccount = this.currentAccounts.accounts.find(account => account.id === value).balance
+    }
+  },
     created() {
       this.getCurrentAccounts()
       this.authenticationCheck()
@@ -239,11 +247,11 @@ export default {
     methods: {
       ...mapActions('account', ['getCurrentAccounts']),
       ...mapActions('product', ['requestPurchase']),
-      ... mapActions('auth', ['authenticationCheck']),
+      ...mapActions('auth', ['authenticationCheck']),
       PayNow(productId, accountId) {
         if(this.selectAccountId === '') {
           confirm('결제 계좌가 선택되지 않았습니다')
-        } else if (this.selectAccount.balance < this.seletedProduct.price){
+        } else if (this.selectAccount < this.selectedProduct.price){
           confirm('계좌 잔액이 부족합니다')
         } else if(!(this.check.check1 && this.check.check2)){
           confirm('체크박스를 확인해주세요')
@@ -290,7 +298,7 @@ export default {
     height: 200px;
     border-bottom: 1px solid #ccc;
     img {
-      width:30%;
+      width:20%;
       max-height: 200px; 
     }
   }

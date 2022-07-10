@@ -9,6 +9,7 @@ export default {};
 <style lang="scss" scoped>
 @import "~/scss/main.scss";
 .logo {
+  display: inline-block;
   font-family: "GmarketSansMedium";
   font-size: 30px;
   color: #000;

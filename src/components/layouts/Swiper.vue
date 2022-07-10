@@ -1,7 +1,11 @@
 <template>
   <section class="swiper">
-    <Carousel :autoplay="2000" :wrap-around="true">
-      <Slide v-for="slide in 3" :key="slide">
+    <Carousel
+      :autoplay="2000"
+      :wrap-around="true">
+      <Slide
+        v-for="slide in 3"
+        :key="slide">
         <div class="carousel__item">
           <div class="temp">
             {{ slide }}
@@ -17,13 +21,13 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import { Carousel, Pagination, Slide } from "vue3-carousel";
+import { defineComponent } from 'vue'
+import { Carousel, Pagination, Slide } from 'vue3-carousel'
 
-import "vue3-carousel/dist/carousel.css";
+import 'vue3-carousel/dist/carousel.css'
 
 export default defineComponent({
-  name: "Autoplay",
+  name: 'Autoplay',
   components: {
     Carousel,
     Slide,
@@ -33,14 +37,15 @@ export default defineComponent({
     return {
       settings: {
         itemsToshow: 1,
-        snapAlign: "center",
+        snapAlign: 'center',
       },
-    };
+    }
   },
-});
+})
 </script>
 
 <style scoped lang="scss">
+@import "~/scss/main.scss";
 .temp {
   width: 100vw;
   height: 650px;
