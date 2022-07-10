@@ -1,4 +1,11 @@
 <template>
+  <div class="breadcrumbs container">
+    <ul>
+      <li>홈 > </li>
+      <li> {{ selectedProduct.title }} > </li>
+      <li> 주문서 작성</li>
+    </ul>
+  </div>
   <section class="container">
     <div class="title">
       <h2>주문서 작성</h2>
@@ -271,7 +278,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding-top: 3rem;
+  margin-top: 1rem;
   .title {
     text-align: center;
     margin: 1rem;
@@ -285,7 +292,7 @@ export default {
     border: none;
   }
   .info.head {
-    padding: 20px 25px;
+    padding: 15px 20px;
     border-top: 2px solid #222;
     background-color: rgb(245,245,245);
     font-weight: 600;
@@ -479,5 +486,16 @@ export default {
 
 select {
   margin-top: 1rem;
+}
+
+.breadcrumbs {
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  ul {
+    display: flex;
+    li:not(:first-child) {
+      padding-left: .5rem;
+    }
+  }
 }
 </style>

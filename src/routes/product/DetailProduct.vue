@@ -1,5 +1,11 @@
 <template>
-  <section>
+  <div class="breadcrumbs container">
+    <ul>
+      <li>홈 > </li>
+      <li> {{ selectedProduct.title }}</li>
+    </ul>
+  </div>
+  <section class="container detail-products">
     <div class="product__box">
       <figure>
         <img
@@ -100,16 +106,15 @@ export default {
 <style lang="scss" scoped>
 @import '~/scss/main.scss';
 
-section {
+.detail-products {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%; 
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 .product{
   &__box {
-    padding-top: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -194,6 +199,17 @@ section {
       width: 30%;
       padding: .5rem;
       color: #fff;
+    }
+  }
+}
+
+.breadcrumbs {
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  ul {
+    display: flex;
+    li:not(:first-child) {
+      padding-left: .5rem;
     }
   }
 }
