@@ -155,7 +155,7 @@ export default {
 .profile-info {
   width: 50%;
   text-align: center;
-  padding-top: 50px;
+  padding-top: 10%;
 }
 
 .logout-btn {

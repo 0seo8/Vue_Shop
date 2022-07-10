@@ -1,72 +1,75 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
 
-import Home from './Home.vue'
-import Login from './Login.vue'
+import Home from "./Home.vue";
+import Login from "./Login.vue";
 // import Admin from './admin/Admin.vue'
-import AddProduct from './admin/AddProduct.vue'
-import Dashboard from './admin/Dashboard.vue'
-import AdminProductList from './admin/AdminProductList.vue'
-import TheProducts from './product/TheProducts.vue'
-import DetailProduct from './product/DetailProduct.vue'
-import OrderForm from './product/OrderForm.vue'
-import OrderList from './product/OrderList.vue'
-import SearchProduct from './product/SearchProduct.vue'
-import EditProduct from './admin/EditProduct.vue'
-import MyPage from './MyPage.vue'
-import Signup from './Signup.vue'
-import ProfileChange from './ProfileChange.vue'
-// import store from '~/store/user'
+import AddProduct from "./admin/AddProduct.vue";
+import Dashboard from "./admin/Dashboard.vue";
+import AdminProductList from "./admin/AdminProductList.vue";
+import TheProducts from "./product/TheProducts.vue";
+import DetailProduct from "./product/DetailProduct.vue";
+import OrderForm from "./product/OrderForm.vue";
+import OrderList from "./product/OrderList.vue";
+import SearchProduct from "./product/SearchProduct.vue";
+import EditProduct from "./admin/EditProduct.vue";
+import MyPage from "./MyPage.vue";
+import Signup from "./Signup.vue";
+import ProfileChange from "./ProfileChange.vue";
 
 export default createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      component: Home
+      path: "/",
+      component: Home,
     },
     {
-      path: '/login',
-      component: Login
+      path: "/login",
+      component: Login,
     },
     {
-      path: '/mypage',
-      component: MyPage
+      path: "/mypage",
+      component: MyPage,
+      meta: { auth: true },
     },
     {
-      path: '/signup',
-      component: Signup
+      path: "/signup",
+      component: Signup,
     },
     {
-      path: '/profilechange',
-      component: ProfileChange
+      path: "/profilechange",
+      component: ProfileChange,
+      meta: { auth: true },
     },
     {
-      path: '/:category',
-      name: 'product',
-      component: TheProducts
+      path: "/:category",
+      name: "product",
+      component: TheProducts,
     },
     {
-      path: '/product/:id',
+      path: "/product/:id",
       component: DetailProduct,
-      name: 'detailpage'
+      name: "detailpage",
     },
     {
-      path: '/purchase',
-      component: OrderForm
+      path: "/purchase",
+      component: OrderForm,
+      meta: { auth: true },
     },
     {
-      path: '/orderlist',
-      component: OrderList
+      path: "/orderlist",
+      component: OrderList,
+      meta: { auth: true },
     },
     {
-      path: '/search',
-      name: 'search',
-      component: SearchProduct
+      path: "/search",
+      name: "search",
+      component: SearchProduct,
     },
     // admin 페이지
     {
-      path: '/admin',
-      component: Dashboard
+      path: "/admin",
+      component: Dashboard,
       // beforeEnter: (to, from, next) => {
       //   if (store.state.user.currentUser.email !== store.state.user.masterUserEmail) {
       //     alert('유효한 접근이 아닙니다')
@@ -76,22 +79,22 @@ export default createRouter({
       // }
     },
     {
-      path: '/admin/add-product',
-      component: AddProduct
+      path: "/admin/add-product",
+      component: AddProduct,
     },
     {
-      name: 'AdminProductList',
-      path: '/admin/product-list',
-      component: AdminProductList
+      name: "AdminProductList",
+      path: "/admin/product-list",
+      component: AdminProductList,
     },
     {
-      name: 'EditProduct',
-      path: '/admin/edit-product/:id',
+      name: "EditProduct",
+      path: "/admin/edit-product/:id",
       component: EditProduct,
-      props: true
+      props: true,
     },
     {
-      path: '/amdmin/transaction-detail'
-    }
-  ]
-})
+      path: "/amdmin/transaction-detail",
+    },
+  ],
+});
