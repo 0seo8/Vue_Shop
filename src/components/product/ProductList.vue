@@ -57,7 +57,7 @@ section {
     font-weight: 700;
   }
   .main {
-    height: 350px;
+    height: 375px;
   }
   .product {
     &__list {
