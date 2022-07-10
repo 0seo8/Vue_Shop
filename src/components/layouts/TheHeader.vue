@@ -1,21 +1,17 @@
 <template>
   <div class="header">
     <h1>
-      <RouterLink to="/">
-        Eletron Market
-      </RouterLink>
+      <RouterLink to="/"> Eletron Market </RouterLink>
     </h1>
     <ul class="nav nav-pills category__list">
-      <li
-        v-for="nav in navigations"
-        :key="nav.name"
-        class="cotegory__item">
+      <li v-for="nav in navigations" :key="nav.name" class="cotegory__item">
         <RouterLink
           :to="{
             name: 'product',
             params: { category: nav.name },
           }"
-          class="nav-link">
+          class="nav-link"
+        >
           <span>{{ nav.name }}</span>
         </RouterLink>
       </li>
@@ -39,17 +35,20 @@
         v-model="searchText"
         class="form-control"
         placeholder="검색"
-        @focus="$router.push({name: 'search'})" />
+        @keydown.enter="searchProduct"
+      />
       <span
         v-if="logined"
         class="material-symbols-outlined"
-        @click="$router.push('/mypage')">
+        @click="$router.push('/mypage')"
+      >
         person_outline
       </span>
       <button
         v-else
         class="btn btn-primary login"
-        @click="$router.push('/login')">
+        @click="$router.push('/login')"
+      >
         로그인
       </button>
     </div>
@@ -57,7 +56,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   emits: ['theme'],
@@ -70,9 +69,10 @@ export default {
   },
   watch: {
     searchText(value) {
-     this.searchProducts({'searchText': value.trim()})
-    }
+      this.searchProducts({ searchText: value.trim() });
+    },
   },
+
   methods: {
     ...mapActions('product', ['searchProducts']),
    theme() {
@@ -80,7 +80,25 @@ export default {
       this.$emit('theme')
     }    
   },
-}
+  computed: {
+    logined: function () {
+      return this.$store.state.auth.logined;
+    },
+  },
+  created() {
+    this.$store.dispatch("auth/findLocalStorageUser");
+  },
+
+  methods: {
+    searchProduct() {
+      this.$router.push({
+        name: "search",
+        params: { searchText: this.searchText },
+      });
+      this.searchText = "";
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
