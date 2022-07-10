@@ -35,7 +35,7 @@
         v-model="searchText"
         class="form-control"
         placeholder="검색"
-        @keydown.enter="searchProduct"
+        @focus="$router.push({name: 'search'})"
       />
       <span
         v-if="logined"
@@ -69,7 +69,7 @@ export default {
   },
   watch: {
     searchText(value) {
-      this.searchProducts({ searchText: value.trim() });
+      this.searchProducts({'searchText': value.trim()});
     },
   },
 
@@ -87,16 +87,6 @@ export default {
   },
   created() {
     this.$store.dispatch("auth/findLocalStorageUser");
-  },
-
-  methods: {
-    searchProduct() {
-      this.$router.push({
-        name: "search",
-        params: { searchText: this.searchText },
-      });
-      this.searchText = "";
-    },
   },
 };
 </script>
