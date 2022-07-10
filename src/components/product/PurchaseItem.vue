@@ -202,4 +202,13 @@ export default {
     padding: 20px;
   }
 }
+
+.btn-outline{
+  &-primary:disabled {
+  color: rgba(#f2555a, .3);
+  }
+  &-success{
+    color: rgba(#198754, .3);
+  }
+}
 </style>
