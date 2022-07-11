@@ -23,7 +23,9 @@ export default {
     setUser(state, payload) {
       state.user = payload.user;
       state.token = payload.token;
-      state.logined = payload.logined;
+    },
+    setLogined(state, payload) {
+      state.logined = payload;
     },
   },
   getters: {
@@ -57,8 +59,6 @@ export default {
 
       const dataForm = await response.json();
       window.localStorage.setItem("token", dataForm.accessToken);
-      window.localStorage.setItem("user", JSON.stringify(dataForm.user));
-
       context.commit("setUser", {
         user: dataForm.user,
         token: dataForm.accessToken,
@@ -125,31 +125,26 @@ export default {
         }
       );
       const dataForm = await res.json();
-      window.localStorage.setItem("user", JSON.stringify(dataForm));
     },
     findLocalStorageUser(context) {
       const accessToken = window.localStorage.getItem("token");
       if (accessToken == null) {
-        context.commit("setUser", {
-          logined: false,
-        });
+        context.commit("setLogined", false);
       } else {
-        context.commit("setUser", {
-          logined: true,
-        });
+        context.commit("setLogined", true);
       }
     },
-  },
-  async authenticationCheck({ commit }) {
-    const accessToken = window.localStorage.getItem("token");
-    const { data } = await axios({
-      url: END_POINT,
-      method: "GET",
-      headers: {
-        ...headers,
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    commit("setUser", { user: data });
+    async authenticationCheck({ commit }) {
+      const accessToken = window.localStorage.getItem("token");
+      const { data } = await axios({
+        url: `${END_POINT}/me`,
+        method: "POST",
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      commit("setUser", { user: data });
+    },
   },
 };

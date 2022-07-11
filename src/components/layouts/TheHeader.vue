@@ -17,12 +17,15 @@
       </li>
     </ul>
     <div class="button__list">
-      <span class="material-symbols-outlined"> light_mode </span>
+      <ul class="darkmode" @click="theme">
+        <li v-if="!nightmode" class="material-symbols-outlined">light_mode</li>
+        <li v-else class="material-symbols-outlined">dark_mode</li>
+      </ul>
       <input
         v-model="searchText"
         class="form-control"
         placeholder="검색"
-        @keydown.enter="searchProduct"
+        @focus="$router.push({ name: 'search' })"
       />
       <span
         v-if="logined"
@@ -46,10 +49,16 @@
 import { mapActions } from "vuex";
 
 export default {
+  emits: ["theme"],
   data() {
     return {
-      navigations: [{ name: "생활가전" }, { name: "계절가전" }],
+      navigations: [
+        { name: "생활가전" },
+        { name: "계절가전" },
+        { name: "디지털" },
+      ],
       searchText: "",
+      nightmode: false,
     };
   },
   watch: {
@@ -60,6 +69,10 @@ export default {
 
   methods: {
     ...mapActions("product", ["searchProducts"]),
+    theme() {
+      this.nightmode = !this.nightmode;
+      this.$emit("theme");
+    },
   },
   computed: {
     logined: function () {
@@ -68,16 +81,6 @@ export default {
   },
   created() {
     this.$store.dispatch("auth/findLocalStorageUser");
-  },
-
-  methods: {
-    searchProduct() {
-      this.$router.push({
-        name: "search",
-        params: { searchText: this.searchText },
-      });
-      this.searchText = "";
-    },
   },
 };
 </script>
@@ -103,7 +106,7 @@ export default {
     flex-shrink: 0;
     margin: 0;
     padding: 0;
-
+    color: $primary;
     a {
       font-weight: 700;
       font-size: 20px;
@@ -157,6 +160,16 @@ export default {
     height: 30px;
     width: 80px;
     font-size: 12px;
+  }
+}
+
+.darkmode {
+  position: relative;
+  display: block;
+  height: 24px;
+  width: 24px;
+  li {
+    position: absolute;
   }
 }
 </style>

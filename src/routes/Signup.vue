@@ -1,65 +1,76 @@
 <template>
-  <RouterLink to="/">HOME</RouterLink>
+  <RouterLink to="/">
+    HOME
+  </RouterLink>
   <form @submit.prevent="submitForm">
     <div>
       <label for="email">E-Mail: </label>
-      <input type="email" id="email" v-model.trim="email" />
+      <input
+        id="email"
+        v-model.trim="email"
+        type="email" />
     </div>
     <div>
       <label for="name">Id: </label>
-      <input type="name" id="name" v-model.trim="displayName" />
+      <input
+        id="name"
+        v-model.trim="displayName"
+        type="name" />
     </div>
     <div>
       <label for="ps1">password: </label>
       <input
-        type="password"
         id="ps1"
         v-model.trim="psw"
-        placeholder="8자 이상 필수"
-      />
+        type="password"
+        placeholder="8자 이상 필수" />
     </div>
-    <p v-if="!formIsValid">입력 제대로 하셈.</p>
-    <input type="submit" value="회원가입" />
+    <p v-if="!formIsValid">
+      입력 제대로 하셈.
+    </p>
+    <input
+      type="submit"
+      value="회원가입" />
   </form>
 </template>
 
 <script>
-import Login from "./Login.vue";
+import Login from './Login.vue'
 export default {
   components: {
     Login,
   },
   data() {
     return {
-      email: "",
-      psw: "",
-      displayName: "",
+      email: '',
+      psw: '',
+      displayName: '',
       formIsValid: true,
-    };
+    }
   },
   methods: {
     async submitForm() {
-      this.formIsValid = true;
+      this.formIsValid = true
       if (
-        this.email === "" ||
-        !this.email.includes("@") ||
+        this.email === '' ||
+        !this.email.includes('@') ||
         this.psw.length < 6
       ) {
-        this.formIsValid = false;
-        return;
+        this.formIsValid = false
+        return
       }
 
       const actionPayload = {
         email: this.email,
         password: this.psw,
         displayName: this.displayName,
-      };
+      }
 
-      await this.$store.dispatch("auth/signup", actionPayload);
-      this.$router.push("/login");
+      await this.$store.dispatch('auth/signup', actionPayload)
+      this.$router.push('/login')
     },
   },
-};
+}
 </script>
 
 <style scoped>

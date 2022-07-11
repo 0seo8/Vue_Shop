@@ -14,8 +14,8 @@ export default {
   state() {
     return {
       products: [],
-      seletedProduct: [],
-      seletedProductPrice:'',
+      selectedProduct: [],
+      selectedPrice:'',
       searchProductList: [],
       PurchaseHistories: [],
     }
@@ -51,7 +51,7 @@ export default {
         method: 'GET',
         headers
       })
-        commit('setState', {seletedProduct: data, seletedProductPrice:data.price.toLocaleString('ko-KR')})
+        commit('setState', {selectedProduct: data, selectedPrice:data.price.toLocaleString('ko-KR')})
     },
     async requestPurchase(_, info) {
       const token = localStorage.getItem('token')
@@ -75,8 +75,13 @@ export default {
           Authorization: `Bearer ${token}`
         },
       })
-        console.log(data)
-        commit('setState', {PurchaseHistories: data})
+      const list = data.sort((a, b) => {
+        const aTime= new Date(a.timePaid).getTime()
+        const bTime= new Date(b.timePaid).getTime()
+    
+        return bTime - aTime
+      })
+        commit('setState', {PurchaseHistories: list})
     },
     async cancelOrder({dispatch}, id) {
       const token = localStorage.getItem('token')
