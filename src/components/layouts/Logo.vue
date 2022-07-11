@@ -1,21 +1,16 @@
 <template lang="">
-  <RouterLink
-    to="/"
-    class="logo">
-    <img
-      src="../../assets/Logo.png"
-      alt="Electron Mart" />
+  <RouterLink to="/" class="logo">
+    <img src="../../assets/Logo.png" alt="Electron Mart" />
   </RouterLink>
 </template>
 <script>
-export default {
-  
-}
+export default {};
 </script>
 <style lang="scss" scoped>
-@import '~/scss/variables.scss';
+@import "~/scss/main.scss";
 .logo {
-  font-family: 'GmarketSansMedium';
+  display: inline-block;
+  font-family: "GmarketSansMedium";
   font-size: 30px;
   color: #000;
   text-decoration: none;

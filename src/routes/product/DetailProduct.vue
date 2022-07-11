@@ -3,50 +3,61 @@
     <div class="product__box">
       <figure>
         <img
-          v-if="seletedProduct.thumbnail"
-          :src="seletedProduct.thumbnail"
-          :alt="`${seletedProduct.title} 이미지`" />  
+          v-if="selectedProduct.thumbnail"
+          :src="selectedProduct.thumbnail"
+          :alt="`${selectedProduct.title} 이미지`" />  
         <img
           v-else
-          src="/assets/no-Img"
-          alt="이미지 준비중" />  
+          src="../../assets/no-Img"
+          alt="이미지 준비중" />
       </figure>
 
       <div class="product__info">
-        <h2>{{ seletedProduct.title }}</h2>
-        <p class="desc">
-          {{ seletedProduct.description }}
-        </p>
+        <div class="tags">
+          <span
+            v-for="(tag, index) in tags"
+            :key="index"
+            class="tags__item">
+            # {{ tag }}
+          </span>
+        </div>
+
+        <div class="title">
+          <img
+            v-if="selectedProduct.isSoldOut"
+            class="soldout"
+            src="../../assets/solidout.svg" />
+          <h3>{{ selectedProduct.title }}</h3>
+        </div>
+
+
         <p class="price">
-          ₩ {{ seletedProductPrice }}
+          ₩ {{ selectedPrice }}
+        </p>
+
+        <p class="desc">
+          {{ selectedProduct.description }}
         </p>
 
         <div class="coupon">
-          <p>5만원 이상 주문 시 무료 배송!</p>
-          <p>10만원 이상 주문 시 10% 할인 쿠폰 증정!</p>            
+          <p>10만원 이상 주문 시 무료 배송!</p>
+          <p>20만원 이상 주문 시 10% 할인 쿠폰 증정!</p>            
         </div>
 
         <div class="shipping">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 0 24 24"
-            width="24px"
-            fill="#000000">
-            <path
-              d="M0 0h24v24H0V0z"
-              fill="none" />
-            <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5l1.96 2.5H17V9.5h2.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm2.22-3c-.55-.61-1.33-1-2.22-1s-1.67.39-2.22 1H3V6h12v9H8.22zM18 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" />
-          </svg>
+          <span class="material-symbols-outlined">
+            local_shipping
+          </span>
           <p>당일 출고!</p>
         </div>
 
-        <p class="kacbae">
+        <p>
           <strong class="strong">13:00시</strong> 이내 주문 완료 시, 오늘 출고됩니다.
         </p>
 
         <button
           :id="productId"
+          :disabled="selectedProduct.isSoldOut"
           type="button"
           class="btn btn-primary"
           @click="PurchaseThis">
@@ -62,10 +73,13 @@ import {mapState, mapActions} from 'vuex'
 
 export default {
   computed: {
-    ...mapState('product',['seletedProduct', 'seletedProductPrice']),
+    ...mapState('product',['selectedProduct', 'selectedPrice']),
     productId() {
       return this.$route.params.id
     },
+    tags() {
+      return this.selectedProduct.tags
+    }
   },
   mounted() {
     this.readProductDetail(this.productId)
@@ -84,59 +98,105 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  section {
+@import '~/scss/main.scss';
+
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; 
+  margin-top: 4rem;
+}
+.product{
+  &__box {
+    padding-top: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; 
-  }
-  .product{
-    &__box {
-      padding-top: 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      figure {
-        flex-shrink: 0;
-        width: 600px;
-        min-width: 300px;
-        border-radius: 10px;
-        overflow: hidden;
-        background-color: #fff;
-        padding: 10px;
-        text-align: center;
-        img {
-          width: 60%;
-          height: 60%;
-        }
+    max-width: 1200px;
+    flex-flow: wrap;
+    gap: 3rem;
+    figure {
+      position: relative;
+      flex-shrink: 0;
+      max-width: 600px;
+      min-width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #fff;
+      padding: 10px;
+      text-align: center;
+      flex-grow: 1;
+      img {
+        width: 300px;
       }
     }
-    &__info {
-      padding: 30px;
+  }
+  &__info {
+    padding: 30px;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    max-width: 600px;
+    flex-grow: 1;
+
+    .tags {
       display: flex;
-      flex: 1 1 auto;
-      flex-direction: column;
-      max-width: 700px;
-      h2 {
+      margin-bottom: 1rem;
+      &__item {
+          display: inline-block;
+          padding: 4px 5px;
+          border: 1px solid rgba(0,0,0,.7);
+          font-size: 12px;
+          line-height: 1.2;
+          margin-right: 8px;
+      }
+    }
+
+    .title {
+      position: relative;
+
+      //soldout 뱃지
+      .soldout {
+        position:absolute;
+        z-index:1;
+        left: -3.5rem;
+        top: -3rem;
+        max-width: 60px;     
+      }
+      h3 {
         margin-bottom: 1rem;
       }
-      p.desc {
+    }
+
+    p {
+      margin-bottom: 8px;
+      &.desc {
         line-height: 1.7;
+        margin-bottom: 1rem;
       }
-      p.price {
-        font-size: 22px;
-        font-weight: bold;
-      }
-      strong {
-        font-weight: 600;
-      }
-      .btn {
-        width: 30%;
-        padding: .5rem;
-        color: #fff;
-      }
+     &.price {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 1rem;
+     }
+    }
+    .coupon {
+      margin-bottom: 1rem;
+    }
+    .shipping {
+      display: flex;
+    }
+    strong {
+      font-weight: 600;
+    }
+    .btn {
+      width: 30%;
+      padding: .5rem;
+      color: #fff;
     }
   }
+}
 </style>
 
 

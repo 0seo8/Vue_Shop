@@ -1,5 +1,5 @@
 <template>
-  <TheHeader />
+  <TheHeader @theme="theme" />
   <div class="main__wrap">
     <RouterView />
     <TheFooter />
@@ -13,44 +13,30 @@ export default {
   components: {
     TheHeader,
     TheFooter
+  },
+  methods: {
+    theme() {
+      let body = document.querySelector('body')
+      body.classList.toggle('nightmode')
+    }
   }
-
 }
 </script>
 
-
 <style lang="scss">
-@import '~/scss/variables';
-
-.main__wrap {
-  padding-top:49px;
-}
+@import '~/scss/main';
 
 body {
-  font-family: 'GmarketSansMedium';
-  .swal2-title {
-    font-size: 1.5rem !important;
-    span {
-      color: $color-primary;
-    }
-  }
-  .swal2-html-container {
-    font-size: 1rem;
+  background-color: #fff;
+  color: #000;
+  transition: background-color 2s;
+  &.nightmode {
+    background-color: #000;
+    color: #fff;
   }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.main__wrap {
+  padding-top: 49px;
 }
-
-ol, ul, li {
-  margin:0;
-  padding: 0;
-}
-
-button {
-  border: 0;
-}
-  
 </style>

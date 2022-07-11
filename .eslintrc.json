@@ -10,7 +10,7 @@
   "rules": {
     "semi": ["error", "never"],
     "quotes": ["error", "single"],
-    "eol-last": ["error", "always"],
+    "eol-last": ["error", "always"], //빈줄 하나 허용
 
     "vue/html-closing-bracket-newline": ["error", {
       "singleline": "never",

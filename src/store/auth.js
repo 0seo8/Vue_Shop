@@ -1,16 +1,30 @@
+import axios from 'axios'
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
+
+const END_POINT =
+  'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth'
+
+const headers = {
+  'content-type': 'application/json',
+  apikey: VITE_API_KEY,
+  username: VITE_USERNAME
+}
+
 export default {
   namespaced: true,
   state() {
     return {
       user: {},
       token: null,
+      logined: null
     }
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload.user
       state.token = payload.token
-    },
+      state.logined = payload.logined
+    }
   },
   getters: {
     userId(state) {
@@ -21,7 +35,7 @@ export default {
     },
     isAuthenticated(state) {
       return !!state.token
-    },
+    }
   },
   actions: {
     async login(context, payload) {
@@ -32,12 +46,12 @@ export default {
           headers: {
             'content-type': 'application/json',
             apikey: 'FcKdtJs202204',
-            username: 'KDT2_TEAM5',
+            username: 'KDT2_TEAM5'
           },
           body: JSON.stringify({
             email: payload.email,
-            password: payload.password,
-          }),
+            password: payload.password
+          })
         }
       )
 
@@ -47,7 +61,7 @@ export default {
 
       context.commit('setUser', {
         user: dataForm.user,
-        token: dataForm.accessToken,
+        token: dataForm.accessToken
       })
     },
     async signup(context, payload) {
@@ -58,13 +72,13 @@ export default {
           headers: {
             'content-type': 'application/json',
             apikey: 'FcKdtJs202204',
-            username: 'KDT2_TEAM5',
+            username: 'KDT2_TEAM5'
           },
           body: JSON.stringify({
             email: payload.email,
             password: payload.password,
-            displayName: payload.displayName,
-          }),
+            displayName: payload.displayName
+          })
         }
       )
 
@@ -72,7 +86,7 @@ export default {
 
       context.commit('setUser', {
         user: dataForm.user,
-        token: dataForm.accessToken,
+        token: dataForm.accessToken
       })
     },
     async logOut() {
@@ -85,8 +99,8 @@ export default {
             'content-type': 'application/json',
             apikey: 'FcKdtJs202204',
             username: 'KDT2_TEAM5',
-            Authorization: `Bearer ${accessToken}`,
-          },
+            Authorization: `Bearer ${accessToken}`
+          }
         }
       )
       window.localStorage.clear()
@@ -101,17 +115,41 @@ export default {
             'content-type': 'application/json',
             apikey: 'FcKdtJs202204',
             username: 'KDT2_TEAM5',
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${accessToken}`
           },
           body: JSON.stringify({
             displayName: payload.displayName,
             oldPassword: payload.oldPassword,
-            newPassword: payload.newPassword,
-          }),
+            newPassword: payload.newPassword
+          })
         }
       )
       const dataForm = await res.json()
       window.localStorage.setItem('user', JSON.stringify(dataForm))
     },
-  },
+    findLocalStorageUser(context) {
+      const accessToken = window.localStorage.getItem('token')
+      if (accessToken == null) {
+        context.commit('setUser', {
+          logined: false
+        })
+      } else {
+        context.commit('setUser', {
+          logined: true
+        })
+      }
+    },
+    async authenticationCheck({ commit }) {
+      const accessToken = window.localStorage.getItem('token')
+      const { data } = await axios({
+        url: `${END_POINT}/me`,
+        method: 'POST',
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      commit('setUser', { user: data })
+    }
+  }
 }

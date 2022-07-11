@@ -10,9 +10,9 @@
         </div>
         <div class="info box">
           <img
-            :src="seletedProduct.thumbnail"
+            :src="selectedProduct.thumbnail"
             alt="상품사진" />
-          <p>{{ seletedProduct.title }}</p>  
+          <p>{{ selectedProduct.title }}</p>  
         </div>
       </div>
       <div>
@@ -20,7 +20,7 @@
           배송정보
         </div>
         <div class="info box">
-          {{ seletedProduct.price > 50000 ? "무료배송" : "2,500" }}
+          {{ selectedProduct.price > 100000 ? "무료배송" : "2,500" }}
         </div>
       </div>
       <div>
@@ -28,23 +28,25 @@
           상품금액
         </div>
         <div class="info box">
-          {{ seletedProductPrice }} 원
+          {{ selectedPrice }} 원
         </div>
       </div>
     </div>
 
     <div class="purchaseInfo">
       <div class="orderUserInfo">
-        <dl class="orderUserInfo__list">
+        <dl
+          v-if="user"
+          class="orderUserInfo__list">
           <dt>주문자정보</dt>
           <dd id="cName">
-            노영서
-          </dd>
-          <dd id="cPhone">
-            01047095291
+            {{ user.displayName }}
           </dd>
           <dd class="email">
-            <span id="buyerEmail">0seo8@naver.com</span><button
+            <span id="buyerEmail">{{ user.email }}</span>
+          </dd>
+          <dd>
+            <button
               type="button"
               class="buttonBasic buttonDefault02 sizeSS"
               onclick="orderShowLayer('userInfoModify');">
@@ -64,7 +66,7 @@
             v-model="selectAccountId"
             name="selectAccountId">
             <option
-              v-for="account in accounts"
+              v-for="account in currentAccounts.accounts"
               :key="account.id"
               :value="account.id">
               {{ account.bankName }}
@@ -165,26 +167,26 @@
           최종결제금액
         </h3>
         <div class="expected-payment">
-          <div><span>상품가격</span><span>{{ seletedProductPrice }}원</span></div>
+          <div><span>상품가격</span><span>{{ selectedPrice }}원</span></div>
           <div>
             <span>배송비</span>
-            <span v-if="seletedProduct.price < 50000">2,500 원</span>
+            <span v-if="selectedProduct.price < 100000">2,500 원</span>
             <span v-else>무료배송</span>
           </div>
         </div>
         <div class="expected-payment-all">
           <p>총결제금액</p>
-          <div v-if="seletedProduct.price < 50000">
-            {{ (seletedProduct.price + 2500).toLocaleString('ko-KR') }} 원
+          <div v-if="selectedProduct.price < 100000">
+            {{ (selectedProduct.price + 2500).toLocaleString('ko-KR') }} 원
           </div>
           <div v-else>
-            {{ seletedProductPrice }} 원
+            {{ selectedPrice }} 원
           </div>
         </div>        
         <button
           type="button"
           class="btn btn-primary"
-          @click="PayNow(seletedProduct.id, selectAccountId)">
+          @click="PayNow(selectedProduct.id, selectAccountId)">
           결제하기
         </button>
       </div>
@@ -198,21 +200,22 @@ export default {
   data() {
     return {
       selectAccountId: '',
-      accountBalance: '',
       ReadMore: false,
       ReadMoreText: false,
       check: {
         check1: false,
         check2: false,
-      }
+      },
+      selectAccount: ''
     }
   },
   computed: {
-    ...mapState('user', ['accounts']),
-    ...mapState('product', ['seletedProduct', 'seletedProductPrice']),
-    selectAccount() {
-      return this.accounts.find(account => account.id === this.selectAccountId)
-      },
+    ...mapState('account', ['currentAccounts']),
+    ...mapState('product', ['selectedProduct', 'selectedPrice']),
+        ...mapState('auth',['user']),
+    // selectAccount() {
+    //   return this.currentAccounts.accounts.filter(account => account.id === this.selectAccountId)
+    // },
     checkAll: {
       get() {
         if(this.check.check1 && this.check.check2) {
@@ -230,20 +233,25 @@ export default {
           this.check.check2 = false          
         }
       }
-    }  
+     }  
     },
     watch: {
-      selectAccount(value) {
-        this.accountBalance = value.balance
-      },
+    selectAccountId(value){
+      this.selectAccount = this.currentAccounts.accounts.find(account => account.id === value).balance
+    }
+  },
+    created() {
+      this.getCurrentAccounts()
+      this.authenticationCheck()
     },
     methods: {
+      ...mapActions('account', ['getCurrentAccounts']),
       ...mapActions('product', ['requestPurchase']),
+      ...mapActions('auth', ['authenticationCheck']),
       PayNow(productId, accountId) {
         if(this.selectAccountId === '') {
           confirm('결제 계좌가 선택되지 않았습니다')
-          console.log('결제 계좌가 선택되지 않았습니다')
-        } else if (Number(this.accountBalance) < Number(this.seletedProduct.price)){
+        } else if (this.selectAccount < this.selectedProduct.price){
           confirm('계좌 잔액이 부족합니다')
         } else if(!(this.check.check1 && this.check.check2)){
           confirm('체크박스를 확인해주세요')
@@ -290,7 +298,7 @@ export default {
     height: 200px;
     border-bottom: 1px solid #ccc;
     img {
-      width:30%;
+      width:20%;
       max-height: 200px; 
     }
   }

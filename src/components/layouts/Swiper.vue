@@ -33,19 +33,19 @@ export default defineComponent({
     Slide,
     Pagination,
   },
-  data(){
+  data() {
     return {
       settings: {
         itemsToshow: 1,
-        snapAlign: 'center',        
-      }
+        snapAlign: 'center',
+      },
     }
-  }
+  },
 })
 </script>
 
 <style scoped lang="scss">
-
+@import "~/scss/main.scss";
 .temp {
   width: 100vw;
   height: 650px;
@@ -55,9 +55,10 @@ export default defineComponent({
   border: 1px solid red;
 }
 
-ul,ol,li {
+ul,
+ol,
+li {
   margin: 0;
   padding: 0;
 }
-
 </style>

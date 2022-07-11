@@ -5,35 +5,41 @@
       <div class="profile-info">
         <p>이메일 : {{ userInfo.email }}</p>
         <p>이름 : {{ userInfo.displayName }}</p>
-        <button @click="logOut()" class="btn btn-primary logout-btn">
+        <button class="btn btn-primary logout-btn" @click="logOut()">
           로그아웃!
         </button>
-        <button class="btn btn-primary modify-btn" @click="pushProfileChange()">
+        <button
+          class="btn btn-primary modify-btn"
+          @click="$router.push('/profilechange')"
+        >
           회원 정보 수정
+        </button>
+        <button class="btn btn-primary" @click="$router.push('/orderlist')">
+          거래내역
         </button>
       </div>
     </div>
 
     <div class="account">
-      <div v-if="this.handleAccount" class="current-account-list">
+      <div v-if="handleAccount" class="current-account-list">
         <h2 class="account-title">현재 계좌 목록</h2>
         <div
-          class="current-account"
           v-for="currentAccount in currentAccounts.accounts"
           :key="currentAccount.id"
+          class="current-account"
         >
           {{ currentAccount.bankName }} / 잔액 :
           {{ currentAccount.balance.toLocaleString("ko-KR") }}원 /
           <button
-            v-on:click="disConnectAccount(currentAccount.id)"
             class="btn btn-primary"
+            @click="disConnectAccount(currentAccount.id)"
           >
             연결해제
           </button>
         </div>
         <button
-          @click="toogleHandleAccount()"
           class="btn btn-primary connect-btn"
+          @click="toogleHandleAccount()"
         >
           계좌 연결하기
         </button>
@@ -54,7 +60,7 @@
           <button
             v-else
             class="account-disabled-false btn btn-primary"
-            v-on:click="
+            @click="
               connectAccount(
                 account.code,
                 account.digits.reduce((a, b) => a + b)
@@ -65,8 +71,8 @@
           </button>
         </div>
         <button
-          @click="toogleHandleAccount()"
           class="btn btn-primary connect-btn"
+          @click="toogleHandleAccount()"
         >
           나가기
         </button>
@@ -119,6 +125,7 @@ export default {
     },
     async logOut() {
       await this.$store.dispatch("auth/logOut");
+      await this.$store.dispatch("auth/findLocalStorageUser");
       this.$router.push("/login");
     },
   },
@@ -128,7 +135,6 @@ export default {
 <style>
 .my-page-top {
   display: flex;
-  /* height: 50%; */
   border: 1px solid black;
 }
 .profile {
@@ -149,7 +155,7 @@ export default {
 .profile-info {
   width: 50%;
   text-align: center;
-  padding-top: 25%;
+  padding-top: 50px;
 }
 
 .logout-btn {
@@ -161,6 +167,7 @@ export default {
 .modify-btn {
   display: block;
   margin: auto;
+  margin-bottom: 1rem;
 }
 .account {
   width: 40%;

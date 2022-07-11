@@ -1,64 +1,98 @@
 <template>
   <div class="header">
     <h1>
-      <RouterLink to="/">
-        Eletron Market
-      </RouterLink>
+      <RouterLink to="/"> Eletron Market </RouterLink>
     </h1>
     <ul class="nav nav-pills category__list">
-      <li
-        v-for="nav in navigations"
-        :key="nav.name"
-        class="cotegory__item">
+      <li v-for="nav in navigations" :key="nav.name" class="cotegory__item">
         <RouterLink
           :to="{
             name: 'product',
             params: { category: nav.name },
           }"
-          class="nav-link">
+          class="nav-link"
+        >
           <span>{{ nav.name }}</span>
         </RouterLink>
       </li>
     </ul>
     <div class="button__list">
-      <span class="material-symbols-outlined"> light_mode </span>
+      <ul
+        class="darkmode"
+        @click="theme">
+        <li    
+          v-if="!nightmode"      
+          class="material-symbols-outlined">
+          light_mode
+        </li>
+        <li
+          v-else
+          class="material-symbols-outlined">
+          dark_mode
+        </li>
+      </ul>
       <input
         v-model="searchText"
         class="form-control"
         placeholder="검색"
-        @keydown.enter="searchProduct" />
+        @focus="$router.push({name: 'search'})"
+      />
       <span
+        v-if="logined"
         class="material-symbols-outlined"
-        @click="$router.push('/userpage')">
+        @click="$router.push('/mypage')"
+      >
         person_outline
       </span>
+      <button
+        v-else
+        class="btn btn-primary login"
+        @click="$router.push('/login')"
+      >
+        로그인
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
+  emits: ['theme'],
   data() {
     return {
-      navigations: [{ name: '생활가전' }, { name: '계절가전' }],
+      navigations: [{ name: '생활가전' }, { name: '계절가전' }, {name: '디지털'}],
       searchText: '',
+      nightmode: false
     }
   },
-  
-  methods: {
-    searchProduct() {
-      this.$router.push({
-        name: 'search',
-        params: { searchText: this.searchText },
-      })
-      this.searchText = ''
+  watch: {
+    searchText(value) {
+      this.searchProducts({'searchText': value.trim()});
     },
   },
-}
+
+  methods: {
+    ...mapActions('product', ['searchProducts']),
+   theme() {
+      this.nightmode = !this.nightmode
+      this.$emit('theme')
+    }    
+  },
+  computed: {
+    logined: function () {
+      return this.$store.state.auth.logined;
+    },
+  },
+  created() {
+    this.$store.dispatch("auth/findLocalStorageUser");
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/variables.scss";
+@import "~/scss/main.scss";
 .header {
   position: fixed;
   z-index: 10;
@@ -78,7 +112,7 @@ export default {
     flex-shrink: 0;
     margin: 0;
     padding: 0;
-    
+    color: $primary;
     a {
       font-weight: 700;
       font-size: 20px;
@@ -128,5 +162,21 @@ export default {
       cursor: pointer;
     }
   }
+  .login {
+    height: 30px;
+    width: 80px;
+    font-size: 12px;
+  }
 }
+
+.darkmode {
+  position: relative;
+  display: block;
+  height: 24px;
+  width: 24px;
+  li {
+    position: absolute;
+  }
+}
+
 </style>

@@ -1,26 +1,72 @@
 <template>
   <section class="container">
-    <h2>거래 내역</h2>
-    <div v-if="!PurchaseHistories.length">
-      구매 신청 내역이 없습니다.
-    </div>
-    <div
-      v-else
-      class="card">
-      <div class="row head">
-        <div
-          v-for="(head, index) in headers"
-          :key="index">
-          {{ head }}
+    <h3>주문목록</h3>
+    <div class="container main">
+      <div class="btn__wrap">
+        <div class="btn__list">
+          <div
+            class="btn__item"
+            :style="{color: state==='all'?'#F79698':''}"
+            @click="currentState('all')">
+            All
+          </div>
+          <div
+            class="btn__item"
+            :style="{color: state==='confirm'?'#F79698':''}"
+            @click="currentState('confirm')">
+            구매 확정 내역
+          </div>
+          <div
+            class="btn__item"
+            :style="{color: state==='cancel'?'#F79698':''}"
+            @click="currentState('cancel')">
+            구매 취소 내역
+          </div>
         </div>
-      </div>  
-      <PurchaseItem
-        v-for="purchase in PurchaseHistories"
-        :key="purchase.detailId"
-        :purchase="purchase" 
-        class="row"
-        @cancel="cancel"
-        @confirm="confirm" />
+      </div>
+
+      <div v-if="!PurchaseHistories.length">
+        구매 신청 내역이 없습니다.
+      </div>
+      <div v-if="state==='cancel'">
+        <PurchaseItem
+          v-for="purchase in PurchaseHistories.filter(purchase=>purchase.isCanceled).slice(0, page)"
+          :key="purchase.detailId"
+          :purchase="purchase" 
+          @cancel="cancel"
+          @confirm="confirm" />
+      </div>
+
+      <div v-else-if="state==='confirm'">
+        <PurchaseItem
+          v-for="purchase in PurchaseHistories.filter(purchase=>purchase.done).slice(0, page)"
+          :key="purchase.detailId"
+          :purchase="purchase" 
+          @cancel="cancel"
+          @confirm="confirm" />
+      </div>
+
+      <div v-else>
+        <PurchaseItem
+          v-for="purchase in PurchaseHistories.slice(0, page)"
+          :key="purchase.detailId"
+          :purchase="purchase" 
+          :page="page"
+          @cancel="cancel"
+          @confirm="confirm" />
+      </div>
+
+      <div class="bottom">
+        <p v-if="page>=PurchaseHistories.length">
+          더이상의 구매내역이 없습니다.
+        </p>
+        <button
+          :disabled="page>=PurchaseHistories.length"
+          class="btn__item"
+          @click="page=page+3">
+          더보기
+        </button>
+      </div>
     </div>
   </section>
 </template>
@@ -28,63 +74,97 @@
 <script>
 import {mapState, mapActions, mapGetters } from 'vuex'
 import PurchaseItem from '~/components/product/PurchaseItem.vue'
+
 export default {
-  components: {
-    PurchaseItem
-  },
-  data() {
-    return {
-      headers: ['주문일자', '상품명', '상품가격', '상세보기',  '구매확정', '구매취소']
-    }
-  },
-  computed: {
-    ...mapState('product',['PurchaseHistories']),
-    ...mapState('user',['user']),
-    ...mapGetters('product',['getPurchasedProductId']),
-  },
-  created() {
-    this.readPurchaseAllHistory()
-  },
-  methods: {
-    ... mapActions('product', ['readPurchaseAllHistory', 'confirmPurchase', 'cancelOrder']),
-    cancel(e) {
-      this.cancelOrder(e)
+    components: { PurchaseItem },
+    data() {
+      return {
+        state: 'all',
+        page: 4
+      }
     },
-    confirm(e) {
-      this.confirmPurchase(e)
-    }
-  },
+    computed: {
+      ...mapState('product', ['PurchaseHistories']),
+      ...mapGetters('product', ['getPurchasedProductId']),
+    },
+     watch: {
+      page(value) {
+        console.log('page',value)
+      }
+    },
+    created() {
+        this.readPurchaseAllHistory()
+    },
+    methods: {
+      ...mapActions('product', ['readPurchaseAllHistory', 'confirmPurchase', 'cancelOrder']),
+      cancel(e) {
+        this.cancelOrder(e)
+      },
+      confirm(e) {
+        this.confirmPurchase(e)
+      },
+      currentState(e) {
+        this.state = e
+        this.page=4
+      }
+    },
+
 }
 </script>
 
 <style lang="scss" scoped>
-  section {
-    padding-top: 2rem;
-    h2 {
-      padding: 1rem;     
-    }
-  }
 
-  .card{
-    box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
-    overflow: hidden;
-    overflow-y: auto;
-    max-height: 55vh;
-  .row {
-    display: grid;
-    grid-template-columns: repeat(2, 1.5fr) repeat(4, 1fr);
-    text-align: center;
-    justify-content: center;
-    &.head {
-      font-weight: bold;
-      padding: 1rem 0;
-      border-bottom: 1px solid #ccc;
-      box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
-    }
-    &:nth-child(2) {
-      margin-top: 1rem;
-    }
-  }
+section {
+  margin-top: 3rem;
+  text-align: center;
+}
+.main {
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px, rgb(0 0 0 / 16%) 0px 0px 1px 0px;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 20px;
+    padding: 24px 24px 16px;
 }
 
+.btn {
+  &__wrap {
+    display: flex;
+    flex-direction: row;    
+  }
+  &__list {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    min-width: 72px;
+    height: 26px;
+    border-radius: 13px;
+    border: 1px solid rgb(196, 205, 213);
+    background-color: rgb(255, 255, 255);
+    color: rgb(69, 79, 91);
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 5px;
+    line-height: 1;
+    cursor: pointer;
+  }
+}
+  .bottom {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    margin-top: 1rem;
+    align-items: center;
+    p {
+      margin-bottom: 1rem;
+    }
+}
 </style>
