@@ -1,60 +1,71 @@
 <template>
   <div class="my-page-top">
     <div class="profile">
-      <div class="profile-image">프로필사진 : {{ userInfo.profileimg }}</div>
+      <div class="profile-image">
+        프로필사진 : {{ userInfo.profileimg }}
+      </div>
       <div class="profile-info">
         <p>이메일 : {{ userInfo.email }}</p>
         <p>이름 : {{ userInfo.displayName }}</p>
-        <button class="btn btn-primary logout-btn" @click="logOut()">
+        <button
+          class="btn btn-primary logout-btn"
+          @click="logOut()">
           로그아웃!
         </button>
         <button
           class="btn btn-primary modify-btn"
-          @click="$router.push('/profilechange')"
-        >
+          @click="$router.push('/profilechange')">
           회원 정보 수정
         </button>
-        <button class="btn btn-primary" @click="$router.push('/orderlist')">
+        <button
+          class="btn btn-primary"
+          @click="$router.push('/orderlist')">
           거래내역
         </button>
       </div>
     </div>
 
     <div class="account">
-      <div v-if="handleAccount" class="current-account-list">
-        <h2 class="account-title">현재 계좌 목록</h2>
+      <div
+        v-if="handleAccount"
+        class="current-account-list">
+        <h2 class="account-title">
+          현재 계좌 목록
+        </h2>
         <div
           v-for="currentAccount in currentAccounts.accounts"
           :key="currentAccount.id"
-          class="current-account"
-        >
+          class="current-account">
           {{ currentAccount.bankName }} / 잔액 :
           {{ currentAccount.balance.toLocaleString("ko-KR") }}원 /
           <button
             class="btn btn-primary"
-            @click="disConnectAccount(currentAccount.id)"
-          >
+            @click="disConnectAccount(currentAccount.id)">
             연결해제
           </button>
         </div>
         <button
           class="btn btn-primary connect-btn"
-          @click="toogleHandleAccount()"
-        >
+          @click="toogleHandleAccount()">
           계좌 연결하기
         </button>
       </div>
 
-      <div v-else class="all-account-list">
-        <h2 class="account-title">모든 계좌 목록</h2>
+      <div
+        v-else
+        class="all-account-list">
+        <h2 class="account-title">
+          모든 계좌 목록
+        </h2>
 
         <div
           v-for="account in allAccount"
           :key="account.name"
-          class="all-account"
-        >
+          class="all-account">
           {{ account.name }}
-          <span v-if="account.disabled" class="account-disabled-true">
+          <span
+            v-if="account.disabled"
+            class="account-disabled-true">
             연결완료
           </span>
           <button
@@ -65,15 +76,13 @@
                 account.code,
                 account.digits.reduce((a, b) => a + b)
               )
-            "
-          >
+            ">
             연결하기
           </button>
         </div>
         <button
           class="btn btn-primary connect-btn"
-          @click="toogleHandleAccount()"
-        >
+          @click="toogleHandleAccount()">
           나가기
         </button>
       </div>
@@ -86,50 +95,50 @@ export default {
   data() {
     return {
       handleAccount: true,
-    };
+    }
   },
   computed: {
     userInfo: function () {
-      return JSON.parse(window.localStorage.getItem("user"));
+      return JSON.parse(window.localStorage.getItem('user'))
     },
     allAccount: function () {
-      return this.$store.state.account.allAccount;
+      return this.$store.state.account.allAccount
     },
     currentAccounts: function () {
-      return this.$store.state.account.currentAccounts;
+      return this.$store.state.account.currentAccounts
     },
   },
   created() {
-    this.$store.dispatch("account/getAllAccount");
-    this.$store.dispatch("account/getCurrentAccounts");
+    this.$store.dispatch('account/getAllAccount')
+    this.$store.dispatch('account/getCurrentAccounts')
   },
   methods: {
     toogleHandleAccount() {
-      this.handleAccount = !this.handleAccount;
+      this.handleAccount = !this.handleAccount
     },
     pushProfileChange() {
-      this.$router.push("/profilechange");
+      this.$router.push('/profilechange')
     },
     async connectAccount(bankCode, accountNumber) {
-      await this.$store.dispatch("account/connectAccount", {
+      await this.$store.dispatch('account/connectAccount', {
         bankCode,
         accountNumber,
-      });
-      await this.$store.dispatch("account/getAllAccount");
-      await this.$store.dispatch("account/getCurrentAccounts");
+      })
+      await this.$store.dispatch('account/getAllAccount')
+      await this.$store.dispatch('account/getCurrentAccounts')
     },
     async disConnectAccount(accountId) {
-      await this.$store.dispatch("account/disConnectAccount", accountId);
-      await this.$store.dispatch("account/getAllAccount");
-      await this.$store.dispatch("account/getCurrentAccounts");
+      await this.$store.dispatch('account/disConnectAccount', accountId)
+      await this.$store.dispatch('account/getAllAccount')
+      await this.$store.dispatch('account/getCurrentAccounts')
     },
     async logOut() {
-      await this.$store.dispatch("auth/logOut");
-      await this.$store.dispatch("auth/findLocalStorageUser");
-      this.$router.push("/login");
+      await this.$store.dispatch('auth/logOut')
+      await this.$store.dispatch('auth/findLocalStorageUser')
+      this.$router.push('/login')
     },
   },
-};
+}
 </script>
 
 <style>

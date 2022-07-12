@@ -5,7 +5,8 @@
       :wrap-around="true">
       <Slide
         v-for="slide in 3"
-        :key="slide">
+        :key="slide"
+        class="slide">
         <div class="carousel__item">
           <div class="temp">
             {{ slide }}
@@ -61,4 +62,11 @@ li {
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 1024px) {
+  .temp {
+    height: 220px;
+  }
+}
+ 
 </style>
