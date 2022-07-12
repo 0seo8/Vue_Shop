@@ -50,8 +50,8 @@ export default {
           },
           body: JSON.stringify({
             email: payload.email,
-            password: payload.password,
-          }),
+            password: payload.password
+          })
         }
       )
 
@@ -77,8 +77,8 @@ export default {
           body: JSON.stringify({
             email: payload.email,
             password: payload.password,
-            displayName: payload.displayName,
-          }),
+            displayName: payload.displayName
+          })
         }
       )
 
@@ -120,8 +120,8 @@ export default {
           body: JSON.stringify({
             displayName: payload.displayName,
             oldPassword: payload.oldPassword,
-            newPassword: payload.newPassword,
-          }),
+            newPassword: payload.newPassword
+          })
         }
       )
       const dataForm = await res.json()
@@ -139,18 +139,17 @@ export default {
         })
       }
     },
-    async authenticationCheck({commit}) {
+    async authenticationCheck({ commit }) {
       const accessToken = window.localStorage.getItem('token')
-      const {data} = await axios({
+      const { data } = await axios({
         url: `${END_POINT}/me`,
         method: 'POST',
         headers: {
           ...headers,
           Authorization: `Bearer ${accessToken}`
-        },
+        }
       })
-      commit('setUser', {user:data})
-      console.log(data)
+      commit('setUser', { user: data })
     }
-  },
+  }
 }

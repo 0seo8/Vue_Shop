@@ -1,6 +1,5 @@
 <template lang="">
-  <section
-    class="content-main">
+  <section class="content-main">
     <div class="content-header">
       <h2 class="content title">
         제품 수정
@@ -28,8 +27,7 @@
                 placeholder="제품명을 입력하세요!"
                 class="form-control" />
             </div>
-            <div
-              class="input-radio">
+            <div class="input-radio">
               <div class="form-check">
                 <input
                   id="false"
@@ -40,9 +38,7 @@
                   name="isSoldOut" />
                 <label
                   class="form-check-label"
-                  for="false">
-                  판매가능
-                </label>
+                  for="false"> 판매가능 </label>
               </div>
               <div class="form-check">
                 <input
@@ -54,16 +50,18 @@
                   name="isSoldOut" />
                 <label
                   class="form-check-label"
-                  for="true">
-                  상품매진
-                </label>
+                  for="true"> 상품매진 </label>
               </div>
               <div class="check-soldout">
-                <div v-if="isSoldOut === 'Sold Out' ">
-                  <span class="badge rounded-pill alert-danger">{{ isSoldOut }}</span>
+                <div v-if="isSoldOut === 'Sold Out'">
+                  <span class="badge rounded-pill alert-danger">{{
+                    isSoldOut
+                  }}</span>
                 </div>
                 <div v-else>
-                  <span class="badge rounded-pill alert-success">{{ isSoldOut }}</span> 
+                  <span class="badge rounded-pill alert-success">{{
+                    isSoldOut
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -109,8 +107,7 @@
               </div>
             </div>
           </div>
-          <button
-            class="btn btn-outline-primary">
+          <button class="btn btn-outline-primary">
             제품 수정하기
           </button>
         </form>
@@ -163,46 +160,47 @@ export default {
   },
   computed: {
     chanageSoldOut() {
-      return this.isSoldOut === 'In Sale' ? false : true 
+      return this.isSoldOut === 'In Sale' ? false : true
     }
   },
   methods: {
     async EditProduct() {
       try {
         const res = await axios({
-        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${this.productId}`,
-        headers: {
-        'content-type': 'application/json',
-        apikey: VITE_API_KEY,
-        username: VITE_USERNAME,
-        masterKey: true
-        },
-        method: 'PUT',
-        data: {
-          title: this.title,
-          price: this.price,
-          description: this.description,
-          tags: this.tags ? this.tags.split(',') : [],
-          thumbnailBase64: (/(\.gif|\.jpg|\.jpeg|\.webp)$/i.test(this.thumbnailBase64)) && '',
-          isSoldOut: this.chanageSoldOut
-        }
-      })
-      console.log(res)
-      this.$swal({
-        title:`${this.title} 제품이 수정 되었습니다!`, 
-        text: this.description, 
-        icon: 'success', imageUrl: this.thumbnailBase64, 
-        imageWidth: 100, 
-        imageHeight: 100, 
-        width: 500, 
-        confirmButtonColor: '#f2555a',
-        willClose: () => {
-          this.$router.push({
-            name: 'AdminProductList'
-          })
-        }
-      })
-      } catch(error) {
+          url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${this.productId}`,
+          headers: {
+            'content-type': 'application/json',
+            apikey: VITE_API_KEY,
+            username: VITE_USERNAME,
+            masterKey: true
+          },
+          method: 'PUT',
+          data: {
+            title: this.title,
+            price: this.price,
+            description: this.description,
+            tags: this.tags ? this.tags.split(',') : [],
+            thumbnailBase64:
+              /(\.gif|\.jpg|\.jpeg|\.webp)$/i.test(this.thumbnailBase64) && '',
+            isSoldOut: this.chanageSoldOut
+          }
+        })
+        console.log(res)
+        this.$swal({
+          title: `<span>${this.title}</span>
+        제품이 수정 되었습니다!`,
+          text: this.description,
+          icon: 'success',
+          imageUrl: this.thumbnailBase64,
+          width: 500,
+          confirmButtonColor: '#f2555a',
+          willClose: () => {
+            this.$router.push({
+              name: 'AdminProductList'
+            })
+          }
+        })
+      } catch (error) {
         console.log(error)
       }
     },
@@ -218,20 +216,20 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~/scss/main';
-  .content-main {
-    font-size: 12px;
-    max-width: 720px;
-    padding: 30px 3%;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-    .content-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 30px;
-    }
-    form {
+.content-main {
+  font-size: 12px;
+  max-width: 720px;
+  padding: 30px 3%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  .content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  form {
     display: block;
     margin-top: 0em;
     .title-soldout {
@@ -253,17 +251,17 @@ export default {
     .card {
       position: relative;
     }
-    .form-control[type=file] {
-    overflow: hidden;
+    .form-control[type='file'] {
+      overflow: hidden;
     }
     .form-control {
-    display: block;
-    width: 100%;
-    padding: 0.2rem;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: $font-navy;
+      display: block;
+      width: 100%;
+      padding: 0.2rem;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: $font-navy;
     }
     .title-soldout {
       .input-radio {
@@ -283,10 +281,10 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: 1px solid rgba(222,226,230,.7);
+      border: 1px solid rgba(222, 226, 230, 0.7);
       padding: 0.5rem 1rem;
       border-radius: 6px;
-      
+
       .image-preview {
         margin: 0 auto;
         width: 100px;

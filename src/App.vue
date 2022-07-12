@@ -12,13 +12,13 @@ import TheFooter from '~/components/layouts/TheFooter.vue'
 export default {
   components: {
     TheHeader,
-    TheFooter,
+    TheFooter
   },
   methods: {
-   theme() {
+    theme() {
       let body = document.querySelector('body')
       body.classList.toggle('nightmode')
-    }  
+    }
   }
 }
 </script>
@@ -31,8 +31,8 @@ body {
   color: #000;
   transition: background-color 2s;
   &.nightmode {
-  background-color: #000;
-  color: #fff;    
+    background-color: #000;
+    color: #fff;
   }
 }
 
