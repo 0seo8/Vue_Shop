@@ -5,6 +5,9 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  :hover {
+    color: #f2555a;
+  }
 }
 
 ol,
@@ -22,3 +25,10 @@ button {
 p {
   margin: 0;
 }
+
+
+.btn-primary {
+  color: #fff;
+  background-color: #f2555a;
+  border-color: #f2555a;
+} 
