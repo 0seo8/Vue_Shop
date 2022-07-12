@@ -23,11 +23,11 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      component: Home
+      component: Home,
     },
     {
       path: '/login',
-      component: Login
+      component: Login,
     },
     {
       path: '/mypage',
@@ -36,11 +36,12 @@ export default createRouter({
     },
     {
       path: '/signup',
-      component: Signup
+      component: Signup,
     },
     {
       path: '/profilechange',
-      component: ProfileChange
+      component: ProfileChange,
+      meta: { auth: true },
     },
     {
       path: '/category/:category',
@@ -55,16 +56,18 @@ export default createRouter({
     },
     {
       path: '/purchase',
-      component: OrderForm
+      component: OrderForm,
+      // meta: { auth: true },
     },
     {
       path: '/orderlist',
-      component: OrderList
+      component: OrderList,
+      // meta: { auth: true },
     },
     {
       path: '/search',
       name: 'search',
-      component: SearchProduct
+      component: SearchProduct,
     },
     // admin 페이지
     {
@@ -74,18 +77,18 @@ export default createRouter({
     },
     {
       path: '/admin/add-product',
-      component: AddProduct
+      component: AddProduct,
     },
     {
       name: 'AdminProductList',
       path: '/admin/product-list',
-      component: AdminProductList
+      component: AdminProductList,
     },
     {
       name: 'EditProduct',
       path: '/admin/edit-product/:id',
       component: EditProduct,
-      props: true
+      props: true,
     },
     {
       path: '/amdmin/transaction-detail'

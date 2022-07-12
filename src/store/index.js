@@ -9,6 +9,6 @@ export default createStore({
     admin,
     product,
     account,
-    auth
-  }
+    auth,
+  },
 })

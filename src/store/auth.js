@@ -17,13 +17,19 @@ export default {
       user: {},
       token: null,
       logined: null,
+      findAdmin: null,
     }
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload.user
       state.token = payload.token
-      state.logined = payload.logined
+    },
+    setLogined(state, payload) {
+      state.logined = payload
+    },
+    findAdmin(state, payload) {
+      state.findAdmin = payload
     },
   },
   getters: {
@@ -57,8 +63,6 @@ export default {
 
       const dataForm = await response.json()
       window.localStorage.setItem('token', dataForm.accessToken)
-      window.localStorage.setItem('user', JSON.stringify(dataForm.user))
-
       context.commit('setUser', {
         user: dataForm.user,
         token: dataForm.accessToken,
@@ -77,8 +81,8 @@ export default {
           body: JSON.stringify({
             email: payload.email,
             password: payload.password,
-            displayName: payload.displayName
-          })
+            displayName: payload.displayName,
+          }),
         }
       )
 
@@ -120,23 +124,18 @@ export default {
           body: JSON.stringify({
             displayName: payload.displayName,
             oldPassword: payload.oldPassword,
-            newPassword: payload.newPassword
-          })
+            newPassword: payload.newPassword,
+          }),
         }
       )
       const dataForm = await res.json()
-      window.localStorage.setItem('user', JSON.stringify(dataForm))
     },
     findLocalStorageUser(context) {
       const accessToken = window.localStorage.getItem('token')
       if (accessToken == null) {
-        context.commit('setUser', {
-          logined: false,
-        })
+        context.commit('setLogined', false)
       } else {
-        context.commit('setUser', {
-          logined: true,
-        })
+        context.commit('setLogined', true)
       }
     },
     async authenticationCheck({ commit }) {
@@ -146,10 +145,29 @@ export default {
         method: 'POST',
         headers: {
           ...headers,
-          Authorization: `Bearer ${accessToken}`
-        }
+          Authorization: `Bearer ${accessToken}`,
+        },
       })
       commit('setUser', { user: data })
-    }
-  }
+    },
+    async findAdmin({ commit }) {
+      const accessToken = window.localStorage.getItem('token')
+      if (accessToken) {
+        const { data } = await axios({
+          url: `${END_POINT}/me`,
+          method: 'POST',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        commit('findAdmin', data.email.includes('admin'))
+      } else {
+        return
+      }
+    },
+    deleteAdminInfo(context) {
+      context.commit('findAdmin', false)
+    },
+  },
 }

@@ -19,7 +19,7 @@
           <img
             :src="selectedProduct.thumbnail"
             alt="상품사진" />
-          <p>{{ selectedProduct.title }}</p>  
+          <p>{{ selectedProduct.title }}</p>
         </div>
       </div>
       <div>
@@ -90,8 +90,7 @@
                     v-model="checkAll"
                     type="checkbox"
                     name="checkAll" />
-                  <label
-                    for="checkAll">
+                  <label for="checkAll">
                     <em>전체동의</em>
                     <span class="text">만 14세 이상만 구매가능합니다.</span>
                   </label>
@@ -104,7 +103,7 @@
                   <input
                     id="check1"
                     v-model="check.check1"
-                    type="checkbox" 
+                    type="checkbox"
                     name="check1" />
                   <label for="check1"><em>필수</em> 개인정보 수집 및 이용동의</label>
                 </div>
@@ -156,7 +155,9 @@
           최종결제금액
         </h3>
         <div class="expected-payment">
-          <div><span>상품가격</span><span>{{ selectedPrice }}원</span></div>
+          <div>
+            <span>상품가격</span><span>{{ selectedPrice }}원</span>
+          </div>
           <div>
             <span>배송비</span>
             <span v-if="selectedProduct.price < 100000">2,500 원</span>
@@ -166,12 +167,12 @@
         <div class="expected-payment-all">
           <p>총결제금액</p>
           <div v-if="selectedProduct.price < 100000">
-            {{ (selectedProduct.price + 2500).toLocaleString('ko-KR') }} 원
+            {{ (selectedProduct.price + 2500).toLocaleString("ko-KR") }} 원
           </div>
           <div v-else>
             {{ selectedPrice }} 원
           </div>
-        </div>        
+        </div>
         <button
           type="button"
           class="btn btn-primary"
@@ -184,7 +185,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -195,66 +196,72 @@ export default {
         check1: false,
         check2: false,
       },
-      selectAccount: ''
+      selectAccount: '',
     }
   },
   computed: {
     ...mapState('account', ['currentAccounts']),
     ...mapState('product', ['selectedProduct', 'selectedPrice']),
-        ...mapState('auth',['user']),
+    ...mapState('auth', ['user']),
     // selectAccount() {
     //   return this.currentAccounts.accounts.filter(account => account.id === this.selectAccountId)
     // },
     checkAll: {
       get() {
-        if(this.check.check1 && this.check.check2) {
+        if (this.check.check1 && this.check.check2) {
           return true
         } else {
           return false
         }
       },
       set(e) {
-        if(e === true) {
+        if (e === true) {
           this.check.check1 = true
           this.check.check2 = true
         } else {
           this.check.check1 = false
-          this.check.check2 = false          
-        }
-      }
-     }  
-    },
-    watch: {
-    selectAccountId(value){
-      this.selectAccount = this.currentAccounts.accounts.find(account => account.id === value).balance
-    }
-  },
-    created() {
-      this.getCurrentAccounts()
-      this.authenticationCheck()
-    },
-    methods: {
-      ...mapActions('account', ['getCurrentAccounts']),
-      ...mapActions('product', ['requestPurchase']),
-      ...mapActions('auth', ['authenticationCheck']),
-      PayNow(productId, accountId) {
-        if(this.selectAccountId === '') {
-          confirm('결제 계좌가 선택되지 않았습니다')
-        } else if (this.selectAccount < this.selectedProduct.price){
-          confirm('계좌 잔액이 부족합니다')
-        } else if(!(this.check.check1 && this.check.check2)){
-          confirm('체크박스를 확인해주세요')
-        } else {
-          const data = {productId, accountId}
-          this.requestPurchase(data)
-          if(confirm('결제가 정상적으로 진행되었습니다. 거래내역을 확인 하시겠습니까?')){
-            this.$router.push('/orderlist')
-          }else{
-            this.$router.go(-1)
-          }
+          this.check.check2 = false
         }
       },
     },
+  },
+  watch: {
+    selectAccountId(value) {
+      this.selectAccount = this.currentAccounts.accounts.find(
+        (account) => account.id === value
+      ).balance
+    },
+  },
+  created() {
+    this.getCurrentAccounts()
+    this.authenticationCheck()
+  },
+  methods: {
+    ...mapActions('account', ['getCurrentAccounts']),
+    ...mapActions('product', ['requestPurchase']),
+    ...mapActions('auth', ['authenticationCheck']),
+    PayNow(productId, accountId) {
+      if (this.selectAccountId === '') {
+        confirm('결제 계좌가 선택되지 않았습니다')
+      } else if (this.selectAccount < this.selectedProduct.price) {
+        confirm('계좌 잔액이 부족합니다')
+      } else if (!(this.check.check1 && this.check.check2)) {
+        confirm('체크박스를 확인해주세요')
+      } else {
+        const data = { productId, accountId }
+        this.requestPurchase(data)
+        if (
+          confirm(
+            '결제가 정상적으로 진행되었습니다. 거래내역을 확인 하시겠습니까?'
+          )
+        ) {
+          this.$router.push('/orderlist')
+        } else {
+          this.$router.go(-1)
+        }
+      }
+    },
+  },
 }
 </script>
 
@@ -276,7 +283,7 @@ export default {
   .info.head {
     padding: 15px 20px;
     border-top: 2px solid #222;
-    background-color: rgb(245,245,245);
+    background-color: rgb(245, 245, 245);
     font-weight: 600;
     text-align: center;
   }
@@ -287,13 +294,13 @@ export default {
     height: 200px;
     border-bottom: 1px solid #ccc;
     img {
-      width:20%;
-      max-height: 200px; 
+      width: 20%;
+      max-height: 200px;
     }
   }
 }
 
-.purchaseInfo{
+.purchaseInfo {
   display: grid;
   margin-top: 15px;
   gap: 1rem;
@@ -329,8 +336,8 @@ export default {
         font-size: 13px;
         color: #222;
         &.email {
-         display: flex;
-         justify-content: space-between;
+          display: flex;
+          justify-content: space-between;
         }
       }
     }
@@ -346,7 +353,7 @@ export default {
       > div {
         display: flex;
         justify-content: space-between;
-        padding: .5rem;
+        padding: 0.5rem;
       }
     }
     .expected-payment-all {
@@ -378,10 +385,10 @@ export default {
     margin-top: 16px;
   }
   .box__inner {
-     padding: 20px 30px;
-     background-color: #fff;
-     border-radius: 8px;
-     border: 1px solid #e0e0e0;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
   }
   .allagree {
     padding-bottom: 16px;
@@ -391,14 +398,14 @@ export default {
     padding-right: 70px;
     position: relative;
     input[type="checkbox"] {
-       position: absolute;
-       top: 0;
-       left: 0;
-       z-index: 1;
-       width: 20px;
-       height: 20px;
-       margin-top: 0 !important;
-      &+label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 20px;
+      height: 20px;
+      margin-top: 0 !important;
+      & + label {
         position: relative;
         display: inline-block;
         z-index: 5;
@@ -461,7 +468,7 @@ export default {
 .account-list {
   display: flex;
   flex-flow: row wrap;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .btn {

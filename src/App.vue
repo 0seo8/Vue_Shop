@@ -19,7 +19,7 @@ import TheFooter from '~/components/layouts/TheFooter.vue'
 export default {
   components: {
     TheHeader,
-    TheFooter
+    TheFooter,
   },
   computed: {
     ...mapState('product', ['isLoading']),
@@ -28,13 +28,13 @@ export default {
     theme() {
       let body = document.querySelector('body')
       body.classList.toggle('nightmode')
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="scss">
-@import '~/scss/main';
+@import "~/scss/main";
 
 body {
   background-color: #fff;

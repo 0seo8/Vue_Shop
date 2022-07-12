@@ -30,11 +30,17 @@
       </li>
     </ul>
     <div class="button__list">
+      <button
+        v-if="findAdmin"
+        class="btn btn-primary admin"
+        @click="$router.push('/admin')">
+        admin
+      </button>
       <ul
         class="darkmode"
         @click="theme">
-        <li    
-          v-if="!nightmode"      
+        <li
+          v-if="!nightmode"
           class="material-symbols-outlined">
           light_mode
         </li>
@@ -82,9 +88,13 @@ export default {
   emits: ['theme'],
   data() {
     return {
-      navigations: [{ name: '생활가전' }, { name: '계절가전' }, {name: '디지털'}],
+      navigations: [
+        { name: '생활가전' },
+        { name: '계절가전' },
+        { name: '디지털' },
+      ],
       searchText: '',
-      nightmode: false
+      nightmode: false,
     }
   },
   computed: {
@@ -197,6 +207,13 @@ export default {
     height: 30px;
     width: 80px;
     font-size: 12px;
+  }
+
+  .admin {
+    height: 30px;
+    width: 80px;
+    font-size: 12px;
+    margin-right: 10px;
   }
 }
 

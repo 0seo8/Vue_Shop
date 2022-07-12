@@ -15,16 +15,12 @@
               <span
                 v-else
                 class="isdone">확정대기</span>
-              <span
-                class="SWzAJ">
+              <span class="SWzAJ">
                 <span
                   size="4"
                   class="sc-13xhsmd-1 kMeFyN"></span>
               </span>
-              <span
-                class="date">
-                {{ getdate }} 주문
-              </span>
+              <span class="date"> {{ getdate }} 주문 </span>
             </div>
             <div class="content">
               <div class="img__box">
@@ -43,12 +39,17 @@
                   </a>
                   <div class="info__desc">
                     <div>
-                      <span class="price">{{ purchase.product.price.toLocaleString("ko-KR") }} 원</span>
-                    </div> 
+                      <span class="price">{{
+                        purchase.product.price.toLocaleString("ko-KR")
+                      }}
+                        원</span>
+                    </div>
                     <div>
                       <button
                         class="btn btn-outline-info"
-                        @click="$router.push(`/product/${purchase.product.productId}`)">
+                        @click="
+                          $router.push(`/product/${purchase.product.productId}`)
+                        ">
                         재구매하기
                       </button>
                     </div>
@@ -76,7 +77,7 @@
         </tr>
       </tbody>
     </table>
-  </div>  
+  </div>
 </template>
 
 <script>
@@ -98,12 +99,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .wrap {
-    border-radius: 8px;
-    border: 1px solid rgb(238, 238, 238);
-    background-color: rgb(255, 255, 255);
-    margin-top: 16px;  
-  }
+.wrap {
+  border-radius: 8px;
+  border: 1px solid rgb(238, 238, 238);
+  background-color: rgb(255, 255, 255);
+  margin-top: 16px;
+}
 
 .td1 {
   height: 100%;
@@ -117,11 +118,12 @@ export default {
     align-items: center;
     width: 100%;
     line-height: 1.5;
+    cursor: pointer;
     .isdone {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #111;
-        margin-left: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #111;
+      margin-left: 1rem;
     }
     .SWzAJ {
       position: relative;
@@ -134,11 +136,11 @@ export default {
       margin-left: 6px;
       margin-right: 6px;
       .kMeFyN {
-          width: 4px;
-          height: 4px;
-          border-radius: 50%;
-          background-color: rgb(17, 17, 17);
-          opacity: 0.2;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: rgb(17, 17, 17);
+        opacity: 0.2;
       }
     }
     .date {
@@ -148,35 +150,35 @@ export default {
     }
   }
   .content {
-     overflow: hidden;
-     display: flex;
-     flex-direction: row;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
     .img__box {
-          display: flex;
-    width: 64px;
-    position: relative;
-    margin-right: 16px;
+      display: flex;
+      width: 64px;
+      position: relative;
+      margin-right: 16px;
     }
     .info {
-       user-select: none;
-       overflow: hidden;
-       flex: 1 1 0%;
-       display: flex;
+      user-select: none;
+      overflow: hidden;
+      flex: 1 1 0%;
+      display: flex;
       &__box {
-         display: flex;
-         flex: 1 1 0%;
-         user-select: none;
-         min-width: 0px;
-         flex-direction: column;
-         justify-content: center;
+        display: flex;
+        flex: 1 1 0%;
+        user-select: none;
+        min-width: 0px;
+        flex-direction: column;
+        justify-content: center;
         .title {
           margin-bottom: 4px;
         }
-       }
+      }
       &__desc {
-         display: flex;
-         align-items: center;     
-         justify-content: space-between;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         line-height: 1.5;
         .price {
           font-size: 1rem;
@@ -203,12 +205,21 @@ export default {
   }
 }
 
-.btn-outline{
+.btn-outline {
   &-primary:disabled {
-  color: rgba(#f2555a, .3);
+    color: rgba(#f2555a, 0.3);
+    &:hover {
+      color: #fff;
+    }
   }
-  &-success{
-    color: rgba(#198754, .3);
+  &-success {
+    color: rgba(#198754, 0.3);
+    &:hover {
+      color: #fff;
+    }
+  }
+  &-info:hover {
+      color: #fff;
   }
 }
 </style>
