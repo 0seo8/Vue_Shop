@@ -16,6 +16,9 @@
           v-else
           src="../../assets/no-Img"
           alt="이미지 준비중" />
+        <div class="sold-out-box">
+          <span>SOLD OUT</span>
+        </div> 
       </figure>
 
       <div class="product__info">
@@ -28,13 +31,7 @@
           </span>
         </div>
 
-        <div class="title">
-          <img
-            v-if="selectedProduct.isSoldOut"
-            class="soldout"
-            src="../../assets/solidout.svg" />
-          <h3>{{ selectedProduct.title }}</h3>
-        </div>
+        <h3>{{ selectedProduct.title }}</h3>
 
 
         <p class="price">
@@ -105,6 +102,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/scss/main.scss';
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 .detail-products {
   display: flex;
@@ -135,6 +133,22 @@ export default {
       img {
         width: 300px;
       }
+      .sold-out-box {
+        position: absolute;
+        font-family: 'Permanent Marker', cursive;
+        font-size: 60px;
+        width: 300px;
+        height: 300px;
+        top: 0;
+        left: 50%;
+        color: #b40707;
+        text-shadow: 0 0 black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translate(-50%);
+        transform: translate(-50%) rotate(-15deg);
+      }
     }
   }
   &__info {
@@ -158,20 +172,8 @@ export default {
       }
     }
 
-    .title {
-      position: relative;
-
-      //soldout 뱃지
-      .soldout {
-        position:absolute;
-        z-index:1;
-        left: -3.5rem;
-        top: -3rem;
-        max-width: 60px;     
-      }
-      h3 {
-        margin-bottom: 1rem;
-      }
+    h3 {
+      margin-bottom: 1rem;
     }
 
     p {
