@@ -117,18 +117,10 @@
                   v-if="ReadMore"
                   class="box__detail-term">
                   <p>만 14세 이상만 구매가능합니다.</p>
-                  <p>
-                    목적: 주문, 결제 및 배송서비스
-                  </p>
-                  <p>
-                    항목: 구매자정보(이름, 연락처, 메일주소), 주문비밀번호, 상품 구매/취소/반품/교환/환불 정보, 수령인정보(이름, 주소, 연락처), 결제번호, 송장정보, 은행계좌정보, 휴대폰번호(휴대폰결제시), 해외카드번호(해외카드결제시), 현금영수증 정보
-                  </p>
-                  <p>
-                    보유기간: <strong>관련 법률에 따라 5년간 보존</strong>
-                  </p>
-                  <p>
-                    이용동의: Electronic Market는 고객님께서 구매하신 서비스 및 상품의 원활한 제공을 위해 최소한의 범위 내에서 아래와 같이 개인정보를 수집·이용 합니다. 고객님께서는 수집 및 이용에 동의하지 않으실 수 있으며 동의하지 않으실 경우, 일부 구매가 제한될 수 있습니다.
-                  </p>
+                  <p>목적: 주문, 결제 및 배송서비스</p>
+                  <p>항목: 구매자정보(이름, 연락처, 메일주소), 주문비밀번호, 상품 구매/취소/반품/교환/환불 정보, 수령인정보(이름, 주소, 연락처), 결제번호, 송장정보, 은행계좌정보, 휴대폰번호(휴대폰결제시), 해외카드번호(해외카드결제시), 현금영수증 정보</p>
+                  <p>보유기간: <strong>관련 법률에 따라 5년간 보존</strong></p>
+                  <p>이용동의: Electronic Market는 고객님께서 구매하신 서비스 및 상품의 원활한 제공을 위해 최소한의 범위 내에서 아래와 같이 개인정보를 수집·이용 합니다. 고객님께서는 수집 및 이용에 동의하지 않으실 수 있으며 동의하지 않으실 경우, 일부 구매가 제한될 수 있습니다.</p>
                 </div>
               </li>
               <li class="list__item">
@@ -148,21 +140,11 @@
                 <div
                   v-if="ReadMoreText"
                   class="box__detail-term">
-                  <p>
-                    제공받는자: <strong>Electronic Market</strong>
-                  </p>
-                  <p>
-                    목적: <strong>판매자와 구매자의 거래의 원활한 진행, 본인 의사의 확인, 고객 상담 및 불만처리, 상품과 경품배송을 위한 배송지 확인 등</strong>
-                  </p>
-                  <p>
-                    항목: 구매자정보(이름, 연락처, 메일주소), 주문비밀번호, 상품 구매/취소/반품/교환/환불 정보, 수령인정보(이름, 주소, 연락처), 결제번호, 송장정보, 은행계좌정보, 휴대폰번호(휴대폰결제시), 해외카드번호(해외카드결제시), 현금영수증 정보
-                  </p>
-                  <p>
-                    보유기간: <strong>구매 서비스 종료 후 1개월</strong>
-                  </p>
-                  <p>
-                    이용동의: Electronic Market는 고객님께서 구매하신 서비스 및 상품의 원활한 제공을 위해 최소한의 범위 내에서 아래와 같이 개인정보를 수집·이용 합니다. 고객님께서는 수집 및 이용에 동의하지 않으실 수 있으며 동의하지 않으실 경우, 일부 구매가 제한될 수 있습니다.
-                  </p>
+                  <p> 제공받는자: <strong>Electronic Market</strong></p>
+                  <p>목적: <strong>판매자와 구매자의 거래의 원활한 진행, 본인 의사의 확인, 고객 상담 및 불만처리, 상품과 경품배송을 위한 배송지 확인 등</strong></p>
+                  <p>항목: 구매자정보(이름, 연락처, 메일주소), 주문비밀번호, 상품 구매/취소/반품/교환/환불 정보, 수령인정보(이름, 주소, 연락처), 결제번호, 송장정보, 은행계좌정보, 휴대폰번호(휴대폰결제시), 해외카드번호(해외카드결제시), 현금영수증 정보</p>
+                  <p>보유기간: <strong>구매 서비스 종료 후 1개월</strong></p>
+                  <p>이용동의: Electronic Market는 고객님께서 구매하신 서비스 및 상품의 원활한 제공을 위해 최소한의 범위 내에서 아래와 같이 개인정보를 수집·이용 합니다. 고객님께서는 수집 및 이용에 동의하지 않으실 수 있으며 동의하지 않으실 경우, 일부 구매가 제한될 수 있습니다.</p>
                 </div>
               </li>
             </ul>
@@ -287,7 +269,7 @@ export default {
 
 .table {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   > * {
     border: none;
   }
@@ -315,10 +297,12 @@ export default {
   display: grid;
   margin-top: 15px;
   gap: 1rem;
-  grid-template-columns: 1fr 2fr 1fr;
+  // grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: "info account payment";
 .orderUserInfo {
     padding: 30px 20px;
     background: #f9f9f9;
+    grid-area: info;
     &__guide {
       margin-top: 15px;
       padding-top: 15px;
@@ -355,6 +339,7 @@ export default {
     border: 1px solid #000;
     padding: 1.5rem;
     min-width: 300px;
+    grid-area: payment;
     .expected-payment {
       display: flex;
       flex-flow: column;
@@ -386,6 +371,7 @@ export default {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  grid-area: account;
 
   &__box {
     position: relative;
@@ -496,6 +482,29 @@ select {
     li:not(:first-child) {
       padding-left: .5rem;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .purchaseInfo {
+    grid-template-areas: 
+                "account account"
+                "info payment";
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .table {
+    grid-template-columns: 1fr 1fr 1fr;
+    img {
+      display: none;
+    }
+  }
+  .purchaseInfo {
+    grid-template-areas: 
+                "account"
+                "info"
+                "payment";
   }
 }
 </style>
