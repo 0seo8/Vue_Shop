@@ -78,10 +78,6 @@
 <script>
 import { mapActions } from 'vuex'
 
-document.addEventListener('click', () => {
-  console.log(event)
-})
-
 export default {
   emits: ['theme'],
   data() {
@@ -187,7 +183,7 @@ export default {
   display: flex;
   align-items: center;
   padding: 0 8px;
-  gap: 1rem;
+  gap: 1.5rem;
 
   .material-symbols-outlined {
     font-size: 30px;

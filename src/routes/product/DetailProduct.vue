@@ -16,7 +16,9 @@
           v-else
           src="../../assets/no-Img"
           alt="이미지 준비중" />
-        <div class="sold-out-box">
+        <div
+          v-if="selectedProduct.isSoldOut"
+          class="sold-out-box">
           <span>SOLD OUT</span>
         </div> 
       </figure>
