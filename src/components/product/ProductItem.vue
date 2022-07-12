@@ -5,10 +5,11 @@
     <figure>
       <div
         v-if="product.isSoldOut"
-        class="soldout">
-        <span>상품매진</span>
-      </div>
+        class="sold-out-box">
+        <span>SOLD OUT</span>
+      </div> 
       <img
+        :class="product.isSoldOut ? 'soldout' : ''"
         :src="product.thumbnail"
         alt="thumbnail" />
     </figure>
@@ -24,7 +25,9 @@
       <p class="title">
         {{ product.title }}
       </p>
-      <p>₩ {{ product.price.toLocaleString("ko-KR") }}</p>
+      <p class="price">
+        ₩ {{ product.price.toLocaleString("ko-KR") }}
+      </p>
     </div>
   </RouterLink>
 </template>
@@ -41,50 +44,56 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  figure {
-    margin: 0;
-    padding: 1rem 0;
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+figure {
+  margin: 0;
+  padding: 1rem 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 200px;
+  background-color: #fff;
+  position: relative;
+  .sold-out-box {
+    position: absolute;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 40px;
+    width: 200px;
+    height: 200px;
+    top: 0;
+    left: 50%;
+    color: #d22828;
+    text-shadow: 0 0 black;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    height: 200px;
-    background-color: #fff;
-    position: relative;
-    .soldout {
-      span {
-        z-index: 1;
-        top: 10px;
-        left: 10px;
-        position: absolute;
-        color: red;
-        border: 1px solid;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      &+ img {
-      filter: grayscale(80%);
-    }
-      }
-    img {
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
-      transition-duration: .3s;
-      transition-property: transform;
-      transition-timing-function: cubic-bezier(.4,0,.2,1);
-    }
-
+    transform: translate(-50%);
+    transform: translate(-50%) rotate(-15deg);
+    z-index: 3;
   }
+
+  img {
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    transition-duration: .3s;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    &.soldout {
+      filter: grayscale(90%);
+    }
+  }
+}
 
 .card-body {
   position: relative;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  padding: 1.5rem 1rem;
   .title {
-    padding-top: 1rem;
     font-size: 15px;
     display: inline-block;
     width: 100%;
@@ -95,12 +104,17 @@ export default {
     text-overflow: ellipsis;
     margin-bottom: .5rem;
   }
+  .price {
+    font-weight: bold;
+    line-height: 20px;
+    letter-spacing: 0;
+  }
   .tags{
   position: absolute;
-  top: .2rem;
-  left: 0;
+  top: -1.5rem;
+  left: 0.5rem;
   font-size: 12px;
-  color: #f2555a;
+  
   &__item {
     display: inline-block;
     padding: 2px;
@@ -108,8 +122,11 @@ export default {
     line-height: 1.2;
     margin-right: 4px;
     border-radius: 1px;
+    background: rgba(0, 0, 0, 0.04);
+    line-height: 1.4;
+    letter-spacing: -0.8px;
+    color: #282727;
   }
-
 }
 }
 </style>

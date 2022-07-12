@@ -167,4 +167,13 @@ section {
       margin-bottom: 1rem;
     }
 }
+
+.btn-outline-primary {
+  color: #f2555a;
+  border-color: #f2555a;
+  &:hover {
+    background-color: #f2555a;
+    border-color: #f2555a;
+  }
+}
 </style>

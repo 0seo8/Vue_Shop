@@ -18,6 +18,7 @@ export default {
       selectedPrice:'',
       searchProductList: [],
       PurchaseHistories: [],
+      isLoading: false,
     }
   },
   getters: {
@@ -32,97 +33,148 @@ export default {
       }
       console.log(state)
     },
+    changeLoaingStatus(state, status=true) {
+      state.isLoading = status
+    },
   },
   actions: {
     async readAllProducts({commit}) {
-      const {data} = await axios({
-        url: END_POINT,
-        method: 'GET',
-        headers: {
-          ...headers,
-          'masterKey': 'true'
-        }
-      })
+      try {
+        commit('changeLoaingStatus')
+        const {data} = await axios({
+          url: END_POINT,
+          method: 'GET',
+          headers: {
+            ...headers,
+            'masterKey': 'true'
+          }
+        })
         commit('setState', {products: data})
+      } catch(err) {
+        console.log(err.request)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
     async readProductDetail({commit}, id) {
-      const {data} = await axios({
-        url: `${END_POINT}/${id}`,
-        method: 'GET',
-        headers
-      })
-        commit('setState', {selectedProduct: data, selectedPrice:data.price.toLocaleString('ko-KR')})
+      try {
+        commit('changeLoaingStatus')
+        const {data} = await axios({
+          url: `${END_POINT}/${id}`,
+          method: 'GET',
+          headers
+        })
+          commit('setState', {selectedProduct: data, selectedPrice:data.price.toLocaleString('ko-KR')})  
+      } catch(err) {
+        console.log(err.request)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
-    async requestPurchase(_, info) {
+    async requestPurchase({commit}, info) {
       const token = localStorage.getItem('token')
-      await axios({
-        url: `${END_POINT}/buy`,
-        method: 'POST',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${token}`
-        },
-        data: info
-      })
+      try {
+        commit('changeLoaingStatus')
+        await axios({
+          url: `${END_POINT}/buy`,
+          method: 'POST',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${token}`
+          },
+          data: info
+        })
+      } catch(err) {
+        console.log(err.request)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
     async readPurchaseAllHistory({commit}) {
       const token = localStorage.getItem('token')
-      const {data} = await axios({
-        url: `${END_POINT}/transactions/details`,
-        method: 'GET',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${token}`
-        },
-      })
-      const list = data.sort((a, b) => {
-        const aTime= new Date(a.timePaid).getTime()
-        const bTime= new Date(b.timePaid).getTime()
-    
-        return bTime - aTime
-      })
-        commit('setState', {PurchaseHistories: list})
+      try {
+        commit('changeLoaingStatus')
+        const {data} = await axios({
+          url: `${END_POINT}/transactions/details`,
+          method: 'GET',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${token}`
+          },
+        })
+        const list = data.sort((a, b) => {
+          const aTime= new Date(a.timePaid).getTime()
+          const bTime= new Date(b.timePaid).getTime()
+      
+          return bTime - aTime
+        })
+          commit('setState', {PurchaseHistories: list})  
+      } catch(err) {
+        console.log(err.request)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
-    async cancelOrder({dispatch}, id) {
+    async cancelOrder({dispatch, commit}, id) {
       const token = localStorage.getItem('token')
-      await axios({
-        url: `${END_POINT}/cancel`,
-        method: 'POST',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${token}`
-        },
-        data: {
-          detailId: id
-        }
-      })
-      dispatch('readPurchaseAllHistory')
+      try {
+        commit('changeLoaingStatus')
+        await axios({
+          url: `${END_POINT}/cancel`,
+          method: 'POST',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${token}`
+          },
+          data: {
+            detailId: id
+          }
+        })
+        dispatch('readPurchaseAllHistory')
+      } catch(err) {
+        console.log(err.request)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
-    async confirmPurchase({dispatch}, id) {
+
+    async confirmPurchase({dispatch, commit}, id) {
       const token = localStorage.getItem('token')
-      await axios({
-        url: `${END_POINT}/ok`,
-        method: 'POST',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${token}`
-        },
-        data: {
-          detailId: id
-        }
-      })
-      dispatch('readPurchaseAllHistory')
+      try {
+        commit('changeLoaingStatus')
+        await axios({
+          url: `${END_POINT}/ok`,
+          method: 'POST',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${token}`
+          },
+          data: {
+            detailId: id
+          }
+        })
+        dispatch('readPurchaseAllHistory')  
+      } catch(err) {
+        console.log(err.request)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
     async searchProducts({commit}, search) {
-      console.log('search',search)
-      const {data} = await axios({
-        url: `${END_POINT}/search`,
-        method: 'POST',
-        headers,
-        data: search
-      })
-      console.log(data)
-      commit('setState', {searchProductList: data})      
+      commit('changeLoaingStatus')
+      try {
+        const {data} = await axios({
+          url: `${END_POINT}/search`,
+          method: 'POST',
+          headers,
+          data: search
+        })
+        commit('setState', {searchProductList: data})  
+      } catch(err) {
+        console.log(err.request)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
   }
 }

@@ -1,9 +1,13 @@
 <template lang="">
   <section class="content-main">
     <div class="content-header">
-      <h2 class="content title">제품 수정</h2>
+      <h2 class="content title">
+        제품 수정
+      </h2>
       <div>
-        <RouterLink to="/admin/product-list" class="btn btn-outline-primary">
+        <RouterLink
+          to="/admin/product-list"
+          class="btn btn-outline-primary">
           취소하기
         </RouterLink>
       </div>
@@ -13,14 +17,15 @@
         <form @submit.prevent="EditProduct()">
           <div class="mb-4 title-soldout">
             <div class="input-title">
-              <label for="product_name" class="form-label">제품명*</label>
+              <label
+                for="product_name"
+                class="form-label">제품명*</label>
               <input
                 id="product_name"
                 v-model="title"
                 type="text"
                 placeholder="제품명을 입력하세요!"
-                class="form-control"
-              />
+                class="form-control" />
             </div>
             <div class="input-radio">
               <div class="form-check">
@@ -30,9 +35,10 @@
                   value="In Sale"
                   class="form-check-input"
                   type="radio"
-                  name="isSoldOut"
-                />
-                <label class="form-check-label" for="false"> 판매가능 </label>
+                  name="isSoldOut" />
+                <label
+                  class="form-check-label"
+                  for="false"> 판매가능 </label>
               </div>
               <div class="form-check">
                 <input
@@ -41,9 +47,10 @@
                   value="Sold Out"
                   class="form-check-input"
                   type="radio"
-                  name="isSoldOut"
-                />
-                <label class="form-check-label" for="true"> 상품매진 </label>
+                  name="isSoldOut" />
+                <label
+                  class="form-check-label"
+                  for="true"> 상품매진 </label>
               </div>
               <div class="check-soldout">
                 <div v-if="isSoldOut === 'Sold Out'">
@@ -65,29 +72,44 @@
               v-model="description"
               placeholder="제품 설명을 입력하세요!"
               class="form-control"
-              rows="4"
-            ></textarea>
+              rows="4"></textarea>
           </div>
           <div class="mb-4">
             <label class="form-label">제품 썸네일</label>
-            <input class="form-control" type="file" @change="selectThumbnail" />
+            <input
+              class="form-control"
+              type="file"
+              @change="selectThumbnail" />
           </div>
           <div class="mb-4 image-price-tag">
-            <img class="image-preview" :src="thumbnailBase64" alt="" />
+            <img
+              class="image-preview"
+              :src="thumbnailBase64"
+              alt="" />
             <div class="row gx-2 col-6">
               <div>
                 <label class="form-label">가격</label>
-                <input v-model="price" type="text" class="form-control" />
+                <input
+                  v-model="price"
+                  type="text"
+                  class="form-control" />
               </div>
               <div>
                 <div class="mt-4">
-                  <label for="product_name" class="form-label">태그</label>
-                  <input v-model="tags" type="text" class="form-control" />
+                  <label
+                    for="product_name"
+                    class="form-label">태그</label>
+                  <input
+                    v-model="tags"
+                    type="text"
+                    class="form-control" />
                 </div>
               </div>
             </div>
           </div>
-          <button class="btn btn-outline-primary">제품 수정하기</button>
+          <button class="btn btn-outline-primary">
+            제품 수정하기
+          </button>
         </form>
       </div>
     </div>

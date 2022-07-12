@@ -1,14 +1,14 @@
-import axios from "axios";
-const { VITE_API_KEY, VITE_USERNAME } = import.meta.env;
+import axios from 'axios'
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 const END_POINT =
-  "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth";
+  'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth'
 
 const headers = {
-  "content-type": "application/json",
+  'content-type': 'application/json',
   apikey: VITE_API_KEY,
   username: VITE_USERNAME,
-};
+}
 
 export default {
   namespaced: true,
@@ -18,65 +18,65 @@ export default {
       token: null,
       logined: null,
       findAdmin: null,
-    };
+    }
   },
   mutations: {
     setUser(state, payload) {
-      state.user = payload.user;
-      state.token = payload.token;
+      state.user = payload.user
+      state.token = payload.token
     },
     setLogined(state, payload) {
-      state.logined = payload;
+      state.logined = payload
     },
     findAdmin(state, payload) {
-      state.findAdmin = payload;
+      state.findAdmin = payload
     },
   },
   getters: {
     userId(state) {
-      return state.user;
+      return state.user
     },
     token(state) {
-      return state.token;
+      return state.token
     },
     isAuthenticated(state) {
-      return !!state.token;
+      return !!state.token
     },
   },
   actions: {
     async login(context, payload) {
       const response = await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login",
+        'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login',
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
+            'content-type': 'application/json',
+            apikey: 'FcKdtJs202204',
+            username: 'KDT2_TEAM5',
           },
           body: JSON.stringify({
             email: payload.email,
-            password: payload.password,
-          }),
+            password: payload.password
+          })
         }
-      );
+      )
 
-      const dataForm = await response.json();
-      window.localStorage.setItem("token", dataForm.accessToken);
-      context.commit("setUser", {
+      const dataForm = await response.json()
+      window.localStorage.setItem('token', dataForm.accessToken)
+      context.commit('setUser', {
         user: dataForm.user,
         token: dataForm.accessToken,
-      });
+      })
     },
     async signup(context, payload) {
       const response = await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup",
+        'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup',
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
+            'content-type': 'application/json',
+            apikey: 'FcKdtJs202204',
+            username: 'KDT2_TEAM5',
           },
           body: JSON.stringify({
             email: payload.email,
@@ -84,41 +84,41 @@ export default {
             displayName: payload.displayName,
           }),
         }
-      );
+      )
 
-      const dataForm = await response.json();
+      const dataForm = await response.json()
 
-      context.commit("setUser", {
+      context.commit('setUser', {
         user: dataForm.user,
         token: dataForm.accessToken,
-      });
+      })
     },
     async logOut() {
-      const accessToken = window.localStorage.getItem("token");
+      const accessToken = window.localStorage.getItem('token')
       await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout",
+        'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout',
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
+            'content-type': 'application/json',
+            apikey: 'FcKdtJs202204',
+            username: 'KDT2_TEAM5',
             Authorization: `Bearer ${accessToken}`,
           },
         }
-      );
-      window.localStorage.clear();
+      )
+      window.localStorage.clear()
     },
     async changeProfile(context, payload) {
-      const accessToken = window.localStorage.getItem("token");
+      const accessToken = window.localStorage.getItem('token')
       const res = await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user",
+        'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',
         {
-          method: "PUT",
+          method: 'PUT',
           headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
+            'content-type': 'application/json',
+            apikey: 'FcKdtJs202204',
+            username: 'KDT2_TEAM5',
             Authorization: `Bearer ${accessToken}`,
           },
           body: JSON.stringify({
@@ -127,47 +127,47 @@ export default {
             newPassword: payload.newPassword,
           }),
         }
-      );
-      const dataForm = await res.json();
+      )
+      const dataForm = await res.json()
     },
     findLocalStorageUser(context) {
-      const accessToken = window.localStorage.getItem("token");
+      const accessToken = window.localStorage.getItem('token')
       if (accessToken == null) {
-        context.commit("setLogined", false);
+        context.commit('setLogined', false)
       } else {
-        context.commit("setLogined", true);
+        context.commit('setLogined', true)
       }
     },
     async authenticationCheck({ commit }) {
-      const accessToken = window.localStorage.getItem("token");
+      const accessToken = window.localStorage.getItem('token')
       const { data } = await axios({
         url: `${END_POINT}/me`,
-        method: "POST",
+        method: 'POST',
         headers: {
           ...headers,
           Authorization: `Bearer ${accessToken}`,
         },
-      });
-      commit("setUser", { user: data });
+      })
+      commit('setUser', { user: data })
     },
     async findAdmin({ commit }) {
-      const accessToken = window.localStorage.getItem("token");
+      const accessToken = window.localStorage.getItem('token')
       if (accessToken) {
         const { data } = await axios({
           url: `${END_POINT}/me`,
-          method: "POST",
+          method: 'POST',
           headers: {
             ...headers,
             Authorization: `Bearer ${accessToken}`,
           },
-        });
-        commit("findAdmin", data.email.includes("admin"));
+        })
+        commit('findAdmin', data.email.includes('admin'))
       } else {
-        return;
+        return
       }
     },
     deleteAdminInfo(context) {
-      context.commit("findAdmin", false);
+      context.commit('findAdmin', false)
     },
   },
-};
+}

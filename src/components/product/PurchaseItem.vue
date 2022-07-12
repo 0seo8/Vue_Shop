@@ -9,10 +9,16 @@
         <tr>
           <td class="td1">
             <div class="title">
-              <span v-if="purchase.done" class="isdone">구매확정</span>
-              <span v-else class="isdone">확정대기</span>
+              <span
+                v-if="purchase.done"
+                class="isdone">구매확정</span>
+              <span
+                v-else
+                class="isdone">확정대기</span>
               <span class="SWzAJ">
-                <span size="4" class="sc-13xhsmd-1 kMeFyN"></span>
+                <span
+                  size="4"
+                  class="sc-13xhsmd-1 kMeFyN"></span>
               </span>
               <span class="date"> {{ getdate }} 주문 </span>
             </div>
@@ -23,8 +29,7 @@
                     width="64"
                     height="64"
                     :src="purchase.product.thumbnail"
-                    :alt="purchase.product.title"
-                  />
+                    :alt="purchase.product.title" />
                 </a>
               </div>
               <div class="info">
@@ -34,20 +39,17 @@
                   </a>
                   <div class="info__desc">
                     <div>
-                      <span class="price"
-                        >{{
-                          purchase.product.price.toLocaleString("ko-KR")
-                        }}
-                        원</span
-                      >
+                      <span class="price">{{
+                        purchase.product.price.toLocaleString("ko-KR")
+                      }}
+                        원</span>
                     </div>
                     <div>
                       <button
                         class="btn btn-outline-info"
                         @click="
                           $router.push(`/product/${purchase.product.productId}`)
-                        "
-                      >
+                        ">
                         재구매하기
                       </button>
                     </div>
@@ -61,15 +63,13 @@
               <button
                 :disabled="purchase.done || purchase.isCanceled"
                 class="btn btn-outline-primary"
-                @click="$emit('confirm', purchase.detailId)"
-              >
+                @click="$emit('confirm', purchase.detailId)">
                 구매확정
               </button>
               <button
                 :disabled="purchase.done || purchase.isCanceled"
                 class="btn btn-outline-success"
-                @click="$emit('cancel', purchase.detailId)"
-              >
+                @click="$emit('cancel', purchase.detailId)">
                 구매취소
               </button>
             </div>
@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 export default {
   props: {
     purchase: {
@@ -89,13 +89,13 @@ export default {
       required: true,
     },
   },
-  emits: ["cancel", "confirm"],
+  emits: ['cancel', 'confirm'],
   computed: {
     getdate() {
-      return dayjs(this.purchase.timePaid).format("YY년 MM월 DD일");
+      return dayjs(this.purchase.timePaid).format('YY년 MM월 DD일')
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -118,6 +118,7 @@ export default {
     align-items: center;
     width: 100%;
     line-height: 1.5;
+    cursor: pointer;
     .isdone {
       font-size: 1.2rem;
       font-weight: bold;
@@ -207,9 +208,18 @@ export default {
 .btn-outline {
   &-primary:disabled {
     color: rgba(#f2555a, 0.3);
+    &:hover {
+      color: #fff;
+    }
   }
   &-success {
     color: rgba(#198754, 0.3);
+    &:hover {
+      color: #fff;
+    }
+  }
+  &-info:hover {
+      color: #fff;
   }
 }
 </style>

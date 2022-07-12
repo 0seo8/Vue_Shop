@@ -56,6 +56,8 @@ section {
     text-align: center;
     font-weight: 700;
   }
+
+
   .main {
     height: 375px;
   }
@@ -77,4 +79,5 @@ section {
     }
   }
 }
+
 </style>

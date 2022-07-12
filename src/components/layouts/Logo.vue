@@ -1,10 +1,14 @@
 <template lang="">
-  <RouterLink to="/" class="logo">
-    <img src="../../assets/Logo.png" alt="Electron Mart" />
+  <RouterLink
+    to="/"
+    class="logo">
+    <img
+      src="../../assets/Logo.png"
+      alt="Electron Mart" />
   </RouterLink>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style lang="scss" scoped>
 @import "~/scss/main.scss";
