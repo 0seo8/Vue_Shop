@@ -68,14 +68,8 @@ export default createRouter({
     // admin 페이지
     {
       path: '/admin',
-      component: Dashboard
-      // beforeEnter: (to, from, next) => {
-      //   if (store.state.user.currentUser.email !== store.state.user.masterUserEmail) {
-      //     alert('유효한 접근이 아닙니다')
-      //     return next('/')
-      //   }
-      //   next()
-      // }
+      component: Dashboard,
+      meta: {auth:true},
     },
     {
       path: '/admin/add-product',
