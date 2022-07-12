@@ -1,30 +1,45 @@
 <template>
-  <form @submit.prevent="submitForm">
-    <div>
-      <label for="name">New Id: </label>
-      <input type="name" id="name" v-model.trim="displayName" />
-    </div>
-    <div>
-      <label for="ps1">Old password: </label>
-      <input
-        type="password"
-        id="ps1"
-        v-model.trim="oldPsw"
-        placeholder="8자 이상 필수"
-      />
-    </div>
-    <div>
-      <label for="ps2">New password: </label>
-      <input
-        type="password"
-        id="ps2"
-        v-model.trim="newPsw"
-        placeholder="8자 이상 필수"
-      />
-    </div>
-    <!-- <p v-if="!formIsValid">입력 제대로 하셈.</p> -->
-    <input type="submit" value="회원정보 수정" />
-  </form>
+  <div class="profile-box">
+    <form @submit.prevent="submitForm">
+      <div class="user-box">
+        <label for="name">New Id: </label>
+        <input type="name" id="name" v-model.trim="displayName" />
+      </div>
+      <div class="user-box">
+        <label for="ps1">Old password: </label>
+        <input
+          type="password"
+          id="ps1"
+          v-model.trim="oldPsw"
+          placeholder="8자 이상 필수"
+          minlength="8"
+        />
+      </div>
+      <div class="user-box">
+        <label for="ps2">New password: </label>
+        <input
+          type="password"
+          id="ps2"
+          v-model.trim="newPsw"
+          placeholder="8자 이상 필수"
+          minlength="8"
+        />
+      </div>
+
+      <div class="user-box">
+        <label for="user-profile-picture">프로필 사진</label>
+        <input
+          class="form-input"
+          type="file"
+          id="user-profile-picture"
+          accept=".png, .jpg"
+          @change="selectFile"
+        />
+      </div>
+      <!-- <p v-if="!formIsValid">입력 제대로 하셈.</p> -->
+      <input type="submit" value="회원정보 수정" />
+    </form>
+  </div>
 </template>
 
 <script>
@@ -34,6 +49,8 @@ export default {
       oldPsw: "",
       newPsw: "",
       displayName: "",
+
+      profileImgBase64: "",
     };
   },
   methods: {
@@ -46,17 +63,44 @@ export default {
         oldPassword: this.oldPsw,
         newPassword: this.newPsw,
         displayName: this.displayName,
+
+        profileImgBase64: this.profileImgBase64,
       };
 
       await this.$store.dispatch("auth/changeProfile", actionPayload);
       this.$router.push("/mypage");
+    },
+
+    selectFile(event) {
+      const { files } = event.target;
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.addEventListener("load", () => {
+          this.profileImgBase64 = reader.result;
+        });
+      }
     },
   },
 };
 </script>
 
 <style scoped>
-form {
+.profile-box {
+  position: relative;
+  top: 350px;
+  left: 50%;
+  margin-bottom: 120px;
+  width: 500px;
+  padding: 50px;
+  transform: translate(-50%, -50%);
+  background: #f2555a;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+/* form {
   margin: 1rem;
   padding: 1rem;
 }
@@ -71,7 +115,26 @@ input {
   width: 50%;
   font: inherit;
   border: 1px solid #ccc;
-  padding: 0.15rem;
+  padding: 0.15rem; */
+/* } */
+
+.profile-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.profile-box .user-box label {
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
 }
 
 input:focus {

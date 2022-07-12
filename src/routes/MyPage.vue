@@ -1,7 +1,9 @@
 <template>
   <div class="my-page-top">
     <div class="profile">
-      <div class="profile-image">프로필사진 : {{ userInfo.profileimg }}</div>
+      <div class="profile-image">
+        프로필사진 : <img :src="userImg" alt="image" />
+      </div>
       <div class="profile-info">
         <p>이메일 : {{ userInfo.email }}</p>
         <p>이름 : {{ userInfo.displayName }}</p>
@@ -97,6 +99,11 @@ export default {
     },
     currentAccounts: function () {
       return this.$store.state.account.currentAccounts;
+    },
+    userImg: function () {
+      console.log("store img123: ", this.$store.state.auth.img);
+
+      return this.$store.state.auth.img;
     },
   },
   created() {
