@@ -7,24 +7,24 @@
 </template>
 
 <script>
-import TheHeader from '~/components/layouts/TheHeader.vue'
-import TheFooter from '~/components/layouts/TheFooter.vue'
+import TheHeader from "~/components/layouts/TheHeader.vue";
+import TheFooter from "~/components/layouts/TheFooter.vue";
 export default {
   components: {
     TheHeader,
-    TheFooter
+    TheFooter,
   },
   methods: {
     theme() {
-      let body = document.querySelector('body')
-      body.classList.toggle('nightmode')
-    }
-  }
-}
+      let body = document.querySelector("body");
+      body.classList.toggle("nightmode");
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-@import '~/scss/main';
+@import "~/scss/main";
 
 body {
   background-color: #fff;

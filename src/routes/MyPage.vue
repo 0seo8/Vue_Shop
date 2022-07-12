@@ -1,10 +1,10 @@
 <template>
   <div class="my-page-top">
     <div class="profile">
-      <div class="profile-image">프로필사진 : {{ userInfo.profileimg }}</div>
+      <div class="profile-image">프로필사진 : {{ user.profileimg }}</div>
       <div class="profile-info">
-        <p>이메일 : {{ userInfo.email }}</p>
-        <p>이름 : {{ userInfo.displayName }}</p>
+        <p>이메일 : {{ user.email }}</p>
+        <p>이름 : {{ user.displayName }}</p>
         <button class="btn btn-primary logout-btn" @click="logOut()">
           로그아웃!
         </button>
@@ -82,6 +82,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -89,9 +90,7 @@ export default {
     };
   },
   computed: {
-    userInfo: function () {
-      return JSON.parse(window.localStorage.getItem("user"));
-    },
+    ...mapState("auth", ["user"]),
     allAccount: function () {
       return this.$store.state.account.allAccount;
     },
@@ -102,6 +101,7 @@ export default {
   created() {
     this.$store.dispatch("account/getAllAccount");
     this.$store.dispatch("account/getCurrentAccounts");
+    this.authenticationCheck();
   },
   methods: {
     toogleHandleAccount() {
@@ -126,8 +126,10 @@ export default {
     async logOut() {
       await this.$store.dispatch("auth/logOut");
       await this.$store.dispatch("auth/findLocalStorageUser");
+      await this.$store.dispatch("auth/deleteAdminInfo");
       this.$router.push("/login");
     },
+    ...mapActions("auth", ["authenticationCheck"]),
   },
 };
 </script>
@@ -155,7 +157,7 @@ export default {
 .profile-info {
   width: 50%;
   text-align: center;
-  padding-top: 50px;
+  padding-top: 10%;
 }
 
 .logout-btn {
