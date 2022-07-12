@@ -6,8 +6,8 @@ const END_POINT =
 
 const headers = {
   "content-type": "application/json",
-  apikey: VITE_API_KEY,
-  username: VITE_USERNAME,
+  apikey: "FcKdtJs202204",
+  username: "KDT2_TEAM5",
 };
 
 export default {
@@ -40,129 +40,107 @@ export default {
     isAuthenticated(state) {
       return !!state.token;
     },
-    userimg(state) {
-      return state.img;
-    },
   },
   actions: {
     async login(context, payload) {
-      const response = await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
-          },
-          body: JSON.stringify({
-            email: payload.email,
-            password: payload.password,
-          }),
-        }
-      );
-
-      const dataForm = await response.json();
-      window.localStorage.setItem("token", dataForm.accessToken);
-      window.localStorage.setItem("user", JSON.stringify(dataForm.user));
-
-      alert(dataForm);
-      console.log("dataform: ", dataForm);
-      // console.log("dataform: ", dataForm.user.profileImg);
-      context.commit("setUser", {
-        user: dataForm.user,
-        token: dataForm.accessToken,
-
-        img: dataForm.user.profileImg,
+      const { email, password } = payload;
+      const response = await axios({
+        url: `${END_POINT}/login`,
+        method: "POST",
+        headers: {
+          ...headers,
+        },
+        data: {
+          email,
+          password,
+        },
+      }).catch((error) => {
+        console.log("Error: ", error.message);
+        alert(error.response.data);
       });
 
-      if (!response.ok) {
-        console.log(dataForm);
-        const error = new Error(
-          dataForm.message || "Failed to authenticate. Check your login data."
-        );
-        throw error;
-      }
+      window.localStorage.setItem("token", response.data.accessToken);
+      window.localStorage.setItem("user", JSON.stringify(response.data.user));
+      console.log("response: ", response);
+      alert(response);
+
+      context.commit("setUser", {
+        user: response.data.user,
+        token: response.data.accessToken,
+
+        img: response.data.user.profileImg,
+      });
     },
     async signup(context, payload) {
-      const response = await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
-          },
-          body: JSON.stringify({
-            email: payload.email,
-            password: payload.password,
-            displayName: payload.displayName,
+      const { email, password, displayName, profileImgBase64 } = payload;
+      const response = await axios({
+        url: `${END_POINT}/login`,
+        method: "POST",
+        headers: {
+          ...headers,
+        },
+        data: {
+          email,
+          password,
+          displayName,
+          profileImgBase64,
+        },
+      }).catch((error) => {
+        console.log("Error: ", error.message);
+        alert(error.response.data);
+      });
 
-            profileImgBase64: payload.profileImgBase64,
-          }),
-        }
-      );
+      alert(response);
 
-      const dataForm = await response.json();
-      alert(dataForm);
       context.commit("setUser", {
-        user: dataForm.user,
-        token: dataForm.accessToken,
+        user: response.data.user,
+        token: response.data.accessToken,
 
-        img: dataForm.user.profileImg,
+        img: response.data.user.profileImg,
       });
     },
     async logOut() {
       const accessToken = window.localStorage.getItem("token");
-      await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await axios({
+        url: `${END_POINT}/login`,
+        method: "POST",
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }).catch((error) => {
+        console.log("Error: ", error.message);
+        // alert(error.response.data);
+      });
+
       window.localStorage.clear();
     },
     async changeProfile(context, payload) {
       const accessToken = window.localStorage.getItem("token");
-      const res = await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user",
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            displayName: payload.displayName,
-            oldPassword: payload.oldPassword,
-            newPassword: payload.newPassword,
-
-            profileImgBase64: payload.profileImgBase64,
-          }),
-        }
-      );
-      const dataForm = await res.json();
-      window.localStorage.setItem("user", JSON.stringify(dataForm));
-      alert(dataForm);
-      context.commit("setUser", {
-        img: dataForm.profileImg,
+      const { displayName, oldPassword, newPassword, profileImgBase64 } =
+        payload;
+      const response = await axios({
+        url: `${END_POINT}/login`,
+        method: "POST",
+        headers: {
+          ...headers,
+        },
+        data: {
+          displayName,
+          oldPassword,
+          newPassword,
+          profileImgBase64,
+        },
+      }).catch((error) => {
+        console.log("Error: ", error.message);
+        alert(error.response.data);
       });
-      if (!res.ok) {
-        console.log(dataForm);
-        const error = new Error(
-          dataForm.message || "Failed to authenticate. Check your login data."
-        );
-        throw error;
-      }
+
+      window.localStorage.setItem("user", JSON.stringify(response.data.user));
+      alert(response);
+      context.commit("setUser", {
+        img: response.data.user.profileImg,
+      });
     },
     findLocalStorageUser(context) {
       const accessToken = window.localStorage.getItem("token");
