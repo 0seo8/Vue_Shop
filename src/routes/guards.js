@@ -14,13 +14,14 @@ async function me(accessToken) {
     },
   })
   return !!user.email 
-  }
+}
 
 
-router.beforeEach((to) => {
+router.beforeEach(async (to) => {
   if(to.meta.auth) {
     const accessToken = localStorage.getItem('token')
-    return me(accessToken)
+    console.log('here', await me(accessToken))
+    return await me(accessToken)
       ? true
       : '/login'
   }
