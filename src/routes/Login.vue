@@ -47,6 +47,7 @@ export default {
         email: this.email,
         password: this.password,
       };
+      console.log("actionpayload: ", actionPayload);
       await this.$store.dispatch("auth/login", actionPayload);
       await this.$store.dispatch("auth/findLocalStorageUser");
       this.$router.push("/mypage");

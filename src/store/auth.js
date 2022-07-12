@@ -23,6 +23,7 @@ export default {
   },
   mutations: {
     setUser(state, payload) {
+      console.log("payload: ", payload);
       state.user = payload.user;
       state.token = payload.token;
       state.logined = payload.logined;
@@ -66,7 +67,8 @@ export default {
       window.localStorage.setItem("user", JSON.stringify(dataForm.user));
 
       alert(dataForm);
-
+      console.log("dataform: ", dataForm);
+      // console.log("dataform: ", dataForm.user.profileImg);
       context.commit("setUser", {
         user: dataForm.user,
         token: dataForm.accessToken,
