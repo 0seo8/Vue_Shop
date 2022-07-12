@@ -30,7 +30,8 @@ export default createRouter({
     },
     {
       path: '/mypage',
-      component: MyPage
+      component: MyPage,
+      meta: {auth:true}
     },
     {
       path: '/signup',
@@ -48,7 +49,8 @@ export default createRouter({
     {
       path: '/product/:id',
       component: DetailProduct,
-      name: 'detailpage'
+      name: 'detailpage',
+      meta: {auth:true},
     },
     {
       path: '/purchase',
