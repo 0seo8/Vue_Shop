@@ -10,6 +10,12 @@ a {
   }
 }
 
+.router-link-active {
+  :hover {
+    color: #f2555a !important;
+  }  
+}
+
 ol,
 ul,
 li {
@@ -31,4 +37,17 @@ p {
   color: #fff;
   background-color: #f2555a;
   border-color: #f2555a;
+  &:hover {
+    background-color: #c4464a;
+    border-color: #c4464a;    
+  }
 } 
+
+.btn-outline-primary {
+  color: #f2555a;
+  border-color: #f2555a;
+  &:hover {
+    background-color: #f2555a;
+    border-color: #f2555a;
+  }
+}
