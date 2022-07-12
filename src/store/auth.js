@@ -74,7 +74,7 @@ export default {
     async signup(context, payload) {
       const { email, password, displayName, profileImgBase64 } = payload;
       const response = await axios({
-        url: `${END_POINT}/login`,
+        url: `${END_POINT}/signup`,
         method: "POST",
         headers: {
           ...headers,
@@ -102,7 +102,7 @@ export default {
     async logOut() {
       const accessToken = window.localStorage.getItem("token");
       const response = await axios({
-        url: `${END_POINT}/login`,
+        url: `${END_POINT}/logout`,
         method: "POST",
         headers: {
           ...headers,
@@ -120,7 +120,7 @@ export default {
       const { displayName, oldPassword, newPassword, profileImgBase64 } =
         payload;
       const response = await axios({
-        url: `${END_POINT}/login`,
+        url: `${END_POINT}/user`,
         method: "POST",
         headers: {
           ...headers,
