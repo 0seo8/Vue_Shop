@@ -3,11 +3,21 @@
     "browser": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "plugin:vue/vue3-recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/vue3-recommended"
+  ],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
   "rules": {
     "semi": ["error", "never"],
     "quotes": ["error", "single"],
-    "eol-last": ["error", "always"], //빈줄 하나 허용
+    "eol-last": ["error", "always"],
 
     "vue/html-closing-bracket-newline": [
       "error",
@@ -29,6 +39,7 @@
       }
     ],
     "vue/comment-directive": "off",
-    "vue/multi-word-component-names": "off"
+    "vue/multi-word-component-names": "off",
+    "vue/no-v-html": "off"
   }
 }

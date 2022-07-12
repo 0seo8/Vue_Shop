@@ -126,6 +126,7 @@ export default {
     async logOut() {
       await this.$store.dispatch("auth/logOut");
       await this.$store.dispatch("auth/findLocalStorageUser");
+      await this.$store.dispatch("auth/deleteAdminInfo");
       this.$router.push("/login");
     },
     ...mapActions("auth", ["authenticationCheck"]),

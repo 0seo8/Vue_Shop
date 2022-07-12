@@ -3,6 +3,7 @@
     <h1>
       <RouterLink to="/"> Eletron Market </RouterLink>
     </h1>
+
     <ul class="nav nav-pills category__list">
       <li v-for="nav in navigations" :key="nav.name" class="cotegory__item">
         <RouterLink
@@ -17,6 +18,13 @@
       </li>
     </ul>
     <div class="button__list">
+      <button
+        v-if="findAdmin"
+        class="btn btn-primary admin"
+        @click="$router.push('/admin')"
+      >
+        admin
+      </button>
       <ul class="darkmode" @click="theme">
         <li v-if="!nightmode" class="material-symbols-outlined">light_mode</li>
         <li v-else class="material-symbols-outlined">dark_mode</li>
@@ -46,8 +54,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
 export default {
   emits: ["theme"],
   data() {
@@ -68,7 +74,6 @@ export default {
   },
 
   methods: {
-    ...mapActions("product", ["searchProducts"]),
     theme() {
       this.nightmode = !this.nightmode;
       this.$emit("theme");
@@ -78,9 +83,13 @@ export default {
     logined: function () {
       return this.$store.state.auth.logined;
     },
+    findAdmin: function () {
+      return this.$store.state.auth.findAdmin;
+    },
   },
   created() {
     this.$store.dispatch("auth/findLocalStorageUser");
+    this.$store.dispatch("auth/findAdmin");
   },
 };
 </script>
@@ -160,6 +169,13 @@ export default {
     height: 30px;
     width: 80px;
     font-size: 12px;
+  }
+
+  .admin {
+    height: 30px;
+    width: 80px;
+    font-size: 12px;
+    margin-right: 10px;
   }
 }
 

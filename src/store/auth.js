@@ -17,6 +17,7 @@ export default {
       user: {},
       token: null,
       logined: null,
+      findAdmin: null,
     };
   },
   mutations: {
@@ -26,6 +27,9 @@ export default {
     },
     setLogined(state, payload) {
       state.logined = payload;
+    },
+    findAdmin(state, payload) {
+      state.findAdmin = payload;
     },
   },
   getters: {
@@ -145,6 +149,25 @@ export default {
         },
       });
       commit("setUser", { user: data });
+    },
+    async findAdmin({ commit }) {
+      const accessToken = window.localStorage.getItem("token");
+      if (accessToken) {
+        const { data } = await axios({
+          url: `${END_POINT}/me`,
+          method: "POST",
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        commit("findAdmin", data.email.includes("admin"));
+      } else {
+        return;
+      }
+    },
+    deleteAdminInfo(context) {
+      context.commit("findAdmin", false);
     },
   },
 };
