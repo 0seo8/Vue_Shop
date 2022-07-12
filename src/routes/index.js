@@ -16,6 +16,7 @@ import MyPage from './MyPage.vue'
 import Signup from './Signup.vue'
 import ProfileChange from './ProfileChange.vue'
 // import store from '~/store/user'
+import NotFound from './product/NotFound.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -42,7 +43,7 @@ export default createRouter({
       component: ProfileChange
     },
     {
-      path: '/:category',
+      path: '/category/:category',
       name: 'product',
       component: TheProducts
     },
@@ -88,6 +89,10 @@ export default createRouter({
     },
     {
       path: '/amdmin/transaction-detail'
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: NotFound
     }
   ]
 })
