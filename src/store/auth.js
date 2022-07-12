@@ -23,7 +23,7 @@ export default {
   },
   mutations: {
     setUser(state, payload) {
-      console.log("payload: ", payload);
+      console.log("payload122: ", payload);
       state.user = payload.user;
       state.token = payload.token;
       state.logined = payload.logined;
@@ -124,6 +124,7 @@ export default {
         method: "POST",
         headers: {
           ...headers,
+          Authorization: `Bearer ${accessToken}`,
         },
         data: {
           displayName,
