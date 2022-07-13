@@ -29,17 +29,6 @@ export default {
       console.log(state);
     },
   },
-  getters: {
-    userId(state) {
-      return state.user;
-    },
-    token(state) {
-      return state.token;
-    },
-    isAuthenticated(state) {
-      return !!state.token;
-    },
-  },
   actions: {
     async login({ commit }, payload) {
       const { data } = await axios({
