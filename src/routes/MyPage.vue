@@ -2,7 +2,7 @@
   <div class="my-page-top">
     <div class="profile">
       <div v-show="user" class="profile-image">
-        프로필사진 : <img :src="userImg" alt="image" />
+        프로필사진 : <img :src="user.profileImg" alt="image" />
       </div>
       <div v-show="user" class="profile-info">
         <p>이메일 : {{ user.email }}</p>
