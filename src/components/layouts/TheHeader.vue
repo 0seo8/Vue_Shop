@@ -101,6 +101,9 @@ export default {
     logined: function () {
       return this.$store.state.auth.logined
     },
+    findAdmin: function () {
+      return this.$store.state.auth.findAdmin
+    },
   },
   watch: {
     searchText(value) {
@@ -109,6 +112,7 @@ export default {
   },
   created() {
     this.$store.dispatch('auth/findLocalStorageUser')
+    this.$store.dispatch('auth/authenticationCheck')
   },
 
   methods: {
@@ -119,7 +123,6 @@ export default {
     },  
     activatedSearch() {
     this.$refs.searchInput.classList.toggle('active')
-    // console.log(this.$refs.ref)
     },
     activatedCategory() {
     this.$refs.categoryBox.classList.toggle('active')

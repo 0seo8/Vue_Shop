@@ -1,10 +1,16 @@
 <template>
   <div class="my-page-top">
     <div class="profile">
-      <div class="profile-image">
-        프로필사진 : {{ user.profileimg }}
+      <div
+        v-show="user"
+        class="profile-image">
+        프로필사진 : <img
+          :src="userImg"
+          alt="image" />
       </div>
-      <div class="profile-info">
+      <div
+        v-show="user"
+        class="profile-info">
         <p>이메일 : {{ user.email }}</p>
         <p>이름 : {{ user.displayName }}</p>
         <button
@@ -105,6 +111,9 @@ export default {
     },
     currentAccounts: function () {
       return this.$store.state.account.currentAccounts
+    },
+    userImg: function () {
+      return this.$store.state.auth.img
     },
   },
   created() {
