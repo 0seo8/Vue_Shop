@@ -43,6 +43,7 @@
       </div>
       <h1>
         <RouterLink to="/">
+          <Logo />
           <span class="logo">Eletron Market</span>
         </RouterLink>
       </h1>
@@ -118,8 +119,11 @@
 
 <script>
 import { mapActions } from 'vuex'
-
+import Logo from '~/components/layouts/Logo.vue'
 export default {
+  components: {
+    Logo
+  },
   emits: ['theme'],
   data() {
     return {
@@ -195,6 +199,9 @@ export default {
       font-size: 20px;
       white-space: nowrap;
       text-decoration: none;
+    }
+    .logo {
+      margin-left: .5rem;
     }
   }
 }
