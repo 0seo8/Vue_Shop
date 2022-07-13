@@ -27,7 +27,7 @@ export default {
   props: {
     category: {
       type: String,
-      required: true,
+      required: true
     },
     main: {
       type: String,
@@ -35,15 +35,15 @@ export default {
     }
   },
   computed: {
-    ...mapState('product', ['products']),
+    ...mapState('product', ['products'])
   },
   mounted() {
     this.readAllProducts()
   },
 
   methods: {
-    ...mapActions('product', ['readAllProducts']),
-  },
+    ...mapActions('product', ['readAllProducts'])
+  }
 }
 </script>
 
@@ -57,21 +57,23 @@ section {
     font-weight: 700;
   }
 
-
   .main {
-    height: 375px;
+    height: 380px;
   }
   .product {
     &__list {
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       margin-top: 30px;
       grid-gap: 20px;
       overflow: hidden;
       .card {
+        box-sizing: border-box;
+        border: 2px solid #ffb1c1;
         transition: 0.3s ease box-shadow;
         background-color: rgba(#ffb1c1, 0.5);
+        padding: 12px;
         &:hover {
           box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 26%);
         }
@@ -79,5 +81,4 @@ section {
     }
   }
 }
-
 </style>

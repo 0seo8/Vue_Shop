@@ -57,7 +57,7 @@
         <RouterLink
           :to="{
             name: 'product',
-            params: { category: nav.name },
+            params: { category: nav.name }
           }"
           class="nav-link">
           <span>{{ nav.name }}</span>
@@ -126,10 +126,10 @@ export default {
       navigations: [
         { name: '생활가전' },
         { name: '계절가전' },
-        { name: '디지털' },
+        { name: '디지털' }
       ],
       searchText: '',
-      nightmode: false,
+      nightmode: false
     }
   },
   computed: {
@@ -138,7 +138,7 @@ export default {
     },
     findAdmin: function () {
       return this.$store.state.auth.findAdmin
-    },
+    }
   },
   watch: {
     searchText(value) {
@@ -164,7 +164,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main.scss";
+@import '~/scss/main.scss';
 .header {
   position: fixed;
   z-index: 10;
@@ -282,6 +282,7 @@ export default {
 
 .side-menu {
   display: none;
+  cursor: pointer;
 }
   .btn-close {
     right: 1rem;
