@@ -2,10 +2,45 @@
   <div class="header">
     <div class="header-side">
       <span
-        class="material-symbols-outlined side-menu"
+        class="material-symbols-outlined side-menu "
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvas"
+        aria-controls="offcanvasExample"
         @click="activatedCategory">
         menu
       </span>
+      <div
+        id="offcanvas"
+        class="offcanvas offcanvas-start"
+        tabindex="-1"
+        aria-labelledby="offcanvasLabel">
+        <div class="position-relative offcanvas-header">
+          <button
+            type="button"
+            class="btn-close position-absolute top-1 end-1"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul
+            ref="categoryBox"
+            class="nav nav-pills flex-column">
+            <li
+              v-for="nav in navigations"
+              :key="nav.name"
+              class="cotegory__item">
+              <RouterLink
+                :to="{
+                  name: 'product',
+                  params: { category: nav.name },
+                }"
+                class="nav-link">
+                <span>{{ nav.name }}</span>
+              </RouterLink>
+            </li>
+          </ul>
+        </div>
+      </div>
       <h1>
         <RouterLink to="/">
           <span class="logo">Eletron Market</span>
@@ -123,9 +158,6 @@ export default {
     },
     activatedSearch() {
       this.$refs.searchInput.classList.toggle('active')
-    },
-    activatedCategory() {
-      this.$refs.categoryBox.classList.toggle('active')
     },
   },
 }
@@ -251,24 +283,18 @@ export default {
 .side-menu {
   display: none;
 }
+  .btn-close {
+    right: 1rem;
+    top: 1rem;
+  }
 
 @media (max-width: 960px) {
   .side-menu {
     display: block;
+    cursor: pointer;
   }
   .category__list {
     display: none;
-    &.active {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem;
-      flex-flow: column;
-      position: absolute;
-      top: 51px;
-      background: #fff;
-      left: 0;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    }
   }
 }
 
