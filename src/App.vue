@@ -3,7 +3,7 @@
   <div class="main__wrap">
     <RouterView />
     <div
-      v-if="isLoading"
+    
       class="spinner-border text-danger"
       role="status">
       <span class="visually-hidden">Loading...</span>

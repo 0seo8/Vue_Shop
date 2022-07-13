@@ -57,12 +57,12 @@ export default createRouter({
     {
       path: '/purchase',
       component: OrderForm,
-      // meta: { auth: true },
+      meta: { auth: true },
     },
     {
       path: '/orderlist',
       component: OrderList,
-      // meta: { auth: true },
+      meta: { auth: true },
     },
     {
       path: '/search',

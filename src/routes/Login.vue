@@ -53,7 +53,7 @@ export default {
         password: this.password,
       }
       await this.$store.dispatch('auth/login', actionPayload)
-      await this.$store.dispatch('auth/authenticationCheck')
+      await this.$store.dispatch('auth/findAdmin')
       await this.$store.dispatch('auth/findLocalStorageUser')
       this.$router.push('/mypage')
     },

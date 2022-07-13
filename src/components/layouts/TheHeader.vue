@@ -56,14 +56,14 @@
             class="material-symbols-outlined search-icon"
             @click="activatedSearch">
             search
-          </span>  
+          </span>
         </button>
         <input
           ref="searchInput"
           v-model="searchText"
           class="form-control"
           placeholder="검색"
-          @focus="$router.push({name: 'search'})" />
+          @focus="$router.push({ name: 'search' })" />
       </div>
       <span
         v-if="logined"
@@ -107,27 +107,27 @@ export default {
   },
   watch: {
     searchText(value) {
-      this.searchProducts({'searchText': value.trim()})
+      this.searchProducts({ searchText: value.trim() })
     },
   },
   created() {
     this.$store.dispatch('auth/findLocalStorageUser')
-    this.$store.dispatch('auth/authenticationCheck')
+    this.$store.dispatch('auth/findAdmin')
   },
 
   methods: {
     ...mapActions('product', ['searchProducts']),
-   theme() {
+    theme() {
       this.nightmode = !this.nightmode
       this.$emit('theme')
-    },  
+    },
     activatedSearch() {
-    this.$refs.searchInput.classList.toggle('active')
+      this.$refs.searchInput.classList.toggle('active')
     },
     activatedCategory() {
-    this.$refs.categoryBox.classList.toggle('active')
-    }
- }
+      this.$refs.categoryBox.classList.toggle('active')
+    },
+  },
 }
 </script>
 
@@ -253,7 +253,6 @@ export default {
 }
 
 @media (max-width: 960px) {
-
   .side-menu {
     display: block;
   }
@@ -268,28 +267,28 @@ export default {
       top: 51px;
       background: #fff;
       left: 0;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1)
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     }
   }
 }
 
 @media (max-width: 650px) {
   .drop-down {
-  .form-control {
-    display: none;
-    position: fixed;
-    left: 0;
-    border-radius: 0;
-    margin: 0;
-    &.active {
-      display:  block;
+    .form-control {
+      display: none;
+      position: fixed;
+      left: 0;
+      border-radius: 0;
+      margin: 0;
+      &.active {
+        display: block;
+      }
     }
-  }
 
-  .search-icon {
-    display: block;
-    margin-left: 1rem;
-  }
+    .search-icon {
+      display: block;
+      margin-left: 1rem;
+    }
   }
 }
 </style>

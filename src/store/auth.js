@@ -18,31 +18,19 @@ export default {
       token: null,
       logined: null,
       findAdmin: false,
-      img: null,
     }
   },
   mutations: {
     setUser(state, payload) {
-      for(const key in payload) {
+      for (const key in payload) {
         state[key] = payload[key]
       }
       console.log(state)
-    }
-  },
-  getters: {
-    userId(state) {
-      return state.user
-    },
-    token(state) {
-      return state.token
-    },
-    isAuthenticated(state) {
-      return !!state.token
     },
   },
   actions: {
-    async login({commit}, payload) {
-      const {data} = await axios({
+    async login({ commit }, payload) {
+      const { data } = await axios({
         url: `${END_POINT}/login`,
         method: 'POST',
         headers: {
@@ -52,11 +40,11 @@ export default {
       }).catch((error) => {
         console.log(error)
       })
-      window.localStorage.setItem('token',data.accessToken)
-      commit('setUser', {user: data.user})
+      window.localStorage.setItem('token', data.accessToken)
+      commit('setUser', { user: data.user })
     },
-    async signup({commit}, payload) {
-      const {data} = await axios({
+    async signup({ commit }, payload) {
+      const { data } = await axios({
         url: `${END_POINT}/signup`,
         method: 'POST',
         headers: {
@@ -66,7 +54,7 @@ export default {
       }).catch((error) => {
         console.log(error)
       })
-      commit('setUser', {user: data.user})
+      commit('setUser', { user: data.user })
     },
 
     async logOut() {
@@ -80,12 +68,12 @@ export default {
         },
       }).catch((error) => {
         console.log(error)
-      }) 
+      })
       window.localStorage.clear()
     },
-    async changeProfile({commit}, payload) {
+    async changeProfile({ commit }, payload) {
       const accessToken = window.localStorage.getItem('token')
-      const {data} = await axios({
+      const { data } = await axios({
         url: `${END_POINT}/user`,
         method: 'PUT',
         headers: {
@@ -94,14 +82,14 @@ export default {
         },
         data: payload,
       })
-      commit('setUser', {user: data.user})
+      commit('setUser', { user: data.user })
     },
-    findLocalStorageUser({commit}) {
+    findLocalStorageUser({ commit }) {
       const accessToken = window.localStorage.getItem('token')
       if (accessToken == null) {
-        commit('setUser', {logined: false})
+        commit('setUser', { logined: false })
       } else {
-        commit('setUser', {logined: true})
+        commit('setUser', { logined: true })
       }
     },
     async authenticationCheck({ commit }) {
@@ -114,11 +102,24 @@ export default {
           Authorization: `Bearer ${accessToken}`,
         },
       })
-      commit('setUser', { user: data }, {findAdmin: data.email.includes('admin')})
+      commit('setUser', { user: data })
     },
-    deleteAdminInfo({commit}) {
-      commit('setUser', {findAdmin: false})
+    deleteAdminInfo({ commit }) {
+      commit('setUser', { findAdmin: false })
     },
-  }
+    async findAdmin({ commit }) {
+      const accessToken = window.localStorage.getItem('token')
+      if (accessToken) {
+        const { data } = await axios({
+          url: `${END_POINT}/me`,
+          method: 'POST',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        commit('setUser', { findAdmin: data.email.includes('admin') })
+      } 
+    },
+  },
 }
-
