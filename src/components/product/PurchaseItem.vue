@@ -213,7 +213,7 @@ export default {
     }
   }
   &-success {
-    color: rgba(#198754, 0.3);
+    // color: rgba(#198754, 0.3);
     &:hover {
       color: #fff;
     }
