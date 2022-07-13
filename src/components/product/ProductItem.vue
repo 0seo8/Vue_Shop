@@ -1,29 +1,33 @@
 <template>
-  <RouterLink :to="`/product/${product.id}`" :prodcut="product">
+  <RouterLink
+    :to="`/product/${product.id}`"
+    :prodcut="product">
     <figure>
-      <div v-if="product.isSoldOut" class="sold-out-box">
+      <div
+        v-if="product.isSoldOut"
+        class="sold-out-box">
         <span>SOLD OUT</span>
       </div>
       <img
         :class="product.isSoldOut ? 'soldout' : ''"
         :src="product.thumbnail"
-        alt="thumbnail"
-      />
+        alt="thumbnail" />
     </figure>
     <div class="card-body">
       <div class="tags">
         <span
           v-for="(tag, index) in product.tags"
           :key="index"
-          class="tags__item badge rounded-pill"
-        >
+          class="tags__item badge rounded-pill">
           # {{ tag }}
         </span>
       </div>
       <p class="title">
         {{ product.title }}
       </p>
-      <p class="price">₩ {{ product.price.toLocaleString('ko-KR') }}</p>
+      <p class="price">
+        ₩ {{ product.price.toLocaleString('ko-KR') }}
+      </p>
     </div>
   </RouterLink>
 </template>
@@ -118,6 +122,7 @@ figure {
     top: -1.5rem;
     left: 0.5rem;
     font-size: 12px;
+    white-space: nowrap;
 
     &__item {
       display: inline-block;
