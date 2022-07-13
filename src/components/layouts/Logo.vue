@@ -19,8 +19,8 @@ export default {}
   color: #000;
   text-decoration: none;
   img {
-    width: 100px;
-    height: 100px;
+    width: 36px;
+    height: 36px;
   }
   &:hover {
     color: #000;
