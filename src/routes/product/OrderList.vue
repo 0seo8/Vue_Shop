@@ -5,19 +5,19 @@
       <div class="btn__wrap">
         <div class="btn__list">
           <div
-            class="btn__item"
+            class="badge rounded-pill alert-danger"
             :style="{color: state==='all'?'#F79698':''}"
             @click="currentState('all')">
             All
           </div>
           <div
-            class="btn__item"
+            class="badge rounded-pill alert-warning"
             :style="{color: state==='confirm'?'#F79698':''}"
             @click="currentState('confirm')">
             구매 확정 내역
           </div>
           <div
-            class="btn__item"
+            class="badge rounded-pill alert-success"
             :style="{color: state==='cancel'?'#F79698':''}"
             @click="currentState('cancel')">
             구매 취소 내역
@@ -175,5 +175,11 @@ section {
     background-color: #f2555a;
     border-color: #f2555a;
   }
+}
+
+.badge {
+  margin-right: .5rem;
+  padding: .4rem .8rem;
+  min-width: 60px;
 }
 </style>

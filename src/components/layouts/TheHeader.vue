@@ -2,26 +2,64 @@
   <div class="header">
     <div class="header-side">
       <span
-        class="material-symbols-outlined side-menu"
-        @click="activatedCategory"
-      >
+        class="material-symbols-outlined side-menu "
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvas"
+        aria-controls="offcanvasExample"
+        @click="activatedCategory">
         menu
       </span>
+      <div
+        id="offcanvas"
+        class="offcanvas offcanvas-start"
+        tabindex="-1"
+        aria-labelledby="offcanvasLabel">
+        <div class="position-relative offcanvas-header">
+          <button
+            type="button"
+            class="btn-close position-absolute top-1 end-1"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul
+            ref="categoryBox"
+            class="nav nav-pills flex-column">
+            <li
+              v-for="nav in navigations"
+              :key="nav.name"
+              class="cotegory__item">
+              <RouterLink
+                :to="{
+                  name: 'product',
+                  params: { category: nav.name },
+                }"
+                class="nav-link">
+                <span>{{ nav.name }}</span>
+              </RouterLink>
+            </li>
+          </ul>
+        </div>
+      </div>
       <h1>
         <RouterLink to="/">
           <span class="logo">Eletron Market</span>
         </RouterLink>
       </h1>
     </div>
-    <ul ref="categoryBox" class="nav nav-pills category__list">
-      <li v-for="nav in navigations" :key="nav.name" class="cotegory__item">
+    <ul
+      ref="categoryBox"
+      class="nav nav-pills category__list">
+      <li
+        v-for="nav in navigations"
+        :key="nav.name"
+        class="cotegory__item">
         <RouterLink
           :to="{
             name: 'product',
             params: { category: nav.name }
           }"
-          class="nav-link"
-        >
+          class="nav-link">
           <span>{{ nav.name }}</span>
         </RouterLink>
       </li>
@@ -30,20 +68,28 @@
       <button
         v-if="findAdmin"
         class="btn btn-primary admin"
-        @click="$router.push('/admin')"
-      >
+        @click="$router.push('/admin')">
         admin
       </button>
-      <ul class="darkmode" @click="theme">
-        <li v-if="!nightmode" class="material-symbols-outlined">light_mode</li>
-        <li v-else class="material-symbols-outlined">dark_mode</li>
+      <ul
+        class="darkmode"
+        @click="theme">
+        <li
+          v-if="!nightmode"
+          class="material-symbols-outlined">
+          light_mode
+        </li>
+        <li
+          v-else
+          class="material-symbols-outlined">
+          dark_mode
+        </li>
       </ul>
       <div class="drop-down">
         <button>
           <span
             class="material-symbols-outlined search-icon"
-            @click="activatedSearch"
-          >
+            @click="activatedSearch">
             search
           </span>
         </button>
@@ -52,21 +98,18 @@
           v-model="searchText"
           class="form-control"
           placeholder="검색"
-          @focus="$router.push({ name: 'search' })"
-        />
+          @focus="$router.push({ name: 'search' })" />
       </div>
       <span
         v-if="logined"
         class="material-symbols-outlined"
-        @click="$router.push('/mypage')"
-      >
+        @click="$router.push('/mypage')">
         person_outline
       </span>
       <button
         v-else
         class="btn btn-primary login"
-        @click="$router.push('/login')"
-      >
+        @click="$router.push('/login')">
         로그인
       </button>
     </div>
@@ -100,11 +143,11 @@ export default {
   watch: {
     searchText(value) {
       this.searchProducts({ searchText: value.trim() })
-    }
+    },
   },
   created() {
     this.$store.dispatch('auth/findLocalStorageUser')
-    this.$store.dispatch('auth/authenticationCheck')
+    this.$store.dispatch('auth/findAdmin')
   },
 
   methods: {
@@ -116,10 +159,7 @@ export default {
     activatedSearch() {
       this.$refs.searchInput.classList.toggle('active')
     },
-    activatedCategory() {
-      this.$refs.categoryBox.classList.toggle('active')
-    }
-  }
+  },
 }
 </script>
 
@@ -244,28 +284,18 @@ export default {
   display: none;
   cursor: pointer;
 }
+  .btn-close {
+    right: 1rem;
+    top: 1rem;
+  }
 
 @media (max-width: 960px) {
   .side-menu {
     display: block;
+    cursor: pointer;
   }
   .category__list {
     display: none;
-    .category__item {
-      border-bottom: 1px solid black;
-    }
-    &.active {
-      display: flex;
-      padding: 0.5rem;
-      flex-flow: column;
-      position: absolute;
-      top: 49px;
-      background: #fff;
-      left: 0;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-      border-bottom-left-radius: 0.25rem;
-      border-bottom-right-radius: 0.25rem;
-    }
   }
 }
 
