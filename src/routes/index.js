@@ -15,7 +15,7 @@ import EditProduct from './admin/EditProduct.vue'
 import MyPage from './MyPage.vue'
 import Signup from './Signup.vue'
 import ProfileChange from './ProfileChange.vue'
-// import store from '~/store/user'
+import store from '~/store'
 import NotFound from './product/NotFound.vue'
 
 export default createRouter({
@@ -73,7 +73,14 @@ export default createRouter({
     {
       path: '/admin',
       component: Dashboard,
-      meta: {auth:true},
+      beforeEnter: (to, from, next) => {
+        const isAdmin = store?.state?.auth.findAdmin
+        if(!isAdmin) {
+          confirm('관리자만 접근이 가능합니다.')
+          return next({ path: '/' })
+        } 
+        next()
+    }
     },
     {
       path: '/admin/add-product',

@@ -179,7 +179,7 @@ section {
 
 .badge {
   margin-right: .5rem;
-  padding: 12px;
+  padding: .4rem .8rem;
   min-width: 60px;
 }
 </style>
