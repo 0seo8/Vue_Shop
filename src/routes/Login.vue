@@ -1,7 +1,5 @@
 <template>
-  <RouterLink to="/">
-    HOME
-  </RouterLink>
+  <RouterLink to="/"> HOME </RouterLink>
   <div class="login-box">
     <form @submit.prevent="submitForm">
       <div class="user-box">
@@ -10,7 +8,8 @@
           id="name"
           v-model.trim="email"
           placeholder="Email"
-          type="email" />
+          type="email"
+        />
       </div>
       <div class="user-box">
         <label for="ps1"></label>
@@ -18,16 +17,12 @@
           id="ps1"
           v-model.trim="password"
           placeholder="Password"
-          type="password" />
+          type="password"
+        />
       </div>
-      <input
-        :disabled="!validated"
-        type="submit"
-        value="로그인" />
+      <input :disabled="!validated" type="submit" value="로그인" />
     </form>
-    <button
-      class="btn btn-primary"
-      @click="$router.push('/signup')">
+    <button class="btn btn-primary" @click="$router.push('/signup')">
       회원가입
     </button>
   </div>
@@ -37,13 +32,13 @@
 export default {
   data() {
     return {
-      email: '',
-      password: '',
-    }
+      email: "",
+      password: "",
+    };
   },
   computed: {
     validated() {
-      return this.validateEmail(this.email)
+      return this.validateEmail(this.email);
     },
   },
   methods: {
@@ -51,19 +46,19 @@ export default {
       const actionPayload = {
         email: this.email,
         password: this.password,
-      }
-      await this.$store.dispatch('auth/login', actionPayload)
-      await this.$store.dispatch('auth/authenticationCheck')
-      await this.$store.dispatch('auth/findLocalStorageUser')
-      this.$router.push('/mypage')
+      };
+      await this.$store.dispatch("auth/login", actionPayload);
+      await this.$store.dispatch("auth/findAdmin");
+      await this.$store.dispatch("auth/findLocalStorageUser");
+      this.$router.push("/mypage");
     },
     validateEmail(email) {
       const re =
-        /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/
-      return re.test(email)
+        /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+      return re.test(email);
     },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">

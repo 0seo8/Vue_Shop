@@ -3,7 +3,8 @@
     <div class="header-side">
       <span
         class="material-symbols-outlined side-menu"
-        @click="activatedCategory">
+        @click="activatedCategory"
+      >
         menu
       </span>
       <h1>
@@ -12,19 +13,15 @@
         </RouterLink>
       </h1>
     </div>
-    <ul
-      ref="categoryBox"
-      class="nav nav-pills category__list">
-      <li
-        v-for="nav in navigations"
-        :key="nav.name"
-        class="cotegory__item">
+    <ul ref="categoryBox" class="nav nav-pills category__list">
+      <li v-for="nav in navigations" :key="nav.name" class="cotegory__item">
         <RouterLink
           :to="{
             name: 'product',
             params: { category: nav.name },
           }"
-          class="nav-link">
+          class="nav-link"
+        >
           <span>{{ nav.name }}</span>
         </RouterLink>
       </li>
@@ -33,48 +30,43 @@
       <button
         v-if="findAdmin"
         class="btn btn-primary admin"
-        @click="$router.push('/admin')">
+        @click="$router.push('/admin')"
+      >
         admin
       </button>
-      <ul
-        class="darkmode"
-        @click="theme">
-        <li
-          v-if="!nightmode"
-          class="material-symbols-outlined">
-          light_mode
-        </li>
-        <li
-          v-else
-          class="material-symbols-outlined">
-          dark_mode
-        </li>
+      <ul class="darkmode" @click="theme">
+        <li v-if="!nightmode" class="material-symbols-outlined">light_mode</li>
+        <li v-else class="material-symbols-outlined">dark_mode</li>
       </ul>
       <div class="drop-down">
         <button>
           <span
             class="material-symbols-outlined search-icon"
-            @click="activatedSearch">
+            @click="activatedSearch"
+          >
             search
-          </span>  
+          </span>
         </button>
         <input
           ref="searchInput"
           v-model="searchText"
           class="form-control"
           placeholder="검색"
-          @focus="$router.push({name: 'search'})" />
+          @focus="$router.push({ name: 'search' })"
+        />
       </div>
       <span
         v-if="logined"
         class="material-symbols-outlined"
-        @click="$router.push('/mypage')">
+        @click="$router.push('/mypage')"
+      >
         person_outline
       </span>
       <button
         v-else
         class="btn btn-primary login"
-        @click="$router.push('/login')">
+        @click="$router.push('/login')"
+      >
         로그인
       </button>
     </div>
@@ -82,53 +74,53 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
-  emits: ['theme'],
+  emits: ["theme"],
   data() {
     return {
       navigations: [
-        { name: '생활가전' },
-        { name: '계절가전' },
-        { name: '디지털' },
+        { name: "생활가전" },
+        { name: "계절가전" },
+        { name: "디지털" },
       ],
-      searchText: '',
+      searchText: "",
       nightmode: false,
-    }
+    };
   },
   computed: {
     logined: function () {
-      return this.$store.state.auth.logined
+      return this.$store.state.auth.logined;
     },
     findAdmin: function () {
-      return this.$store.state.auth.findAdmin
+      return this.$store.state.auth.findAdmin;
     },
   },
   watch: {
     searchText(value) {
-      this.searchProducts({'searchText': value.trim()})
+      this.searchProducts({ searchText: value.trim() });
     },
   },
   created() {
-    this.$store.dispatch('auth/findLocalStorageUser')
-    this.$store.dispatch('auth/authenticationCheck')
+    this.$store.dispatch("auth/findLocalStorageUser");
+    this.$store.dispatch("auth/findAdmin");
   },
 
   methods: {
-    ...mapActions('product', ['searchProducts']),
-   theme() {
-      this.nightmode = !this.nightmode
-      this.$emit('theme')
-    },  
+    ...mapActions("product", ["searchProducts"]),
+    theme() {
+      this.nightmode = !this.nightmode;
+      this.$emit("theme");
+    },
     activatedSearch() {
-    this.$refs.searchInput.classList.toggle('active')
+      this.$refs.searchInput.classList.toggle("active");
     },
     activatedCategory() {
-    this.$refs.categoryBox.classList.toggle('active')
-    }
- }
-}
+      this.$refs.categoryBox.classList.toggle("active");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -253,7 +245,6 @@ export default {
 }
 
 @media (max-width: 960px) {
-
   .side-menu {
     display: block;
   }
@@ -268,28 +259,28 @@ export default {
       top: 51px;
       background: #fff;
       left: 0;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1)
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     }
   }
 }
 
 @media (max-width: 650px) {
   .drop-down {
-  .form-control {
-    display: none;
-    position: fixed;
-    left: 0;
-    border-radius: 0;
-    margin: 0;
-    &.active {
-      display:  block;
+    .form-control {
+      display: none;
+      position: fixed;
+      left: 0;
+      border-radius: 0;
+      margin: 0;
+      &.active {
+        display: block;
+      }
     }
-  }
 
-  .search-icon {
-    display: block;
-    margin-left: 1rem;
-  }
+    .search-icon {
+      display: block;
+      margin-left: 1rem;
+    }
   }
 }
 </style>
