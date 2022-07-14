@@ -6,38 +6,35 @@
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvas"
         aria-controls="offcanvasExample"
-        @click="activatedCategory"
-      >
+        @click="activatedCategory">
         menu
       </span>
       <div
         id="offcanvas"
         class="offcanvas offcanvas-start"
         tabindex="-1"
-        aria-labelledby="offcanvasLabel"
-      >
+        aria-labelledby="offcanvasLabel">
         <div class="position-relative offcanvas-header">
           <button
             type="button"
             class="btn-close position-absolute top-1 end-1"
             data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
+            aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <ul ref="categoryBox" class="nav nav-pills flex-column">
+          <ul
+            ref="categoryBox"
+            class="nav nav-pills flex-column">
             <li
               v-for="nav in navigations"
               :key="nav.name"
-              class="cotegory__item"
-            >
+              class="cotegory__item">
               <RouterLink
                 :to="{
                   name: 'product',
                   params: { category: nav.name },
                 }"
-                class="nav-link"
-              >
+                class="nav-link">
                 <span>{{ nav.name }}</span>
               </RouterLink>
             </li>
@@ -51,15 +48,19 @@
         </RouterLink>
       </h1>
     </div>
-    <ul ref="categoryBox" class="nav nav-pills category__list">
-      <li v-for="nav in navigations" :key="nav.name" class="cotegory__item">
+    <ul
+      ref="categoryBox"
+      class="nav nav-pills category__list">
+      <li
+        v-for="nav in navigations"
+        :key="nav.name"
+        class="cotegory__item">
         <RouterLink
           :to="{
             name: 'product',
             params: { category: nav.name },
           }"
-          class="nav-link"
-        >
+          class="nav-link">
           <span>{{ nav.name }}</span>
         </RouterLink>
       </li>
@@ -68,20 +69,29 @@
       <button
         v-if="findAdmin"
         class="btn btn-primary admin"
-        @click="$router.push('/admin')"
-      >
+        @click="$router.push('/admin')">
         admin
       </button>
-      <ul class="darkmode" @click="theme">
-        <li v-if="!nightmode" class="material-symbols-outlined">light_mode</li>
-        <li v-else class="material-symbols-outlined">dark_mode</li>
+      <ul
+        class="darkmode"
+        aria-label="Toggle themes"
+        @click="toggleTheme">
+        <li
+          v-if="theme == 'darkMode'"
+          class="material-symbols-outlined">
+          light_mode
+        </li>
+        <li
+          v-else
+          class="material-symbols-outlined">
+          dark_mode
+        </li>
       </ul>
       <div class="drop-down">
         <button>
           <span
             class="material-symbols-outlined search-icon"
-            @click="activatedSearch"
-          >
+            @click="activatedSearch">
             search
           </span>
         </button>
@@ -90,21 +100,18 @@
           v-model="searchText"
           class="form-control"
           placeholder="검색"
-          @focus="$router.push({ name: 'search' })"
-        />
+          @focus="$router.push({ name: 'search' })" />
       </div>
       <span
-        v-if="logined"
+        v-if="user"
         class="material-symbols-outlined"
-        @click="$router.push('/mypage')"
-      >
+        @click="$router.push('/mypage')">
         person_outline
       </span>
       <button
         v-else
         class="btn btn-primary login"
-        @click="$router.push('/login')"
-      >
+        @click="$router.push('/login')">
         로그인
       </button>
     </div>
@@ -112,53 +119,57 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import Logo from "~/components/layouts/Logo.vue";
+import { mapState, mapActions } from 'vuex'
+import Logo from '~/components/layouts/Logo.vue'
 export default {
   components: {
     Logo,
   },
-  emits: ["theme"],
+  // emits: ['theme'],
   data() {
     return {
       navigations: [
-        { name: "생활가전" },
-        { name: "계절가전" },
-        { name: "디지털" },
+        { name: '생활가전' },
+        { name: '계절가전' },
+        { name: '디지털' },
       ],
-      searchText: "",
-      nightmode: false,
-    };
+      searchText: '',
+      them: '',
+    }
   },
   computed: {
-    logined: function () {
-      return this.$store.state.auth.logined;
-    },
+    ...mapState('auth', ['user']),
     findAdmin: function () {
-      return this.$store.state.auth.findAdmin;
+      return this.$store.state.auth.findAdmin
     },
   },
   watch: {
     searchText(value) {
-      this.searchProducts({ searchText: value.trim() });
+      this.searchProducts({ searchText: value.trim() })
     },
   },
+  mounted() {
+    let localTheme = localStorage.getItem('theme')
+    document.documentElement.setAttribute('data-theme', localTheme)
+  },
   created() {
-    this.$store.dispatch("auth/findLocalStorageUser");
-    this.$store.dispatch("auth/findAdmin");
+    this.$store.dispatch('auth/findLocalStorageUser')
+    this.$store.dispatch('auth/findAdmin')
+    this.$store.dispatch('auth/authenticationCheck')
   },
 
   methods: {
-    ...mapActions("product", ["searchProducts"]),
-    theme() {
-      this.nightmode = !this.nightmode;
-      this.$emit("theme");
+    ...mapActions('product', ['searchProducts']),
+    toggleTheme() {
+      this.theme = this.theme == 'darkMode' ? '' : 'darkMode'
+      document.documentElement.setAttribute('data-theme', this.theme)
+      localStorage.setItem('theme', this.theme)
     },
     activatedSearch() {
-      this.$refs.searchInput.classList.toggle("active");
+      this.$refs.searchInput.classList.toggle('active')
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
