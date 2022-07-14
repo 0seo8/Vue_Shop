@@ -19,7 +19,7 @@
             type="button"
             class="btn-close position-absolute top-1 end-1"
             data-bs-dismiss="offcanvas"
-            aria-label="Close" />
+            aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
           <ul
@@ -74,9 +74,10 @@
       </button>
       <ul
         class="darkmode"
-        @click="theme">
+        aria-label="Toggle themes"
+        @click="toggleTheme">
         <li
-          v-if="!nightmode"
+          v-if="theme == 'darkMode'"
           class="material-symbols-outlined">
           light_mode
         </li>
@@ -99,10 +100,10 @@
           v-model="searchText"
           class="form-control"
           placeholder="검색"
-          @focus="$router.push({ name: 'search' })">
+          @focus="$router.push({ name: 'search' })" />
       </div>
       <span
-        v-if="logined"
+        v-if="user.email"
         class="material-symbols-outlined"
         @click="$router.push('/mypage')">
         person_outline
@@ -118,13 +119,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import Logo from '~/components/layouts/Logo.vue'
 export default {
   components: {
     Logo,
   },
-  emits: ['theme'],
+  // emits: ['theme'],
   data() {
     return {
       navigations: [
@@ -133,13 +134,11 @@ export default {
         { name: '디지털' },
       ],
       searchText: '',
-      nightmode: false,
+      them: '',
     }
   },
   computed: {
-    logined: function () {
-      return this.$store.state.auth.logined
-    },
+    ...mapState('auth', ['user']),
     findAdmin: function () {
       return this.$store.state.auth.findAdmin
     },
@@ -149,16 +148,22 @@ export default {
       this.searchProducts({ searchText: value.trim() })
     },
   },
+  mounted() {
+    let localTheme = localStorage.getItem('theme')
+    document.documentElement.setAttribute('data-theme', localTheme)
+  },
   created() {
     this.$store.dispatch('auth/findLocalStorageUser')
     this.$store.dispatch('auth/findAdmin')
+    this.$store.dispatch('auth/authenticationCheck')
   },
 
   methods: {
     ...mapActions('product', ['searchProducts']),
-    theme() {
-      this.nightmode = !this.nightmode
-      this.$emit('theme')
+    toggleTheme() {
+      this.theme = this.theme == 'darkMode' ? '' : 'darkMode'
+      document.documentElement.setAttribute('data-theme', this.theme)
+      localStorage.setItem('theme', this.theme)
     },
     activatedSearch() {
       this.$refs.searchInput.classList.toggle('active')
