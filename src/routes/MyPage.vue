@@ -100,7 +100,7 @@ export default {
       return this.$store.state.account.currentAccounts;
     },
     userImg: function () {
-      return this.$store.state.auth.img;
+      return this.$store.state.auth.user.img;
     },
   },
   created() {

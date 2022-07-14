@@ -109,7 +109,6 @@ export default {
             thumbnailBase64: this.thumbnailBase64,
           },
         });
-        console.log(res);
         this.$swal({
           title: `${this.title} 제품이 등록되었습니다!`,
           text: this.description,

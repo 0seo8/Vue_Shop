@@ -22,10 +22,10 @@ async function me(accessToken) {
 router.beforeEach(async (to) => {
   if(to.meta.auth) {
     const accessToken = localStorage.getItem('token')
-    console.log('here', await me(accessToken))
     return await me(accessToken)
       ? true
       : '/login'
   }
   return true
 })
+

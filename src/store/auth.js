@@ -18,7 +18,6 @@ export default {
       token: null,
       logined: null,
       findAdmin: false,
-      img: null,
     };
   },
   mutations: {
@@ -120,8 +119,6 @@ export default {
           },
         });
         commit("setUser", { findAdmin: data.email.includes("admin") });
-      } else {
-        return;
       }
     },
   },
