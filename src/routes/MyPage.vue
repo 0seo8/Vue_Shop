@@ -1,9 +1,9 @@
 <template>
   <div class="my-page-top">
     <div class="profile">
-      <div v-show="user" class="profile-image">
+      <!-- <div v-show="user" class="profile-image">
         프로필사진 : <img :src="user.profileImg" alt="image" />
-      </div>
+      </div> -->
       <div v-show="user" class="profile-info">
         <p>이메일 : {{ user.email }}</p>
         <p>이름 : {{ user.displayName }}</p>

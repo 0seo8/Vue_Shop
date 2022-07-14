@@ -96,6 +96,7 @@ export default createRouter({
     {
       path: "/:pathMatch(.*)*",
       component: NotFound,
+      meta: { hideNavigation: true },
     },
   ],
 });

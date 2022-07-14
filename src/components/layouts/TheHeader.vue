@@ -242,6 +242,7 @@ export default {
 
 .side-menu {
   display: none;
+  cursor: pointer;
 }
 
 @media (max-width: 960px) {
@@ -250,16 +251,20 @@ export default {
   }
   .category__list {
     display: none;
+    .category__item {
+      border-bottom: 1px solid black;
+    }
     &.active {
       display: flex;
-      gap: 1rem;
-      padding: 1rem;
+      padding: 0.5rem;
       flex-flow: column;
       position: absolute;
-      top: 51px;
+      top: 49px;
       background: #fff;
       left: 0;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      border-bottom-left-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
     }
   }
 }
