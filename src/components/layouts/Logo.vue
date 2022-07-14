@@ -4,7 +4,7 @@
     class="logo">
     <img
       src="../../assets/Logo.png"
-      alt="Electron Mart" />
+      alt="Electron Mart">
   </RouterLink>
 </template>
 <script>

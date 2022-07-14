@@ -11,7 +11,7 @@
       <img
         :class="product.isSoldOut ? 'soldout' : ''"
         :src="product.thumbnail"
-        alt="thumbnail" />
+        alt="thumbnail">
     </figure>
     <div class="card-body">
       <div class="tags">
@@ -26,7 +26,7 @@
         {{ product.title }}
       </p>
       <p class="price">
-        ₩ {{ product.price.toLocaleString('ko-KR') }}
+        ₩ {{ product.price.toLocaleString("ko-KR") }}
       </p>
     </div>
   </RouterLink>
@@ -37,14 +37,14 @@ export default {
   props: {
     product: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
 figure {
   border-radius: 4px;
@@ -59,7 +59,7 @@ figure {
   position: relative;
   .sold-out-box {
     position: absolute;
-    font-family: 'Permanent Marker', cursive;
+    font-family: "Permanent Marker", cursive;
     font-size: 40px;
     width: 100px;
     height: 200px;

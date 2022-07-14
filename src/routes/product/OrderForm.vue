@@ -18,7 +18,7 @@
         <div class="info box">
           <img
             :src="selectedProduct.thumbnail"
-            alt="상품사진" />
+            alt="상품사진">
           <p>{{ selectedProduct.title }}</p>
         </div>
       </div>
@@ -89,7 +89,7 @@
                     id="checkAll"
                     v-model="checkAll"
                     type="checkbox"
-                    name="checkAll" />
+                    name="checkAll">
                   <label for="checkAll">
                     <em>전체동의</em>
                     <span class="text">만 14세 이상만 구매가능합니다.</span>
@@ -104,7 +104,7 @@
                     id="check1"
                     v-model="check.check1"
                     type="checkbox"
-                    name="check1" />
+                    name="check1">
                   <label for="check1"><em>필수</em> 개인정보 수집 및 이용동의</label>
                 </div>
                 <button
@@ -128,7 +128,7 @@
                     id="check2"
                     v-model="check.check2"
                     type="checkbox"
-                    name="check2" />
+                    name="check2">
                   <label for="check2"><em>필수</em> 개인정보 제3자 제공동의</label>
                 </div>
                 <button

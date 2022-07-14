@@ -3,7 +3,10 @@
     <form @submit.prevent="submitForm">
       <div class="user-box">
         <label for="name">New Id: </label>
-        <input id="name" v-model.trim="displayName" type="name" />
+        <input
+          id="name"
+          v-model.trim="displayName"
+          type="name">
       </div>
       <div class="user-box">
         <label for="ps1">Old password: </label>
@@ -12,8 +15,7 @@
           v-model.trim="oldPsw"
           type="password"
           placeholder="8자 이상 필수"
-          minlength="8"
-        />
+          minlength="8">
       </div>
       <div class="user-box">
         <label for="ps2">New password: </label>
@@ -22,8 +24,7 @@
           v-model.trim="newPsw"
           type="password"
           placeholder="8자 이상 필수"
-          minlength="8"
-        />
+          minlength="8">
       </div>
 
       <div class="user-box">
@@ -33,11 +34,12 @@
           class="form-input"
           type="file"
           accept=".png, .jpg"
-          @change="selectFile"
-        />
+          @change="selectFile">
       </div>
       <!-- <p v-if="!formIsValid">입력 제대로 하셈.</p> -->
-      <input type="submit" value="회원정보 수정" />
+      <input
+        type="submit"
+        value="회원정보 수정">
     </form>
   </div>
 </template>
@@ -46,17 +48,17 @@
 export default {
   data() {
     return {
-      oldPsw: "",
-      newPsw: "",
-      displayName: "",
+      oldPsw: '',
+      newPsw: '',
+      displayName: '',
 
-      profileImgBase64: "",
-    };
+      profileImgBase64: '',
+    }
   },
   methods: {
     async submitForm() {
       if (this.oldPsw.length < 6 || this.newPsw.length < 6) {
-        return;
+        return
       }
 
       const actionPayload = {
@@ -65,24 +67,24 @@ export default {
         displayName: this.displayName,
 
         profileImgBase64: this.profileImgBase64,
-      };
+      }
 
-      await this.$store.dispatch("auth/changeProfile", actionPayload);
-      this.$router.push("/mypage");
+      await this.$store.dispatch('auth/changeProfile', actionPayload)
+      this.$router.push('/mypage')
     },
 
     selectFile(event) {
-      const { files } = event.target;
+      const { files } = event.target
       for (const file of files) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.addEventListener("load", () => {
-          this.profileImgBase64 = reader.result;
-        });
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.addEventListener('load', () => {
+          this.profileImgBase64 = reader.result
+        })
       }
     },
   },
-};
+}
 </script>
 
 <style scoped>
