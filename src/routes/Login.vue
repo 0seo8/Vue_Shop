@@ -5,25 +5,25 @@
   <div class="login-box">
     <form @submit.prevent="submitForm">
       <div class="user-box">
-        <label for="name"></label>
+        <label for="name" />
         <input
           id="name"
           v-model.trim="email"
           placeholder="Email"
-          type="email" />
+          type="email">
       </div>
       <div class="user-box">
-        <label for="ps1"></label>
+        <label for="ps1" />
         <input
           id="ps1"
           v-model.trim="password"
           placeholder="Password"
-          type="password" />
+          type="password">
       </div>
       <input
         :disabled="!validated"
         type="submit"
-        value="로그인" />
+        value="로그인">
     </form>
     <button
       class="btn btn-primary"
@@ -59,6 +59,7 @@ export default {
     },
     validateEmail(email) {
       const re =
+        // eslint-disable-next-line no-useless-escape
         /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/
       return re.test(email)
     },

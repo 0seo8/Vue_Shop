@@ -11,11 +11,11 @@
         <img
           v-if="selectedProduct.thumbnail"
           :src="selectedProduct.thumbnail"
-          :alt="`${selectedProduct.title} 이미지`" />  
+          :alt="`${selectedProduct.title} 이미지`">  
         <img
           v-else
           src="../../assets/no-Img"
-          alt="이미지 준비중" />
+          alt="이미지 준비중">
         <div
           v-if="selectedProduct.isSoldOut"
           class="sold-out-box">

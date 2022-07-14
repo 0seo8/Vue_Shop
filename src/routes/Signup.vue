@@ -1,89 +1,87 @@
 <template>
-  <RouterLink to="/"> HOME </RouterLink>
+  <RouterLink to="/">
+    HOME
+  </RouterLink>
   <div class="login-box">
     <form @submit.prevent="submitForm">
       <div class="user-box">
-        <label for="email"></label>
+        <label for="email" />
         <input
-          placeholder="E-mail: 사용자 아이디 (필수!)"
           id="email"
           v-model.trim="email"
-          type="email"
-        />
+          placeholder="E-mail: 사용자 아이디 (필수!)"
+          type="email">
       </div>
       <div class="user-box">
-        <label for="name"></label>
+        <label for="name" />
         <input
-          placeholder="Id: 사용자 이름, 20자 이하 (필수!)"
           id="name"
           v-model.trim="displayName"
-          type="name"
-        />
+          placeholder="Id: 사용자 이름, 20자 이하 (필수!)"
+          type="name">
       </div>
       <div class="user-box">
-        <label for="ps1"></label>
+        <label for="ps1" />
         <input
           id="ps1"
           v-model.trim="psw"
           type="password"
-          placeholder="비밀번호: 8자 이상 필수"
-        />
+          placeholder="비밀번호: 8자 이상 필수">
       </div>
 
       <div class="user-box">
-        <label for="user-profile-picture"></label>
+        <label for="user-profile-picture" />
         <input
+          id="user-profile-picture"
           class="form-input"
           type="file"
-          id="user-profile-picture"
           accept=".png, .jpg"
-          @change="selectfile"
-        />
+          @change="selectfile">
       </div>
-      <p v-if="!formIsValid">입력 제대로 하셈.</p>
-      <input type="submit" value="회원가입" />
+      <p v-if="!formIsValid">
+        입력 제대로 하셈.
+      </p>
+      <input
+        type="submit"
+        value="회원가입">
     </form>
   </div>
 </template>
 
 <script>
-import Login from "./Login.vue";
 export default {
-  components: {
-    Login,
-  },
   data() {
     return {
-      email: "",
-      psw: "",
-      displayName: "",
+      email: '',
+      psw: '',
+      displayName: '',
       formIsValid: true,
 
       profileImgBase64: null,
-    };
+    }
   },
   methods: {
     selectfile(event) {
       // console.log(event)
       // const files= event.target.files
-      const { files } = event.target;
+      const { files } = event.target
       for (const file of files) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.addEventListener("load", () => {
-          this.profileImgBase64 = reader.result;
-        });
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.addEventListener('load', () => {
+          this.profileImgBase64 = reader.result
+        })
       }
     },
     async submitForm() {
-      this.formIsValid = true;
+      this.formIsValid = true
       if (
-        this.email === "" ||
-        !this.email.includes("@") ||
+        this.email === '' ||
+        !this.email.includes('@') ||
         this.psw.length < 6
       ) {
-        this.formIsValid = false;
-        return;
+        this.formIsValid = false
+        return
       }
 
       const actionPayload = {
@@ -92,13 +90,13 @@ export default {
         displayName: this.displayName,
 
         profileImgBase64: this.profileImgBase64,
-      };
+      }
 
-      await this.$store.dispatch("auth/signup", actionPayload);
-      this.$router.push("/login");
+      await this.$store.dispatch('auth/signup', actionPayload)
+      this.$router.push('/login')
     },
   },
-};
+}
 </script>
 
 <style scoped>

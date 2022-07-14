@@ -1,8 +1,16 @@
 <template>
   <div class="not-found">
-    <div class="status">404</div>
-    <div class="message">Page Not Found!</div>
-    <button class="btn btn-primary" @click="$router.push('/')">Home</button>
+    <div class="status">
+      404
+    </div>
+    <div class="message">
+      Page Not Found!
+    </div>
+    <button
+      class="btn btn-primary"
+      @click="$router.push('/')">
+      Home
+    </button>
   </div>
 </template>
 

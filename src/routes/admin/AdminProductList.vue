@@ -44,12 +44,12 @@
                     >주문가능</span
                   >
                 </template>
-                <template v-else-if="column.field === 'dropdown'"></template>
+                <template v-else-if="column.field === 'dropdown'" />
                 <template v-else-if="column.field === 'tags'">
                   {{ product.tags.toString() }}
                 </template>
                 <template v-else-if="column.field === 'price'">
-                  {{ product.price.toLocaleString() + "원" }}
+                  {{ product.price.toLocaleString() + '원' }}
                 </template>
                 <template v-else>
                   {{ product[column.field] }}
@@ -97,9 +97,9 @@
   </section>
 </template>
 <script>
-import AdminButton from "../../components/AdminButton.vue";
-import axios from "axios";
-import noImage from "../../assets/noImage";
+import AdminButton from '../../components/AdminButton.vue';
+import axios from 'axios';
+import noImage from '../../assets/noImage';
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env;
 
 export default {
@@ -109,31 +109,31 @@ export default {
   data() {
     return {
       columns: [
-        { field: "index", name: "", col: "column flex-grow-0 col-index" },
+        { field: 'index', name: '', col: 'column flex-grow-0 col-index' },
         {
-          field: "thumbnail",
-          name: "이미지",
-          col: "column col-lg-auto col-sm-auto col-auto col-thumbnail",
+          field: 'thumbnail',
+          name: '이미지',
+          col: 'column col-lg-auto col-sm-auto col-auto col-thumbnail',
         },
         {
-          field: "title",
-          name: "제목",
-          col: "column col-lg-3 col-sm-2 col-5 col-title",
+          field: 'title',
+          name: '제목',
+          col: 'column col-lg-3 col-sm-2 col-5 col-title',
         },
         {
-          field: "price",
-          name: "가격",
-          col: "column col-lg-2 col-sm-2 col-3 col-price",
+          field: 'price',
+          name: '가격',
+          col: 'column col-lg-2 col-sm-2 col-3 col-price',
         },
         {
-          field: "tags",
-          name: "태그",
-          col: "column col-lg-2 col-sm-2 col-4 col-tags",
+          field: 'tags',
+          name: '태그',
+          col: 'column col-lg-2 col-sm-2 col-4 col-tags',
         },
         {
-          field: "isSoldOut",
-          name: "매진여부",
-          col: "column col-lg-2 col-sm-2 col-4 col-isSoldOut",
+          field: 'isSoldOut',
+          name: '매진여부',
+          col: 'column col-lg-2 col-sm-2 col-4 col-isSoldOut',
         },
       ],
     };
@@ -144,7 +144,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("admin/readProducts");
+    this.$store.dispatch('admin/readProducts');
   },
   methods: {
     async deleteProduct(product) {
@@ -153,24 +153,24 @@ export default {
         const res = await axios({
           url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${id}`,
           headers: {
-            "content-type": "application/json",
+            'content-type': 'application/json',
             apikey: VITE_API_KEY,
             username: VITE_USERNAME,
             masterKey: true,
           },
-          method: "DELETE",
+          method: 'DELETE',
         });
         console.log(res);
-        this.$store.dispatch("admin/readProducts");
+        this.$store.dispatch('admin/readProducts');
         this.$swal({
-          title: "제품이 삭제되었습니다!",
-          icon: "success",
+          title: '제품이 삭제되었습니다!',
+          icon: 'success',
           imageUrl: thumbnail,
           imageWidth: 100,
           imageHeight: 100,
           imageAlt: noImage,
           width: 400,
-          confirmButtonColor: "#f2555a",
+          confirmButtonColor: '#f2555a',
         });
       } catch (error) {
         console.log(error);
