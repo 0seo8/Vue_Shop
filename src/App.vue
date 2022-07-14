@@ -1,8 +1,13 @@
 <template>
-  <TheHeader v-if="!$route.meta.hideNavigation" @theme="theme" />
+  <TheHeader
+    v-if="!$route.meta.hideNavigation"
+    @theme="theme" />
   <div class="main__wrap">
     <RouterView />
-    <div v-if="isLoading" class="spinner-border text-danger" role="status">
+    <div
+      v-if="isLoading"
+      class="spinner-border text-danger"
+      role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
     <TheFooter />
@@ -10,24 +15,24 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import TheHeader from "~/components/layouts/TheHeader.vue";
-import TheFooter from "~/components/layouts/TheFooter.vue";
+import { mapState } from 'vuex'
+import TheHeader from '~/components/layouts/TheHeader.vue'
+import TheFooter from '~/components/layouts/TheFooter.vue'
 export default {
   components: {
     TheHeader,
     TheFooter,
   },
   computed: {
-    ...mapState("product", ["isLoading"]),
+    ...mapState('product', ['isLoading']),
   },
   methods: {
     theme() {
-      let body = document.querySelector("body");
-      body.classList.toggle("nightmode");
+      let body = document.querySelector('body')
+      body.classList.toggle('nightmode')
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
