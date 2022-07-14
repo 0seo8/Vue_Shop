@@ -103,7 +103,7 @@
           @focus="$router.push({ name: 'search' })" />
       </div>
       <span
-        v-if="user"
+        v-if="user.email"
         class="material-symbols-outlined"
         @click="$router.push('/mypage')">
         person_outline
