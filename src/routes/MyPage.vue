@@ -153,7 +153,7 @@ export default {
   padding: 3rem 1rem;
   justify-content: center;
   align-items: center;
-  background: var( --color-info-box);
+  background: var(--color-mypage-box);
   border-radius: 1rem;
   h3 {
     font-size: 1.5rem;
