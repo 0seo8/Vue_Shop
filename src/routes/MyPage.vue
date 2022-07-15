@@ -1,11 +1,14 @@
 <template>
   <div class="my-page-top">
     <div class="profile">
+      <div class="profile__img">
+        <img :src="user.profileImg">
+      </div>
       <div
         v-show="user"
-        class="profile-info">
+        class="profile__info">
+        <h3>{{ user.displayName }} 님</h3>
         <p>이메일 : {{ user.email }}</p>
-        <p>이름 : {{ user.displayName }}</p>
         <button
           class="btn btn-primary logout-btn"
           @click="logOut()">
@@ -143,30 +146,40 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .my-page-top {
   display: flex;
-  border: 1px solid black;
+  margin: 3rem 1rem;
+  padding: 3rem 1rem;
+  justify-content: center;
+  align-items: center;
+  background: var( --color-info-box);
+  border-radius: 1rem;
+  h3 {
+    font-size: 1.5rem;
+  }
 }
 .profile {
   width: 60%;
   display: flex;
   padding: 1rem;
   border-right: 1px solid black;
-}
-.profile-image {
-  width: 50%;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: 0 auto;
-}
-
-.profile-info {
-  width: 50%;
-  text-align: center;
-  padding-top: 10%;
+  &__img {
+    flex-shrink: 1;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    img {
+      width: 100%;
+    }
+  }
+  &__info {
+    text-align: center;
+    white-space: nowrap;
+    flex-grow: 1;
+  }
 }
 
 .logout-btn {
@@ -212,5 +225,11 @@ export default {
   color: red;
   font-weight: 900;
   margin-left: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .my-page-top {
+    flex-flow: column;
+  }
 }
 </style>
