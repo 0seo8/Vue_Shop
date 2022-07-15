@@ -46,18 +46,32 @@
           v-if="user"
           class="orderUserInfo__list">
           <dt>주문자정보</dt>
-          <dd id="cName">
+          <dd v-if="!editMode">
             {{ user.displayName }}
+          </dd>
+          <dd v-else>
+            <input
+              type="text"
+              :value="title" 
+              @input="title = $event.target.value" 
+              @keydown.enter="ModifyUserInfo"
+              @keydown.esc="ModifyUserInfo">
           </dd>
           <dd class="email">
             <span id="buyerEmail">{{ user.email }}</span>
           </dd>
           <dd>
             <button
+              v-if="!editMode"
               type="button"
-              class="buttonBasic buttonDefault02 sizeSS"
-              onclick="orderShowLayer('userInfoModify');">
+              @click="editMode=true">
               수정
+            </button>
+            <button
+              v-else
+              type="button"
+              @click="ModifyUserInfo">
+              완료
             </button>
           </dd>
         </dl>
@@ -197,15 +211,14 @@ export default {
         check2: false,
       },
       selectAccount: '',
+      editMode: false,
+      title: ''
     }
   },
   computed: {
     ...mapState('account', ['currentAccounts']),
     ...mapState('product', ['selectedProduct', 'selectedPrice']),
     ...mapState('auth', ['user']),
-    // selectAccount() {
-    //   return this.currentAccounts.accounts.filter(account => account.id === this.selectAccountId)
-    // },
     checkAll: {
       get() {
         if (this.check.check1 && this.check.check2) {
@@ -234,12 +247,12 @@ export default {
   },
   created() {
     this.getCurrentAccounts()
-    this.authenticationCheck()
+    // this.authenticationCheck()
   },
   methods: {
     ...mapActions('account', ['getCurrentAccounts']),
     ...mapActions('product', ['requestPurchase']),
-    ...mapActions('auth', ['authenticationCheck']),
+    ...mapActions('auth', ['authenticationCheck', 'changeProfile']),
     PayNow(productId, accountId) {
       if (this.selectAccountId === '') {
         confirm('결제 계좌가 선택되지 않았습니다')
@@ -261,6 +274,10 @@ export default {
         }
       }
     },
+    ModifyUserInfo() {
+      this.changeProfile({displayName: this.title})
+      this.editMode = false
+    }
   },
 }
 </script>

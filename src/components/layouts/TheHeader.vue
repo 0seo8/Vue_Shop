@@ -134,7 +134,7 @@ export default {
         { name: '디지털' },
       ],
       searchText: '',
-      theme: '',
+      theme: 'lightMode',
     }
   },
   computed: {
@@ -161,8 +161,8 @@ export default {
   methods: {
     ...mapActions('product', ['searchProducts']),
     toggleTheme() {
-      localStorage.setItem('theme', this.theme)
       this.theme = this.theme == 'darkMode' ? 'lightMode' : 'darkMode'
+      localStorage.setItem('theme', this.theme)
       document.documentElement.setAttribute('data-theme', this.theme)
     },
     activatedSearch() {

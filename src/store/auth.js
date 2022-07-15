@@ -77,6 +77,7 @@ export default {
       commit('setUser', {user: {}})
     },
     async changeProfile({ commit }, payload) {
+      console.log('payload', payload)
       const accessToken = window.localStorage.getItem('token')
       const { data } = await axios({
         url: `${END_POINT}/user`,
@@ -87,7 +88,8 @@ export default {
         },
         data: payload,
       })
-      commit('setUser', { user: data.user })
+      console.log('요기', data)
+      commit('setUser', { user: data })
     },
     async authenticationCheck({ commit }) {
       const accessToken = window.localStorage.getItem('token')
