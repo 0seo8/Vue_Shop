@@ -1,6 +1,5 @@
 import router from './index.js'
 import axios from 'axios'
-import store from '~/store'
 
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 

@@ -44,7 +44,7 @@ export default {
   
       }catch(error){
         console.log(error)
-        window.localStorage.clear()
+        window.localStorage.removeItem('token')
       }
     },
     async signup({ commit }, payload) {
@@ -73,7 +73,7 @@ export default {
       }).catch((error) => {
         console.log(error)
       })
-      window.localStorage.clear()
+      window.localStorage.removeItem('token')
       commit('setUser', {user: {}})
     },
     async changeProfile({ commit }, payload) {
