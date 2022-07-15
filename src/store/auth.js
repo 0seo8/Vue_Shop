@@ -16,7 +16,6 @@ export default {
     return {
       user: {},
       token: null,
-      logined: null,
       findAdmin: false,
     }
   },
@@ -88,14 +87,6 @@ export default {
         data: payload,
       })
       commit('setUser', { user: data.user })
-    },
-    findLocalStorageUser({ commit }) {
-      const accessToken = window.localStorage.getItem('token')
-      if (accessToken == null) {
-        commit('setUser', { logined: false })
-      } else {
-        commit('setUser', { logined: true })
-      }
     },
     async authenticationCheck({ commit }) {
       const accessToken = window.localStorage.getItem('token')
