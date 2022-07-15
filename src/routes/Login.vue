@@ -54,7 +54,6 @@ export default {
       }
       await this.$store.dispatch('auth/login', actionPayload)
       await this.$store.dispatch('auth/findAdmin')
-      await this.$store.dispatch('auth/findLocalStorageUser')
       this.$router.push('/mypage')
     },
     validateEmail(email) {

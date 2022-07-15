@@ -19,7 +19,7 @@
             type="button"
             class="btn-close position-absolute top-1 end-1"
             data-bs-dismiss="offcanvas"
-            aria-label="Close"></button>
+            aria-label="Close" />
         </div>
         <div class="offcanvas-body">
           <ul
@@ -100,7 +100,7 @@
           v-model="searchText"
           class="form-control"
           placeholder="검색"
-          @focus="$router.push({ name: 'search' })" />
+          @focus="$router.push({ name: 'search' })">
       </div>
       <span
         v-if="user.email"
@@ -134,7 +134,7 @@ export default {
         { name: '디지털' },
       ],
       searchText: '',
-      them: '',
+      theme: 'lightMode',
     }
   },
   computed: {
@@ -150,10 +150,15 @@ export default {
   },
   mounted() {
     let localTheme = localStorage.getItem('theme')
-    document.documentElement.setAttribute('data-theme', localTheme)
+    if(localTheme) {
+      document.documentElement.setAttribute('data-theme', localTheme)  
+      this.theme = localTheme   
+    } else {
+      document.documentElement.setAttribute('data-theme', this.theme)
+      window.localStorage.setItem('theme', this.theme)
+    }
   },
   created() {
-    this.$store.dispatch('auth/findLocalStorageUser')
     this.$store.dispatch('auth/findAdmin')
     this.$store.dispatch('auth/authenticationCheck')
   },
@@ -161,9 +166,9 @@ export default {
   methods: {
     ...mapActions('product', ['searchProducts']),
     toggleTheme() {
-      this.theme = this.theme == 'darkMode' ? '' : 'darkMode'
-      document.documentElement.setAttribute('data-theme', this.theme)
+      this.theme = this.theme == 'darkMode' ? 'lightMode' : 'darkMode'
       localStorage.setItem('theme', this.theme)
+      document.documentElement.setAttribute('data-theme', this.theme)
     },
     activatedSearch() {
       this.$refs.searchInput.classList.toggle('active')
@@ -184,8 +189,9 @@ export default {
   justify-content: space-between;
   padding: 6px 12px;
   min-height: 48px;
-  background-color: #fff;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  color: var(--color-text-base);
+  background-color: var(--color-header-bg);
+  box-shadow: 0 10px 15px -3px var(--color-shawdow-100), 0 4px 6px -4px var(--color-shawdow-100);
   .header-side {
     display: flex;
     gap: 1rem;
@@ -198,7 +204,7 @@ export default {
     flex-shrink: 0;
     margin: 0;
     padding: 0;
-    color: $primary;
+    color: var(--color-pirmary);
     a {
       font-weight: 700;
       font-size: 20px;
@@ -211,6 +217,7 @@ export default {
   }
 }
 
+
 .category {
   &__list {
     flex-grow: 1;
@@ -219,9 +226,9 @@ export default {
     white-space: nowrap;
     font-size: 14px;
     .nav-link {
-      color: $color-black;
+      color: var(--color-text-base);
       &:hover {
-        color: $color-primary;
+        color: var(--color-pirmary);
       }
     }
   }
@@ -244,7 +251,7 @@ export default {
 
   .material-symbols-outlined {
     font-size: 30px;
-    color: $color-primary;
+    color: var(--color-pirmary);
     display: block;
     &:hover {
       cursor: pointer;

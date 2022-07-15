@@ -87,11 +87,6 @@ export default {
       ...mapState('product', ['PurchaseHistories']),
       ...mapGetters('product', ['getPurchasedProductId']),
     },
-     watch: {
-      page(value) {
-        console.log('page',value)
-      }
-    },
     created() {
         this.readPurchaseAllHistory()
     },
@@ -122,7 +117,7 @@ section {
     max-width: 900px;
     border-radius: 12px;
     box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px, rgb(0 0 0 / 16%) 0px 0px 1px 0px;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-info-box);
     margin-bottom: 20px;
     padding: 24px 24px 16px;
 }

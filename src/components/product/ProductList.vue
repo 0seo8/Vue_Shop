@@ -55,6 +55,7 @@ section {
     line-height: 25px;
     text-align: center;
     font-weight: 700;
+    color: var(--color-text-title);
   }
 
   .main {
@@ -70,12 +71,12 @@ section {
       overflow: hidden;
       .card {
         box-sizing: border-box;
-        border: 2px solid #ffb1c1;
+        border: 2px solid var(--color-sub-primary);
         transition: 0.3s ease box-shadow;
-        background-color: rgba(#ffb1c1, 0.5);
+        background-color: var(--color-card-primary);
         padding: 12px;
         &:hover {
-          box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 26%);
+          box-shadow: 0px 0px 10px 2px var(--color-shawdow-300);
         }
       }
     }

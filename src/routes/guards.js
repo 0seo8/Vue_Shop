@@ -1,5 +1,6 @@
 import router from './index.js'
 import axios from 'axios'
+
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 async function me(accessToken) {
@@ -14,10 +15,8 @@ async function me(accessToken) {
       Authorization: `Bearer ${accessToken}`
     },
   })
-  console.log('user', user)
   return !!user.email 
 }
-
 
 router.beforeEach(async (to) => {
   if(to.meta.auth) {

@@ -16,7 +16,6 @@ export default {
     return {
       user: {},
       token: null,
-      logined: null,
       findAdmin: false,
     }
   },
@@ -45,7 +44,7 @@ export default {
   
       }catch(error){
         console.log(error)
-        window.localStorage.clear()
+        window.localStorage.removeItem('token')
       }
     },
     async signup({ commit }, payload) {
@@ -62,7 +61,7 @@ export default {
       commit('setUser', { user: data.user })
     },
 
-    async logOut() {
+    async logOut({commit}) {
       const accessToken = window.localStorage.getItem('token')
       await axios({
         url: `${END_POINT}/logout`,
@@ -74,9 +73,11 @@ export default {
       }).catch((error) => {
         console.log(error)
       })
-      window.localStorage.clear()
+      window.localStorage.removeItem('token')
+      commit('setUser', {user: {}})
     },
     async changeProfile({ commit }, payload) {
+      console.log('payload', payload)
       const accessToken = window.localStorage.getItem('token')
       const { data } = await axios({
         url: `${END_POINT}/user`,
@@ -87,15 +88,7 @@ export default {
         },
         data: payload,
       })
-      commit('setUser', { user: data.user })
-    },
-    findLocalStorageUser({ commit }) {
-      const accessToken = window.localStorage.getItem('token')
-      if (accessToken == null) {
-        commit('setUser', { logined: false })
-      } else {
-        commit('setUser', { logined: true })
-      }
+      commit('setUser', { user: data })
     },
     async authenticationCheck({ commit }) {
       const accessToken = window.localStorage.getItem('token')

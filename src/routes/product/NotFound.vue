@@ -21,7 +21,7 @@
   padding: 80px 20px;
   .status {
     font-size: 160px;
-    color: #f2555a;
+    color: var(--color-pirmary);
   }
   .message {
     font-size: 50px;
