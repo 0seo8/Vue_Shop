@@ -61,7 +61,7 @@ export default {
       commit('setUser', { user: data.user })
     },
 
-    async logOut() {
+    async logOut({commit}) {
       const accessToken = window.localStorage.getItem('token')
       await axios({
         url: `${END_POINT}/logout`,
@@ -74,6 +74,7 @@ export default {
         console.log(error)
       })
       window.localStorage.clear()
+      commit('setUser', {user: {}})
     },
     async changeProfile({ commit }, payload) {
       const accessToken = window.localStorage.getItem('token')
