@@ -277,22 +277,29 @@ export default {
 .table {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
+  margin-bottom: 0;
+  padding-bottom: 1rem;
+  background-color: var(--color-info-box);
+
   > * {
     border: none;
   }
   .info.head {
     padding: 15px 20px;
-    border-top: 2px solid #222;
-    background-color: rgb(245, 245, 245);
+    border-top: 2px solid var(--color-gray-800);
     font-weight: 600;
     text-align: center;
+    color: var(--color-text-base);
+    background-color: var(--color-info-head);
   }
   .info.box {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 200px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var( --color-gray-400);
+    color: var(--color-text-base);
+    background-color: var(--color-info-box);
     img {
       width: 20%;
       max-height: 200px;
@@ -302,14 +309,16 @@ export default {
 
 .purchaseInfo {
   display: grid;
-  margin-top: 15px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   gap: 1rem;
-  // grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas: "info account payment";
+  background-color: var(--color-info-box);
 .orderUserInfo {
     padding: 30px 20px;
-    background: #f9f9f9;
+    background: var(--color-userInfo-bg);
     grid-area: info;
+    color: var(--color-text-base);
     &__guide {
       margin-top: 15px;
       padding-top: 15px;
@@ -317,7 +326,7 @@ export default {
       li {
         line-height: 17px;
         font-size: 12px;
-        color: #555;
+        color: var(--color-gray-700);
       }
     }
     &__list {
@@ -325,16 +334,16 @@ export default {
         position: relative;
         margin-bottom: 13px;
         padding-bottom: 15px;
-        border-bottom: 1px solid #222;
+        border-bottom: 1px solid var(--color-gray-800);
         font-weight: 600;
         font-size: 16px;
-        color: #222;
+        color: var(--color-gray-800);
       }
       dd {
         position: relative;
         line-height: 22px;
         font-size: 13px;
-        color: #222;
+        color: var(--color-gray-800);
         &.email {
           display: flex;
           justify-content: space-between;
@@ -343,10 +352,12 @@ export default {
     }
   }
   &__box {
-    border: 1px solid #000;
+    border: 1px solid var(--color-text-base);
     padding: 1.5rem;
     min-width: 300px;
     grid-area: payment;
+    border-bottom: 1px solid var( --color-gray-400);
+    color: var(--color-text-base);
     .expected-payment {
       display: flex;
       flex-flow: column;
@@ -357,7 +368,7 @@ export default {
       }
     }
     .expected-payment-all {
-      border-top: 1px solid #222;
+      border-top: 1px solid var(--color-gray-800);
       padding-top: 1rem;
       display: flex;
       flex-flow: column;
@@ -366,11 +377,11 @@ export default {
   }
   &__title {
     padding-bottom: 15px;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--color-gray-800);
     text-align: center;
     font-weight: 700;
     font-size: 22px;
-    color: #222;
+    color: var(--color-gray-800);
   }
 }
 
@@ -386,13 +397,12 @@ export default {
   }
   .box__inner {
     padding: 20px 30px;
-    background-color: #fff;
     border-radius: 8px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--color-gray-200);
   }
   .allagree {
     padding-bottom: 16px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-gray-100);
   }
   .box__custom-form {
     padding-right: 70px;
@@ -414,7 +424,7 @@ export default {
         vertical-align: top;
         font-size: 15px;
         line-height: 20px;
-        color: #616161;
+        color: var(--color-gray-600);
         cursor: pointer;
       }
     }
@@ -464,6 +474,8 @@ export default {
   flex-flow: column;
   padding: 16px;
   flex-shrink: 0;
+  background-color: inherit;
+  color: var(--color-gray-800);
 }
 .account-list {
   display: flex;
@@ -496,7 +508,7 @@ select {
   .purchaseInfo {
     grid-template-areas: 
                 "account account"
-                "info payment";
+                "info payment";            
   }
 }
 

@@ -55,7 +55,7 @@ figure {
   justify-content: center;
   overflow: hidden;
   height: 210px;
-  background-color: #fff;
+  background-color: var(--color-background-bg);
   position: relative;
   .sold-out-box {
     position: absolute;
@@ -66,7 +66,7 @@ figure {
     top: 0;
     left: 50%;
     color: #d22828;
-    text-shadow: 0 0 black;
+    text-shadow: 0 0 var(--color-text-base);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -103,19 +103,20 @@ figure {
     font-size: 10px;
     display: inline-block;
     width: 100%;
-    color: #6c757d;
+    color: var(--color-gray-600);
     font-weight: 400px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     margin-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-bottom: 1px solid var(--color-shawdow-200);
   }
   .price {
     font-weight: bold;
     line-height: 20px;
     letter-spacing: 0;
     font-size: 14px;
+    color: var(--color-text-base);
   }
   .tags {
     position: absolute;
@@ -127,14 +128,14 @@ figure {
     &__item {
       display: inline-block;
       padding: 2px;
-      border: 1px solid #ccc;
+      border: 1px solid var( --color-gray-400);
       line-height: 1.2;
       margin-right: 4px;
       border-radius: 1px;
-      background: rgba(0, 0, 0, 0.04);
+      background: rgba(var(--color-text-base), 0.04);
       line-height: 1.4;
       letter-spacing: -0.8px;
-      color: #282727;
+      color: var(--color-gray-800);
     }
   }
 }

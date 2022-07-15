@@ -31,7 +31,7 @@ export default {
   padding: 0 0 0.5rem 0.5rem; 
   a {
     text-decoration: none;
-    color: #fff;
+    color: var(--color-white);
   }
 }
 </style>

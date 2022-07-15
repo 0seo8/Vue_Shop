@@ -92,10 +92,6 @@ export default {
   methods: {
     ... mapActions('product', ['readProductDetail']),
     PurchaseThis() {
-      //1. 로그인 검증
-       //로그인이 되지 않은 경우 => alret창(로그인이 필요한 서비스입니다. 로그인 하시겠습니까?) => 로그인 페이지
-
-      //로그인이 된 경우payment페이지
       this.$router.push('/purchase')
     }
   },
@@ -128,7 +124,7 @@ export default {
       min-width: 300px;
       border-radius: 10px;
       overflow: hidden;
-      background-color: #fff;
+      background-color: var(--color-background-bg);
       padding: 10px;
       text-align: center;
       flex-grow: 1;
@@ -143,8 +139,8 @@ export default {
         height: 300px;
         top: 0;
         left: 50%;
-        color: #b40707;
-        text-shadow: 0 0 black;
+        color: var(--color-red-200);
+        text-shadow: 0 0 var(--color-text-base);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -167,7 +163,7 @@ export default {
       &__item {
           display: inline-block;
           padding: 4px 5px;
-          border: 1px solid rgba(0,0,0,.7);
+          border: 1px solid var(--color-shawdow-400);
           font-size: 12px;
           line-height: 1.2;
           margin-right: 8px;
@@ -202,7 +198,7 @@ export default {
     .btn {
       width: 30%;
       padding: .5rem;
-      color: #fff;
+      color: var(--color-white);
     }
   }
 }

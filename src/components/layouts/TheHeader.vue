@@ -134,7 +134,7 @@ export default {
         { name: '디지털' },
       ],
       searchText: '',
-      them: '',
+      theme: '',
     }
   },
   computed: {
@@ -150,6 +150,7 @@ export default {
   },
   mounted() {
     let localTheme = localStorage.getItem('theme')
+    this.theme=localTheme
     document.documentElement.setAttribute('data-theme', localTheme)
   },
   created() {
@@ -160,9 +161,9 @@ export default {
   methods: {
     ...mapActions('product', ['searchProducts']),
     toggleTheme() {
-      this.theme = this.theme == 'darkMode' ? '' : 'darkMode'
-      document.documentElement.setAttribute('data-theme', this.theme)
       localStorage.setItem('theme', this.theme)
+      this.theme = this.theme == 'darkMode' ? 'lightMode' : 'darkMode'
+      document.documentElement.setAttribute('data-theme', this.theme)
     },
     activatedSearch() {
       this.$refs.searchInput.classList.toggle('active')
@@ -183,8 +184,9 @@ export default {
   justify-content: space-between;
   padding: 6px 12px;
   min-height: 48px;
-  background-color: #fff;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  color: var(--color-text-base);
+  background-color: var(--color-header-bg);
+  box-shadow: 0 10px 15px -3px var(--color-shawdow-100), 0 4px 6px -4px var(--color-shawdow-100);
   .header-side {
     display: flex;
     gap: 1rem;
@@ -197,7 +199,7 @@ export default {
     flex-shrink: 0;
     margin: 0;
     padding: 0;
-    color: $primary;
+    color: var(--color-pirmary);
     a {
       font-weight: 700;
       font-size: 20px;
@@ -210,6 +212,7 @@ export default {
   }
 }
 
+
 .category {
   &__list {
     flex-grow: 1;
@@ -218,9 +221,9 @@ export default {
     white-space: nowrap;
     font-size: 14px;
     .nav-link {
-      color: $color-black;
+      color: var(--color-text-base);
       &:hover {
-        color: $color-primary;
+        color: var(--color-pirmary);
       }
     }
   }
@@ -243,7 +246,7 @@ export default {
 
   .material-symbols-outlined {
     font-size: 30px;
-    color: $color-primary;
+    color: var(--color-pirmary);
     display: block;
     &:hover {
       cursor: pointer;
