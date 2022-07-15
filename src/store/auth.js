@@ -88,7 +88,6 @@ export default {
         },
         data: payload,
       })
-      console.log('요기', data)
       commit('setUser', { user: data })
     },
     async authenticationCheck({ commit }) {

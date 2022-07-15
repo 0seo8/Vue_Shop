@@ -16,12 +16,8 @@ async function me(accessToken) {
       Authorization: `Bearer ${accessToken}`
     },
   })
-  console.log('user', user)
   return !!user.email 
 }
-
-console.log('HHHHERE!!!', store.state.auth)
-
 
 router.beforeEach(async (to) => {
   if(to.meta.auth) {

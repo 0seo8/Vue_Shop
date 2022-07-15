@@ -87,11 +87,6 @@ export default {
       ...mapState('product', ['PurchaseHistories']),
       ...mapGetters('product', ['getPurchasedProductId']),
     },
-     watch: {
-      page(value) {
-        console.log('page',value)
-      }
-    },
     created() {
         this.readPurchaseAllHistory()
     },
