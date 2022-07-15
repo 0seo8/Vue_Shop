@@ -150,8 +150,13 @@ export default {
   },
   mounted() {
     let localTheme = localStorage.getItem('theme')
-    this.theme=localTheme
-    document.documentElement.setAttribute('data-theme', localTheme)
+    if(localTheme) {
+      document.documentElement.setAttribute('data-theme', localTheme)  
+      this.theme = localTheme   
+    } else {
+      document.documentElement.setAttribute('data-theme', this.theme)
+      window.localStorage.setItem('theme', this.theme)
+    }
   },
   created() {
     this.$store.dispatch('auth/findAdmin')
