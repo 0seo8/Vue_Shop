@@ -19,7 +19,7 @@
             type="button"
             class="btn-close position-absolute top-1 end-1"
             data-bs-dismiss="offcanvas"
-            aria-label="Close"></button>
+            aria-label="Close" />
         </div>
         <div class="offcanvas-body">
           <ul
@@ -100,7 +100,7 @@
           v-model="searchText"
           class="form-control"
           placeholder="검색"
-          @focus="$router.push({ name: 'search' })" />
+          @focus="$router.push({ name: 'search' })">
       </div>
       <span
         v-if="user.email"
@@ -153,7 +153,6 @@ export default {
     document.documentElement.setAttribute('data-theme', localTheme)
   },
   created() {
-    this.$store.dispatch('auth/findLocalStorageUser')
     this.$store.dispatch('auth/findAdmin')
     this.$store.dispatch('auth/authenticationCheck')
   },

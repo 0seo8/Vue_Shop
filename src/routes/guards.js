@@ -1,5 +1,7 @@
 import router from './index.js'
 import axios from 'axios'
+import store from '~/store'
+
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 async function me(accessToken) {
@@ -17,6 +19,8 @@ async function me(accessToken) {
   console.log('user', user)
   return !!user.email 
 }
+
+console.log('HHHHERE!!!', store.state.auth)
 
 
 router.beforeEach(async (to) => {

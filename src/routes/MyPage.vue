@@ -1,9 +1,6 @@
 <template>
   <div class="my-page-top">
     <div class="profile">
-      <!-- <div v-show="user" class="profile-image">
-        프로필사진 : <img :src="user.profileImg" alt="image" />
-      </div> -->
       <div
         v-show="user"
         class="profile-info">
@@ -115,7 +112,6 @@ export default {
   created() {
     this.$store.dispatch('account/getAllAccount')
     this.$store.dispatch('account/getCurrentAccounts')
-    this.authenticationCheck()
   },
   methods: {
     toogleHandleAccount() {
@@ -139,7 +135,6 @@ export default {
     },
     async logOut() {
       await this.$store.dispatch('auth/logOut')
-      await this.$store.dispatch('auth/findLocalStorageUser')
       await this.$store.dispatch('auth/deleteAdminInfo')
       this.$router.push('/login')
     },
