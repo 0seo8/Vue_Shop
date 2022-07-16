@@ -11,6 +11,7 @@ html[data-theme="lightMode"] {
   --color-info-bg: #fff;
   --color-info-head: #fff;
   --color-info-box: #fff;
+  --color-cartList-box: #F3F4F6;
   --color-mypage-box: #F9FAFB;
   --color-white: #fff;
   --color-shawdow-100: rgb(0 0 0 / 0.1);
@@ -46,12 +47,13 @@ html[data-theme="darkMode"] {
   --color-info-bg: #374151;
   --color-info-head: #1F2023;
   --color-info-box: #242933;
+  --color-cartList-box: rgb(255 255 255/ 0.125);
   --color-mypage-box: #242933;
 
   --color-white: #000;
   --color-text-title: #A6ADBA;
   --color-shawdow-100: none;
-  --color-shawdow-200: rgb(255 255 255, 0.125);
+  --color-shawdow-200: rgb(255 255 255/ 0.125);
   --color-shawdow-300: none;
   --color-shawdow-400: rgb(#fff, 0.7);
   --color-gray-100: #121212;
