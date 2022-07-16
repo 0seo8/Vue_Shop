@@ -1,4 +1,12 @@
 <template>
+  <div class="breadcrumbs container">
+    <ul>
+      <li @click="$router.push('/')">
+        홈 >
+      </li>
+      <li> 주문 목록</li>
+    </ul>
+  </div>
   <section class="container">
     <h3>주문목록</h3>
     <div class="container main">

@@ -1,7 +1,9 @@
 <template>
   <div class="breadcrumbs container">
     <ul>
-      <li>홈 > </li>
+      <li @click="$router.push('/')">
+        홈 >
+      </li>
       <li> {{ selectedProduct.title }}</li>
     </ul>
   </div>
@@ -14,7 +16,7 @@
           :alt="`${selectedProduct.title} 이미지`">  
         <img
           v-else
-          src="../../assets/no-Img"
+          src="../../assets/noImage.jpeg"
           alt="이미지 준비중">
         <div
           v-if="selectedProduct.isSoldOut"
@@ -203,16 +205,6 @@ export default {
   }
 }
 
-.breadcrumbs {
-  padding-top: 2rem;
-  margin-bottom: 1rem;
-  ul {
-    display: flex;
-    li:not(:first-child) {
-      padding-left: .5rem;
-    }
-  }
-}
 </style>
 
 

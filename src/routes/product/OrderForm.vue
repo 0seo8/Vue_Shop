@@ -1,8 +1,12 @@
 <template>
   <div class="breadcrumbs container">
     <ul>
-      <li>홈 > </li>
-      <li> {{ selectedProduct.title }} > </li>
+      <li @click="$router.push('/')">
+        홈 >
+      </li>
+      <li @click="$router.push(`/product/${selectedProduct.id}`)">
+        {{ selectedProduct.title }} >
+      </li>
       <li> 주문서 작성</li>
     </ul>
   </div>
@@ -333,9 +337,11 @@ export default {
   background-color: var(--color-info-box);
 .orderUserInfo {
     padding: 30px 20px;
-    background: var(--color-userInfo-bg);
+   background-color: var(--color-info-payment-box);
     grid-area: info;
     color: var(--color-text-base);
+    border-radius: 8px;
+
     &__guide {
       margin-top: 15px;
       padding-top: 15px;
@@ -369,12 +375,12 @@ export default {
     }
   }
   &__box {
-    border: 1px solid var(--color-text-base);
+    border: 1px solid var( --color-gray-200);
     padding: 1.5rem;
     min-width: 300px;
     grid-area: payment;
-    border-bottom: 1px solid var( --color-gray-400);
-    color: var(--color-text-base);
+    border-radius: 8px;
+
     .expected-payment {
       display: flex;
       flex-flow: column;
@@ -493,6 +499,8 @@ export default {
   flex-shrink: 0;
   background-color: inherit;
   color: var(--color-gray-800);
+  border-color: var(--color-gray-200);
+  border-radius: 8px;
 }
 .account-list {
   display: flex;
