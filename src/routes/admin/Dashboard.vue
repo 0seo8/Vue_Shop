@@ -63,7 +63,7 @@
           <article class="card-body">
             <div class="chartjs">
               <h7>제품별 판매량(막대 그래프)</h7>
-              <canvas id="myChart"></canvas>
+              <canvas id="myChart" />
             </div>
           </article>
         </div>
@@ -73,7 +73,7 @@
           <article class="card-body">
             <div class="chartjs">
               <h7>매출액 대비 제품 비중</h7>
-              <canvas id="donutChart"></canvas>
+              <canvas id="donutChart" />
             </div>
           </article>
         </div>
@@ -214,6 +214,7 @@ myChart
 </script>
 <style lang="scss" scoped>
 .content-main {
+  color: #000;
   font-family: 'GmarketSansMedium';
   background-color: #f8f9fa;
   padding: 30px 5%;
