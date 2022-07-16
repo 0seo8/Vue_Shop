@@ -1,7 +1,9 @@
 <template>
   <div class="breadcrumbs container">
     <ul>
-      <li>홈 > </li>
+      <li @click="$router.push('/')">
+        홈 >
+      </li>
       <li> {{ selectedProduct.title }}</li>
     </ul>
   </div>
@@ -203,16 +205,6 @@ export default {
   }
 }
 
-.breadcrumbs {
-  padding-top: 2rem;
-  margin-bottom: 1rem;
-  ul {
-    display: flex;
-    li:not(:first-child) {
-      padding-left: .5rem;
-    }
-  }
-}
 </style>
 
 

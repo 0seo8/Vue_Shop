@@ -1,8 +1,12 @@
 <template>
   <div class="breadcrumbs container">
     <ul>
-      <li>홈 > </li>
-      <li> {{ selectedProduct.title }} > </li>
+      <li @click="$router.push('/')">
+        홈 >
+      </li>
+      <li @click="$router.push(`/product/${selectedProduct.id}`)">
+        {{ selectedProduct.title }} >
+      </li>
       <li> 주문서 작성</li>
     </ul>
   </div>

@@ -2,7 +2,9 @@
   <section class="container">
     <div class="breadcrumbs">
       <ul>
-        <li>홈 > </li>
+        <li @click="$router.push('/')">
+          홈 >
+        </li>
         <li> 장바구니 </li>
       </ul>
     </div>
@@ -73,14 +75,5 @@ section {
   }
 }
 
-.breadcrumbs {
-  padding-top: 2rem;
-  margin-bottom: 1rem;
-  ul {
-    display: flex;
-    li:not(:first-child) {
-      padding-left: .5rem;
-    }
-  }
-}
+
 </style>

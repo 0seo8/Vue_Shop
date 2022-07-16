@@ -49,4 +49,18 @@ export default {
   top: 45%;
   right: 49%;
 }
+
+.breadcrumbs {
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  ul {
+    display: flex;
+    li:not(:first-child) {
+      padding-left: .5rem;
+    }
+  li {
+      cursor: pointer;
+    }  
+  }
+}
 </style>
