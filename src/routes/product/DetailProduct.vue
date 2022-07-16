@@ -14,7 +14,7 @@
           :alt="`${selectedProduct.title} 이미지`">  
         <img
           v-else
-          src="../../assets/no-Img"
+          src="../../assets/noImage.jpeg"
           alt="이미지 준비중">
         <div
           v-if="selectedProduct.isSoldOut"

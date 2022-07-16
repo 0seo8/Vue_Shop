@@ -4,12 +4,13 @@
       :autoplay="2000"
       :wrap-around="true">
       <Slide
-        v-for="slide in 3"
-        :key="slide"
-        class="slide">
-        <div class="carousel__item">
-          <div class="temp">
-            {{ slide }}
+        v-for="slide in swiperSrc"
+        :key="slide.imgsrc">
+        <div class="slide-area">
+          <img :src="`/src/assets/swiper/${slide.imgsrc}.jpg`">
+          <div class="image-Info">
+            <strong class="title">{{ slide.imgtitle }}</strong>
+            <span class="desc">{{ slide.imgdes }}</span>
           </div>
         </div>
       </Slide>
@@ -40,8 +41,40 @@ export default defineComponent({
         itemsToshow: 1,
         snapAlign: 'center',
       },
+      swiperSrc: [
+        {
+          imgsrc : 'slide1',
+          imgtitle: 'BOSE',
+          imgdes : '묵직한 베이스의 강자'
+        },
+        {
+          imgsrc : 'slide2',
+          imgtitle: 'XBOX',
+          imgdes : 'SERIES X/S'
+        },
+        {
+          imgsrc : 'slide3',
+          imgtitle: 'SENHEISER',
+          imgdes : '최고의 소재와 음질'
+        },
+        {
+          imgsrc : 'slide4',
+          imgtitle: '뱅앤올룹슨',
+          imgdes : '프리미엄 명품 사운드'
+        },
+        {
+          imgsrc : 'slide5',
+          imgtitle: 'EGLOOCAM',
+          imgdes : '해킹되지 않는 안전한 카메라'
+        },
+      ]
     }
   },
+  // metohds: {
+  //   getImageUrl(name) {
+  //     return new URL(`./dir/${name}.jpg`, import.meta.url).href
+  //   }
+  // }
 })
 </script>
 
@@ -56,11 +89,32 @@ export default defineComponent({
   border: 1px solid red;
 }
 
-ul,
-ol,
-li {
-  margin: 0;
-  padding: 0;
+.slide-area {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .image-Info {
+    text-align: left;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    transform: translate(-10%, -30%);
+    display: flex;
+    flex-flow: column;
+    gap: 2rem;
+    font-size: 2rem;
+    .title {
+      font-size: 3rem;
+    }
+    .desc {
+      align-self: start;
+    }
+  }
+} 
+
+img {
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 1024px) {
