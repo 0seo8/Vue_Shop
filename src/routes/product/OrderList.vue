@@ -184,5 +184,9 @@ section {
   margin-right: .5rem;
   padding: .4rem .8rem;
   min-width: 60px;
+  cursor: pointer;
+  &:hover {
+    filter: sepia(1.2);
+  }
 }
 </style>
