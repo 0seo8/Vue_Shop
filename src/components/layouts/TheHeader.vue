@@ -21,7 +21,9 @@
             data-bs-dismiss="offcanvas"
             aria-label="Close" />
         </div>
-        <div class="offcanvas-body">
+        <div
+          class="offcanvas-body">
+          <h2>Category</h2>
           <ul
             ref="categoryBox"
             class="nav nav-pills flex-column">
@@ -219,6 +221,12 @@ export default {
   }
 }
 
+#offcanvas {
+  width: 250px;
+  a {
+    color: inherit;
+  }
+}
 
 .category {
   &__list {
