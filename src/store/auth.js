@@ -17,6 +17,7 @@ export default {
       user: {},
       token: null,
       findAdmin: false,
+      isLoading: false,
     }
   },
   mutations: {
@@ -26,11 +27,14 @@ export default {
       }
       console.log(state)
     },
+    changeLoaingStatus(state, status=true) {
+      state.isLoading = status
+    },
   },
   actions: {
     async login({ commit }, payload) {
-
       try {
+        commit('changeLoaingStatus')
         const { data } = await axios({
           url: `${END_POINT}/login`,
           method: 'POST',
@@ -41,73 +45,77 @@ export default {
         })
         window.localStorage.setItem('token', data.accessToken)
         commit('setUser', { user: data.user })
-  
       }catch(error){
         console.log(error)
+      } finally {
+        commit('changeLoaingStatus', false)       
         window.localStorage.removeItem('token')
       }
     },
     async signup({ commit }, payload) {
-      const { data } = await axios({
-        url: `${END_POINT}/signup`,
-        method: 'POST',
-        headers: {
-          ...headers,
-        },
-        data: payload,
-      }).catch((error) => {
-        console.log(error)
-      })
-      commit('setUser', { user: data.user })
+      try {
+        commit('changeLoaingStatus')
+        const { data } = await axios({
+          url: `${END_POINT}/signup`,
+          method: 'POST',
+          headers: {
+            ...headers,
+          },
+          data: payload,
+        })
+        commit('setUser', { user: data.user })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
+      
     },
 
     async logOut({commit}) {
       const accessToken = window.localStorage.getItem('token')
-      await axios({
-        url: `${END_POINT}/logout`,
-        method: 'POST',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }).catch((error) => {
-        console.log(error)
-      })
-      window.localStorage.removeItem('token')
-      commit('setUser', {user: {}})
+      try {
+        commit('changeLoaingStatus')
+        await axios({
+          url: `${END_POINT}/logout`,
+          method: 'POST',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        window.localStorage.removeItem('token')
+        commit('setUser', {user: {}})
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
     async changeProfile({ commit }, payload) {
-      console.log('payload', payload)
       const accessToken = window.localStorage.getItem('token')
-      const { data } = await axios({
-        url: `${END_POINT}/user`,
-        method: 'PUT',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${accessToken}`,
-        },
-        data: payload,
-      })
-      commit('setUser', { user: data })
+      try {
+        commit('changeLoaingStatus')
+        const { data } = await axios({
+          url: `${END_POINT}/user`,
+          method: 'PUT',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+          data: payload,
+        })
+        commit('setUser', { user: data })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
     async authenticationCheck({ commit }) {
       const accessToken = window.localStorage.getItem('token')
-      const { data } = await axios({
-        url: `${END_POINT}/me`,
-        method: 'POST',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      commit('setUser', { user: data })
-    },
-    deleteAdminInfo({ commit }) {
-      commit('setUser', { findAdmin: false })
-    },
-    async findAdmin({ commit }) {
-      const accessToken = window.localStorage.getItem('token')
-      if (accessToken) {
+      try {
+        commit('changeLoaingStatus')
         const { data } = await axios({
           url: `${END_POINT}/me`,
           method: 'POST',
@@ -116,7 +124,35 @@ export default {
             Authorization: `Bearer ${accessToken}`,
           },
         })
-        commit('setUser', { findAdmin: data.email.includes('admin') })
+        commit('setUser', { user: data })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
+    },
+    deleteAdminInfo({ commit }) {
+      commit('setUser', { findAdmin: false })
+    },
+    async findAdmin({ commit }) {
+      const accessToken = window.localStorage.getItem('token')
+      if (accessToken) {
+        try {
+          commit('changeLoaingStatus')
+          const { data } = await axios({
+            url: `${END_POINT}/me`,
+            method: 'POST',
+            headers: {
+              ...headers,
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
+          commit('setUser', { findAdmin: data.email.includes('admin') })
+        } catch(err) {
+          console.log(err)
+        } finally {
+          commit('changeLoaingStatus', false)
+        }
       }
     },
   },
