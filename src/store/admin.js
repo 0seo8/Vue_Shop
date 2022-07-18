@@ -18,13 +18,10 @@ export default {
   actions: {
     async readProducts({ commit }) {
       try {
-        commit('changeLoadingStatus', true, { root: true })
         const res = await request('', 'GET')
         commit('setProductList', res)
       } catch(err) {
         console.log(err)
-      } finally {
-        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async readTransactionDetail({ commit }) {
