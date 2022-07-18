@@ -20,12 +20,20 @@
 <script>
 import Swiper from '~/components/layouts/Swiper.vue'
 import ProductList from '~/components/product/ProductList.vue'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
     Swiper,
     ProductList,
   },
+  mounted() {
+    this.readAllProducts()
+  },
+  methods: {
+   ...mapActions('product', ['readAllProducts'])
+  }
+  
 }
 </script>
 
