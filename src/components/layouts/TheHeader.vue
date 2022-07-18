@@ -164,7 +164,6 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('auth/findAdmin')
     this.$store.dispatch('auth/authenticationCheck')
   },
 
@@ -224,6 +223,8 @@ export default {
 
 #offcanvas {
   width: 250px;
+  background-color: var(--color-info-bg);
+  color: var(--color-text-base);
   .offcanvas-body {
     h4 {
       padding: 8px 16px;
@@ -311,6 +312,7 @@ export default {
   position: relative;
   display: flex;
   align-items: center;
+  z-index: 2;
   li {
     position: absolute;
     left: 0;

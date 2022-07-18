@@ -167,6 +167,12 @@ body {
       justify-content: space-between;
       margin-bottom: 30px;
     }
+    .card {
+      background-color: var(--color-info-bg);
+      input, textarea {
+        background-color: whitesmoke;
+      }
+    }
     form {
       display: block;
       margin-top: 0em;

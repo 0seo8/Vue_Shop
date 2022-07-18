@@ -191,9 +191,9 @@ myChart
 </script>
 <style lang="scss" scoped>
 .content-main {
-  color: #000;
+  color: var(--color-text-base);
   font-family: 'GmarketSansMedium';
-  background-color: #f8f9fa;
+  background-color: var(--color-admin-bg);
   padding: 30px 5%;
   margin-left: auto;
   margin-right: auto;
@@ -209,6 +209,7 @@ myChart
     }
   }
   .card {
+    background-color: var(--color-info-bg);
     box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);
     display: flex;
     font-weight: bold;
@@ -235,4 +236,5 @@ myChart
     }
   }
 }
+
 </style>

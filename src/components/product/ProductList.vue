@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import ProductItem from './ProductItem.vue'
 
 export default {
@@ -37,13 +37,6 @@ export default {
   computed: {
     ...mapState('product', ['products'])
   },
-  mounted() {
-    this.readAllProducts()
-  },
-
-  methods: {
-    ...mapActions('product', ['readAllProducts'])
-  }
 }
 </script>
 

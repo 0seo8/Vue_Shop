@@ -50,7 +50,6 @@ export default {
         password: this.password,
       }
       await this.$store.dispatch('auth/login', actionPayload)
-      await this.$store.dispatch('auth/findAdmin')
       this.$router.push('/mypage')
     },
     validateEmail(email) {

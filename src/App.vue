@@ -1,7 +1,6 @@
 <template>
   <TheHeader
-    v-if="!$route.meta.hideNavigation"
-    @theme="theme" /> 
+    v-if="!$route.meta.hideNavigation" /> 
   <div class="main__wrap">
     <RouterView />
     <teleport to="body">
@@ -26,13 +25,7 @@ export default {
     TheFooter,
   },
   computed: {
-    ...mapState('product', ['isLoading']),
-  },
-  methods: {
-    theme() {
-      let body = document.querySelector('body')
-      body.classList.toggle('nightmode')
-    },
+    ...mapState(['isLoading']),
   },
 }
 </script>

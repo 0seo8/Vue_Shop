@@ -18,7 +18,6 @@ export default {
       selectedPrice:'',
       searchProductList: [],
       PurchaseHistories: [],
-      isLoading: false,
     }
   },
   getters: {
@@ -36,14 +35,11 @@ export default {
       }
       console.log(state)
     },
-    changeLoaingStatus(state, status=true) {
-      state.isLoading = status
-    },
   },
   actions: {
     async readAllProducts({commit}) {
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         const {data} = await axios({
           url: END_POINT,
           method: 'GET',
@@ -56,12 +52,12 @@ export default {
       } catch(err) {
         console.log(err.request)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async readProductDetail({commit}, id) {
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         const {data} = await axios({
           url: `${END_POINT}/${id}`,
           method: 'GET',
@@ -71,13 +67,13 @@ export default {
       } catch(err) {
         console.log(err.request)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async requestPurchase({commit}, info) {
       const token = localStorage.getItem('token')
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         await axios({
           url: `${END_POINT}/buy`,
           method: 'POST',
@@ -90,13 +86,13 @@ export default {
       } catch(err) {
         console.log(err.request)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async readPurchaseAllHistory({commit}) {
       const token = localStorage.getItem('token')
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         const {data} = await axios({
           url: `${END_POINT}/transactions/details`,
           method: 'GET',
@@ -115,13 +111,13 @@ export default {
       } catch(err) {
         console.log(err.request)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async cancelOrder({dispatch, commit}, id) {
       const token = localStorage.getItem('token')
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         await axios({
           url: `${END_POINT}/cancel`,
           method: 'POST',
@@ -137,14 +133,14 @@ export default {
       } catch(err) {
         console.log(err.request)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
 
     async confirmPurchase({dispatch, commit}, id) {
       const token = localStorage.getItem('token')
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         await axios({
           url: `${END_POINT}/ok`,
           method: 'POST',
@@ -160,12 +156,12 @@ export default {
       } catch(err) {
         console.log(err.request)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async searchProducts({commit}, search) {
-      commit('changeLoaingStatus')
       try {
+        commit('changeLoadingStatus', true, { root: true })
         const {data} = await axios({
           url: `${END_POINT}/search`,
           method: 'POST',
@@ -176,7 +172,7 @@ export default {
       } catch(err) {
         console.log(err.request)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
   }
