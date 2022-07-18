@@ -164,7 +164,6 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('auth/findAdmin')
     this.$store.dispatch('auth/authenticationCheck')
   },
 
@@ -311,6 +310,7 @@ export default {
   position: relative;
   display: flex;
   align-items: center;
+  z-index: 2;
   li {
     position: absolute;
     left: 0;

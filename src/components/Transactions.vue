@@ -52,14 +52,15 @@ export default {
       return this.$store.state.admin.transactionDetail
     }
   },  
-  created() {
-    this.$store.dispatch('admin/readTransactionDetail')
-  },
 }
 </script>
 <style lang="scss" scoped>
+.ard-body {
+  color: var(--color-text-base);
+}
 tr {
   font-size: 10px;
+    color: var(--color-text-base);
   td {
     &:nth-child(5) {
       width: 62px;
