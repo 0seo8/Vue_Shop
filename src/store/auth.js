@@ -43,13 +43,13 @@ export default {
           },
           data: payload,
         })
-        window.localStorage.setItem('token', data.accessToken)
         commit('setUser', { user: data.user })
+        window.localStorage.setItem('token', data.accessToken)
       }catch(error){
         console.log(error)
+        window.localStorage.removeItem('token')
       } finally {
         commit('changeLoaingStatus', false)       
-        window.localStorage.removeItem('token')
       }
     },
     async signup({ commit }, payload) {
