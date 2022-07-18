@@ -85,10 +85,8 @@
 <script>
 import Chart from 'chart.js/auto'
 import AdminButton from '../../components/AdminButton.vue'
-import axios from 'axios'
 import Transactions from '../../components/Transactions.vue'
 
-const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 export default {
   components: {
     AdminButton,
@@ -191,22 +189,6 @@ const doughnutChart = new Chart(saleOfProudcts, {
 
 doughnutChart
 myChart
-  },
-  methods: {
-  async request() {
-    const { data } = await axios({
-      url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all',
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        apikey: VITE_API_KEY,
-        username: VITE_USERNAME,
-        masterKey: true
-      }
-    })
-    console.log(data)
-    return data
-    }
   },
 }
 </script>
