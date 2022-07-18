@@ -118,7 +118,7 @@ export default {
 <style lang="scss" scoped>
 
 section {
-  margin-top: 3rem;
+  margin-top: 2rem;
   text-align: center;
 }
 .main {
