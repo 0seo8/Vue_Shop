@@ -52,9 +52,6 @@ export default {
       return this.$store.state.admin.transactionDetail
     }
   },  
-  created() {
-    this.$store.dispatch('admin/readTransactionDetail')
-  },
 }
 </script>
 <style lang="scss" scoped>
