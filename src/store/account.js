@@ -16,6 +16,7 @@ export default {
     return {
       currentAccounts: [],
       allAccount: [],
+      isLoading: false,
     }
   },
   mutations: {
@@ -25,64 +26,95 @@ export default {
       }
       console.log(state)
     },
+    changeLoaingStatus(state, status=true) {
+      state.isLoading = status
+    },
   },
   actions: {
     async getCurrentAccounts({ commit }) {
       const accessToken = window.localStorage.getItem('token')
-      const { data } = await axios({
-        url: END_POINT,
-        method: 'GET',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      commit('setState', { currentAccounts: data })
+      try{
+        commit('changeLoaingStatus')
+        const { data } = await axios({
+          url: END_POINT,
+          method: 'GET',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        commit('setState', { currentAccounts: data })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoaingStatus', false)      
+      }
     },
     async getAllAccount({ commit }) {
       const accessToken = window.localStorage.getItem('token')
-      const { data } = await axios({
-        url: `${END_POINT}/banks`,
-        method: 'GET',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      commit('setState', { allAccount: data })
+      try {
+        commit('changeLoaingStatus')
+        const { data } = await axios({
+          url: `${END_POINT}/banks`,
+          method: 'GET',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        commit('setState', { allAccount: data })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
-    async connectAccount(_, payload) {
+    async connectAccount({commit}, payload) {
+      const accessToken = window.localStorage.getItem('token')
       const { bankCode, accountNumber } = payload
-      const accessToken = window.localStorage.getItem('token')
-      await axios({
-        url: END_POINT,
-        method: 'POST',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${accessToken}`,
-        },
-        data: {
-          bankCode,
-          accountNumber: randomNumber(accountNumber),
-          phoneNumber: '01012345678',
-          signature: true,
-        },
-      })
+      try {
+        commit('changeLoaingStatus')
+        await axios({
+          url: END_POINT,
+          method: 'POST',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+          data: {
+            bankCode,
+            accountNumber: randomNumber(accountNumber),
+            phoneNumber: '01012345678',
+            signature: true,
+          },
+        })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
-    async disConnectAccount(_, accountId) {
+    async disConnectAccount({commit}, accountId) {
       const accessToken = window.localStorage.getItem('token')
-      await axios({
-        url: END_POINT,
-        method: 'DELETE',
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${accessToken}`,
-        },
-        data: {
-          accountId,
-          signature: true,
-        },
-      })
+      try {
+        commit('changeLoaingStatus')
+        await axios({
+          url: END_POINT,
+          method: 'DELETE',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+          data: {
+            accountId,
+            signature: true,
+          },
+        })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoaingStatus', false)
+      }
     },
   },
 }
