@@ -6,6 +6,7 @@ $font-navy: #141432;
 
 html[data-theme="lightMode"] {
   --color-background-bg:#fff ;
+  --color-admin-bg:#f8f9fa ;
   --color-text-base: #000;
   --color-header-bg: #fff;
   --color-info-bg: #fff;
@@ -43,6 +44,7 @@ html[data-theme="lightMode"] {
 /* dark theme colors */
 html[data-theme="darkMode"] {
   --color-background-bg: #2A303C;
+  --color-admin-bg: #2A303C;
   --color-text-base: #fff;
   --color-header-bg: #191D24;
   --color-info-bg: #374151;

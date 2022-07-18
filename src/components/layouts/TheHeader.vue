@@ -310,6 +310,7 @@ export default {
   position: relative;
   display: flex;
   align-items: center;
+  z-index: 2;
   li {
     position: absolute;
     left: 0;
