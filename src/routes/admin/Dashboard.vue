@@ -85,10 +85,8 @@
 <script>
 import Chart from 'chart.js/auto'
 import AdminButton from '../../components/AdminButton.vue'
-import axios from 'axios'
 import Transactions from '../../components/Transactions.vue'
 
-const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 export default {
   components: {
     AdminButton,
@@ -123,17 +121,19 @@ export default {
     const myChart = new Chart(productSales, {
     type: 'bar',
     data: {
-        labels: ['태블릿', '노트북', '마우스', '가전제품', '에어컨', '키보드'],
+        labels: ['모니터', '청소기', '노트북', '에어컨', '에어팟', '선풍기', '커피머신', '스마트 웨어러블'],
         datasets: [{
             label: 'Electron Market Sale Data',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [12, 19, 3, 5, 2, 3, 2, 7],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(153, 200, 255, 0.2)',
+                'rgba(255, 60, 64, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -141,7 +141,9 @@ export default {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(153, 200, 255, 1)',
+                'rgba(255, 60, 64, 1)'
             ],
             borderWidth: 1
         }]
@@ -154,28 +156,22 @@ export default {
         }
     }
 })
-const doughnutChart = setTimeout(new Chart(saleOfProudcts, {
+const doughnutChart = new Chart(saleOfProudcts, {
     type: 'doughnut',
     data: {
-        labels: ['태블릿', '노트북', '마우스', '가전제품', '에어컨', '키보드'],
+        labels: ['생활가전', '계절가전', '디지털'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [12, 19, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
         }]
@@ -187,26 +183,10 @@ const doughnutChart = setTimeout(new Chart(saleOfProudcts, {
             // }
         }
     }
-}), 10000)
+})
 
 doughnutChart
 myChart
-  },
-  methods: {
-  async request() {
-    const { data } = await axios({
-      url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all',
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        apikey: VITE_API_KEY,
-        username: VITE_USERNAME,
-        masterKey: true
-      }
-    })
-    console.log(data)
-    return data
-    }
   },
 }
 </script>
