@@ -29,9 +29,6 @@ export default {
 <style lang="scss" scoped>
 .btn-group {
   padding: 0 0 0.5rem 0.5rem; 
-  a {
-    text-decoration: none;
-    color: #fff;
-  }
+
 }
 </style>

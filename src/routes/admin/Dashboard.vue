@@ -79,7 +79,8 @@
         </div>
       </div>
     </div>
-    <Transactions />
+    {{ details }}
+    <Transactions :details="details" />
   </section>
 </template>
 <script>
