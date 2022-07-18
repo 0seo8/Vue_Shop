@@ -96,7 +96,7 @@
 <script>
 import AdminButton from '../../components/AdminButton.vue'
 import axios from 'axios'
-import noImage from '../../assets/noImage'
+import noImage from '/public/assets/noImage'
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 export default {
@@ -257,5 +257,9 @@ section {
       height: auto;
     }
   }
+}
+
+.card {
+  background: var(--color---color-info-bg);
 }
 </style>

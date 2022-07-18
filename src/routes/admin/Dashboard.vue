@@ -8,7 +8,7 @@
       <div class="col-md-4">
         <div class="card card-body mb-4">
           <article class="incontenxt">
-            <span class="bg-primary rounded-circle">
+            <span class="primary rounded-circle">
               <i class="material-symbols-outlined icon">
                 paid
               </i>
@@ -156,8 +156,7 @@ export default {
         }
     }
 })
-
-const doughnutChart = new Chart(saleOfProudcts, {
+const doughnutChart = setTimeout(new Chart(saleOfProudcts, {
     type: 'doughnut',
     data: {
         labels: ['생활가전', '계절가전', '디지털'],
@@ -184,8 +183,7 @@ const doughnutChart = new Chart(saleOfProudcts, {
             // }
         }
     }
-})
-
+}), 10000)
 
 doughnutChart
 myChart
@@ -207,6 +205,9 @@ myChart
   }
   .row {
     font-size: 12px;
+    .primary {
+      background-color: #f2555a;
+    }
   }
   .card {
     box-shadow: 0 0.1rem 0.25rem rgb(0 0 0 / 8%);

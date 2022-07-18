@@ -1,15 +1,17 @@
 <template>
   <TheHeader
     v-if="!$route.meta.hideNavigation"
-    @theme="theme" />
+    @theme="theme" /> 
   <div class="main__wrap">
     <RouterView />
-    <div
-      v-if="isLoading"
-      class="spinner-border text-danger"
-      role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+    <teleport to="body">
+      <div
+        v-if="isLoading"
+        class="spinner-border text-danger"
+        role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </teleport>
     <TheFooter />
   </div>
 </template>
@@ -53,6 +55,7 @@ export default {
 .breadcrumbs {
   padding-top: 2rem;
   margin-bottom: 1rem;
+  margin-top: 1rem;
   ul {
     display: flex;
     li:not(:first-child) {
