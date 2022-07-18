@@ -10,7 +10,6 @@
           <div 
             :style="{backgroundImage: `url(/src/assets/swiper/${slide.imgsrc}.jpg)`}"
             class="poster" />
-          <!-- <img :src="`/src/assets/swiper/${slide.imgsrc}.jpg`"> -->
           <div class="image-Info">
             <strong class="title">{{ slide.imgtitle }}</strong>
             <span class="desc">{{ slide.imgdes }}</span>
