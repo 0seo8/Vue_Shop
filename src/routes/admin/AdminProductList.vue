@@ -260,6 +260,6 @@ section {
 }
 
 .card {
-  background: var(--color---color-info-bg);
+  background: var(--color-info-bg);
 }
 </style>
