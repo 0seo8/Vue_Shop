@@ -26,8 +26,6 @@
               <div class="img__box">
                 <a>
                   <img
-                    width="64"
-                    height="64"
                     :src="purchase.product.thumbnail"
                     :alt="purchase.product.title">
                 </a>
@@ -35,7 +33,11 @@
               <div class="info">
                 <div class="info__box">
                   <a>
-                    <span class="title">{{ purchase.product.title }}</span>
+                    <span
+                      class="title"
+                      @click="
+                        $router.push(`/product/${purchase.product.productId}`)
+                      ">{{ purchase.product.title }}</span>
                   </a>
                   <div class="info__desc">
                     <div>
@@ -46,7 +48,7 @@
                     </div>
                     <div>
                       <button
-                        class="btn btn-outline-info"
+                        class="btn btn-outline-info repurchase"
                         @click="
                           $router.push(`/product/${purchase.product.productId}`)
                         ">
@@ -59,7 +61,7 @@
             </div>
           </td>
           <td class="td2">
-            <div class="button__box">
+            <div class="button__box media-lg">
               <button
                 :disabled="purchase.done || purchase.isCanceled"
                 class="btn btn-outline-primary"
@@ -71,6 +73,26 @@
                 class="btn btn-outline-success"
                 @click="$emit('cancel', purchase.detailId)">
                 구매취소
+              </button>
+            </div>
+            <div class="button__box media-sm">
+              <button 
+                class="btn btn-outline-primary"
+                :disabled="purchase.done || purchase.isCanceled"
+                @click="$emit('confirm', purchase.detailId)">
+                <span
+                  class="material-symbols-outlined">
+                  check
+                </span>
+              </button>
+              <button
+                class="btn btn-outline-success"
+                :disabled="purchase.done || purchase.isCanceled"
+                @click="$emit('cancel', purchase.detailId)">
+                <span
+                  class="material-symbols-outlined">
+                  close
+                </span>
               </button>
             </div>
           </td>
@@ -155,9 +177,15 @@ export default {
     flex-direction: row;
     .img__box {
       display: flex;
-      width: 64px;
       position: relative;
       margin-right: 16px;
+      > a {
+        width: 64px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
     .info {
       user-select: none;
@@ -210,6 +238,59 @@ export default {
     color: rgba(var(--color-pirmary), 0.3);
     &:hover {
       color: #fff;
+    }
+  }
+}
+
+.td2 .button__box {
+  &.media-sm {
+    display: none;
+    padding: 0;
+  }
+  &.media-lg {
+    padding: 0;
+  }
+}
+
+@media (max-width: 650px) {
+  .td1 {
+    .title {
+      .isdone {
+        font-size: 1rem;
+        margin-left: 0;
+      }
+      .date {
+        font-size: .8rem;
+      }
+    }
+    .content {
+      font-size: .8rem;
+      .info__desc {
+        .price{
+          font-size: .8rem;
+        }
+      }
+      .repurchase {
+        display: none;
+      }
+    }
+
+  }
+  .td2 {
+      padding: .5remrem;
+      .button__box {
+      &.media-sm {
+        display: flex;
+        button {
+        padding:.3rem;
+        }
+      }
+      &.media-lg {
+        display: none;
+        button {
+        padding:.3rem;
+        }
+      }
     }
   }
 }

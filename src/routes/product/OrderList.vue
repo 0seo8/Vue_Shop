@@ -118,7 +118,7 @@ export default {
 <style lang="scss" scoped>
 
 section {
-  margin-top: 3rem;
+  margin-top: 2rem;
   text-align: center;
 }
 .main {
@@ -184,5 +184,9 @@ section {
   margin-right: .5rem;
   padding: .4rem .8rem;
   min-width: 60px;
+  cursor: pointer;
+  &:hover {
+    filter: sepia(1.2);
+  }
 }
 </style>

@@ -11,7 +11,6 @@ import DetailProduct from './product/DetailProduct.vue'
 import OrderForm from './product/OrderForm.vue'
 import OrderList from './product/OrderList.vue'
 import SearchProduct from './product/SearchProduct.vue'
-import MyCart from './product/MyCart.vue'
 import EditProduct from './admin/EditProduct.vue'
 import MyPage from './MyPage.vue'
 import Signup from './Signup.vue'
@@ -69,12 +68,6 @@ export default createRouter({
       path: '/search',
       name: 'search',
       component: SearchProduct,
-    },
-    {
-      path: '/mycart',
-      name: 'cart',
-      component: MyCart,
-      meta: { auth: true },
     },
     // admin 페이지
     {
