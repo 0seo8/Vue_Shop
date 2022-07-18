@@ -6,7 +6,6 @@ export default {
   state: {
     productList: [],
     transactionDetail: [],
-    isLoading: false
   },
   mutations: {
     setProductList(state, payload) {
@@ -15,30 +14,28 @@ export default {
     setTransactionDetail(state, payload) {
       state.transactionDetail = payload
     },
-    changeLoaingStatus(state, status=true) {
-      state.isLoading = status
-    },
   },
   actions: {
     async readProducts({ commit }) {
       try {
+        commit('changeLoadingStatus', true, { root: true })
         const res = await request('', 'GET')
         commit('setProductList', res)
       } catch(err) {
         console.log(err)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async readTransactionDetail({ commit }) {
-        commit('changeLoaingStatus')
       try{
+        commit('changeLoadingStatus', true, { root: true })
         const res = await request('/transactions/all', 'GET')
         commit('setTransactionDetail', res)
       } catch(err) {
         console.log(err)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     }
   }

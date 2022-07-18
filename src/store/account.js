@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 const END_POINT =
@@ -16,7 +17,6 @@ export default {
     return {
       currentAccounts: [],
       allAccount: [],
-      isLoading: false,
     }
   },
   mutations: {
@@ -26,15 +26,12 @@ export default {
       }
       console.log(state)
     },
-    changeLoaingStatus(state, status=true) {
-      state.isLoading = status
-    },
   },
   actions: {
     async getCurrentAccounts({ commit }) {
       const accessToken = window.localStorage.getItem('token')
       try{
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         const { data } = await axios({
           url: END_POINT,
           method: 'GET',
@@ -47,13 +44,13 @@ export default {
       } catch(err) {
         console.log(err)
       } finally {
-        commit('changeLoaingStatus', false)      
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async getAllAccount({ commit }) {
       const accessToken = window.localStorage.getItem('token')
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         const { data } = await axios({
           url: `${END_POINT}/banks`,
           method: 'GET',
@@ -66,14 +63,14 @@ export default {
       } catch(err) {
         console.log(err)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
-    async connectAccount({commit}, payload) {
+    async connectAccount(_, payload) {
       const accessToken = window.localStorage.getItem('token')
       const { bankCode, accountNumber } = payload
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         await axios({
           url: END_POINT,
           method: 'POST',
@@ -91,13 +88,13 @@ export default {
       } catch(err) {
         console.log(err)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
-    async disConnectAccount({commit}, accountId) {
+    async disConnectAccount(_, accountId) {
       const accessToken = window.localStorage.getItem('token')
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         await axios({
           url: END_POINT,
           method: 'DELETE',
@@ -113,7 +110,7 @@ export default {
       } catch(err) {
         console.log(err)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
   },

@@ -17,7 +17,6 @@ export default {
       user: {},
       token: null,
       findAdmin: false,
-      isLoading: false,
     }
   },
   mutations: {
@@ -27,14 +26,11 @@ export default {
       }
       console.log(state)
     },
-    changeLoaingStatus(state, status=true) {
-      state.isLoading = status
-    },
   },
   actions: {
     async login({ commit }, payload) {
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         const { data } = await axios({
           url: `${END_POINT}/login`,
           method: 'POST',
@@ -49,12 +45,12 @@ export default {
         console.log(error)
         window.localStorage.removeItem('token')
       } finally {
-        commit('changeLoaingStatus', false)       
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async signup({ commit }, payload) {
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         const { data } = await axios({
           url: `${END_POINT}/signup`,
           method: 'POST',
@@ -67,7 +63,7 @@ export default {
       } catch(err) {
         console.log(err)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
       
     },
@@ -75,7 +71,7 @@ export default {
     async logOut({commit}) {
       const accessToken = window.localStorage.getItem('token')
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         await axios({
           url: `${END_POINT}/logout`,
           method: 'POST',
@@ -89,13 +85,13 @@ export default {
       } catch(err) {
         console.log(err)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async changeProfile({ commit }, payload) {
       const accessToken = window.localStorage.getItem('token')
       try {
-        commit('changeLoaingStatus')
+        commit('changeLoadingStatus', true, { root: true })
         const { data } = await axios({
           url: `${END_POINT}/user`,
           method: 'PUT',
@@ -109,13 +105,12 @@ export default {
       } catch(err) {
         console.log(err)
       } finally {
-        commit('changeLoaingStatus', false)
+        commit('changeLoadingStatus', false, { root: true })
       }
     },
     async authenticationCheck({ commit }) {
       const accessToken = window.localStorage.getItem('token')
       try {
-        commit('changeLoaingStatus')
         const { data } = await axios({
           url: `${END_POINT}/me`,
           method: 'POST',
@@ -127,9 +122,7 @@ export default {
         commit('setUser', { user: data })
       } catch(err) {
         console.log(err)
-      } finally {
-        commit('changeLoaingStatus', false)
-      }
+      } 
     },
     deleteAdminInfo({ commit }) {
       commit('setUser', { findAdmin: false })
@@ -138,7 +131,6 @@ export default {
       const accessToken = window.localStorage.getItem('token')
       if (accessToken) {
         try {
-          commit('changeLoaingStatus')
           const { data } = await axios({
             url: `${END_POINT}/me`,
             method: 'POST',
@@ -150,9 +142,7 @@ export default {
           commit('setUser', { findAdmin: data.email.includes('admin') })
         } catch(err) {
           console.log(err)
-        } finally {
-          commit('changeLoaingStatus', false)
-        }
+        } 
       }
     },
   },

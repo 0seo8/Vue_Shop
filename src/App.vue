@@ -27,6 +27,9 @@ export default {
   },
   computed: {
     ...mapState('product', ['isLoading']),
+    ...mapState('account', ['isLoading']),
+    ...mapState('auth', ['isLoading']),
+    ...mapState('admin', ['isLoading']),
   },
   methods: {
     theme() {
