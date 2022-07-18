@@ -223,6 +223,8 @@ export default {
 
 #offcanvas {
   width: 250px;
+  background-color: var(--color-info-bg);
+  color: var(--color-text-base);
   .offcanvas-body {
     h4 {
       padding: 8px 16px;
