@@ -156,7 +156,7 @@ export default {
         }
     }
 })
-const doughnutChart = setTimeout(new Chart(saleOfProudcts, {
+const doughnutChart = new Chart(saleOfProudcts, {
     type: 'doughnut',
     data: {
         labels: ['생활가전', '계절가전', '디지털'],
@@ -183,7 +183,7 @@ const doughnutChart = setTimeout(new Chart(saleOfProudcts, {
             // }
         }
     }
-}), 10000)
+})
 
 doughnutChart
 myChart
