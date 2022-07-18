@@ -25,7 +25,7 @@
           <img
             width="40"
             height="40"
-            src="/src/assets/fastCampus.png">
+            src="/public/assets/fastCampus.png">
         </a>
       </div>
 

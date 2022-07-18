@@ -81,7 +81,7 @@
 </template>
 <script>
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
-import noImage from '/src/assets/noImage'
+import noImage from '/public/assets/noImage'
 import axios from 'axios'
 
 export default {

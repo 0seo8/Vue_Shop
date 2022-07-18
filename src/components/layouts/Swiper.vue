@@ -8,7 +8,7 @@
         :key="slide.imgsrc">
         <div class="slide-area">
           <div 
-            :style="{backgroundImage: `url(/src/assets/swiper/${slide.imgsrc}.jpg)`}"
+            :style="{backgroundImage: `url(/public/assets/swiper/${slide.imgsrc}.jpg)`}"
             class="poster" />
           <div class="image-Info">
             <strong class="title">{{ slide.imgtitle }}</strong>
