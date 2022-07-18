@@ -24,13 +24,11 @@ export default {
       for (const key in payload) {
         state[key] = payload[key]
       }
-      console.log(state)
     },
   },
   actions: {
     async login({ commit }, payload) {
       try {
-        commit('changeLoadingStatus', true, { root: true })
         const { data } = await axios({
           url: `${END_POINT}/login`,
           method: 'POST',
@@ -44,9 +42,7 @@ export default {
       }catch(error){
         console.log(error)
         window.localStorage.removeItem('token')
-      } finally {
-        commit('changeLoadingStatus', false, { root: true })
-      }
+      } 
     },
     async signup({ commit }, payload) {
       try {
@@ -71,7 +67,6 @@ export default {
     async logOut({commit}) {
       const accessToken = window.localStorage.getItem('token')
       try {
-        commit('changeLoadingStatus', true, { root: true })
         await axios({
           url: `${END_POINT}/logout`,
           method: 'POST',
@@ -84,9 +79,7 @@ export default {
         commit('setUser', {user: {}})
       } catch(err) {
         console.log(err)
-      } finally {
-        commit('changeLoadingStatus', false, { root: true })
-      }
+      } 
     },
     async changeProfile({ commit }, payload) {
       const accessToken = window.localStorage.getItem('token')
