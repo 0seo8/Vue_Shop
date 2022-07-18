@@ -249,7 +249,6 @@ export default {
   display: flex;
   align-items: center;
   padding: 0 8px;
-  gap: 1.5rem;
 
   .material-symbols-outlined {
     font-size: 30px;
@@ -277,6 +276,7 @@ export default {
   position: relative;
   display: inline-block;
   margin: 0 1rem;
+  padding-left: 1.5rem;
 
   button {
     width: 2.5rem;
@@ -328,6 +328,7 @@ export default {
     gap: 0;
   }
   .drop-down {
+    padding-left: 0;
     .form-control {
       display: none;
       position: fixed;

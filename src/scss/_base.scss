@@ -2,6 +2,10 @@ body {
   font-family: "GmarketSansMedium", sans-serif;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -30,6 +34,11 @@ button {
 }
 
 p {
+  margin: 0;
+}
+
+dl, dt, dd {
+  padding: 0;
   margin: 0;
 }
 

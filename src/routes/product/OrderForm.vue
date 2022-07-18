@@ -287,6 +287,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~/scss/main.scss";
 .container {
   margin-top: 1rem;
   .title {
@@ -543,6 +544,14 @@ select {
     grid-template-columns: 1fr 1fr 1fr;
     img {
       display: none;
+    }
+    .info.head {
+      padding: 8px 13px;
+      font-size: .8rem;
+    }
+    .info.box {
+      height: 130px;
+      font-size: .8rem;
     }
   }
   .purchaseInfo {
