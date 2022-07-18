@@ -164,7 +164,6 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('auth/findAdmin')
     this.$store.dispatch('auth/authenticationCheck')
   },
 

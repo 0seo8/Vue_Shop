@@ -110,6 +110,7 @@ export default {
     },
     async authenticationCheck({ commit }) {
       const accessToken = window.localStorage.getItem('token')
+      if (!accessToken) return 
       try {
         const { data } = await axios({
           url: `${END_POINT}/me`,
@@ -119,31 +120,13 @@ export default {
             Authorization: `Bearer ${accessToken}`,
           },
         })
-        commit('setUser', { user: data })
+        commit('setUser', { user: data,findAdmin: data.email.includes('admin') })
       } catch(err) {
         console.log(err)
       } 
     },
     deleteAdminInfo({ commit }) {
       commit('setUser', { findAdmin: false })
-    },
-    async findAdmin({ commit }) {
-      const accessToken = window.localStorage.getItem('token')
-      if (accessToken) {
-        try {
-          const { data } = await axios({
-            url: `${END_POINT}/me`,
-            method: 'POST',
-            headers: {
-              ...headers,
-              Authorization: `Bearer ${accessToken}`,
-            },
-          })
-          commit('setUser', { findAdmin: data.email.includes('admin') })
-        } catch(err) {
-          console.log(err)
-        } 
-      }
     },
   },
 }
