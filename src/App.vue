@@ -26,16 +26,7 @@ export default {
     TheFooter,
   },
   computed: {
-    ...mapState('product', ['isLoading']),
-    ...mapState('account', ['isLoading']),
-    ...mapState('auth', ['isLoading']),
-    ...mapState('admin', ['isLoading']),
-  },
-  methods: {
-    theme() {
-      let body = document.querySelector('body')
-      body.classList.toggle('nightmode')
-    },
+    ...mapState(['isLoading']),
   },
 }
 </script>
