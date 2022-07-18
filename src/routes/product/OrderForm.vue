@@ -290,6 +290,8 @@ export default {
 @import "~/scss/main.scss";
 .container {
   margin-top: 1rem;
+  padding-left: 0;
+  padding-right: 0;
   .title {
     text-align: center;
     margin: 1rem;
@@ -537,6 +539,7 @@ select {
                 "account account"
                 "info payment";            
   }
+
 }
 
 @media screen and (max-width: 650px) {
