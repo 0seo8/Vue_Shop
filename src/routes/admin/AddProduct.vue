@@ -180,13 +180,13 @@ body {
         font-size: 0.7rem;
         font-weight: 400;
         line-height: 1.5;
-        color: $font-navy;
+        color: var(--color-gray-1000);
       }
       .image-price-tag {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid rgba(222, 226, 230, 0.7);
+        border: 1px solid var( --color-gray-200);
         padding: 0.5rem 1rem;
         border-radius: 6px;
 

@@ -38,16 +38,6 @@ export default {
 <style lang="scss">
 @import "~/scss/main";
 
-body {
-  background-color: #fff;
-  color: #000;
-  transition: background-color 2s;
-  &.nightmode {
-    background-color: #000;
-    color: #fff;
-  }
-}
-
 .main__wrap {
   padding-top: 50px;
 }
@@ -58,5 +48,19 @@ body {
   position: absolute;
   top: 45%;
   right: 49%;
+}
+
+.breadcrumbs {
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  ul {
+    display: flex;
+    li:not(:first-child) {
+      padding-left: .5rem;
+    }
+  li {
+      cursor: pointer;
+    }  
+  }
 }
 </style>

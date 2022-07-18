@@ -16,14 +16,14 @@ export default {}
   display: inline-block;
   font-family: "GmarketSansMedium";
   font-size: 30px;
-  color: #000;
+  color: var(--color-text-base);
   text-decoration: none;
   img {
     width: 36px;
     height: 36px;
   }
   &:hover {
-    color: #000;
+    color: var(--color-text-base);
   }
 }
 </style>

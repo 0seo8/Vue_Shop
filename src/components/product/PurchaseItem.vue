@@ -2,8 +2,8 @@
   <div class="wrap">
     <table>
       <colgroup>
-        <col width="800" />
-        <col width="" />
+        <col width="800">
+        <col width="">
       </colgroup>
       <tbody>
         <tr>
@@ -18,7 +18,7 @@
               <span class="SWzAJ">
                 <span
                   size="4"
-                  class="sc-13xhsmd-1 kMeFyN"></span>
+                  class="sc-13xhsmd-1 kMeFyN" />
               </span>
               <span class="date"> {{ getdate }} 주문 </span>
             </div>
@@ -29,7 +29,7 @@
                     width="64"
                     height="64"
                     :src="purchase.product.thumbnail"
-                    :alt="purchase.product.title" />
+                    :alt="purchase.product.title">
                 </a>
               </div>
               <div class="info">
@@ -101,8 +101,8 @@ export default {
 <style lang="scss" scoped>
 .wrap {
   border-radius: 8px;
-  border: 1px solid rgb(238, 238, 238);
-  background-color: rgb(255, 255, 255);
+  border: 1px solid var( --color-gray-100);
+  background-color: var(--color-background-bg);
   margin-top: 16px;
 }
 
@@ -122,7 +122,7 @@ export default {
     .isdone {
       font-size: 1.2rem;
       font-weight: bold;
-      color: #111;
+      color: var(--color-gray-800);
       margin-left: 1rem;
     }
     .SWzAJ {
@@ -139,14 +139,14 @@ export default {
         width: 4px;
         height: 4px;
         border-radius: 50%;
-        background-color: rgb(17, 17, 17);
+        background-color: var(--color-gray-900);
         opacity: 0.2;
       }
     }
     .date {
       font-size: 1rem;
       font-weight: normal;
-      color: rgb(0, 137, 26);
+      color: var(--color-green);
     }
   }
   .content {
@@ -183,7 +183,7 @@ export default {
         .price {
           font-size: 1rem;
           font-weight: normal;
-          color: #555;
+          color: var(--color-gray-600);
         }
       }
     }
@@ -194,7 +194,7 @@ export default {
   width: 200px;
   height: 100%;
   text-align: center;
-  border-left: 1px solid rgb(238, 238, 238);
+  border-left: 1px solid var(--color-gray-100);
   .button__box {
     display: flex;
     flex-flow: column wrap;
@@ -207,19 +207,10 @@ export default {
 
 .btn-outline {
   &-primary:disabled {
-    color: rgba(#f2555a, 0.3);
+    color: rgba(var(--color-pirmary), 0.3);
     &:hover {
       color: #fff;
     }
-  }
-  &-success {
-    // color: rgba(#198754, 0.3);
-    &:hover {
-      color: #fff;
-    }
-  }
-  &-info:hover {
-      color: #fff;
   }
 }
 </style>

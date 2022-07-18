@@ -24,6 +24,9 @@ export default {
   getters: {
     getPurchasedProductId(state) {
       return state.PurchaseHistories.map(purchased => purchased.detailId)
+    },
+    myCartList(state) {
+      return state.PurchaseHistories.filter(product => !product.done)
     }
   },
   mutations: {
