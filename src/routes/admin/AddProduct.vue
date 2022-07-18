@@ -97,7 +97,7 @@ export default {
   methods: {
     async AddProduct() {
       try {
-        const res = await axios({
+        await axios({
           url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
           headers: {
             'content-type': 'application/json',

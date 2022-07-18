@@ -1,7 +1,4 @@
 <template>
-  <RouterLink to="/">
-    HOME
-  </RouterLink>
   <div class="login-box">
     <form @submit.prevent="submitForm">
       <div class="user-box">
