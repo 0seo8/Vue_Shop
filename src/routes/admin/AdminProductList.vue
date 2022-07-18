@@ -258,4 +258,8 @@ section {
     }
   }
 }
+
+.card {
+  background: var(--color---color-info-bg);
+}
 </style>
