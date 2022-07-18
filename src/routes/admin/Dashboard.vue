@@ -111,7 +111,6 @@ export default {
   created() {
     this.$store.dispatch('admin/readTransactionDetail')
     this.$store.dispatch('admin/readProducts')
-    
   },
   mounted() {
     

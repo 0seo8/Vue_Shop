@@ -23,7 +23,7 @@
         </div>
         <div
           class="offcanvas-body">
-          <h2>Category</h2>
+          <h4>Category</h4>
           <ul
             ref="categoryBox"
             class="nav nav-pills flex-column">
@@ -47,7 +47,8 @@
         <RouterLink
           to="/"
           class="logo">
-          <Logo class="logo__img" />
+          <Logo
+            class="logo__img" />
           <span class="logo__title">Eletron Market</span>
         </RouterLink>
       </h1>
@@ -223,6 +224,13 @@ export default {
 
 #offcanvas {
   width: 250px;
+  .offcanvas-body {
+    h4 {
+      padding: 8px 16px;
+      color: $primary;
+      font-weight: bold;
+    }
+  }
   a {
     color: inherit;
   }
@@ -355,6 +363,7 @@ export default {
   }
   .logo .logo__img {
     display: none;
+    
   }
 }
 </style>
