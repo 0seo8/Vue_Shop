@@ -79,7 +79,6 @@
         </div>
       </div>
     </div>
-    {{ details }}
     <Transactions :details="details" />
   </section>
 </template>
