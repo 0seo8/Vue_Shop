@@ -449,6 +449,7 @@ export default {
         line-height: 20px;
         color: var(--color-gray-600);
         cursor: pointer;
+        white-space: nowrap;
       }
     }
     em {

@@ -42,9 +42,11 @@
         </div>
       </div>
       <h1>
-        <RouterLink to="/">
-          <Logo />
-          <span class="logo">Eletron Market</span>
+        <RouterLink
+          to="/"
+          class="logo">
+          <Logo class="logo__img" />
+          <span class="logo__title">Eletron Market</span>
         </RouterLink>
       </h1>
     </div>
@@ -211,7 +213,7 @@ export default {
       white-space: nowrap;
       text-decoration: none;
     }
-    .logo {
+    .logo__title {
       margin-left: 0.5rem;
     }
   }
@@ -274,6 +276,7 @@ export default {
 .drop-down {
   position: relative;
   display: inline-block;
+  margin: 0 1rem;
 
   button {
     width: 2.5rem;
@@ -281,7 +284,6 @@ export default {
     background-color: transparent;
   }
   .form-control {
-    margin: auto 16px;
     height: 36px;
   }
   .search-icon {
@@ -319,6 +321,12 @@ export default {
 }
 
 @media (max-width: 650px) {
+  .header .header-side {
+    gap: 0;
+  }
+  .button__list {
+    gap: 0;
+  }
   .drop-down {
     .form-control {
       display: none;
@@ -335,6 +343,9 @@ export default {
       display: block;
       margin-left: 1rem;
     }
+  }
+  .logo .logo__img {
+    display: none;
   }
 }
 </style>

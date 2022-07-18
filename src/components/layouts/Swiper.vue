@@ -7,7 +7,10 @@
         v-for="slide in swiperSrc"
         :key="slide.imgsrc">
         <div class="slide-area">
-          <img :src="`/src/assets/swiper/${slide.imgsrc}.jpg`">
+          <div 
+            :style="{backgroundImage: `url(/src/assets/swiper/${slide.imgsrc}.jpg)`}"
+            class="poster" />
+          <!-- <img :src="`/src/assets/swiper/${slide.imgsrc}.jpg`"> -->
           <div class="image-Info">
             <strong class="title">{{ slide.imgtitle }}</strong>
             <span class="desc">{{ slide.imgdes }}</span>
@@ -82,7 +85,7 @@ export default defineComponent({
 @import "~/scss/main.scss";
 .temp {
   width: 100vw;
-  height: 650px;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,15 +115,39 @@ export default defineComponent({
   }
 } 
 
-img {
-  width: 100%;
-  height: 100%;
-}
-
+.poster {
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    flex-shrink: 0;
+  }
 @media screen and (max-width: 1024px) {
   .temp {
     height: 220px;
   }
+
+  .poster {
+    height: 220px;   
+    background-position: right;
+  }
+
+  .slide-area .image-Info {
+    font-size:1.2rem;
+      strong.title {
+      font-size: 2rem;
+    }
+  } 
 }
+
+@media (max-width: 650px) {
+  .side-area {
+    .image-Info {
+      font-size: 1rem;
+    }
+  }
+}
+
  
 </style>

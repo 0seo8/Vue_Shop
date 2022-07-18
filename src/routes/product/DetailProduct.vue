@@ -122,12 +122,9 @@ export default {
     figure {
       position: relative;
       flex-shrink: 0;
-      max-width: 600px;
-      min-width: 300px;
       border-radius: 10px;
       overflow: hidden;
       background-color: var(--color-background-bg);
-      padding: 10px;
       text-align: center;
       flex-grow: 1;
       img {
@@ -205,6 +202,40 @@ export default {
   }
 }
 
+@media (max-width: 650px) {
+.product{
+  &__box {
+    gap: 1rem;
+  }
+  &__info {
+    font-size: .9rem;
+    h3 {
+      margin-bottom: .7rem;
+      font-size: 1.3rem;
+    }
+
+    p {
+      margin-bottom: 6px;
+      font-size: .8rem;
+     &.price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: .8rem;
+     }
+      &.desc {
+        font-size: .8rem;
+        line-height: 1.4;
+        margin-bottom: .6rem;
+      }
+
+    }
+  .tags {
+    margin-bottom: .5rem;
+  }
+  }
+
+  }
+}
 </style>
 
 
