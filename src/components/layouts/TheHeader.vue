@@ -168,6 +168,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('auth', ['authenticationCheck']),
     ...mapActions('product', ['searchProducts']),
     toggleTheme() {
       this.theme = this.theme == 'darkMode' ? 'lightMode' : 'darkMode'
@@ -214,6 +215,8 @@ export default {
       font-size: 20px;
       white-space: nowrap;
       text-decoration: none;
+      display: flex;
+      align-items: center;
     }
     .logo__title {
       margin-left: 0.5rem;

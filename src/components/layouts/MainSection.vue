@@ -39,7 +39,13 @@ export default {
 
 <style lang="scss" scoped>
 .category__box {
-  margin-top: 80px;
+  margin-top: 5rem;
+}
+
+@media screen and (max-width: 380px) {
+  .category__box {
+    margin-top: 2rem;
+  }
 }
 
 </style>

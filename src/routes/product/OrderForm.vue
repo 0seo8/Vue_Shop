@@ -376,6 +376,9 @@ export default {
         }
       }
     }
+    button {
+      color: #9e9e9e;
+    }
   }
   &__box {
     border: 1px solid var( --color-gray-200);
@@ -522,17 +525,6 @@ select {
   margin-top: 1rem;
 }
 
-.breadcrumbs {
-  padding-top: 2rem;
-  margin-bottom: 1rem;
-  ul {
-    display: flex;
-    li:not(:first-child) {
-      padding-left: .5rem;
-    }
-  }
-}
-
 @media screen and (max-width: 1024px) {
   .purchaseInfo {
     grid-template-areas: 
@@ -562,6 +554,70 @@ select {
                 "account"
                 "info"
                 "payment";
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .checkbox-wrap .box__inner {
+    max-width: 375px;
+  }
+  .form-control {
+    max-width: 375px;
+    label {
+      font-size: .8rem;
+    }
+  }
+  .checkbox-wrap {
+    .allagree {
+      em, .text {
+        font-size: .8rem;
+      }
+    }
+    .box__inner {
+      padding: 10px 20px;
+    }
+    .box__custom-form input[type=checkbox] + label {
+      font-size: .8rem;
+    }
+    .button__detail {
+      font-size: .6rem;
+      border-radius: .2rem;
+    }
+  }
+
+  .title {
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+  .purchaseInfo {
+    .orderUserInfo {
+      padding: 10px 20px;
+      dt {
+        font-size: .9rem;
+        margin-bottom: 10px;
+        padding-bottom: 10px
+      }
+    }
+    button {
+      font-size: .8rem;
+      border-radius: .2rem;      
+    }
+    &__box {
+      padding: 1rem;
+      .expected-payment div {
+        font-size: .8rem;
+        padding: .3rem;
+      }
+      .expected-payment-all {
+        padding-top: .8rem;
+        font-size: .8rem;
+      }
+    }
+    &__title {
+      font-size: 1rem;
+      padding-bottom: 10px
+    }
   }
 }
 </style>

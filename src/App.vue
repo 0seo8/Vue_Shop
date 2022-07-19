@@ -46,8 +46,8 @@ export default {
 }
 
 .breadcrumbs {
-  padding-top: 2rem;
-  margin-bottom: 1rem;
+  padding-top: 3.5rem;
+  margin-bottom: 1.5rem;
   margin-top: 1rem;
   ul {
     display: flex;
@@ -59,4 +59,21 @@ export default {
     }  
   }
 }
+@media screen and (max-width: 650px) {
+  .breadcrumbs {
+    padding-top: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .breadcrumbs {
+    padding-top: 1rem;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    ul {
+      font-size: .8rem;
+    }
+  }
+}
+
 </style>

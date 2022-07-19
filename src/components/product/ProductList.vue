@@ -44,11 +44,11 @@ export default {
 section {
   overflow: hidden;
   h2 {
-    font-size: 22px;
-    line-height: 25px;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: 700;
     color: var(--color-text-title);
+    margin-bottom: 2rem;
   }
 
   .main {
@@ -59,7 +59,7 @@ section {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      margin-top: 30px;
+      margin-top: 1.8rem;
       grid-gap: 20px;
       overflow: hidden;
       .card {
@@ -71,6 +71,18 @@ section {
         &:hover {
           box-shadow: 0px 0px 10px 2px var(--color-shawdow-300);
         }
+      }
+    }
+  }
+}
+@media screen and (max-width: 380px) {
+  section {
+    h2 {
+      font-size: 1.1rem;
+    }
+    .product {
+       &__list {
+        margin-top: 1rem;
       }
     }
   }
