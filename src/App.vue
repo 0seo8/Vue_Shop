@@ -59,4 +59,16 @@ export default {
     }  
   }
 }
+
+@media screen and (max-width: 380px) {
+  .breadcrumbs {
+    padding-top: 1rem;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    ul {
+      font-size: .8rem;
+    }
+  }
+}
+
 </style>
