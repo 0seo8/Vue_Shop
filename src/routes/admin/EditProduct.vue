@@ -7,7 +7,7 @@
       <div>
         <RouterLink
           to="/admin/product-list"
-          class="btn btn-outline-primary">
+          class="btn btn-outline-danger">
           취소하기
         </RouterLink>
       </div>
@@ -107,9 +107,9 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-outline-primary">
+          <div class="btn btn-outline-danger">
             제품 수정하기
-          </button>
+          </div>
         </form>
       </div>
     </div>

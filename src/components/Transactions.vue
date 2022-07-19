@@ -8,7 +8,7 @@
         <table class="table">
           <tbody>
             <tr
-              v-for="(detail, index) in transactionDetail"
+              v-for="(detail, index) in details"
               :key="detail.id">
               <td>{{ index + 1 }}</td>
               <td><b>{{ detail.user.displayName }}</b></td>
@@ -35,6 +35,10 @@
 </template>
 <script>
 export default {
+  props: {
+    // eslint-disable-next-line vue/require-default-prop
+    details: Array
+  },
   data() {
     return {
       columns: [
@@ -47,11 +51,6 @@ export default {
       ]
     }
   },
-  computed: {
-    transactionDetail() {
-      return this.$store.state.admin.transactionDetail
-    }
-  },  
 }
 </script>
 <style lang="scss" scoped>

@@ -71,9 +71,9 @@
             </div>
             <!-- row.// -->
           </div>
-          <button class="btn btn-outline-primary btn-sm">
-            제품 추가하기
-          </button>
+          <div class="btn btn-outline-danger btn-sm">
+            제품 추가
+          </div>
         </form>
       </div>
     </div>
@@ -174,6 +174,9 @@ body {
       }
     }
     form {
+      .btn {
+        color: inherit;
+      }
       display: block;
       margin-top: 0em;
       .form-control[type="file"] {
