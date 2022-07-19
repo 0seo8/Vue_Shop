@@ -17,16 +17,25 @@
           placeholder="Password"
           type="password">
       </div>
-      <input
-        :disabled="!validated"
-        type="submit"
-        value="로그인">
+      <div class="btn-box">
+        <button
+          type="button"
+          class="btn-login btn btn-light btn-sm">
+          <input
+            class="login"
+            :disabled="!validated"
+            type="submit"
+            value="로그인">
+        </button>
+        <button
+          id="signup"
+          type="button"
+          class="btn btn-light btn-sm"
+          @click="$router.push('/signup')">
+          회원가입
+        </button>
+      </div>
     </form>
-    <button
-      class="btn btn-primary"
-      @click="$router.push('/signup')">
-      회원가입
-    </button>
   </div>
 </template>
 
@@ -68,9 +77,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   background: linear-gradient(#141e30, #243b55);
-}
-
-.login-box {
+  .login-box {
   position: relative;
   top: 250px;
   left: 50%;
@@ -78,46 +85,60 @@ body {
   width: 500px;
   padding: 50px;
   transform: translate(-50%, -50%);
-  background: #f2555a;
+  background: var(--color-sub-primary);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-}
-
-.login-box h2 {
-  margin: 0 0 30px;
-  padding: 0;
-  color: #fff;
-  text-align: center;
-}
-
-.login-box .user-box {
-  position: relative;
-}
-
-input::placeholder {
-  color: #fff;
-}
-
-.login-box .user-box input {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  background: transparent;
-}
-.login-box .user-box label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  pointer-events: none;
-  transition: 0.5s;
+  .user-box {
+    position: relative;
+    label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      pointer-events: none;
+      transition: 0.5s;
+    }
+    input {
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 30px;
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      background: transparent;
+      &::placeholder {
+      color: #fff;
+      }
+    }
+  }
+  .btn-box {
+    #signup {
+        color: var(--color-pirmary);
+      }
+    .btn-login {
+      margin-right: 0.5rem;
+      height: 31px;
+      .login {
+        background-color: inherit;
+        color: var(--color-pirmary);
+        border: none;
+        &[disabled] {
+          color: var(--color-gray-600);
+        }
+      }
+    }
+  }
+  /* h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    } */
+  }
 }
 </style>

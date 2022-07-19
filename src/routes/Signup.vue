@@ -1,7 +1,4 @@
 <template>
-  <RouterLink to="/">
-    HOME
-  </RouterLink>
   <div class="login-box">
     <form @submit.prevent="submitForm">
       <div class="user-box">
@@ -39,11 +36,13 @@
           @change="selectfile">
       </div>
       <p v-if="!formIsValid">
-        입력 제대로 하셈.
+        올바르게 입력해주세요!
       </p>
-      <input
+      <button
         type="submit"
-        value="회원가입">
+        class="btn btn-light">
+        회원가입
+      </button>
     </form>
   </div>
 </template>
@@ -62,8 +61,6 @@ export default {
   },
   methods: {
     selectfile(event) {
-      // console.log(event)
-      // const files= event.target.files
       const { files } = event.target
       for (const file of files) {
         const reader = new FileReader()
@@ -115,7 +112,7 @@ body {
   width: 500px;
   padding: 50px;
   transform: translate(-50%, -50%);
-  background: #f2555a;
+  background: var(--color-sub-primary);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
