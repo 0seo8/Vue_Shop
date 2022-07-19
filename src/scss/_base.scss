@@ -6,14 +6,14 @@ a {
   color: inherit;
   text-decoration: none;
   :hover {
-    color: #f2555a !important;
+    color: $primary !important;
   }
 }
 
 .router-link, 
 .router-link-active {
   :hover {
-    color: #f2555a !important;
+    color: $primary !important;
   }  
 }
 
@@ -41,8 +41,8 @@ dl, dt, dd {
 
 .btn-primary {
   color: #fff;
-  background-color: #f2555a;
-  border-color: #f2555a;
+  background-color: $primary;
+  border-color: $primary;
   &:hover,
   &:focus {
     background-color: #c4464a;
@@ -51,15 +51,15 @@ dl, dt, dd {
 } 
 
 .btn-outline-primary {
-  color: #f2555a;
-  border-color: #f2555a;
+  color: $primary;
+  border-color: $primary;
   &:hover,
   &:focus {
-    background-color: #f2555a;
-    border-color: #f2555a;
+    background-color: $primary;
+    border-color: $primary;
   }
   &:focus {
-    box-shadow: 0 0 0 0.25rem rgb(#f2555a, .5);
+    box-shadow: 0 0 0 0.25rem rgb($primary, .5);
   }
 }
 
@@ -70,7 +70,7 @@ button {
 .carousel__pagination-button {
   background-color: #f18285 !important;
   &--active {
-    background-color: #f2555a !important;
+    background-color: $primary !important;
 
   }
 }
