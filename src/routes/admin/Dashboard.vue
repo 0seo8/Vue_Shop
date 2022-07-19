@@ -79,7 +79,7 @@
         </div>
       </div>
     </div>
-    <Transactions />
+    <Transactions :details="details" />
   </section>
 </template>
 <script>
