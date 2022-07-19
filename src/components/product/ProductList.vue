@@ -44,11 +44,11 @@ export default {
 section {
   overflow: hidden;
   h2 {
-    font-size: 1.3rem;
-    line-height: 25px;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: 700;
     color: var(--color-text-title);
+    margin-bottom: 2rem;
   }
 
   .main {
