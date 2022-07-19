@@ -3,7 +3,7 @@
     to="/"
     class="logo">
     <img
-      src="/public/assets/Logo.png"
+      src="/assets/Logo.png"
       alt="Electron Mart">
   </RouterLink>
 </template>

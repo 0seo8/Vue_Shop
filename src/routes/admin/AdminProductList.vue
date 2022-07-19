@@ -96,7 +96,7 @@
 <script>
 import AdminButton from '../../components/AdminButton.vue'
 import axios from 'axios'
-import noImage from '/public/assets/noImage'
+import noImage from '/assets/noImage'
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
 export default {
