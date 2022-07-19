@@ -33,7 +33,6 @@ export default {
       for(const key in payload) {
         state[key] = payload[key]
       }
-      console.log(state)
     },
   },
   actions: {
@@ -50,7 +49,7 @@ export default {
         })
         commit('setState', {products: data})
       } catch(err) {
-        console.log(err.request)
+        console.log(err.code)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -65,7 +64,7 @@ export default {
         })
           commit('setState', {selectedProduct: data, selectedPrice:data.price.toLocaleString('ko-KR')})  
       } catch(err) {
-        console.log(err.request)
+        console.log(err.code)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -84,7 +83,7 @@ export default {
           data: info
         })
       } catch(err) {
-        console.log(err.request)
+        console.log(err.code)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -109,7 +108,7 @@ export default {
         })
           commit('setState', {PurchaseHistories: list})  
       } catch(err) {
-        console.log(err.request)
+        console.log(err.code)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -131,7 +130,7 @@ export default {
         })
         dispatch('readPurchaseAllHistory')
       } catch(err) {
-        console.log(err.request)
+        console.log(err.code)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -154,7 +153,7 @@ export default {
         })
         dispatch('readPurchaseAllHistory')  
       } catch(err) {
-        console.log(err.request)
+        console.log(err.code)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -170,7 +169,7 @@ export default {
         })
         commit('setState', {searchProductList: data})  
       } catch(err) {
-        console.log(err.request)
+        console.log(err.code)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }

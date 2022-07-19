@@ -24,7 +24,6 @@ export default {
       for (const key in payload) {
         state[key] = payload[key]
       }
-      console.log(state)
     },
   },
   actions: {
