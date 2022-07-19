@@ -140,7 +140,7 @@ export default defineComponent({
   } 
 }
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
   .side-area {
     .image-Info {
       font-size: 1rem;
