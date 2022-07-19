@@ -11,7 +11,6 @@
 export default {}
 </script>
 <style lang="scss" scoped>
-@import "~/scss/main.scss";
 .logo {
   display: inline-block;
   font-family: "GmarketSansMedium";

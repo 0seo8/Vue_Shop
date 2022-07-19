@@ -287,7 +287,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main.scss";
 .container {
   margin-top: 1rem;
   padding-left: 0;

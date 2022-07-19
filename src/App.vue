@@ -31,8 +31,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~/scss/main";
-
 .main__wrap {
   padding-top: 50px;
 }

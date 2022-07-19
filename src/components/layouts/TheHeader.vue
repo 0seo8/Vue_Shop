@@ -183,7 +183,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main.scss";
 .header {
   position: fixed;
   z-index: 10;
