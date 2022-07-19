@@ -168,6 +168,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('auth', ['authenticationCheck']),
     ...mapActions('product', ['searchProducts']),
     toggleTheme() {
       this.theme = this.theme == 'darkMode' ? 'lightMode' : 'darkMode'

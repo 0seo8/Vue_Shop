@@ -12,7 +12,6 @@ export default createStore({
     changeLoadingStatus(state, status=true) {
       if(this.state === status) return 
       state.isLoading = status
-      console.log(state)
     },
   },
   modules: {

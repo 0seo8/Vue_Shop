@@ -24,6 +24,7 @@ export default {
       for (const key in payload) {
         state[key] = payload[key]
       }
+      console.log(state)
     },
   },
   actions: {
@@ -37,7 +38,7 @@ export default {
           },
           data: payload,
         })
-        commit('setUser', { user: data.user })
+        commit('setUser', { user: data.user, findAdmin: data.user.email.includes('admin') })
         window.localStorage.setItem('token', data.accessToken)
       }catch(error){
         console.log(error)
