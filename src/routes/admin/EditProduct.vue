@@ -295,4 +295,10 @@ export default {
     }
   }
 }
+
+.content-main .card {
+  color: var(--color-text-base);
+  background-color: var(--color-info-bg);
+}
+
 </style>
