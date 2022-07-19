@@ -81,7 +81,7 @@
 </template>
 <script>
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
-import noImage from '/assets/noImage'
+import noImage from '~/routes/admin/noImage.js'
 import axios from 'axios'
 
 export default {
