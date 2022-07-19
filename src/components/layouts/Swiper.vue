@@ -72,16 +72,10 @@ export default defineComponent({
       ]
     }
   },
-  // metohds: {
-  //   getImageUrl(name) {
-  //     return new URL(`./dir/${name}.jpg`, import.meta.url).href
-  //   }
-  // }
 })
 </script>
 
 <style scoped lang="scss">
-@import "~/scss/main.scss";
 .temp {
   width: 100vw;
   height: 600px;

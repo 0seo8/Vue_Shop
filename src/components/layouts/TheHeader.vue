@@ -183,7 +183,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main.scss";
 .header {
   position: fixed;
   z-index: 10;
@@ -193,7 +192,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding: 6px 12px;
-  min-height: 48px;
+  min-height: 50px;
   color: var(--color-text-base);
   background-color: var(--color-header-bg);
   box-shadow: 0 10px 15px -3px var(--color-shawdow-100), 0 4px 6px -4px var(--color-shawdow-100);
