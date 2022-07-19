@@ -66,3 +66,11 @@ dl, dt, dd {
 button {
   white-space: nowrap;
 }
+
+.carousel__pagination-button {
+  background-color: #f18285 !important;
+  &--active {
+    background-color: #f2555a !important;
+
+  }
+}
