@@ -116,7 +116,7 @@
       <button
         v-else
         class="btn btn-primary login"
-        @click="$router.push('/login')">
+        @click="$router.push({name: 'login'})">
         로그인
       </button>
     </div>
