@@ -95,7 +95,7 @@
   </section>
 </template>
 <script>
-import AdminButton from '../../components/AdminButton.vue'
+import AdminButton from '../../components/admin/AdminButton.vue'
 import axios from 'axios'
 import noImage from '~/routes/admin/noImage.js'
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env

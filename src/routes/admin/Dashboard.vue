@@ -84,8 +84,8 @@
 </template>
 <script>
 import Chart from 'chart.js/auto'
-import AdminButton from '../../components/AdminButton.vue'
-import Transactions from '../../components/Transactions.vue'
+import AdminButton from '../../components/admin/AdminButton.vue'
+import Transactions from '../../components/admin/Transactions.vue'
 
 export default {
   components: {

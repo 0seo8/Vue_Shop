@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div
     class="btn-group"
     role="group"
@@ -21,14 +21,8 @@
     </button>
   </div>
 </template>
-<script>
-export default {
-  
-}
-</script>
 <style lang="scss" scoped>
 .btn-group {
   padding: 0 0 0.5rem 0.5rem; 
-
 }
 </style>
