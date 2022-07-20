@@ -6,7 +6,9 @@
         <input
           id="name"
           v-model.trim="displayName"
-          type="name">
+          type="name"
+          placeholder="Id: 사용자 이름, 8자 이하 (필수!)"
+          maxlength="5">
       </div>
       <div class="user-box">
         <label for="ps1">Old password: </label>

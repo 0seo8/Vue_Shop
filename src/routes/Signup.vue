@@ -14,7 +14,8 @@
         <input
           id="name"
           v-model.trim="displayName"
-          placeholder="Id: 사용자 이름, 20자 이하 (필수!)"
+          placeholder="Id: 사용자 이름, 8자 이하 (필수!)"
+          maxlength="5"
           type="name">
       </div>
       <div class="user-box">
@@ -98,13 +99,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background: linear-gradient(#141e30, #243b55);
-}
-
 .login-box {
   position: relative;
   top: 250px;
@@ -149,5 +143,11 @@ body {
       transition: 0.5s;
     }
   }
+}
+
+@media screen and (max-width: 380px) {
+.login-box {
+  width: 100vw;
+}
 }
 </style>

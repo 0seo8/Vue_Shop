@@ -19,8 +19,8 @@ export default {}
   text-decoration: none;
   overflow: hidden;
   img {
-    width: 46px;
-    height: 46px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
   }
   &:hover {

@@ -126,6 +126,7 @@ section {
     border-radius: 12px;
     box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px, rgb(0 0 0 / 16%) 0px 0px 1px 0px;
     background-color: var(--color-info-box);
+    margin-top: 2rem;
     margin-bottom: 20px;
     padding: 24px 24px 16px;
 }
@@ -189,4 +190,5 @@ section {
     filter: sepia(1.2);
   }
 }
+
 </style>
