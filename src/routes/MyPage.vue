@@ -17,7 +17,8 @@
                 <div class="drop-down">
                   <button
                     type="button"
-                    aria-pressed="false">
+                    aria-pressed="false"
+                    @click="copyUrl">
                     <svg
                       width="24"
                       height="24"
@@ -203,7 +204,15 @@ export default {
       this.$router.push('/login')
     },
     ...mapActions('auth', ['authenticationCheck']),
+    copyUrl () {
+    const value = window.document.location.href
+    const outputValue = value.slice(0, -7)
+    navigator.clipboard.writeText(outputValue).then(() =>{
+      confirm('주소가 복사되었습니다')
+    })
+    }
   },
+  
 }
 </script>
 
