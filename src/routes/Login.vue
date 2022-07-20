@@ -93,14 +93,15 @@ section {
       left: 0;
       height: 100%;
       width: 100%;
-      background-color: rgba(#000, .4);  
+      background-color: var(--color-shawdow-500);  
     }
   .login-box {
     position: relative;
+    top: 3.5rem;
     margin-bottom: 120px;
     width: 500px;
     padding: 50px;
-    background: var(--color-sub-primary);
+    background: var(--color-login-primary);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
