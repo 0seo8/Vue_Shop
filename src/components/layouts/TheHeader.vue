@@ -192,7 +192,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px;
-  min-height: 50px;
+  min-height: 56px;
   color: var(--color-text-base);
   background-color: var(--color-header-bg);
   box-shadow: 0 10px 15px -3px var(--color-shawdow-100), 0 4px 6px -4px var(--color-shawdow-100);

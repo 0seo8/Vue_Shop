@@ -80,12 +80,19 @@ section {
   section {
     h2 {
       font-size: 1.1rem;
+      margin-bottom: 1.1rem;
+      &:hover {
+        color: $primary;
+      }
     }
     .product {
       &__list {
         margin-top: 1rem;
       }
     }
+  &.main {
+    height: 368px;
+  }
   }
 }
 </style>
