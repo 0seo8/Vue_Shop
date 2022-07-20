@@ -1,7 +1,7 @@
 <template>
   <div class="login-box">
     <div class="login-title">
-      <h5>Electron Market에 오신걸 환영합니다!</h5>
+      <h5><span>Wellcome to</span> Electorn Market!</h5>
     </div>
     <form @submit.prevent="submitForm">
       <div class="user-box">
@@ -91,13 +91,18 @@ body {
     border-radius: 10px;
   .login-title {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 2.5rem;
     color: var(--color-pirmary);
     background-color: #fff;
     padding: 0.7rem;
     border-radius: 4px;
     h5 {
       margin: 0;
+      span {
+        color: var(--color-red);
+        font-size: 20px;
+        font-weight: bolder;
+      }
     }
   }
   .user-box {
@@ -134,11 +139,15 @@ body {
   }
   .btn-box {
     #signup {
-        color: var(--color-pirmary);
+        color: var(--color-red);
+        &:hover {
+          color: var(--color-pirmary);
+          background-color: var(--color-gray-100);
+        }
       }
     .btn-login {
       margin-right: 0.5rem;
-      color: var(--color-pirmary);
+      color: var(--color-red);
       .login {
         background-color: inherit;
         color: var(--color-pirmary);
@@ -149,12 +158,6 @@ body {
       }
     }
   }
-  /* h2 {
-    margin: 0 0 30px;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-    } */
   }
 }
 </style>
