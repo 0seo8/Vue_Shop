@@ -1,7 +1,7 @@
 <template lang="">
   <section class="content-main">
     <div class="content-header">
-      <h2>대시보드</h2>
+      <h1>대시보드</h1>
       <AdminButton />
     </div>
     <div class="row">
@@ -14,7 +14,7 @@
               </i>
             </span>
             <div class="text">
-              <h7>전체 매출</h7>
+              <h5>전체 매출</h5>
               <div class="span">
                 {{ totalSale }}원
               </div>
@@ -31,7 +31,7 @@
               </i>
             </span>
             <div class="text">
-              <h7>전체 주문</h7>
+              <h5>전체 주문</h5>
               <div class="span">
                 {{ details.length }}개
               </div>
@@ -48,7 +48,7 @@
               </i>
             </span>
             <div class="text">
-              <h7>전체 제품</h7>
+              <h5>전체 제품</h5>
               <div class="span">
                 {{ productCount }}개
               </div>
@@ -62,7 +62,7 @@
         <div class="card mb-4">
           <article class="card-body">
             <div class="chartjs">
-              <h7>제품별 판매량(막대 그래프)</h7>
+              <h5>제품별 판매량(막대 그래프)</h5>
               <canvas id="myChart" />
             </div>
           </article>
@@ -72,7 +72,7 @@
         <div class="card mb-4">
           <article class="card-body">
             <div class="chartjs">
-              <h7>매출액 대비 제품 비중</h7>
+              <h5>매출액 대비 제품 비중</h5>
               <canvas id="donutChart" />
             </div>
           </article>
@@ -194,7 +194,7 @@ myChart
   color: var(--color-text-base);
   font-family: 'GmarketSansMedium';
   background-color: var(--color-admin-bg);
-  padding: 30px 5%;
+  padding: 60px 10%;
   margin-left: auto;
   margin-right: auto;
   .content-header {
@@ -203,7 +203,7 @@ myChart
     margin-bottom: 1rem;
   }
   .row {
-    font-size: 12px;
+    font-size: 1.1rem;
     .primary {
       background-color: #f2555a;
     }

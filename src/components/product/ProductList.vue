@@ -60,7 +60,7 @@ section {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      margin-top: 1.8rem;
+      margin-top: 1.2rem;
       grid-gap: 20px;
       overflow: hidden;
       .card {
@@ -82,7 +82,7 @@ section {
       font-size: 1.1rem;
     }
     .product {
-       &__list {
+      &__list {
         margin-top: 1rem;
       }
     }

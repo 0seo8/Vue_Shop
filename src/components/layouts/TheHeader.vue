@@ -191,7 +191,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 12px;
+  padding: 8px 12px;
   min-height: 50px;
   color: var(--color-text-base);
   background-color: var(--color-header-bg);
@@ -245,7 +245,7 @@ export default {
     flex-wrap: nowrap;
     margin-left: 8px;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 1rem;
     .nav-link {
       color: var(--color-text-base);
       &:hover {
@@ -303,6 +303,7 @@ export default {
     background-color: transparent;
   }
   .form-control {
+    margin-left: 8px;
     height: 36px;
   }
   .search-icon {

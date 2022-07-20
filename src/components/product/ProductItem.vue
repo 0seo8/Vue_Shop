@@ -94,13 +94,14 @@ figure {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  padding: 1rem 0.5rem;
+  padding: 1rem 0.5rem 0;
   .tags {
     .badge {
       padding: 2px 6px;
     }
   }
   .title {
+    padding-bottom: .3rem;
     font-size: 15px;
     display: inline-block;
     width: 100%;
@@ -109,10 +110,10 @@ figure {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin-bottom: 0.5rem;
     border-bottom: 1px solid var(--color-shawdow-200);
   }
   .price {
+    padding-top: .5rem;
     font-weight: bold;
     line-height: 20px;
     letter-spacing: 0;
@@ -121,12 +122,12 @@ figure {
   }
   .tags {
     position: absolute;
-    top: -1.5rem;
+    top: -1.7rem;
     left: 0.5rem;
     font-size: 12px;
     white-space: nowrap;
-
     &__item {
+      font-size: 12px;
       display: inline-block;
       padding: 2px;
       border: 1px solid var( --color-gray-400);

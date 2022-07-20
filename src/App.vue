@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss">
 .main__wrap {
-  padding-top: 50px;
+  padding-top: 56px;
 }
 
 .spinner-border {
