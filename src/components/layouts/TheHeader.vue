@@ -331,9 +331,13 @@ export default {
   right: 1rem;
   top: 1rem;
 }
-  .admin_btn_m {
-    display: none;
-  }
+.admin_btn_m {
+  display: none;
+}
+
+button {
+  border: 0;
+}
 
 @media (max-width: 960px) {
   .side-menu {
