@@ -14,7 +14,7 @@
     </div>
     <div class="card mb-4">
       <div class="card-body">
-        <form @submit.prevent="AddProduct()">
+        <form>
           <div class="mb-4">
             <label
               for="product_name"
@@ -53,7 +53,7 @@
                 <input
                   v-model="price"
                   placeholder="가격을 입력하세요."
-                  type="text"
+                  type="number"
                   class="form-control">
               </div>
               <div>
@@ -71,7 +71,10 @@
             </div>
             <!-- row.// -->
           </div>
-          <div class="btn btn-outline-danger btn-sm">
+          <div
+            class="btn btn-outline-danger btn-sm"
+            type="submit"
+            @click="AddProduct">
             제품 추가
           </div>
         </form>
@@ -101,14 +104,14 @@ export default {
           url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
           headers: {
             'content-type': 'application/json',
-            apikey: VITE_API_KEY,
-            username: VITE_USERNAME,
-            masterKey: true,
+            'apikey': VITE_API_KEY,
+            'username': VITE_USERNAME,
+            'masterKey': true,
           },
           method: 'POST',
           data: {
             title: this.title,
-            price: this.price,
+            price: Number(this.price),
             description: this.description,
             tags: this.tags ? this.tags.split(',') : [],
             thumbnailBase64: this.thumbnailBase64,

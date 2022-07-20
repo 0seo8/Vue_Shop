@@ -14,7 +14,7 @@
     </div>
     <div class="card mb-4">
       <div class="card-body">
-        <form @submit.prevent="EditProduct()">
+        <form>
           <div class="mb-4 title-soldout">
             <div class="input-title">
               <label
@@ -107,7 +107,9 @@
               </div>
             </div>
           </div>
-          <div class="btn btn-outline-danger">
+          <div
+            class="btn btn-outline-danger"
+            @click="EditProduct">
             제품 수정하기
           </div>
         </form>

@@ -16,7 +16,8 @@
                 v-for="column in columns"
                 :key="column.name"
                 :class="column.col">
-                <template v-if="column.field === 'index'">
+                <template
+                  v-if="column.field === 'index'">
                   {{ index + 1 }}
                 </template>
 
@@ -106,7 +107,7 @@ export default {
   data() {
     return {
       columns: [
-        { field: 'index', name: '', col: 'column flex-grow-0 col-index' },
+        { field: 'index', name: '', col: 'column-auto flex-grow-0 col-index' },
         {
           field: 'thumbnail',
           name: '이미지',
@@ -179,7 +180,7 @@ export default {
 <style lang="scss" scoped>
 section {
   min-width: 460px;
-  padding: 30px 3%;
+  padding: 60px 6%;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
@@ -203,6 +204,7 @@ section {
     }
     .badge {
       padding: 0.4rem 0.8rem;
+      font-size: 14px;
     }
     .col-isSoldOut {
       text-align: center;
@@ -211,7 +213,8 @@ section {
       text-align: start;
     }
     .col-index {
-      width: 30px;
+      width: 60px;
+      color: var(--color-gray-600)
     }
     .col-menu {
       text-align: cneter;
@@ -219,15 +222,19 @@ section {
     .dropdown {
       width: auto;
       .dropdown-menu {
-        font-size: 8px;
+        font-size: 14px;
         .dropdown-item {
+          &:active {
+              background-color: var(--color-sub-primary);
           a {
             text-decoration: none;
             color: #212529;
+            }
           }
           &:last-child {
             color: #f2555a;
           }
+          
         }
       }
       .dropdown-toggle::after {
@@ -241,13 +248,13 @@ section {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 16px;
     &.col-title {
       font-weight: bold;
     }
     .thumbnail {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       padding: 0.25rem;
       background-color: #f8f9fa;
       border: 1px solid #dee2e6;
