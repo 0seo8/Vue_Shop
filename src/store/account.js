@@ -1,5 +1,15 @@
-import axios from "axios";
-const { VITE_API_KEY, VITE_USERNAME } = import.meta.env;
+import axios from 'axios'
+
+const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
+
+const END_POINT =
+  'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account'
+
+const headers = {
+  'content-type': 'application/json',
+  apikey: VITE_API_KEY,
+  username: VITE_USERNAME,
+}
 
 export default {
   namespaced: true,
@@ -7,94 +17,109 @@ export default {
     return {
       currentAccounts: [],
       allAccount: [],
-    };
+    }
   },
   mutations: {
-    setCurrentAccounts(state, payload) {
-      state.currentAccounts = payload;
-    },
-    setAllAccount(state, payload) {
-      state.allAccount = payload;
+    setState(state, payload) {
+      for (const key in payload) {
+        state[key] = payload[key]
+      }
+      console.log(state)
     },
   },
   actions: {
     async getCurrentAccounts({ commit }) {
-      const accessToken = window.localStorage.getItem("token");
-      const res = await axios({
-        url: "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account",
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-          apikey: "FcKdtJs202204",
-          username: "KDT2_TEAM5",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      commit("setCurrentAccounts", res.data);
+      const accessToken = window.localStorage.getItem('token')
+      try{
+        commit('changeLoadingStatus', true, { root: true })
+        const { data } = await axios({
+          url: END_POINT,
+          method: 'GET',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        commit('setState', { currentAccounts: data })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoadingStatus', false, { root: true })
+      }
     },
     async getAllAccount({ commit }) {
-      const accessToken = window.localStorage.getItem("token");
-      const res = await axios({
-        url: "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks",
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-          apikey: "FcKdtJs202204",
-          username: "KDT2_TEAM5",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      commit("setAllAccount", res.data);
-    },
-    async connectAccount(context, payload) {
-      const { bankCode, accountNumber } = payload;
-      const accessToken = window.localStorage.getItem("token");
-      const res = await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account",
-        {
-          method: "POST",
+      const accessToken = window.localStorage.getItem('token')
+      try {
+        commit('changeLoadingStatus', true, { root: true })
+        const { data } = await axios({
+          url: `${END_POINT}/banks`,
+          method: 'GET',
           headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
+            ...headers,
             Authorization: `Bearer ${accessToken}`,
           },
-          body: JSON.stringify({
+        })
+        commit('setState', { allAccount: data })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoadingStatus', false, { root: true })
+      }
+    },
+    async connectAccount(_, payload) {
+      const accessToken = window.localStorage.getItem('token')
+      const { bankCode, accountNumber } = payload
+      try {
+        commit('changeLoadingStatus', true, { root: true })
+        await axios({
+          url: END_POINT,
+          method: 'POST',
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+          data: {
             bankCode,
             accountNumber: randomNumber(accountNumber),
-            phoneNumber: "01012345678",
+            phoneNumber: '01012345678',
             signature: true,
-          }),
-        }
-      );
-      const value = await res.json();
+          },
+        })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoadingStatus', false, { root: true })
+      }
     },
-    async disConnectAccount(context, accountId) {
-      const accessToken = window.localStorage.getItem("token");
-      await fetch(
-        "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account",
-        {
-          method: "DELETE",
+    async disConnectAccount(_, accountId) {
+      const accessToken = window.localStorage.getItem('token')
+      try {
+        commit('changeLoadingStatus', true, { root: true })
+        await axios({
+          url: END_POINT,
+          method: 'DELETE',
           headers: {
-            "content-type": "application/json",
-            apikey: "FcKdtJs202204",
-            username: "KDT2_TEAM5",
+            ...headers,
             Authorization: `Bearer ${accessToken}`,
           },
-          body: JSON.stringify({
+          data: {
             accountId,
             signature: true,
-          }),
-        }
-      );
+          },
+        })
+      } catch(err) {
+        console.log(err)
+      } finally {
+        commit('changeLoadingStatus', false, { root: true })
+      }
     },
   },
-};
+}
 
 function randomNumber(n) {
-  let str = "";
+  let str = ''
   for (let i = 0; i < n; i++) {
-    str += Math.floor(Math.random() * 10);
+    str += Math.floor(Math.random() * 10)
   }
-  return str;
+  return str
 }
