@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <h2>
+    <h2 @click="$router.push(`/category/${category}`)">
       {{ category }}
     </h2>
     <div
@@ -49,10 +49,11 @@ section {
     font-weight: 700;
     color: var(--color-text-title);
     margin-bottom: 2rem;
+    cursor: pointer;
   }
 
   .main {
-    height: 380px;
+    height: 382px;
   }
   .product {
     &__list {

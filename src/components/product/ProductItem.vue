@@ -101,7 +101,7 @@ figure {
     }
   }
   .title {
-    font-size: 10px;
+    font-size: 15px;
     display: inline-block;
     width: 100%;
     color: var(--color-gray-600);
