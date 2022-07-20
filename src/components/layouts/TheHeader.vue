@@ -330,10 +330,10 @@ export default {
 .btn-close {
   right: 1rem;
   top: 1rem;
+}
   .admin_btn_m {
     display: none;
   }
-}
 
 @media (max-width: 960px) {
   .side-menu {
