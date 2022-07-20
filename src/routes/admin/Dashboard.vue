@@ -33,7 +33,7 @@
             <div class="text">
               <h5>전체 주문</h5>
               <div class="span">
-                {{ details.length }}개
+                {{ transactionDetail.length }}개
               </div>
             </div>
           </article>
@@ -63,7 +63,7 @@
           <article class="card-body">
             <div class="chartjs">
               <h5>제품별 판매량(막대 그래프)</h5>
-              <canvas id="myChart" />
+              <BarChart />
             </div>
           </article>
         </div>
@@ -73,31 +73,35 @@
           <article class="card-body">
             <div class="chartjs">
               <h5>매출액 대비 제품 비중</h5>
-              <canvas id="donutChart" />
+              <DoughnutChart />
             </div>
           </article>
         </div>
       </div>
     </div>
-    <Transactions :details="details" />
+    <Transactions :details="transactionDetail" />
   </section>
 </template>
 <script>
-import Chart from 'chart.js/auto'
 import AdminButton from '../../components/admin/AdminButton.vue'
 import Transactions from '../../components/admin/Transactions.vue'
+
+import BarChart from '../../components/admin/chart/BarChart.vue'
+import DoughnutChart from '../../components/admin/chart/DoughnutChart.vue'
+
+import {mapState, mapActions} from 'vuex'
 
 export default {
   components: {
     AdminButton,
     Transactions,
+    BarChart,
+    DoughnutChart
   },
   computed: {
-    details() {
-      return this.$store.state.admin.transactionDetail
-    },
+    ...mapState('admin', ['transactionDetail']),
     saleData() {
-      return this.details.map(detail => detail.product.price)
+      return this.transactionDetail.map(detail => detail.product.price)
     },
     totalSale() {
       let sumPrice = 0
@@ -108,85 +112,13 @@ export default {
       return this.$store.state.admin.productList.length
     }
   }, 
-  created() {
+  mounted() {
     this.$store.dispatch('admin/readTransactionDetail')
     this.$store.dispatch('admin/readProducts')
   },
-  mounted() {
-    
-    const productSales = document.querySelector('#myChart')
-    const saleOfProudcts = document.querySelector('#donutChart')
-    
-    const myChart = new Chart(productSales, {
-    type: 'bar',
-    data: {
-        labels: ['모니터', '청소기', '노트북', '에어컨', '에어팟', '선풍기', '커피머신', '스마트 웨어러블'],
-        datasets: [{
-            label: 'Electron Market Sale Data',
-            data: [12, 19, 3, 5, 2, 3, 2, 7],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(153, 200, 255, 0.2)',
-                'rgba(255, 60, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(153, 200, 255, 1)',
-                'rgba(255, 60, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-})
-const doughnutChart = new Chart(saleOfProudcts, {
-    type: 'doughnut',
-    data: {
-        labels: ['생활가전', '계절가전', '디지털'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            // y: {
-            //   beginAtZero: true
-            // }
-        }
-    }
-})
-
-doughnutChart
-myChart
-  },
+  methods: {
+    ...mapActions('admin', ['readTransactionDetail'])
+  }
 }
 </script>
 <style lang="scss" scoped>
