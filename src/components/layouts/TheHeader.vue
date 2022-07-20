@@ -75,7 +75,8 @@
         v-if="findAdmin"
         class="btn btn-primary admin"
         @click="$router.push('/admin')">
-        admin
+        <span class="admin_btn">adimin</span>
+        <span class="admin_btn_m">Ad</span>
       </button>
       <ul
         class="darkmode"
@@ -329,6 +330,9 @@ export default {
 .btn-close {
   right: 1rem;
   top: 1rem;
+  .admin_btn_m {
+    display: none;
+  }
 }
 
 @media (max-width: 960px) {
@@ -370,5 +374,19 @@ export default {
     display: none;
     
   }
+  .btn {
+    width: fit-content;
+    padding: .5rem;
+    .admin_btn {
+        display: none;
+      &_m {
+        display: block;
+    }
+  }
+  }
+  .logo__title {
+    font-size: 1.1rem;
+  }
+
 }
 </style>
