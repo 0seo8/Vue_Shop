@@ -101,7 +101,6 @@ figure {
     }
   }
   .title {
-    font-size: 10px;
     display: inline-block;
     width: 100%;
     color: var(--color-gray-600);
@@ -121,12 +120,12 @@ figure {
   }
   .tags {
     position: absolute;
-    top: -1.5rem;
+    top: -1.7rem;
     left: 0.5rem;
     font-size: 12px;
     white-space: nowrap;
-
     &__item {
+      font-size: 12px;
       display: inline-block;
       padding: 2px;
       border: 1px solid var( --color-gray-400);

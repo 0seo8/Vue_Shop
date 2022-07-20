@@ -191,7 +191,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 12px;
+  padding: 0.7rem 1.4rem;
   min-height: 50px;
   color: var(--color-text-base);
   background-color: var(--color-header-bg);
@@ -211,7 +211,7 @@ export default {
     color: var(--color-pirmary);
     a {
       font-weight: 700;
-      font-size: 20px;
+      font-size: 1.7rem;
       white-space: nowrap;
       text-decoration: none;
       display: flex;
@@ -245,7 +245,7 @@ export default {
     flex-wrap: nowrap;
     margin-left: 8px;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 1.3rem;
     .nav-link {
       color: var(--color-text-base);
       &:hover {
@@ -270,7 +270,7 @@ export default {
   padding: 0 8px;
 
   .material-symbols-outlined {
-    font-size: 30px;
+    font-size: 42px;
     color: var(--color-pirmary);
     display: block;
     &:hover {
@@ -284,9 +284,9 @@ export default {
   }
 
   .admin {
-    height: 30px;
+    height: 40px;
     width: 80px;
-    font-size: 12px;
+    font-size: 1rem;
     margin-right: 10px;
   }
 }
@@ -303,7 +303,8 @@ export default {
     background-color: transparent;
   }
   .form-control {
-    height: 36px;
+    margin-left: 8px;
+    height: 40px;
   }
   .search-icon {
     display: none;
