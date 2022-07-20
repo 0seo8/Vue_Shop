@@ -1,5 +1,8 @@
 <template>
   <div class="login-box">
+    <div class="login-title">
+      <h5>Electron Market에 오신걸 환영합니다!</h5>
+    </div>
     <form @submit.prevent="submitForm">
       <div class="user-box">
         <label for="name" />
@@ -19,13 +22,10 @@
       </div>
       <div class="btn-box">
         <button
-          type="button"
-          class="btn-login btn btn-light btn-sm">
-          <input
-            class="login"
-            :disabled="!validated"
-            type="submit"
-            value="로그인">
+          class="btn-login btn btn-light btn-sm"
+          type="submit"
+          :disabled="!validated">
+          로그인
         </button>
         <button
           id="signup"
@@ -78,17 +78,28 @@ body {
   font-family: sans-serif;
   background: linear-gradient(#141e30, #243b55);
   .login-box {
-  position: relative;
-  top: 250px;
-  left: 50%;
-  margin-bottom: 120px;
-  width: 500px;
-  padding: 50px;
-  transform: translate(-50%, -50%);
-  background: var(--color-sub-primary);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
+    position: relative;
+    top: 250px;
+    left: 50%;
+    margin-bottom: 120px;
+    width: 500px;
+    padding: 50px;
+    transform: translate(-50%, -50%);
+    background: var(--color-sub-primary);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+  .login-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-pirmary);
+    background-color: #fff;
+    padding: 0.7rem;
+    border-radius: 4px;
+    h5 {
+      margin: 0;
+    }
+  }
   .user-box {
     position: relative;
     label {
@@ -112,7 +123,12 @@ body {
       outline: none;
       background: transparent;
       &::placeholder {
-      color: #fff;
+        color: var(--color-gray-100)
+      }
+      &:focus {
+        border-color: var(--color-pirmary);
+        outline: none;
+        border-width: 2px;
       }
     }
   }
@@ -122,7 +138,7 @@ body {
       }
     .btn-login {
       margin-right: 0.5rem;
-      height: 31px;
+      color: var(--color-pirmary);
       .login {
         background-color: inherit;
         color: var(--color-pirmary);

@@ -82,6 +82,7 @@ figure {
     transition-duration: 0.3s;
     transition-property: transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 4px;
     &.soldout {
       filter: grayscale(90%);
     }
