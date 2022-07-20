@@ -58,16 +58,19 @@ export default {
   color: var(--color-text-base);
 }
 tr {
-  font-size: 10px;
+    font-size: 0.9rem;
     color: var(--color-text-base);
   td {
     &:nth-child(5) {
       width: 62px;
     }
     vertical-align: inherit;
+    line-height: 2.5rem;
   }
   .badge {
-    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+    padding: 0.6rem 1rem;
+    font-weight: 900;
   }
 }
 </style>
