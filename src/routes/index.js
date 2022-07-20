@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './Home.vue'
 import Login from './Login.vue'
-// import Admin from './admin/Admin.vue'
 import AddProduct from './admin/AddProduct.vue'
 import Dashboard from './admin/Dashboard.vue'
 import AdminProductList from './admin/AdminProductList.vue'
@@ -24,10 +23,13 @@ export default createRouter({
     {
       path: '/',
       component: Home,
-    },
-    {
-      path: '/login',
-      component: Login,
+      children: [
+        {
+          path: 'login',
+          name: 'login',
+          component: Login,
+        },
+      ]
     },
     {
       path: '/mypage',
