@@ -203,7 +203,7 @@ myChart
     margin-bottom: 1rem;
   }
   .row {
-    font-size: 1.1rem;
+    font-size: 1rem;
     .primary {
       background-color: #f2555a;
     }
@@ -218,8 +218,9 @@ myChart
       flex: auto;
       opacity: 0.9;
       align-items: center;
-      h7 {
-        font-size: 14px;
+      h5 {
+        color: var(--color-gray-700);
+        font-size: 16px;
         font-weight: bold;
         margin-bottom: 0 !important;
       }

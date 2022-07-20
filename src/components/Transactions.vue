@@ -25,7 +25,9 @@
                   v-else-if="detail.done"
                   class="badge rounded-pill alert-success">거래완료</span>
               </td>
-              <td>{{ new Date(detail.timePaid).toLocaleString() }}</td>
+              <td class="date">
+                {{ new Date(detail.timePaid).toLocaleString() }}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -54,23 +56,31 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.ard-body {
+.card-body {
   color: var(--color-text-base);
 }
 tr {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--color-text-base);
   td {
+    &:first-child {
+      width: 70px;
+      text-align: center;
+    }
     &:nth-child(5) {
       width: 62px;
+    }
+    &:nth-child(6) {
+      color: var(--color-gray-700);
     }
     vertical-align: inherit;
     line-height: 2.5rem;
   }
   .badge {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     padding: 0.6rem 1rem;
     font-weight: 900;
+    margin-right: 2rem;
   }
 }
 </style>
