@@ -97,8 +97,7 @@ section {
     }
   .login-box {
     position: relative;
-    top: 3.5rem;
-    margin-bottom: 120px;
+    top: 2.5rem;
     width: 500px;
     padding: 50px;
     background: var(--color-login-primary);
@@ -106,6 +105,7 @@ section {
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
   .login-title {
+    width: 100%;
     text-align: center;
     margin-bottom: 2.5rem;
     color: var(--color-pirmary);

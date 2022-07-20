@@ -75,7 +75,8 @@
         v-if="findAdmin"
         class="btn btn-primary admin"
         @click="$router.push('/admin')">
-        admin
+        <span class="admin_btn">adimin</span>
+        <span class="admin_btn_m">Ad</span>
       </button>
       <ul
         class="darkmode"
@@ -191,8 +192,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.7rem 1.4rem;
-  min-height: 50px;
+  padding: 8px 12px;
+  min-height: 56px;
   color: var(--color-text-base);
   background-color: var(--color-header-bg);
   box-shadow: 0 10px 15px -3px var(--color-shawdow-100), 0 4px 6px -4px var(--color-shawdow-100);
@@ -211,7 +212,7 @@ export default {
     color: var(--color-pirmary);
     a {
       font-weight: 700;
-      font-size: 1.7rem;
+      font-size: 20px;
       white-space: nowrap;
       text-decoration: none;
       display: flex;
@@ -245,7 +246,7 @@ export default {
     flex-wrap: nowrap;
     margin-left: 8px;
     white-space: nowrap;
-    font-size: 1.3rem;
+    font-size: 1rem;
     .nav-link {
       color: var(--color-text-base);
       &:hover {
@@ -270,7 +271,7 @@ export default {
   padding: 0 8px;
 
   .material-symbols-outlined {
-    font-size: 42px;
+    font-size: 30px;
     color: var(--color-pirmary);
     display: block;
     &:hover {
@@ -284,9 +285,9 @@ export default {
   }
 
   .admin {
-    height: 40px;
+    height: 30px;
     width: 80px;
-    font-size: 1rem;
+    font-size: 12px;
     margin-right: 10px;
   }
 }
@@ -304,7 +305,7 @@ export default {
   }
   .form-control {
     margin-left: 8px;
-    height: 40px;
+    height: 36px;
   }
   .search-icon {
     display: none;
@@ -329,6 +330,13 @@ export default {
 .btn-close {
   right: 1rem;
   top: 1rem;
+}
+.admin_btn_m {
+  display: none;
+}
+
+button {
+  border: 0;
 }
 
 @media (max-width: 960px) {
@@ -370,5 +378,19 @@ export default {
     display: none;
     
   }
+  .btn {
+    width: fit-content;
+    padding: .5rem;
+    .admin_btn {
+        display: none;
+      &_m {
+        display: block;
+    }
+  }
+  }
+  .logo__title {
+    font-size: 1.1rem;
+  }
+
 }
 </style>

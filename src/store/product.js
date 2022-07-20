@@ -14,7 +14,7 @@ export default {
   state() {
     return {
       products: [],
-      selectedProduct: [],
+      selectedProduct: {},
       selectedPrice:'',
       searchProductList: [],
       PurchaseHistories: [],
