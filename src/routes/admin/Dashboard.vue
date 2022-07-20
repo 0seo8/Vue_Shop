@@ -89,7 +89,7 @@ import Transactions from '../../components/admin/Transactions.vue'
 import BarChart from '../../components/admin/chart/BarChart.vue'
 import DoughnutChart from '../../components/admin/chart/DoughnutChart.vue'
 
-import {mapState, mapActions} from 'vuex'
+import {mapState} from 'vuex'
 
 export default {
   components: {
@@ -116,9 +116,6 @@ export default {
     this.$store.dispatch('admin/readTransactionDetail')
     this.$store.dispatch('admin/readProducts')
   },
-  methods: {
-    ...mapActions('admin', ['readTransactionDetail'])
-  }
 }
 </script>
 <style lang="scss" scoped>
