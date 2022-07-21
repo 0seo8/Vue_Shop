@@ -305,7 +305,7 @@ export default {
   }
   .form-control {
     margin-left: 8px;
-    height: 36px;
+    height: 56px;
   }
   .search-icon {
     display: none;
@@ -361,6 +361,7 @@ button {
     .form-control {
       display: none;
       position: fixed;
+      top: 56px;
       left: 0;
       border-radius: 0;
       margin: 0;
