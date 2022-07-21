@@ -123,7 +123,7 @@ export default {
   color: var(--color-text-base);
   font-family: 'GmarketSansMedium';
   background-color: var(--color-admin-bg);
-  padding: 60px 10%;
+  padding: 60px 6%;
   margin-left: auto;
   margin-right: auto;
   .content-header {
@@ -162,7 +162,6 @@ export default {
           margin-left: 8px;
         }
       }
-      
     }
   }
 }
