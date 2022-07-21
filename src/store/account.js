@@ -66,7 +66,7 @@ export default {
         commit('changeLoadingStatus', false, { root: true })
       }
     },
-    async connectAccount(_, payload) {
+    async connectAccount({commit}, payload) {
       const accessToken = window.localStorage.getItem('token')
       const { bankCode, accountNumber } = payload
       try {
@@ -91,7 +91,7 @@ export default {
         commit('changeLoadingStatus', false, { root: true })
       }
     },
-    async disConnectAccount(_, accountId) {
+    async disConnectAccount({commit}, accountId) {
       const accessToken = window.localStorage.getItem('token')
       try {
         commit('changeLoadingStatus', true, { root: true })

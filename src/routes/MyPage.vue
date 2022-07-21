@@ -113,8 +113,8 @@
                   <td>
                     <button
                       class="btn btn-primary connect-btn"
-                      @click="toogleHandleAccount()">
-                      연결
+                      @click="disConnectAccount(currentAccount.id)">
+                      해제
                     </button>
                   </td>
                 </tr>
