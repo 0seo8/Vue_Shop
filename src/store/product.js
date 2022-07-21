@@ -14,7 +14,7 @@ export default {
   state() {
     return {
       products: [],
-      selectedProduct: {},
+      selectedProduct: [],
       selectedPrice:'',
       searchProductList: [],
       PurchaseHistories: [],
@@ -49,7 +49,7 @@ export default {
         })
         commit('setState', {products: data})
       } catch(err) {
-        console.log(err.code)
+        console.log(err.response.data)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -64,7 +64,7 @@ export default {
         })
           commit('setState', {selectedProduct: data, selectedPrice:data.price.toLocaleString('ko-KR')})  
       } catch(err) {
-        console.log(err.code)
+        console.log(err.response.data)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -83,7 +83,7 @@ export default {
           data: info
         })
       } catch(err) {
-        console.log(err.code)
+        console.log(err.response.data)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -108,7 +108,7 @@ export default {
         })
           commit('setState', {PurchaseHistories: list})  
       } catch(err) {
-        console.log(err.code)
+        console.log(err.response.data)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -130,7 +130,7 @@ export default {
         })
         dispatch('readPurchaseAllHistory')
       } catch(err) {
-        console.log(err.code)
+        console.log(err.response.data)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -153,7 +153,7 @@ export default {
         })
         dispatch('readPurchaseAllHistory')  
       } catch(err) {
-        console.log(err.code)
+        console.log(err.response.data)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
@@ -169,7 +169,7 @@ export default {
         })
         commit('setState', {searchProductList: data})  
       } catch(err) {
-        console.log(err.code)
+        console.log(err.response.data)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
       }
