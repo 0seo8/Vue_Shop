@@ -8,9 +8,9 @@
         <table class="table">
           <tbody>
             <tr
-              v-for="(detail, index) in details"
+              v-for="(detail) in paginatedData"
               :key="detail.id">
-              <td>{{ index + 1 }}</td>
+              <td />
               <td><b>{{ detail.user.displayName }}</b></td>
               <td>{{ detail.user.email }}</td>
               <td>{{ detail.product.price.toLocaleString() + '원' }}</td>
@@ -31,6 +31,44 @@
             </tr>
           </tbody>
         </table>
+        <nav
+          aria-label="Page navigation example">
+          <ul
+            class="pagination">
+            <li class="page-item">
+              <span
+                class="page-link"
+                aria-label="Previous">
+                <span
+                  aria-hidden="true"
+                  @click="prevPage">&laquo;</span>
+              </span>
+            </li>
+
+            <li
+              v-for="pageNum in totalPages"
+              :key="pageNum"
+              class="page-item">
+              <span
+                class="page-link"
+                :aria-current="currentPage === pageNum && 'page'"
+                @click="paginate(pageNum)">{{ pageNum }}
+              </span>
+            </li>
+
+            <li class="page-item">
+              <span
+                class="page-link"
+                href="#"
+                aria-label="Next">
+                <span
+                  aria-hidden="true"
+                  @click="nextPage">&raquo;
+                </span>
+              </span>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
@@ -44,20 +82,63 @@ export default {
   data() {
     return {
       columns: [
-        {field: 'index', name: ''},
         {field: 'user-name', name: '이름'},
         {field: 'user-email', name: '제목'},
         {field: 'product-price', name: '가격'},
         {field: 'done', name: '구매여부'},
         {field: 'time', name: '구매시간'}
-      ]
+      ],
+      pageSize: 10,
+      currentPage: 0
     }
   },
+  computed: {
+    perPage() {
+      return Math.ceil(this.details.length / this.pageSize)
+    },
+    totalPages() {
+      return Array(this.perPage).fill().map((_, i) => i + 1)
+    },
+    paginatedData() {
+      const start = (this.currentPage) * this.pageSize
+      const end = start + this.pageSize
+      return this.details.slice(start, end)
+    }
+  },
+  methods: {
+    paginate(num) {
+      this.currentPage = num - 1
+    },
+    nextPage() {
+      if (this.currentPage < this.perPage) {
+        this.currentPage += 1
+      }
+    },
+    prevPage() {
+      if (this.currentPage >= 1) {
+        this.currentPage -= 1  
+      }
+    },
+  }
 }
 </script>
 <style lang="scss" scoped>
 .card-body {
   color: var(--color-text-base);
+  .table-responsive {
+    
+    .pagination {
+      padding-top: 0.6rem;
+      justify-content: center;
+      cursor: pointer;
+        [aria-current="page"] {
+          color: var(--color-pirmary);
+        }
+      span {
+        color: var(--color-gray-700);
+      }
+    }
+  }
 }
 tr {
     font-size: 1rem;
