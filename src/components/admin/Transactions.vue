@@ -51,7 +51,7 @@
               class="page-item">
               <span
                 class="page-link"
-                :aria-current="currentPage === pageNum && 'page'"
+                :aria-current="currentPage === pageNum - 1 && 'page'"
                 @click="paginate(pageNum)">{{ pageNum }}
               </span>
             </li>
