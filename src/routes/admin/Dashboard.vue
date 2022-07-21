@@ -112,8 +112,7 @@ export default {
       return this.$store.state.admin.productList.length
     }
   }, 
-  mounted() {
-    this.$store.dispatch('admin/readTransactionDetail')
+  created() {
     this.$store.dispatch('admin/readProducts')
   },
 }
