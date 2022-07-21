@@ -110,7 +110,7 @@ export default {
       this.currentPage = num - 1
     },
     nextPage() {
-      if (this.currentPage < this.perPage) {
+      if (this.currentPage < this.perPage - 1) {
         this.currentPage += 1
       }
     },
