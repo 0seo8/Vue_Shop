@@ -99,6 +99,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.login-box .user-box input::placeholder {
+  color: #fff;
+
+}
+
 .login-box {
   position: relative;
   top: 250px;
@@ -107,7 +113,7 @@ export default {
   width: 500px;
   padding: 50px;
   transform: translate(-50%, -50%);
-  background: var(--color-sub-primary);
+  background: var(--color-login-primary);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
@@ -138,10 +144,17 @@ export default {
       left: 0;
       padding: 10px 0;
       font-size: 16px;
-      color: #fff;
+      color: var(--color-white);
       pointer-events: none;
       transition: 0.5s;
     }
+  }
+}
+
+.btn-light {
+  color: var(--color-red);
+  &:hover {
+      color: var(--color-pirmary);
   }
 }
 
