@@ -23,7 +23,7 @@
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
-                      fill="currentColor"
+                      fill="var(--color-text-base)"
                       preserveAspectRatio="xMidYMid meet"><path d="M9.64 14.646a4.5 4.5 0 1 1 0-5.292l4.54-2.476a4.5 4.5 0 1 1 .63.795l-4.675 2.55c.235.545.365 1.146.365 1.777s-.13 1.232-.365 1.777l4.675 2.55a4.5 4.5 0 1 1-.63.795l-4.54-2.476zM18 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM6 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM18 23a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
                     </svg>
                   </button>
@@ -246,6 +246,8 @@ section {
     border-radius: 4px;
     border: 1px solid rgb(218, 220, 224);
     box-shadow: rgb(63 71 77 / 6%) 0px 2px 4px 0px;
+    background-color: var(--color-info-bg);
+    color: var(--color-text-base);
     .copy_link {
       position: absolute;
       top: 1rem;
@@ -268,7 +270,6 @@ section {
           font-stretch: inherit;
           line-height: inherit;
           font-family: inherit;
-          color: rgb(66, 66, 66);
           font-size: 24px;
         }
       }
@@ -314,7 +315,7 @@ section {
         text-align: left;
           .greeting {
             margin: 0px 10px 0px 10px;
-            color: #121212;
+            color: var(--color-gray-900);
             font-size: 20px;
             margin-bottom: 10px;
           }
@@ -324,7 +325,6 @@ section {
             font-weight: bold;
             font-size: 26px;
             line-height: 1.2;
-            color: rgb(41, 41, 41);
             overflow-wrap: break-word;
             word-break: break-all;
             .setting {
@@ -344,7 +344,6 @@ section {
       padding: 22px 12px 0px;
       .links {
         display: flex;
-        color: rgb(41, 41, 41);
         .link {
           padding: 0px 16px;
               flex: 1 0 0px;
@@ -369,6 +368,7 @@ section {
 .table {
   white-space: nowrap;
   text-align: center;
+  color: var(--color-text-base);
 }
 
 
@@ -398,7 +398,6 @@ section {
               margin-right: 6px;
               font-weight: normal;
               font-size: 12px;
-              color: rgb(41, 41, 41);
             }
           }
         }
