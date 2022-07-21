@@ -29,16 +29,17 @@ export default createRouter({
           name: 'login',
           component: Login,
         },
+        {
+          path: 'signup',
+          name: 'signup',
+          component: Signup,
+        },
       ]
     },
     {
       path: '/mypage',
       component: MyPage,
       meta: { auth: true },
-    },
-    {
-      path: '/signup',
-      component: Signup,
     },
     {
       path: '/profilechange',
