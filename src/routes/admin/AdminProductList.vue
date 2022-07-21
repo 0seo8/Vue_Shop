@@ -95,7 +95,7 @@
   </section>
 </template>
 <script>
-import AdminButton from '../../components/AdminButton.vue'
+import AdminButton from '../../components/admin/AdminButton.vue'
 import axios from 'axios'
 import noImage from '~/routes/admin/noImage.js'
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
@@ -134,6 +134,7 @@ export default {
           col: 'column col-lg-2 col-sm-2 col-4 col-isSoldOut',
         },
       ],
+
     }
   },
   computed: {
@@ -223,7 +224,9 @@ section {
       width: auto;
       .dropdown-menu {
         font-size: 14px;
+            background-color: var(  --color-btn);
         .dropdown-item {
+           color: var(--color-text-base);
           &:active {
               background-color: var(--color-sub-primary);
           a {
@@ -268,5 +271,9 @@ section {
 
 .card {
   background: var(--color-info-bg);
+}
+
+.material-symbols-outlined {
+  color: var(--color-text-base);
 }
 </style>

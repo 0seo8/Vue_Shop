@@ -271,7 +271,7 @@ export default {
   padding: 0 8px;
 
   .material-symbols-outlined {
-    font-size: 30px;
+    font-size: 32px;
     color: var(--color-pirmary);
     display: block;
     &:hover {
@@ -305,6 +305,8 @@ export default {
   }
   .form-control {
     margin-left: 8px;
+    height: 32px;
+    font-size: .8rem;
   }
   .search-icon {
     display: none;
@@ -387,6 +389,9 @@ button {
       &_m {
         display: block;
     }
+  }
+  .admin {
+    width: 0;
   }
   }
   .logo__title {
