@@ -305,7 +305,6 @@ export default {
   }
   .form-control {
     margin-left: 8px;
-    height: 56px;
   }
   .search-icon {
     display: none;
@@ -365,6 +364,7 @@ button {
       left: 0;
       border-radius: 0;
       margin: 0;
+      height: 56px;
       &.active {
         display: block;
       }
