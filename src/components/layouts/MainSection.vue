@@ -31,7 +31,7 @@ export default {
     this.readAllProducts()
   },
   methods: {
-   ...mapActions('product', ['readAllProducts'])
+    ...mapActions('product', ['readAllProducts'])
   }
   
 }

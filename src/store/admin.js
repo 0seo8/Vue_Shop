@@ -20,22 +20,19 @@ export default {
       try {
         const res = await request('', 'GET')
         commit('setProductList', res)
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       }
     },
     async readTransactionDetail({ commit }) {
-      try{
-        commit('changeLoadingStatus', true, { root: true })
+      try {
         const res = await request('/transactions/all', 'GET')
         commit('setTransactionDetail', res)
-      } catch(err) {
+      } catch (err) {
         console.log(err)
-      } finally {
-        commit('changeLoadingStatus', false, { root: true })
       }
-    }
-  }
+    },
+  },
 }
 
 async function request(url = '', method) {
@@ -46,8 +43,8 @@ async function request(url = '', method) {
       'content-type': 'application/json',
       apikey: VITE_API_KEY,
       username: VITE_USERNAME,
-      masterKey: true
-    }
+      masterKey: true,
+    },
   })
   return data
 }

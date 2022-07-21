@@ -2,8 +2,7 @@ import axios from 'axios'
 
 const { VITE_API_KEY, VITE_USERNAME } = import.meta.env
 
-const END_POINT =
-  'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account'
+const END_POINT = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account'
 
 const headers = {
   'content-type': 'application/json',
@@ -30,7 +29,7 @@ export default {
   actions: {
     async getCurrentAccounts({ commit }) {
       const accessToken = window.localStorage.getItem('token')
-      try{
+      try {
         commit('changeLoadingStatus', true, { root: true })
         const { data } = await axios({
           url: END_POINT,
@@ -41,7 +40,7 @@ export default {
           },
         })
         commit('setState', { currentAccounts: data })
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
@@ -60,7 +59,7 @@ export default {
           },
         })
         commit('setState', { allAccount: data })
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
@@ -85,7 +84,7 @@ export default {
             signature: true,
           },
         })
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       } finally {
         commit('changeLoadingStatus', false, { root: true })
@@ -107,7 +106,7 @@ export default {
             signature: true,
           },
         })
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       } finally {
         commit('changeLoadingStatus', false, { root: true })

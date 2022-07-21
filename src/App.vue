@@ -27,6 +27,9 @@ export default {
   computed: {
     ...mapState(['isLoading']),
   },
+  created() {
+    this.$store.dispatch('admin/readTransactionDetail')
+  },
 }
 </script>
 
