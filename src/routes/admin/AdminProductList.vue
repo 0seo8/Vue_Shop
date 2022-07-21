@@ -224,7 +224,9 @@ section {
       width: auto;
       .dropdown-menu {
         font-size: 14px;
+            background-color: var(  --color-btn);
         .dropdown-item {
+           color: var(--color-text-base);
           &:active {
               background-color: var(--color-sub-primary);
           a {
@@ -269,5 +271,9 @@ section {
 
 .card {
   background: var(--color-info-bg);
+}
+
+.material-symbols-outlined {
+  color: var(--color-text-base);
 }
 </style>

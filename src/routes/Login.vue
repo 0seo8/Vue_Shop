@@ -135,7 +135,7 @@ section {
     }
     input {
       width: 100%;
-      padding: 10px 0;
+      padding: 10px 16px;
       font-size: 16px;
       color: #fff;
       margin-bottom: 30px;
@@ -144,7 +144,7 @@ section {
       outline: none;
       background: transparent;
       &::placeholder {
-        color: var(--color-gray-100)
+        color: #eeeeee;
       }
       &:focus {
         border-color: var(--color-pirmary);
@@ -158,7 +158,7 @@ section {
         color: var(--color-red);
         &:hover {
           color: var(--color-pirmary);
-          background-color: var(--color-gray-100);
+          background-color: #eee;
         }
       }
     .btn-login {
