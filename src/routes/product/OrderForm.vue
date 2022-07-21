@@ -520,6 +520,10 @@ export default {
   margin-top: 1rem;
 }
 
+button {
+  border: 0;
+}
+
 select {
   margin-top: 1rem;
 }

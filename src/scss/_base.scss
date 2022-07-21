@@ -25,10 +25,6 @@ li {
   list-style: none;
 }
 
-button {
-  border: 0;
-}
-
 p {
   margin: 0;
 }
@@ -46,7 +42,7 @@ dl, dt, dd {
   &:hover,
   &:focus {
     background-color: #c4464a;
-    border-color: #c4464a;    
+    border-color: #c4464a;   
   }
 } 
 
@@ -57,9 +53,16 @@ dl, dt, dd {
   &:focus {
     background-color: $primary;
     border-color: $primary;
+    color: #fff; 
   }
   &:focus {
     box-shadow: 0 0 0 0.25rem rgb($primary, .5);
+  }
+}
+
+.btn {
+  &:hover {
+    color: #fff;
   }
 }
 
