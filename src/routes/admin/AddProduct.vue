@@ -179,7 +179,6 @@ body {
         color: inherit;
       }
       display: block;
-      margin-top: 0em;
       .form-control[type="file"] {
         overflow: hidden;
       }
@@ -187,9 +186,9 @@ body {
         display: block;
         width: 100%;
         padding: 0.2rem;
-        font-size: 0.7rem;
+        font-size: 0.9rem;
         font-weight: 400;
-        line-height: 1.5;
+        line-height: 1.7;
         color: var(--color-gray-1000);
       }
       .image-price-tag {
