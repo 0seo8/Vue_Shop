@@ -2,58 +2,57 @@
   <section>
     <div
       class="bg"
-      @click="$router.back()">
-      <div class="login-box">
-        <div class="login-title">
-          <h5><span>Wellcome to</span> Electorn Market!</h5>
-        </div>
-        <form @submit.prevent="submitForm">
-          <div class="user-box">
-            <label for="email" />
-            <input
-              id="email"
-              v-model.trim="email"
-              placeholder="E-mail: 사용자 아이디 (필수!)"
-              type="email">
-          </div>
-          <div class="user-box">
-            <label for="name" />
-            <input
-              id="name"
-              v-model.trim="displayName"
-              placeholder="Id: 사용자 이름, 8자 이하 (필수!)"
-              maxlength="5"
-              type="name">
-          </div>
-          <div class="user-box">
-            <label for="ps1" />
-            <input
-              id="ps1"
-              v-model.trim="psw"
-              type="password"
-              placeholder="비밀번호: 8자 이상 필수">
-          </div>
-
-          <div class="user-box">
-            <label for="user-profile-picture" />
-            <input
-              id="user-profile-picture"
-              class="form-input"
-              type="file"
-              accept=".png, .jpg"
-              @change="selectfile">
-          </div>
-          <p
-            v-if="!formIsValid">
-            올바르게 입력해주세요!
-          </p>
-          <button
-            type="submit"
-            class="btn btn-light">
-            회원가입
-          </button>
-        </form>
+      @click="$router.back()" />
+    <div class="login-box">
+      <div class="login-title">
+        <h5><span>Wellcome to</span> Electorn Market!</h5>
       </div>
+      <form @submit.prevent="submitForm">
+        <div class="user-box">
+          <label for="email" />
+          <input
+            id="email"
+            v-model.trim="email"
+            placeholder="E-mail: 사용자 아이디 (필수!)"
+            type="email">
+        </div>
+        <div class="user-box">
+          <label for="name" />
+          <input
+            id="name"
+            v-model.trim="displayName"
+            placeholder="Id: 사용자 이름, 8자 이하 (필수!)"
+            maxlength="5"
+            type="name">
+        </div>
+        <div class="user-box">
+          <label for="ps1" />
+          <input
+            id="ps1"
+            v-model.trim="psw"
+            type="password"
+            placeholder="비밀번호: 8자 이상 필수">
+        </div>
+
+        <div class="user-box">
+          <label for="user-profile-picture" />
+          <input
+            id="user-profile-picture"
+            class="form-input"
+            type="file"
+            accept=".png, .jpg"
+            @change="selectfile">
+        </div>
+        <p
+          v-if="!formIsValid">
+          올바르게 입력해주세요!
+        </p>
+        <button
+          type="submit"
+          class="btn btn-light">
+          회원가입
+        </button>
+      </form>
     </div>
   </section>
 </template>
@@ -131,7 +130,7 @@ section {
 
 .login-box {
     position: relative;
-    top: 7rem;
+    top: 1rem;
     width: 500px;
     padding: 50px;
     background: var(--color-login-primary);

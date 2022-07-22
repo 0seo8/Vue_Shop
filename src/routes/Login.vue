@@ -97,7 +97,7 @@ section {
     }
   .login-box {
     position: relative;
-    top: 2.5rem;
+    top: 1rem;
     width: 500px;
     padding: 50px;
     background: var(--color-login-primary);
