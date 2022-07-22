@@ -36,7 +36,7 @@ export default {
         datasets: [
           {
             label: 'Electron Market Sale Data',
-            data: [this.productData[0].price, this.productData[1].price, this.productData[2].price, this.productData[3].price, this.productData[4].price, this.productData[5], this.productData[6].price, this.productData[7].price],
+            data: [this.productData[0].price, this.productData[1].price, this.productData[2].price, this.productData[3].price, this.productData[4].price, this.productData[5].price, this.productData[6].price, this.productData[7].price],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
