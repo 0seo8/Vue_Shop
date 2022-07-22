@@ -135,8 +135,8 @@ section {
     }
     input {
       width: 100%;
-      padding: 10px 16px;
-      font-size: 16px;
+      padding: 10px 8px;
+      font-size: 18px;
       color: #fff;
       margin-bottom: 30px;
       border: none;
@@ -144,7 +144,7 @@ section {
       outline: none;
       background: transparent;
       &::placeholder {
-        color: #eeeeee;
+        color: var(--color-gray-100);
       }
       &:focus {
         border-color: var(--color-pirmary);
