@@ -40,7 +40,10 @@ export default {
         commit('setUser', { user: data.user, findAdmin: data.user.email.includes('admin') })
         window.localStorage.setItem('token', data.accessToken)
       }catch(error){
+        console.log(error.response.data)
+        console.log(error.code)
         console.log(error)
+        confirm(error.response.data)
         window.localStorage.removeItem('token')
       } 
     },
