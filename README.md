@@ -1,11 +1,11 @@
 #  <img width="24" alt="logo" src="https://user-images.githubusercontent.com/90392240/180437693-14283fbd-c33a-4b20-bf7c-dad8a40ca31f.png">  Electron Market(5조) 
 
-> admin 접근
+> **admin 접근**
 - 회원가입시 이메일에 admin이 포함되는 이메일만 admin페이지에 접근할 수 있습니다.
 - 예) `electron@admin.com`
 
-> 프로젝트 진행 노션 링크
-- https://crystal-iridium-e5c.notion.site/Electron-Market-5-ee3e572d9ad342249c627c89fae1c648
+> **프로젝트 진행 노션 링크**
+- [노션](https://crystal-iridium-e5c.notion.site/Electron-Market-5-ee3e572d9ad342249c627c89fae1c648)
 
 ## 📑 과제 ****요구사항 분석****
 
